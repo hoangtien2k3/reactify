@@ -79,12 +79,6 @@
     </dependencyManagement>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.github.hoangtien2k3</groupId>-->
-<!--            <artifactId>fw-commons</artifactId>-->
-<!--            <version>v1.1.0</version>-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jcl</artifactId>
