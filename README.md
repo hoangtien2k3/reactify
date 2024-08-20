@@ -12,7 +12,7 @@ Fw-Commons [a commons Java lib]() with spring boot framework, Supports using key
 
 ```xml
 <dependency>
-  <groupId>io.hoangtien2k3</groupId>
+  <groupId>io.github.hoangtien2k3</groupId>
   <artifactId>fw-commons</artifactId>
   <version>1.1.0</version>
 </dependency>
