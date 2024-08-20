@@ -22,6 +22,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PoolProperties {
-  private Integer maxSize = 2000;
-  private Integer maxPendingAcquire = 2000;
+    private Integer maxSize = 2000;
+    private Integer maxPendingAcquire = 2000;
 }

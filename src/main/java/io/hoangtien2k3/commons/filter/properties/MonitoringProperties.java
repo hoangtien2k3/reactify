@@ -24,6 +24,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MonitoringProperties {
-  private boolean isEnable = true;
-  private MeterRegistry meterRegistry = new LoggingMeterRegistry();
+    private boolean isEnable = true;
+    private MeterRegistry meterRegistry = new LoggingMeterRegistry();
 }

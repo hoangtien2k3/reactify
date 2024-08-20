@@ -18,9 +18,9 @@ import reactor.core.publisher.Mono;
 
 public interface SagaStep {
 
-  boolean complete();
+    boolean complete();
 
-  Mono<StepResult> execute();
+    Mono<StepResult> execute();
 
-  Mono<Boolean> revert();
+    Mono<Boolean> revert();
 }

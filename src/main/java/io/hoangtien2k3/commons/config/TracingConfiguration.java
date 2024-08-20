@@ -22,13 +22,13 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class TracingConfiguration {
-  @Bean
-  public Tracer tracer(Tracing tracing) {
-    return BraveTracer.NOOP;
-  }
+    @Bean
+    public Tracer tracer(Tracing tracing) {
+        return BraveTracer.NOOP;
+    }
 
-  @Bean
-  public Tracing tracing() {
-    return Tracing.newBuilder().build();
-  }
+    @Bean
+    public Tracing tracing() {
+        return Tracing.newBuilder().build();
+    }
 }

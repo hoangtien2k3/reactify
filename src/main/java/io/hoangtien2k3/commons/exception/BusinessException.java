@@ -15,28 +15,72 @@
 package io.hoangtien2k3.commons.exception;
 
 import io.hoangtien2k3.commons.utils.Translator;
+import java.util.Arrays;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.Arrays;
-
+/**
+ * Exception class used to represent business logic errors in the application.
+ *
+ * <p>
+ * This class extends {@link RuntimeException} and provides additional
+ * information such as an error code, an error message, and optional parameters
+ * for the message. The message and parameters are translated to a localized
+ * format using the {@link Translator} class.
+ * </p>
+ *
+ * @see RuntimeException
+ * @see Translator
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 public class BusinessException extends RuntimeException {
-  private String errorCode;
-  private String message;
-  private Object[] paramsMsg;
 
-  public BusinessException(String errorCode, String message) {
-    this.errorCode = errorCode;
-    this.message = Translator.toLocaleVi(message);
-  }
+    private String errorCode;
+    private String message;
+    private Object[] paramsMsg;
 
-  public BusinessException(String errorCode, String message, String... paramsMsg) {
-    this.errorCode = errorCode;
-    this.paramsMsg = Arrays.stream(paramsMsg).map(Translator::toLocaleVi).toArray(String[]::new);
-    this.message = Translator.toLocaleVi(message, this.paramsMsg);
-  }
+    /**
+     * Constructs a new {@link BusinessException} with the specified error code and
+     * message.
+     *
+     * <p>
+     * The message is translated to a localized format using the {@link Translator}
+     * class.
+     * </p>
+     *
+     * @param errorCode
+     *            the code representing the specific error
+     * @param message
+     *            the error message describing the nature of the error
+     */
+    public BusinessException(String errorCode, String message) {
+        this.errorCode = errorCode;
+        this.message = Translator.toLocaleVi(message);
+    }
+
+    /**
+     * Constructs a new {@link BusinessException} with the specified error code,
+     * message, and parameters.
+     *
+     * <p>
+     * The message and parameters are translated to a localized format using the
+     * {@link Translator} class. The parameters are used to format the error
+     * message.
+     * </p>
+     *
+     * @param errorCode
+     *            the code representing the specific error
+     * @param message
+     *            the error message describing the nature of the error
+     * @param paramsMsg
+     *            the parameters used to format the error message
+     */
+    public BusinessException(String errorCode, String message, String... paramsMsg) {
+        this.errorCode = errorCode;
+        this.paramsMsg = Arrays.stream(paramsMsg).map(Translator::toLocaleVi).toArray(String[]::new);
+        this.message = Translator.toLocaleVi(message, this.paramsMsg);
+    }
 }

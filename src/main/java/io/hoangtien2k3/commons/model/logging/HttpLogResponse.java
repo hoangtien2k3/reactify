@@ -22,5 +22,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HttpLogResponse {
-  private boolean enable = true;
+    private boolean enable = true;
 }

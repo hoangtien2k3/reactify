@@ -22,6 +22,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TimeoutProperties {
-  private int read = 180000;
-  private int connection = 500;
+    private int read = 180000;
+    private int connection = 500;
 }

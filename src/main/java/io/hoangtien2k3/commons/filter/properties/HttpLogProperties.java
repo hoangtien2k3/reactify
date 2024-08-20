@@ -23,10 +23,44 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * @author hoangtien2k3
- *         <p>
- *         http request and http response
+ * Configuration properties for HTTP logging settings.
  *
+ * <p>
+ * This class is used to configure the HTTP request and response logging
+ * settings in the application. The properties are loaded from the application's
+ * configuration file with the prefix {@code application.http-logging}. It
+ * allows you to specify settings for logging both HTTP requests and responses.
+ * </p>
+ *
+ * <p>
+ * It contains the following properties:
+ * </p>
+ * <ul>
+ * <li>{@link HttpLogRequest} - Configuration settings for HTTP request
+ * logging.</li>
+ * <li>{@link HttpLogResponse} - Configuration settings for HTTP response
+ * logging.</li>
+ * </ul>
+ *
+ * <p>
+ * Example configuration in {@code application.yml}:
+ * </p>
+ *
+ * <pre>
+ * application:
+ *   http-logging:
+ *     request:
+ *       enabled: true
+ *       logLevel: DEBUG
+ *     response:
+ *       enabled: true
+ *       logLevel: INFO
+ * </pre>
+ *
+ * @see HttpLogRequest
+ * @see HttpLogResponse
+ * @since 1.0
+ * @author hoangtien2k3
  */
 @Component
 @ConfigurationProperties(prefix = "application.http-logging", ignoreInvalidFields = true)
@@ -34,6 +68,6 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HttpLogProperties {
-  private HttpLogRequest request = new HttpLogRequest();
-  private HttpLogResponse response = new HttpLogResponse();
+    private HttpLogRequest request = new HttpLogRequest();
+    private HttpLogResponse response = new HttpLogResponse();
 }

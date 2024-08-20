@@ -22,6 +22,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KeyCloakProperties {
-  private String clientId;
-  private String clientSecret;
+    private String clientId;
+    private String clientSecret;
 }

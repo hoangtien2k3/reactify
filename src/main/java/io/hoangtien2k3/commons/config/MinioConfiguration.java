@@ -26,13 +26,15 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class MinioConfiguration {
 
-  private final MinioProperties minioProperties;
+    private final MinioProperties minioProperties;
 
-  @Bean
-  @ConditionalOnProperty(value = "minio.enabled", havingValue = "true", matchIfMissing = false)
-  public MinioClient minioClient() {
-    log.info("Configuring minio client: {}", minioProperties.getBaseUrl());
-    return MinioClient.builder().endpoint(minioProperties.getBaseUrl())
-        .credentials(minioProperties.getAccessKey(), minioProperties.getSecretKey()).build();
-  }
+    @Bean
+    @ConditionalOnProperty(value = "minio.enabled", havingValue = "true", matchIfMissing = false)
+    public MinioClient minioClient() {
+        log.info("Configuring minio client: {}", minioProperties.getBaseUrl());
+        return MinioClient.builder()
+                .endpoint(minioProperties.getBaseUrl())
+                .credentials(minioProperties.getAccessKey(), minioProperties.getSecretKey())
+                .build();
+    }
 }

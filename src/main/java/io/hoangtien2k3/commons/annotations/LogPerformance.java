@@ -22,13 +22,13 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LogPerformance {
-  String logType() default "";
+    String logType() default "";
 
-  String actionType() default "";
+    String actionType() default "";
 
-  boolean logOutput() default true;
+    boolean logOutput() default true;
 
-  boolean logInput() default true;
+    boolean logInput() default true;
 
-  String title() default "";
+    String title() default "";
 }

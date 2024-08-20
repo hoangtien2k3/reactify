@@ -14,16 +14,15 @@
  */
 package io.hoangtien2k3.commons.model;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class WhiteList {
-  private String uri;
-  private List<String> methods;
+    private String uri;
+    private List<String> methods;
 }

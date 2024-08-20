@@ -17,9 +17,9 @@ package io.hoangtien2k3.commons.factory;
 import org.modelmapper.ModelMapper;
 
 public class ModelMapperFactory {
-  private static final ModelMapper modelMapper = new ModelMapper();
+    private static final ModelMapper modelMapper = new ModelMapper();
 
-  public static ModelMapper getInstance() {
-    return modelMapper;
-  }
+    public static ModelMapper getInstance() {
+        return modelMapper;
+    }
 }

@@ -29,17 +29,20 @@ import reactor.util.retry.Retry;
 @RequiredArgsConstructor
 public class WebClientRetryHandler implements ExchangeFilterFunction {
 
-  private final RetryProperties properties;
+    private final RetryProperties properties;
 
-  @Override
-  public Mono<ClientResponse> filter(ClientRequest request, ExchangeFunction next) {
-    Retry retry = Retry.max(properties.getCount()).filter(
-        e -> properties.getMethods().contains(request.method()) && properties.getExceptions().stream().anyMatch(
-            clazz -> clazz.isInstance(e) || clazz.isInstance(NestedExceptionUtils.getRootCause(e))))
-        .doBeforeRetry(retrySignal -> {
-          log.warn("Retrying: {}; Cause: {}.", retrySignal.totalRetries(), retrySignal.failure());
-        }).onRetryExhaustedThrow(((retrySpec, retrySignal) -> retrySignal.failure()));
+    @Override
+    public Mono<ClientResponse> filter(ClientRequest request, ExchangeFunction next) {
+        Retry retry = Retry.max(properties.getCount())
+                .filter(e -> properties.getMethods().contains(request.method())
+                        && properties.getExceptions().stream()
+                                .anyMatch(clazz ->
+                                        clazz.isInstance(e) || clazz.isInstance(NestedExceptionUtils.getRootCause(e))))
+                .doBeforeRetry(retrySignal -> {
+                    log.warn("Retrying: {}; Cause: {}.", retrySignal.totalRetries(), retrySignal.failure());
+                })
+                .onRetryExhaustedThrow(((retrySpec, retrySignal) -> retrySignal.failure()));
 
-    return next.exchange(request).retryWhen(retry);
-  }
+        return next.exchange(request).retryWhen(retry);
+    }
 }

@@ -12,7 +12,7 @@
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
  */
-package io.hoangtien2k3.commons.config;// package io.hoangtien2k3.commons.config;
+package io.hoangtien2k3.commons.config; // package io.hoangtien2k3.commons.config;
 //
 // import java.util.List;
 //

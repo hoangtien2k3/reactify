@@ -27,13 +27,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class TokenUser {
-  private String id;
-  private String name;
-  private String username;
-  private String email;
+    private String id;
+    private String name;
+    private String username;
+    private String email;
 
-  @JsonProperty("individual_id")
-  private String individualId;
+    @JsonProperty("individual_id")
+    private String individualId;
 
-  private String organizationId;
+    private String organizationId;
 }

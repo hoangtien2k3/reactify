@@ -1,5 +1,6 @@
 # demo config application.yml and application.properties
-
+server:
+  port: 8918
 logging:
   #  config: classpath:log4j2-prod.xml
   level:

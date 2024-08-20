@@ -12,7 +12,7 @@
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
  */
-package io.hoangtien2k3.commons.utils;// package io.hoangtien2k3.commons.utils;
+package io.hoangtien2k3.commons.utils; // package io.hoangtien2k3.commons.utils;
 //
 // import java.security.cert.X509Certificate;
 //
