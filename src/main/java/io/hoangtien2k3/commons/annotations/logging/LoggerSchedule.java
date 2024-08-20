@@ -1,3 +1,17 @@
+/*
+ * Copyright 2024 author - Hoàng Anh Tiến
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ */
 package io.hoangtien2k3.commons.annotations.logging;
 
 import io.hoangtien2k3.commons.factory.ObjectMapperFactory;
@@ -26,100 +40,107 @@ import static io.hoangtien2k3.commons.constants.Constants.MAX_BYTE;
 @RequiredArgsConstructor
 @Slf4j
 public class LoggerSchedule {
-    private static final Logger logPerf = LoggerFactory.getLogger("perfLogger");
+  private static final Logger logPerf = LoggerFactory.getLogger("perfLogger");
 
-    @Scheduled(fixedDelay = 3000)
-    public void scheduleSaveLogClick() {
-        long analyId = System.currentTimeMillis();
-        int numSuccess = 0;
-        int numFalse = 0;
-        List<LoggerDTO> records = LoggerQueue.getInstance().getRecords();
-        for (LoggerDTO record : records) {
-            try {
-                process(record);
-                numSuccess++;
-            } catch (Exception e) {
-                numFalse++;
-                log.error("Error while handle record queue: ", e.getMessage());
-            }
-        }
-//        log.info("AsyncLog analyId {}: QueueSize: {}, addSuccess: {}, addFalse: {}, writeSuccess:{}, writeFalse:{}",
-//                analyId, records.size(), LoggerQueue.getInstance().getCountSuccess(), LoggerQueue.getInstance().getCountFalse(), numSuccess, numFalse);
-        LoggerQueue.getInstance().resetCount();
+  @Scheduled(fixedDelay = 3000)
+  public void scheduleSaveLogClick() {
+    long analyId = System.currentTimeMillis();
+    int numSuccess = 0;
+    int numFalse = 0;
+    List<LoggerDTO> records = LoggerQueue.getInstance().getRecords();
+    for (LoggerDTO record : records) {
+      try {
+        process(record);
+        numSuccess++;
+      } catch (Exception e) {
+        numFalse++;
+        log.error("Error while handle record queue: ", e.getMessage());
+      }
     }
+    // log.info("AsyncLog analyId {}: QueueSize: {}, addSuccess: {}, addFalse: {},
+    // writeSuccess:{}, writeFalse:{}",
+    // analyId, records.size(), LoggerQueue.getInstance().getCountSuccess(),
+    // LoggerQueue.getInstance().getCountFalse(), numSuccess, numFalse);
+    LoggerQueue.getInstance().resetCount();
+  }
 
-    private void process(LoggerDTO record) {
-        if (record != null) {
-            String traceId = !DataUtil.isNullOrEmpty(record.getNewSpan().context().traceIdString()) ? record.getNewSpan().context().traceIdString() : "";
-            String ipAddress = null;
-            String requestId = null;
-            if (record.getContextRef().get() != null) {
-                if (record.getContextRef().get().hasKey(ServerWebExchange.class)) {
-                    ServerWebExchange serverWebExchange = record.getContextRef().get().get(ServerWebExchange.class);
-                    ServerHttpRequest request = serverWebExchange.getRequest();
-                    ipAddress = RequestUtils.getIpAddress(request);
+  private void process(LoggerDTO record) {
+    if (record != null) {
+      String traceId = !DataUtil.isNullOrEmpty(record.getNewSpan().context().traceIdString())
+          ? record.getNewSpan().context().traceIdString()
+          : "";
+      String ipAddress = null;
+      String requestId = null;
+      if (record.getContextRef().get() != null) {
+        if (record.getContextRef().get().hasKey(ServerWebExchange.class)) {
+          ServerWebExchange serverWebExchange = record.getContextRef().get().get(ServerWebExchange.class);
+          ServerHttpRequest request = serverWebExchange.getRequest();
+          ipAddress = RequestUtils.getIpAddress(request);
 
-                    if (serverWebExchange.getRequest() != null && serverWebExchange.getRequest().getHeaders() != null && !DataUtil.isNullOrEmpty(serverWebExchange.getRequest().getHeaders().getFirst("Request-Id"))) {
-                        requestId = serverWebExchange.getRequest().getHeaders().getFirst("Request-Id");
-                    }
-                }
-            }
-
-            String inputs = null;
-            try {
-                if (record.getArgs() != null) {
-                    inputs = ObjectMapperFactory.getInstance().writeValueAsString(getAgrs(record.getArgs()));
-                }
-            } catch (Exception ex) {
-                log.error("Error while handle record queue: ", ex.getMessage());
-            }
-
-            String resStr = null;
-            try {
-                if (record.getResponse() instanceof Optional) {
-                    Optional output = (Optional) record.getResponse();
-                    if (output.isPresent()) {
-                        resStr = ObjectMapperFactory.getInstance().writeValueAsString(output.get());
-                    }
-                } else {
-                    if (record.getResponse() != null) {
-                        resStr = ObjectMapperFactory.getInstance().writeValueAsString(record.getResponse());
-                    }
-                }
-            } catch (Exception ex) {
-                log.error("Error while handle record queue: ", ex.getMessage());
-            }
-            try {
-                inputs = TruncateUtils.truncate(inputs, MAX_BYTE);
-                resStr = TruncateUtils.truncate(resStr, MAX_BYTE);
-            } catch (Exception ex) {
-                log.error("Truncate input/output error ", ex);
-            }
-            logInfo(new LogField(traceId, requestId, record.getService(), record.getEndTime() - record.getStartTime(), record.getLogType(),
-                    record.getActionType(), record.getStartTime(), record.getEndTime(), ipAddress, record.getTitle(), inputs, resStr, record.getResult()));
+          if (serverWebExchange.getRequest() != null && serverWebExchange.getRequest().getHeaders() != null
+              && !DataUtil.isNullOrEmpty(
+                  serverWebExchange.getRequest().getHeaders().getFirst("Request-Id"))) {
+            requestId = serverWebExchange.getRequest().getHeaders().getFirst("Request-Id");
+          }
         }
-    }
+      }
 
-    private void logInfo(LogField logField) {
-        try {
-            logPerf.info(ObjectMapperFactory.getInstance().writeValueAsString(logField));
-        } catch (Exception ex) {
-            log.error("Error while handle record queue: ", ex.getMessage());
+      String inputs = null;
+      try {
+        if (record.getArgs() != null) {
+          inputs = ObjectMapperFactory.getInstance().writeValueAsString(getAgrs(record.getArgs()));
         }
-    }
+      } catch (Exception ex) {
+        log.error("Error while handle record queue: ", ex.getMessage());
+      }
 
-    private List<Object> getAgrs(Object[] args) {
-        List<Object> listArg = new ArrayList<>();
-        for (int i = 0; i < args.length; i++) {
-            if (args[i] instanceof Mono) {
-//                listArg.add(((Mono) args[i]).block());
-//                skip
-            } else if (args[i] instanceof ServerWebExchange) {
-                //skip
-            } else {
-                listArg.add(args[i]);
-            }
+      String resStr = null;
+      try {
+        if (record.getResponse() instanceof Optional) {
+          Optional output = (Optional) record.getResponse();
+          if (output.isPresent()) {
+            resStr = ObjectMapperFactory.getInstance().writeValueAsString(output.get());
+          }
+        } else {
+          if (record.getResponse() != null) {
+            resStr = ObjectMapperFactory.getInstance().writeValueAsString(record.getResponse());
+          }
         }
-        return listArg;
+      } catch (Exception ex) {
+        log.error("Error while handle record queue: ", ex.getMessage());
+      }
+      try {
+        inputs = TruncateUtils.truncate(inputs, MAX_BYTE);
+        resStr = TruncateUtils.truncate(resStr, MAX_BYTE);
+      } catch (Exception ex) {
+        log.error("Truncate input/output error ", ex);
+      }
+      logInfo(new LogField(traceId, requestId, record.getService(), record.getEndTime() - record.getStartTime(),
+          record.getLogType(), record.getActionType(), record.getStartTime(), record.getEndTime(), ipAddress,
+          record.getTitle(), inputs, resStr, record.getResult()));
     }
+  }
+
+  private void logInfo(LogField logField) {
+    try {
+      logPerf.info(ObjectMapperFactory.getInstance().writeValueAsString(logField));
+    } catch (Exception ex) {
+      log.error("Error while handle record queue: ", ex.getMessage());
+    }
+  }
+
+  private List<Object> getAgrs(Object[] args) {
+    List<Object> listArg = new ArrayList<>();
+    for (int i = 0; i < args.length; i++) {
+      if (args[i] instanceof Mono) {
+        // listArg.add(((Mono) args[i]).block());
+        // skip
+      } else if (args[i] instanceof ServerWebExchange) {
+        // skip
+      } else {
+        listArg.add(args[i]);
+      }
+    }
+    return listArg;
+  }
 }

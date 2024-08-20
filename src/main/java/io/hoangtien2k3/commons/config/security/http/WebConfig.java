@@ -1,3 +1,17 @@
+/*
+ * Copyright 2024 author - Hoàng Anh Tiến
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ */
 package io.hoangtien2k3.commons.config.security.http;
 
 import io.hoangtien2k3.commons.config.WhiteListProperties;
@@ -30,66 +44,63 @@ import java.util.List;
 @EnableReactiveMethodSecurity
 public class WebConfig {
 
-    private final WhiteListProperties whiteListProperties;
+  private final WhiteListProperties whiteListProperties;
 
-    @Bean
-    public SecurityWebFilterChain springSecurityFilterChain(
-            ServerHttpSecurity http, Converter<Jwt, Mono<AbstractAuthenticationToken>> jwtAuthenticationConverter) {
-        http.csrf(ServerHttpSecurity.CsrfSpec::disable);
+  @Bean
+  public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http,
+      Converter<Jwt, Mono<AbstractAuthenticationToken>> jwtAuthenticationConverter) {
+    http.csrf(ServerHttpSecurity.CsrfSpec::disable);
 
-        List<WhiteList> whiteListList = whiteListProperties.getWhiteList();
-        if (!DataUtil.isNullOrEmpty(whiteListList)) {
-            for (WhiteList whiteList : whiteListList) {
-                String uri = whiteList.getUri();
-                log.info("whitelist: {}", uri);
-                List<String> methods = whiteList.getMethods();
-                if (!DataUtil.isNullOrEmpty(methods)) {
-                    for (String method : methods) {
-                        HttpMethod convertedMethod = HttpMethod.valueOf(method);
-                        http.authorizeExchange(authorize ->
-                                authorize.pathMatchers(convertedMethod, uri).permitAll());
-                    }
-                } else {
-                    http.authorizeExchange(
-                            authorize -> authorize.pathMatchers(uri).permitAll());
-                }
-            }
+    List<WhiteList> whiteListList = whiteListProperties.getWhiteList();
+    if (!DataUtil.isNullOrEmpty(whiteListList)) {
+      for (WhiteList whiteList : whiteListList) {
+        String uri = whiteList.getUri();
+        log.info("whitelist: {}", uri);
+        List<String> methods = whiteList.getMethods();
+        if (!DataUtil.isNullOrEmpty(methods)) {
+          for (String method : methods) {
+            HttpMethod convertedMethod = HttpMethod.valueOf(method);
+            http.authorizeExchange(authorize -> authorize.pathMatchers(convertedMethod, uri).permitAll());
+          }
+        } else {
+          http.authorizeExchange(authorize -> authorize.pathMatchers(uri).permitAll());
         }
-
-        http.cors(corsSpec -> corsSpec.configurationSource(corsConfigurationSource()))
-                .authorizeExchange(authorize -> authorize.anyExchange().authenticated())
-                .oauth2ResourceServer(
-                        oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)));
-
-        http.headers(headers -> headers.frameOptions(
-                frameOptions -> frameOptions.mode(XFrameOptionsServerHttpHeadersWriter.Mode.SAMEORIGIN)));
-
-        return http.build();
+      }
     }
 
-    //    @Bean
-    //    public CorsConfigurationSource corsConfigurationSource() {
-    //        UrlBasedCorsConfigurationSource configurationSource = new
-    // UrlBasedCorsConfigurationSource();
-    //        CorsConfiguration corsConfiguration = new CorsConfiguration();
-    //        corsConfiguration.setAllowedOrigins(List.of("*"));
-    //        corsConfiguration.setAllowedMethods(List.of("*"));
-    //        corsConfiguration.setAllowedHeaders(List.of("*"));
-    //        configurationSource.registerCorsConfiguration("/**", corsConfiguration);
-    //        return configurationSource;
-    //    }
+    http.cors(corsSpec -> corsSpec.configurationSource(corsConfigurationSource()))
+        .authorizeExchange(authorize -> authorize.anyExchange().authenticated()).oauth2ResourceServer(
+            oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)));
 
-    private CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(List.of("*"));
-        configuration.setAllowedMethods(List.of("*"));
-        configuration.setMaxAge(7200L);
-        configuration.setAllowedHeaders(List.of("*"));
-        configuration.setExposedHeaders(List.of("*"));
-        configuration.setAllowCredentials(true);
-        configuration.applyPermitDefaultValues();
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+    http.headers(headers -> headers
+        .frameOptions(frameOptions -> frameOptions.mode(XFrameOptionsServerHttpHeadersWriter.Mode.SAMEORIGIN)));
+
+    return http.build();
+  }
+
+  // @Bean
+  // public CorsConfigurationSource corsConfigurationSource() {
+  // UrlBasedCorsConfigurationSource configurationSource = new
+  // UrlBasedCorsConfigurationSource();
+  // CorsConfiguration corsConfiguration = new CorsConfiguration();
+  // corsConfiguration.setAllowedOrigins(List.of("*"));
+  // corsConfiguration.setAllowedMethods(List.of("*"));
+  // corsConfiguration.setAllowedHeaders(List.of("*"));
+  // configurationSource.registerCorsConfiguration("/**", corsConfiguration);
+  // return configurationSource;
+  // }
+
+  private CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOriginPatterns(List.of("*"));
+    configuration.setAllowedMethods(List.of("*"));
+    configuration.setMaxAge(7200L);
+    configuration.setAllowedHeaders(List.of("*"));
+    configuration.setExposedHeaders(List.of("*"));
+    configuration.setAllowCredentials(true);
+    configuration.applyPermitDefaultValues();
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
+  }
 }
