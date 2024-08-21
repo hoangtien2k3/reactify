@@ -8,9 +8,6 @@ logging:
     org.springframework.r2dbc: DEBUG
     io.r2dbc.postgresql.QUERY: DEBUG
     io.r2dbc.postgresql.PARAM: DEBUG
-dotenv:
-  enabled: true
-  active: true
 
 # spring config
 spring:
@@ -87,12 +84,12 @@ client:
     name: keycloak
     auth:
       client-id: ezbuy-client
-      client-secret: mI92QDfvi20tZgFtjpRAPWu8TR6eMHmw
+      client-secret: #clientSecret
 
 #keycloak client config
 keycloak:
   clientId: ezbuy-client
-  clientSecret: mI92QDfvi20tZgFtjpRAPWu8TR6eMHmw
+  clientSecret: #clientSecret
   realm: ezbuy-server
   serverUrl: http://localhost:8080
   grantType: password
@@ -104,15 +101,15 @@ minio:
   enabled: true
   baseUrl: http://localhost:9000
   publicUrl: http://localhost:9000/ezbuy-bucket
-  accessKey: 4DoaZ0KdzpXdDlVK104t
-  secretKey: nuRiQUIJNVygMOHhmtR4LT1etAa7F8PQOsRGP5oj
+  accessKey: #accessKey
+  secretKey: #secretKey
   private:
     bucket: ezbuy-private
 
 #generate public key
 hashing-password:
-  public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw5e+CZbXbC8SRbrp+X9O4QRrKQWRu2zJpYGmGtP3bdS6NtsVBaJz2hHwF1KeEzZTnlW/jy7NOYYR5Rp5nD1RfAJooxZxgO7BcZZKbsnBNe+KLUQrxNOgkx2ZpMs60UdzToz0IvIN5L5NFaiKq5/WwRpG4aIM8iV/ME1L/QQw0FDD7m/2PUxDlANXJl5hZgXfZ1hpo/31HXkBofJTWJ/MdTAnxR4u5y+mXYUsf9GmCmA5exPpPZZv1qT1D7AWv0CXi5Ftd2ylbD6jAtF5MC1ngO4FEGZh9uTwXQh2x8FJmc2U7KKTQMWuhbXtkANVVLMg+GPx7lTxDTwQpKmldf5UDuuzcBQIDAQAB
+  public-key: #public-key
 #config proxy
 proxy-client:
-  host: 10.207.156.52
-  port: 3128
+  host: 10.207.157.50
+  port: 3129

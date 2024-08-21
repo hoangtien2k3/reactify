@@ -13,6 +13,12 @@ This README provides quickstart instructions on running [`fw-commons`]() on bare
 
 ### ⬇️ [Download From Gradle and Maven Central](https://central.sonatype.com/artifact/cn.ponfee/commons-core/1.4)
 
+#### Gradle
+
+```kotlin
+implementation("io.github.hoangtien2k3:fw-commons:1.1.0")
+```
+
 #### Maven
 
 ```xml
@@ -21,12 +27,6 @@ This README provides quickstart instructions on running [`fw-commons`]() on bare
     <artifactId>fw-commons</artifactId>
     <version>1.1.0</version>
 </dependency>
-```
-
-#### Gradle
-
-```kotlin
-implementation("io.github.hoangtien2k3:fw-commons:1.1.0")
 ```
 
 ## Installation and Getting Started
