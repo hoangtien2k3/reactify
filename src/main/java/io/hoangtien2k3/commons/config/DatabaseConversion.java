@@ -20,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.*;
 import java.util.*;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.convert.ReadingConverter;
 import org.springframework.data.convert.WritingConverter;
@@ -115,7 +116,7 @@ public class DatabaseConversion {
         INSTANCE;
 
         @Override
-        public UUID convert(byte[] source) {
+        public UUID convert(@NotNull byte[] source) {
             ByteBuffer byteBuffer = ByteBuffer.wrap(source);
             long high = byteBuffer.getLong();
             long low = byteBuffer.getLong();
@@ -148,7 +149,7 @@ public class DatabaseConversion {
         INSTANCE;
 
         @Override
-        public ZonedDateTime convert(LocalDateTime localDateTime) {
+        public ZonedDateTime convert(@NotNull LocalDateTime localDateTime) {
             // Be aware - we are using the UTC timezone
             return ZonedDateTime.of(localDateTime, ZoneOffset.UTC);
         }
@@ -170,7 +171,7 @@ public class DatabaseConversion {
 
         @Override
         public Long convert(Duration source) {
-            return source != null ? source.toMillis() : null;
+            return source.toMillis();
         }
     }
 
@@ -182,8 +183,7 @@ public class DatabaseConversion {
         public Date convert(LocalDateTime localDateTime) {
             // Be aware - we are using the UTC timezone
             Instant instant = localDateTime.atZone(ZoneId.systemDefault()).toInstant();
-            Date date = Date.from(instant);
-            return date;
+            return Date.from(instant);
         }
     }
 
@@ -192,8 +192,8 @@ public class DatabaseConversion {
         INSTANCE;
 
         @Override
-        public Duration convert(Long source) {
-            return source != null ? Duration.ofMillis(source) : null;
+        public Duration convert(@NotNull Long source) {
+            return Duration.ofMillis(source);
         }
     }
 }
