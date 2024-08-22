@@ -11,7 +11,7 @@ This README provides quickstart instructions on running [`fw-commons`]() on bare
 [![Maven Central](https://img.shields.io/badge/maven--central-1.1.0-orange.svg?style=plastic&logo=apachemaven)](https://central.sonatype.com/artifact/io.github.hoangtien2k3/fw-commons/1.1.0)
 [![Gradle](https://img.shields.io/badge/gradle-1.1.0-orange.svg?style=plastic&logo=apachemaven)](https://central.sonatype.com/artifact/io.github.hoangtien2k3/fw-commons/1.1.0)
 
-### ⬇️ [Download From Gradle and Maven Central](https://central.sonatype.com/artifact/cn.ponfee/commons-core/1.4)
+#### ⬇️ [Download From Gradle and Maven Central](https://central.sonatype.com/artifact/io.github.hoangtien2k3/fw-commons/1.1.0)
 
 #### Gradle
 

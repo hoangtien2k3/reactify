@@ -46,19 +46,80 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+/**
+ * A filter that captures and processes HTTP request and response data for
+ * logging purposes in a Spring WebFlux gateway application.
+ * <p>
+ * This filter intercepts incoming requests and outgoing responses to record
+ * their headers and content, if logging is enabled for them. The context is
+ * stored in the {@link GatewayContext}, which can be accessed later in the
+ * request handling pipeline.
+ * </p>
+ *
+ * <p>
+ * <strong>Note:</strong> This filter is only active in non-production profiles
+ * (i.e., when the profile is not "prod").
+ * </p>
+ *
+ * <p>
+ * <strong>Logging and context management:</strong>
+ * </p>
+ * <ul>
+ * <li>Logs request and response data based on configurations in
+ * {@link HttpLogProperties}.</li>
+ * <li>Stores the captured data in a {@link GatewayContext} object, which is
+ * saved in the {@link ServerWebExchange} attributes.</li>
+ * <li>Supports logging of JSON and form URL-encoded content types.</li>
+ * </ul>
+ *
+ * <p>
+ * The filter is executed with the highest precedence in the filter chain,
+ * ensuring that it captures all relevant data before other filters process the
+ * request.
+ * </p>
+ *
+ * @author hoangtien2k3
+ * @see WebFilter
+ * @see Ordered
+ * @see GatewayContext
+ */
 @Component
 @Log4j2
 @AllArgsConstructor
 @Profile("!prod")
 public class GatewayContextFilter implements WebFilter, Ordered {
-    private HttpLogProperties httpLogProperties;
-    private CodecConfigurer codecConfigurer;
+    /**
+     * Properties for configuring HTTP request and response logging.
+     */
+    private final HttpLogProperties httpLogProperties;
 
+    /**
+     * Configurer for customizing HTTP message readers and writers.
+     */
+    private final CodecConfigurer codecConfigurer;
+
+    /**
+     * Specifies the order in which this filter is applied. This filter has the
+     * highest precedence.
+     *
+     * @return the highest precedence value, indicating that this filter is applied
+     *         first.
+     */
     @Override
     public int getOrder() {
         return Ordered.HIGHEST_PRECEDENCE;
     }
 
+    /**
+     * Filters the incoming HTTP request and outgoing response, capturing data for
+     * logging.
+     *
+     * @param exchange
+     *            the current server exchange
+     * @param chain
+     *            the web filter chain
+     * @return {@link Mono} signaling when request processing is complete
+     */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
@@ -98,11 +159,23 @@ public class GatewayContextFilter implements WebFilter, Ordered {
     }
 
     /**
-     * ReadFormData
+     * Reads form data from the incoming HTTP request, processes it, and prepares
+     * the data for further filtering in the chain.
+     * <p>
+     * This method handles form data (typically from an HTML form) in the request
+     * body. It captures the form data, encodes it properly, and rewrites the
+     * request body with the processed form data before passing the request along
+     * the filter chain.
+     * </p>
      *
      * @param exchange
+     *            the current server exchange containing the request and response
      * @param chain
-     * @return
+     *            the web filter chain
+     * @param gatewayContext
+     *            the context object that stores request and response data for
+     *            logging
+     * @return a {@link Mono} signaling when request processing is complete
      */
     private Mono<Void> readFormData(ServerWebExchange exchange, WebFilterChain chain, GatewayContext gatewayContext) {
         HttpHeaders headers = exchange.getRequest().getHeaders();
@@ -200,11 +273,23 @@ public class GatewayContextFilter implements WebFilter, Ordered {
     }
 
     /**
-     * ReadJsonBody
+     * Reads JSON data from the incoming HTTP request body and prepares it for
+     * further filtering in the chain.
+     * <p>
+     * This method handles JSON data in the request body by capturing and storing it
+     * in the {@link GatewayContext}. It then decorates the request to allow the
+     * request body to be read multiple times before passing the request along the
+     * filter chain.
+     * </p>
      *
      * @param exchange
+     *            the current server exchange containing the request and response
      * @param chain
-     * @return
+     *            the web filter chain
+     * @param gatewayContext
+     *            the context object that stores request and response data for
+     *            logging
+     * @return a {@link Mono} signaling when request processing is complete
      */
     private Mono<Void> readBody(ServerWebExchange exchange, WebFilterChain chain, GatewayContext gatewayContext) {
         return DataBufferUtils.join(exchange.getRequest().getBody()).flatMap(dataBuffer -> {

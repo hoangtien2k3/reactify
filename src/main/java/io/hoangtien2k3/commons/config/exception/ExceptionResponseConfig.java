@@ -38,12 +38,60 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.ServerWebInputException;
 import reactor.core.publisher.Mono;
 
+/**
+ * Centralized exception handling configuration for the application. This class
+ * provides global exception handling for various types of exceptions and
+ * formats them into a consistent error response format.
+ *
+ * <p>
+ * The `ExceptionResponseConfig` class utilizes Spring's `@RestControllerAdvice`
+ * to handle exceptions thrown by controllers and provides appropriate HTTP
+ * responses with trace information for debugging purposes. Each exception
+ * handler method logs the error with a trace ID and returns a
+ * `TraceErrorResponse` object with relevant error information.
+ * </p>
+ *
+ * <h2>Exception Handlers:</h2>
+ * <ul>
+ * <li><b>RuntimeException</b> - Handles general runtime exceptions. Returns a
+ * 500 Internal Server Error status with a trace ID for debugging.</li>
+ * <li><b>R2dbcException</b> - Handles exceptions specific to R2DBC (Reactive
+ * Relational Database Connectivity). Returns a 500 Internal Server Error status
+ * with a trace ID.</li>
+ * <li><b>AccessDeniedException</b> - Handles access denial exceptions,
+ * indicating insufficient permissions. Returns a 403 Forbidden status with a
+ * trace ID.</li>
+ * <li><b>DataBufferLimitException</b> - Handles exceptions when the data buffer
+ * limit is exceeded. Returns a 400 Bad Request status with a trace ID and a
+ * localized error message.</li>
+ * <li><b>ServerWebInputException</b> - Handles exceptions related to invalid
+ * request input formats. Returns a 400 Bad Request status with a trace ID and
+ * the reason for the error.</li>
+ * <li><b>WebExchangeBindException</b> - Handles exceptions related to binding
+ * errors in request inputs. Returns a 400 Bad Request status with a trace ID
+ * and a list of error messages. Special handling is provided for property
+ * conversion errors.</li>
+ * <li><b>BusinessException</b> - Handles business logic exceptions. Returns
+ * appropriate HTTP status based on the error code and a trace ID. Supports
+ * custom error codes like NOT_FOUND and NO_PERMISSION.</li>
+ * </ul>
+ */
 @Slf4j
 @RequiredArgsConstructor
 @RestControllerAdvice
 public class ExceptionResponseConfig {
     private final Tracer tracer;
 
+    /**
+     * Handles runtime exceptions. Logs the exception with a trace ID and returns a
+     * 500 Internal Server Error status with a trace error response.
+     *
+     * @param ex
+     *            the runtime exception
+     * @param serverWebExchange
+     *            the current server web exchange
+     * @return a Mono containing the ResponseEntity with TraceErrorResponse
+     */
     @ExceptionHandler(RuntimeException.class)
     public Mono<ResponseEntity<TraceErrorResponse<Object>>> runtimeException(
             RuntimeException ex, ServerWebExchange serverWebExchange) {
@@ -54,6 +102,16 @@ public class ExceptionResponseConfig {
                 HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
+    /**
+     * Handles R2DBC exceptions. Logs the exception with a trace ID and returns a
+     * 500 Internal Server Error status with a trace error response.
+     *
+     * @param ex
+     *            the R2DBC exception
+     * @param serverWebExchange
+     *            the current server web exchange
+     * @return a Mono containing the ResponseEntity with TraceErrorResponse
+     */
     @ExceptionHandler(R2dbcException.class)
     public Mono<ResponseEntity<TraceErrorResponse<Object>>> r2dbcException(
             R2dbcException ex, ServerWebExchange serverWebExchange) {
@@ -64,6 +122,16 @@ public class ExceptionResponseConfig {
                 HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
+    /**
+     * Handles access denied exceptions. Logs the exception with a trace ID and
+     * returns a 403 Forbidden status with a trace error response.
+     *
+     * @param ex
+     *            the access denied exception
+     * @param serverWebExchange
+     *            the current server web exchange
+     * @return a Mono containing the ResponseEntity with TraceErrorResponse
+     */
     @ExceptionHandler(AccessDeniedException.class)
     public Mono<ResponseEntity<TraceErrorResponse<Object>>> accessDeniedException(
             AccessDeniedException ex, ServerWebExchange serverWebExchange) {
@@ -74,6 +142,14 @@ public class ExceptionResponseConfig {
                 HttpStatus.FORBIDDEN));
     }
 
+    /**
+     * Handles data buffer limit exceptions. Logs the exception with a trace ID and
+     * returns a 400 Bad Request status with a trace error response.
+     *
+     * @param ex
+     *            the data buffer limit exception
+     * @return a Mono containing the ResponseEntity with TraceErrorResponse
+     */
     @ExceptionHandler(DataBufferLimitException.class)
     public Mono<ResponseEntity<TraceErrorResponse<Object>>> dataBufferLimitException(DataBufferLimitException ex) {
         String traceId = Objects.requireNonNull(tracer.currentSpan()).context().traceId();
@@ -84,6 +160,17 @@ public class ExceptionResponseConfig {
                 HttpStatus.BAD_REQUEST));
     }
 
+    /**
+     * Handles server input exceptions, such as invalid request format. Logs the
+     * exception with a trace ID and returns a 400 Bad Request status with a trace
+     * error response.
+     *
+     * @param ex
+     *            the server input exception
+     * @param serverWebExchange
+     *            the current server web exchange
+     * @return a Mono containing the ResponseEntity with TraceErrorResponse
+     */
     @ExceptionHandler(ServerWebInputException.class)
     public Mono<ResponseEntity<TraceErrorResponse<Object>>> serverInputException(
             ServerWebInputException ex, ServerWebExchange serverWebExchange) {
@@ -94,6 +181,17 @@ public class ExceptionResponseConfig {
                 HttpStatus.BAD_REQUEST));
     }
 
+    /**
+     * Handles binding errors in request inputs. Logs the exception with a trace ID
+     * and returns a 400 Bad Request status with a trace error response containing
+     * error messages.
+     *
+     * @param ex
+     *            the WebExchangeBindException
+     * @param serverWebExchange
+     *            the current server web exchange
+     * @return a Mono containing the ResponseEntity with TraceErrorResponse
+     */
     @ExceptionHandler(WebExchangeBindException.class)
     public Mono<ResponseEntity<TraceErrorResponse<Object>>> serverInputException(
             WebExchangeBindException ex, ServerWebExchange serverWebExchange) {
@@ -118,6 +216,18 @@ public class ExceptionResponseConfig {
                 HttpStatus.BAD_REQUEST));
     }
 
+    /**
+     * Handles business logic exceptions. Logs the exception with a trace ID and
+     * returns an appropriate HTTP status based on the error code. Defaults to 400
+     * Bad Request but can return other statuses like 404 Not Found or 403 Forbidden
+     * based on specific error codes.
+     *
+     * @param ex
+     *            the business exception
+     * @param serverWebExchange
+     *            the current server web exchange
+     * @return a Mono containing the ResponseEntity with TraceErrorResponse
+     */
     @ExceptionHandler(BusinessException.class)
     public Mono<ResponseEntity<TraceErrorResponse<Object>>> businessException(
             BusinessException ex, ServerWebExchange serverWebExchange) {

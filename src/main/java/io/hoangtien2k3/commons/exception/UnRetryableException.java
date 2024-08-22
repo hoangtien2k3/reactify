@@ -18,11 +18,32 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * Exception class representing an error that cannot be retried.
+ * <p>
+ * This exception extends {@link BusinessException} and is used to signal errors
+ * that are not eligible for retrying, indicating that the error condition is
+ * permanent and requires manual intervention or resolution.
+ * </p>
+ * <p>
+ * The exception carries an error code and a message to provide details about
+ * the error.
+ * </p>
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 public class UnRetryableException extends BusinessException {
 
+    /**
+     * Constructs a new {@code UnRetryableException} with the specified error code
+     * and message.
+     *
+     * @param errorCode
+     *            the error code associated with the exception.
+     * @param message
+     *            the detailed message explaining the cause of the exception.
+     */
     public UnRetryableException(String errorCode, String message) {
         super(errorCode, message);
     }

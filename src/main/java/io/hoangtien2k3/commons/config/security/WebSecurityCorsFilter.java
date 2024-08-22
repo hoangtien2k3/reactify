@@ -19,17 +19,36 @@ import org.springframework.web.reactive.config.CorsRegistry;
 import org.springframework.web.reactive.config.EnableWebFlux;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 
+/**
+ * Configuration class to set up Cross-Origin Resource Sharing (CORS) for the
+ * WebFlux application.
+ * <p>
+ * This class implements {@link WebFluxConfigurer} to customize CORS mappings
+ * globally for the application.
+ * </p>
+ */
 @Configuration
 @EnableWebFlux
 public class WebSecurityCorsFilter implements WebFluxConfigurer {
 
+    /**
+     * Configures CORS settings for the application.
+     * <p>
+     * This method sets global CORS configuration to allow requests from any origin,
+     * supports all HTTP methods, and allows all headers. Additionally, it sets the
+     * maximum age of the preflight response cache to 3600 seconds (1 hour).
+     * </p>
+     *
+     * @param corsRegistry
+     *            the {@link CorsRegistry} to customize CORS mappings
+     */
     @Override
     public void addCorsMappings(CorsRegistry corsRegistry) {
         corsRegistry
-                .addMapping("/**")
-                .allowedOrigins("*")
-                .allowedMethods("*")
-                .allowedHeaders("*")
-                .maxAge(3600);
+                .addMapping("/**") // Allow CORS requests to all endpoints
+                .allowedOrigins("*") // Allow requests from any origin
+                .allowedMethods("*") // Allow all HTTP methods (GET, POST, PUT, DELETE, etc.)
+                .allowedHeaders("*") // Allow all headers in requests
+                .maxAge(3600); // Cache preflight responses for 3600 seconds (1 hour)
     }
 }

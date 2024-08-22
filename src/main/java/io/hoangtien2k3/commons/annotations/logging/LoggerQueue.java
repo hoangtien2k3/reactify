@@ -24,18 +24,38 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import reactor.util.context.Context;
 
+/**
+ * LoggerQueue is a singleton class that manages a bounded blocking queue for
+ * logging operations. It is designed to handle high-throughput logging tasks by
+ * storing logs in a queue and providing various methods to interact with the
+ * queue.
+ */
 @Slf4j
 public class LoggerQueue {
+
+    /** Singleton instance of LoggerQueue */
     private static LoggerQueue mMe = null;
+
+    /** Queue to store LoggerDTO objects, with a capacity of 100,000 */
     private ArrayBlockingQueue<LoggerDTO> myQueue = null;
+
+    /** Lock object used for synchronization (currently not in use) */
     private static final Object myLock = new Object();
 
+    /** Counter for failed attempts to add logs to the queue */
     @Getter
     private int countFalse = 0;
 
+    /** Counter for successful attempts to add logs to the queue */
     @Getter
     private int countSuccess = 0;
 
+    /**
+     * Returns the singleton instance of LoggerQueue. If the instance is null, a new
+     * one is created.
+     *
+     * @return the singleton instance of LoggerQueue
+     */
     public static LoggerQueue getInstance() {
         if (mMe == null) {
             mMe = new LoggerQueue();
@@ -43,18 +63,39 @@ public class LoggerQueue {
         return mMe;
     }
 
+    /**
+     * Private constructor to initialize the queue with a fixed capacity of 100,000.
+     * This ensures the class follows the singleton pattern.
+     */
     private LoggerQueue() {
         myQueue = new ArrayBlockingQueue<>(100000) {};
     }
 
+    /**
+     * Clears all elements from the queue.
+     */
     public void clearQueue() {
         myQueue.clear();
     }
 
+    /**
+     * Retrieves and removes the head of the queue, or returns null if the queue is
+     * empty.
+     *
+     * @return the head of the queue, or null if the queue is empty
+     */
     public LoggerDTO getQueue() {
         return myQueue.poll();
     }
 
+    /**
+     * Adds a LoggerDTO task to the queue. Increments countSuccess if successful,
+     * otherwise increments countFalse.
+     *
+     * @param task
+     *            the LoggerDTO task to add to the queue
+     * @return true if the task was successfully added, false otherwise
+     */
     public boolean addQueue(LoggerDTO task) {
         if (myQueue.add(task)) {
             countSuccess++;
@@ -64,6 +105,34 @@ public class LoggerQueue {
         return false;
     }
 
+    /**
+     * Adds a LoggerDTO task to the queue with detailed parameters. This method
+     * wraps the parameters into a LoggerDTO object and adds it to the queue.
+     *
+     * @param contextRef
+     *            the Reactor context reference
+     * @param newSpan
+     *            the span from Sleuth tracing
+     * @param service
+     *            the service name
+     * @param startTime
+     *            the start time of the operation
+     * @param endTime
+     *            the end time of the operation
+     * @param result
+     *            the result of the operation ("0" for success, "1" for failure)
+     * @param obj
+     *            additional information about the result
+     * @param logType
+     *            the type of log
+     * @param actionType
+     *            the type of action being logged
+     * @param args
+     *            the method arguments
+     * @param title
+     *            a custom title for the log entry
+     * @return true if the task was successfully added, false otherwise
+     */
     public boolean addQueue(
             AtomicReference<Context> contextRef,
             Span newSpan,
@@ -83,11 +152,18 @@ public class LoggerQueue {
                 return true;
             }
         } catch (Exception ex) {
+            log.error("Failed to add log to the queue", ex);
         }
         countFalse++;
         return false;
     }
 
+    /**
+     * Retrieves a list of up to 100,000 LoggerDTO objects from the queue. The queue
+     * is drained to the provided list.
+     *
+     * @return a list of LoggerDTO objects
+     */
     public List<LoggerDTO> getRecords() {
         List<LoggerDTO> records = new ArrayList<>();
         if (myQueue != null) {
@@ -96,10 +172,19 @@ public class LoggerQueue {
         return records;
     }
 
+    /**
+     * Returns the current size of the queue.
+     *
+     * @return the number of elements in the queue
+     */
     public int getQueueSize() {
         return myQueue.size();
     }
 
+    /**
+     * Resets the counters for successful and failed attempts to add logs to the
+     * queue.
+     */
     public void resetCount() {
         countSuccess = 0;
         countFalse = 0;

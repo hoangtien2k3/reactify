@@ -24,15 +24,55 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import reactor.core.publisher.Mono;
 
+/**
+ * Configuration class for setting up Keycloak-related beans in the Spring
+ * Security configuration.
+ * <p>
+ * This configuration class defines beans to convert JWT tokens from Keycloak
+ * into Spring Security authentication tokens and authorities.
+ * </p>
+ */
 @Configuration
 public class KeycloakConfiguration {
 
+    /**
+     * Provides a {@link Converter} to convert a {@link Jwt} to a {@link Collection}
+     * of {@link GrantedAuthority}.
+     * <p>
+     * This bean is responsible for extracting and converting roles or authorities
+     * from the JWT token issued by Keycloak. The
+     * {@link KeycloakGrantedAuthoritiesConverter} implementation will use the
+     * client ID to correctly parse and map the JWT claims to Spring Security
+     * authorities.
+     * </p>
+     *
+     * @param clientId
+     *            the client ID used to configure the authority converter
+     * @return a {@link Converter} that transforms a {@link Jwt} into a
+     *         {@link Collection} of {@link GrantedAuthority}
+     */
     @Bean
     Converter<Jwt, Collection<GrantedAuthority>> keycloakGrantedAuthoritiesConverter(
             @Value("${spring.security.oauth2.keycloak.client-id}") String clientId) {
         return new KeycloakGrantedAuthoritiesConverter(clientId);
     }
 
+    /**
+     * Provides a {@link Converter} to convert a {@link Jwt} into a {@link Mono} of
+     * {@link AbstractAuthenticationToken}.
+     * <p>
+     * This bean sets up a converter to transform JWT tokens into reactive
+     * authentication tokens, integrating with Keycloak for OAuth2 authentication.
+     * The {@link ReactiveKeycloakJwtAuthenticationConverter} uses the provided
+     * {@link Converter} for authorities to complete the authentication process.
+     * </p>
+     *
+     * @param converter
+     *            a {@link Converter} that transforms a {@link Jwt} into a
+     *            {@link Collection} of {@link GrantedAuthority}
+     * @return a {@link Converter} that converts a {@link Jwt} into a {@link Mono}
+     *         of {@link AbstractAuthenticationToken}
+     */
     @Bean
     Converter<Jwt, Mono<AbstractAuthenticationToken>> keycloakJwtAuthenticationConverter(
             Converter<Jwt, Collection<GrantedAuthority>> converter) {

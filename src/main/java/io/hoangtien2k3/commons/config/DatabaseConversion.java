@@ -32,15 +32,63 @@ import org.springframework.data.relational.core.mapping.NamingStrategy;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
+/**
+ * The {@code DatabaseConversion} class provides utility methods to configure
+ * and create a {@link MappingR2dbcConverter} with custom conversions for
+ * handling various data types between Java objects and database records.
+ * <p>
+ * This class sets up custom converters for types such as {@link Instant},
+ * {@link UUID}, {@link BitSet}, and others, ensuring proper conversion between
+ * database and Java types.
+ * </p>
+ * <p>
+ * The class also includes a set of nested enums that implement
+ * {@link Converter} interfaces to handle specific conversion logic for
+ * different data types.
+ * </p>
+ * <p>
+ * The custom converters handle conversions for types such as:
+ * <ul>
+ * <li>{@link Instant} to {@link LocalDateTime} and vice versa</li>
+ * <li>{@link UUID} to binary representation and vice versa</li>
+ * <li>{@link Blob} to {@link String}</li>
+ * <li>{@link Duration} to {@link Long} and vice versa</li>
+ * <li>{@link LocalDateTime} to {@link Date}</li>
+ * <li>{@link BitSet} to {@link Boolean}</li>
+ * <li>{@link ZonedDateTime} to {@link LocalDateTime} and vice versa</li>
+ * </ul>
+ * <p>
+ * Usage example:
+ *
+ * <pre>
+ * DatabaseConversion conversion = new DatabaseConversion();
+ * MappingR2dbcConverter converter = conversion.getR2dbcConverter();
+ * </pre>
+ */
 @Slf4j
 @Component
 public class DatabaseConversion {
+
+    /**
+     * Creates and returns a MappingR2dbcConverter configured with custom
+     * conversions and a mapping context.
+     *
+     * @return MappingR2dbcConverter instance for converting between Java objects
+     *         and database records.
+     */
     public MappingR2dbcConverter getR2dbcConverter() {
         R2dbcMappingContext mappingContext = getR2dbcMappingContext();
         R2dbcCustomConversions r2dbcCustomConversions = getR2dbcCustomConversions();
         return new MappingR2dbcConverter(mappingContext, r2dbcCustomConversions);
     }
 
+    /**
+     * Creates and configures a R2dbcMappingContext with a naming strategy and
+     * custom conversions.
+     *
+     * @return R2dbcMappingContext instance used to map entities to database tables
+     *         and columns.
+     */
     private R2dbcMappingContext getR2dbcMappingContext() {
         NamingStrategy namingStrategy = NamingStrategy.INSTANCE;
         R2dbcCustomConversions r2dbcCustomConversions = getR2dbcCustomConversions();
@@ -49,10 +97,22 @@ public class DatabaseConversion {
         return context;
     }
 
+    /**
+     * Creates and returns an R2dbcCustomConversions instance configured with a list
+     * of custom converters.
+     *
+     * @return R2dbcCustomConversions instance for custom conversion logic.
+     */
     private R2dbcCustomConversions getR2dbcCustomConversions() {
         return R2dbcCustomConversions.of(MySqlDialect.INSTANCE, getListConverters());
     }
 
+    /**
+     * Provides a list of custom converters used for data conversion between Java
+     * types and database types.
+     *
+     * @return List of custom converters.
+     */
     public List<Object> getListConverters() {
         List<Object> converters = new ArrayList<>();
         converters.add(InstantWriteConverter.INSTANCE);
@@ -69,28 +129,33 @@ public class DatabaseConversion {
         return converters;
     }
 
+    /**
+     * Converter to write Instant values to LocalDateTime in UTC.
+     */
     @WritingConverter
     public enum InstantWriteConverter implements Converter<Instant, LocalDateTime> {
         INSTANCE;
 
-        public LocalDateTime convert(Instant source) {
+        @Override
+        public LocalDateTime convert(@NotNull Instant source) {
             return LocalDateTime.ofInstant(source, ZoneOffset.UTC);
         }
     }
 
+    /**
+     * Converter to read Blob values as Strings.
+     */
     @ReadingConverter
     public enum BlobToStringConverter implements Converter<Blob, String> {
         INSTANCE;
 
         @Override
-        public String convert(Blob source) {
+        public String convert(@NotNull Blob source) {
             try {
-                return source == null
-                        ? null
-                        : Mono.from(source.stream())
-                                .map(bb -> StandardCharsets.UTF_8.decode(bb).toString())
-                                .toFuture()
-                                .get();
+                return Mono.from(source.stream())
+                        .map(bb -> StandardCharsets.UTF_8.decode(bb).toString())
+                        .toFuture()
+                        .get();
             } catch (Exception e) {
                 log.error("Exception when read blob value", e);
                 return null;
@@ -98,6 +163,9 @@ public class DatabaseConversion {
         }
     }
 
+    /**
+     * Converter to write UUID values to byte arrays.
+     */
     @WritingConverter
     public enum UUIDToBinaryConverter implements Converter<UUID, byte[]> {
         INSTANCE;
@@ -111,6 +179,9 @@ public class DatabaseConversion {
         }
     }
 
+    /**
+     * Converter to read byte arrays as UUID values.
+     */
     @ReadingConverter
     public enum BinaryToUUIDConverter implements Converter<byte[], UUID> {
         INSTANCE;
@@ -124,6 +195,9 @@ public class DatabaseConversion {
         }
     }
 
+    /**
+     * Converter to read LocalDateTime values as Instant values in UTC.
+     */
     @ReadingConverter
     public enum InstantReadConverter implements Converter<LocalDateTime, Instant> {
         INSTANCE;
@@ -134,6 +208,9 @@ public class DatabaseConversion {
         }
     }
 
+    /**
+     * Converter to read BitSet as Boolean values.
+     */
     @ReadingConverter
     public enum BitSetReadConverter implements Converter<BitSet, Boolean> {
         INSTANCE;
@@ -144,17 +221,22 @@ public class DatabaseConversion {
         }
     }
 
+    /**
+     * Converter to read LocalDateTime values as ZonedDateTime in UTC.
+     */
     @ReadingConverter
     public enum ZonedDateTimeReadConverter implements Converter<LocalDateTime, ZonedDateTime> {
         INSTANCE;
 
         @Override
         public ZonedDateTime convert(@NotNull LocalDateTime localDateTime) {
-            // Be aware - we are using the UTC timezone
             return ZonedDateTime.of(localDateTime, ZoneOffset.UTC);
         }
     }
 
+    /**
+     * Converter to write ZonedDateTime values as LocalDateTime.
+     */
     @WritingConverter
     public enum ZonedDateTimeWriteConverter implements Converter<ZonedDateTime, LocalDateTime> {
         INSTANCE;
@@ -165,6 +247,9 @@ public class DatabaseConversion {
         }
     }
 
+    /**
+     * Converter to write Duration values as Long values representing milliseconds.
+     */
     @WritingConverter
     public enum DurationWriteConverter implements Converter<Duration, Long> {
         INSTANCE;
@@ -175,18 +260,24 @@ public class DatabaseConversion {
         }
     }
 
+    /**
+     * Converter to read LocalDateTime values as Date values in the system's default
+     * timezone.
+     */
     @ReadingConverter
     public enum LocalDateTimeToDateReadConverter implements Converter<LocalDateTime, Date> {
         INSTANCE;
 
         @Override
         public Date convert(LocalDateTime localDateTime) {
-            // Be aware - we are using the UTC timezone
             Instant instant = localDateTime.atZone(ZoneId.systemDefault()).toInstant();
             return Date.from(instant);
         }
     }
 
+    /**
+     * Converter to read Long values as Duration values representing milliseconds.
+     */
     @ReadingConverter
     public enum DurationReadConverter implements Converter<Long, Duration> {
         INSTANCE;

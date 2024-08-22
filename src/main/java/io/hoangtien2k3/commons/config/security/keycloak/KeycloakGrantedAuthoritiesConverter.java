@@ -31,6 +31,15 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.util.ObjectUtils;
 
+/**
+ * A {@link Converter} implementation that converts a {@link Jwt} token from
+ * Keycloak into a {@link Collection} of {@link GrantedAuthority}.
+ * <p>
+ * This converter handles the extraction and transformation of roles from the
+ * JWT token issued by Keycloak. It combines realm roles and client-specific
+ * roles into a single set of granted authorities.
+ * </p>
+ */
 @RequiredArgsConstructor
 public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
     private static final String ROLES = "roles";
@@ -42,6 +51,20 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
 
     private final String clientId;
 
+    /**
+     * Converts the provided {@link Jwt} into a {@link Collection} of
+     * {@link GrantedAuthority}.
+     * <p>
+     * This method combines realm roles and client-specific roles extracted from the
+     * JWT token. It also includes any default granted authorities provided by the
+     * {@link JwtGrantedAuthoritiesConverter}.
+     * </p>
+     *
+     * @param jwt
+     *            the {@link Jwt} token to convert
+     * @return a {@link Collection} of {@link GrantedAuthority} derived from the JWT
+     *         token
+     */
     @Override
     public Collection<GrantedAuthority> convert(Jwt jwt) {
         var realmRoles = realmRoles(jwt);
@@ -55,10 +78,32 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
         return authorities;
     }
 
+    /**
+     * Extracts default granted authorities from the provided {@link Jwt} token
+     * using the {@link JwtGrantedAuthoritiesConverter}.
+     * <p>
+     * If the default converter does not provide any authorities, an empty set is
+     * returned.
+     * </p>
+     *
+     * @param jwt
+     *            the {@link Jwt} token to extract default authorities from
+     * @return a {@link Collection} of default {@link GrantedAuthority}
+     */
     private Collection<GrantedAuthority> defaultGrantedAuthorities(Jwt jwt) {
         return Optional.ofNullable(defaultAuthoritiesConverter.convert(jwt)).orElse(emptySet());
     }
 
+    /**
+     * Extracts realm roles from the provided {@link Jwt} token.
+     * <p>
+     * Realm roles are found in the "realm_access" claim of the JWT token.
+     * </p>
+     *
+     * @param jwt
+     *            the {@link Jwt} token to extract realm roles from
+     * @return a {@link List} of realm role names
+     */
     @SuppressWarnings("unchecked")
     protected List<String> realmRoles(Jwt jwt) {
         return Optional.ofNullable(jwt.getClaimAsMap(CLAIM_REALM_ACCESS))
@@ -66,6 +111,20 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
                 .orElse(emptyList());
     }
 
+    /**
+     * Extracts client-specific roles from the provided {@link Jwt} token for a
+     * specific client.
+     * <p>
+     * Client-specific roles are found in the "resource_access" claim of the JWT
+     * token under the specified client ID.
+     * </p>
+     *
+     * @param jwt
+     *            the {@link Jwt} token to extract client roles from
+     * @param clientId
+     *            the client ID to find roles for
+     * @return a {@link List} of client-specific role names
+     */
     @SuppressWarnings("unchecked")
     protected List<String> clientRoles(Jwt jwt, String clientId) {
         if (ObjectUtils.isEmpty(clientId)) {

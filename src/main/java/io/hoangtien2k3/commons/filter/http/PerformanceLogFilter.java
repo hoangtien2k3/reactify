@@ -21,6 +21,7 @@ import io.hoangtien2k3.commons.constants.CommonConstant;
 import io.hoangtien2k3.commons.model.GatewayContext;
 import io.hoangtien2k3.commons.utils.DataUtil;
 import io.hoangtien2k3.commons.utils.RequestUtils;
+import io.hoangtien2k3.commons.utils.TruncateUtils;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,59 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 import reactor.util.context.Context;
 
+/**
+ * A WebFlux filter that logs performance metrics and request/response data for
+ * HTTP requests. This filter is applied to all incoming requests, except those
+ * targeting actuator endpoints. It measures the time taken to process requests,
+ * captures tracing information using Sleuth, and conditionally logs request and
+ * response data based on the application's active profile.
+ * <p>
+ * The performance data is logged using a dedicated logger (`perfLogger`), and
+ * request/response data is logged using a separate logger (`reqResLogger`).
+ *
+ * <h2>Key Features:</h2>
+ * <ul>
+ * <li>Logs the duration of HTTP request processing.</li>
+ * <li>Integrates with Spring Cloud Sleuth for distributed tracing.</li>
+ * <li>Logs request and response bodies in non-production environments.</li>
+ * <li>Excludes actuator endpoints from logging.</li>
+ * </ul>
+ *
+ * <h2>Usage Example:</h2>
+ *
+ * <pre>
+ * {
+ * 	&#64;code
+ * 	// Application configuration
+ * 	&#64;SpringBootApplication
+ * 	public class MyApplication {
+ * 		public static void main(String[] args) {
+ * 			SpringApplication.run(MyApplication.class, args);
+ * 		}
+ * 	}
+ *
+ * 	// Custom filter registration
+ * 	&#64;Configuration
+ * 	public class WebFilterConfig {
+ * 		@Bean
+ * 		public PerformanceLogFilter(Tracer trace, Environment) {
+ * 			return new PerformanceLogFilter(tracer, environment);
+ * 		}
+ * 	}
+ * }
+ * </pre>
+ *
+ * <h2>Logging Example:</h2>
+ *
+ * <pre>{@code
+ * // Performance log (perfLogger)
+ * [perfLogger] [SpanId:12345] [TraceId:abcd1234] GET /api/example took 120ms - Success
+ *
+ * // Request/Response log (reqResLogger)
+ * [reqResLogger] [RequestId:abcdef] Request Body: {"name":"hoangtien2k3"}
+ * [reqResLogger] [RequestId:abcdef] Response Body: {"status":"OK"}
+ * }</pre>
+ */
 @Component
 @RequiredArgsConstructor
 public class PerformanceLogFilter implements WebFilter, Ordered {
@@ -53,6 +107,30 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
     private static final int MAX_BYTE = 800; // Max byte allow to print
     private final Environment environment;
 
+    /**
+     * Filters the incoming HTTP request to log performance metrics and optionally
+     * logs request/response data if the environment is not production.
+     *
+     * <h3>Processing Flow:</h3>
+     * <ol>
+     * <li>Records the start time of the request.</li>
+     * <li>Creates a new tracing span using Sleuth's Tracer.</li>
+     * <li>If the request targets an actuator endpoint, it bypasses logging and
+     * continues the chain.</li>
+     * <li>Filters the request through the chain, logging performance data upon
+     * success or failure.</li>
+     * <li>If the environment is not production, logs the request and response
+     * bodies.</li>
+     * </ol>
+     *
+     * @param exchange
+     *            The current server web exchange containing the request and
+     *            response.
+     * @param chain
+     *            The WebFilterChain to pass the request to the next filter.
+     * @return A {@code Mono<Void>} that completes when the filter chain has
+     *         completed.
+     */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         long startMillis = System.currentTimeMillis();
@@ -72,8 +150,7 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
                     logPerf(exchange, newSpan, name, startMillis, "F", null);
                 })
                 .contextWrite(context -> {
-                    var currContext = (Context) context;
-                    contextRef.set(currContext);
+                    contextRef.set((Context) context);
                     // the error happens in a different thread, so get the trace from context, set
                     // in MDC
                     // and downstream
@@ -218,7 +295,7 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
         StringBuilder messageResponse = new StringBuilder();
         Set<String> keys = formData.keySet();
         for (String key : keys) {
-            messageResponse.append(key + ":" + truncateBody(formData.get(key)));
+            messageResponse.append(key).append(":").append(truncateBody(formData.get(key)));
         }
         return messageResponse.toString();
     }
@@ -232,65 +309,11 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
     }
 
     private String truncateBody(String s, int maxByte) {
-        int b = 0;
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-
-            // ranges from http://en.wikipedia.org/wiki/UTF-8
-            int skip = 0;
-            int more;
-            if (c <= 0x007f) {
-                more = 1;
-            } else if (c <= 0x07FF) {
-                more = 2;
-            } else if (c <= 0xd7ff) {
-                more = 3;
-            } else if (c <= 0xDFFF) {
-                // surrogate area, consume next char as well
-                more = 4;
-                skip = 1;
-            } else {
-                more = 3;
-            }
-
-            if (b + more > maxByte) {
-                return s.substring(0, i);
-            }
-            b += more;
-            i += skip;
-        }
-        return s;
+        return TruncateUtils.truncateBody(s, maxByte);
     }
 
     private String truncateBody(String s) {
-        int b = 0;
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-
-            // ranges from http://en.wikipedia.org/wiki/UTF-8
-            int skip = 0;
-            int more;
-            if (c <= 0x007f) {
-                more = 1;
-            } else if (c <= 0x07FF) {
-                more = 2;
-            } else if (c <= 0xd7ff) {
-                more = 3;
-            } else if (c <= 0xDFFF) {
-                // surrogate area, consume next char as well
-                more = 4;
-                skip = 1;
-            } else {
-                more = 3;
-            }
-
-            if (b + more > MAX_BYTE) {
-                return s.substring(0, i);
-            }
-            b += more;
-            i += skip;
-        }
-        return s;
+        return TruncateUtils.truncateBody(s, MAX_BYTE);
     }
 
     /**

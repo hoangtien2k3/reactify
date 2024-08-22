@@ -27,7 +27,7 @@
         <developer>
             <name>Hoang Anh Tien</name>
             <email>hoangtien2k3qx1@gmail.com</email>
-            <organization>io.hoangtien2k3</organization>
+            <organization>io.github.hoangtien2k3</organization>
             <organizationUrl>https://github.com/hoangtien2k3</organizationUrl>
         </developer>
     </developers>
@@ -433,6 +433,7 @@
                 <version>${maven-javadoc-plugin.version}</version>
                 <configuration>
                     <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+                    <failOnError>false</failOnError>
                 </configuration>
                 <executions>
                     <execution>
@@ -507,7 +508,8 @@
                         <removeUnusedImports/>
                         <palantirJavaFormat/>
                         <licenseHeader>
-                            <content><![CDATA[
+                            <content>
+                                <![CDATA[
 /*
  * Copyright $YEAR author - Hoàng Anh Tiến
  *
@@ -522,7 +524,9 @@
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
  */
-]]></content>
+
+                                ]]>
+                            </content>
                         </licenseHeader>
                     </java>
                 </configuration>

@@ -40,6 +40,138 @@ import reactor.core.publisher.FluxSink;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
+/**
+ * Utility class for handling internationalized messages.
+ * <p>
+ * The {@code MessageUtils} class provides methods to retrieve localized
+ * messages from a resource bundle. It supports message formatting and fallback
+ * mechanisms for missing or erroneous messages.
+ * </p>
+ * <h2>Class Overview:</h2>
+ * <p>
+ * The class uses {@code ResourceBundle} to fetch messages based on the provided
+ * locale. It formats the message using {@code MessageFormat} and handles
+ * exceptions to ensure that the application continues to function even if a
+ * message is missing or the resource bundle is misconfigured.
+ * </p>
+ *
+ * <h2>Fields:</h2>
+ * <ul>
+ * <li><strong>BASE_NAME</strong>: The base name of the resource bundle, which
+ * is typically the name of the properties file (without the .properties
+ * extension) containing the messages. Defaults to "messages".</li>
+ * </ul>
+ *
+ * <h2>Methods:</h2>
+ * <ul>
+ * <li><strong>getMessage(String code, Locale locale)</strong>: Retrieves the
+ * message associated with the given code and locale. If the message is missing
+ * or an error occurs, the code itself is returned as a fallback.
+ * <p>
+ * <b>Parameters:</b>
+ * </p>
+ * <ul>
+ * <li><strong>code</strong>: The key for the desired message.</li>
+ * <li><strong>locale</strong>: The locale to use for message retrieval.</li>
+ * </ul>
+ * <p>
+ * <b>Returns:</b>
+ * </p>
+ * <ul>
+ * <li>The localized message, or the code itself if the message is not
+ * found.</li>
+ * </ul>
+ * </li>
+ *
+ * <li><strong>getMessage(String code, Locale locale, Object... args)</strong>:
+ * Retrieves and formats the message associated with the given code and locale,
+ * using the provided arguments.
+ * <p>
+ * <b>Parameters:</b>
+ * </p>
+ * <ul>
+ * <li><strong>code</strong>: The key for the desired message.</li>
+ * <li><strong>locale</strong>: The locale to use for message retrieval.</li>
+ * <li><strong>args</strong>: Arguments to format the message.</li>
+ * </ul>
+ * <p>
+ * <b>Returns:</b>
+ * </p>
+ * <ul>
+ * <li>The formatted message, or the code itself if the message is not
+ * found.</li>
+ * </ul>
+ * </li>
+ *
+ * <li><strong>getMessage(String code)</strong>: Retrieves the message
+ * associated with the given code, using the default locale from
+ * {@code LocaleContextHolder}.
+ * <p>
+ * <b>Parameters:</b>
+ * </p>
+ * <ul>
+ * <li><strong>code</strong>: The key for the desired message.</li>
+ * </ul>
+ * <p>
+ * <b>Returns:</b>
+ * </p>
+ * <ul>
+ * <li>The localized message, or the code itself if the message is not
+ * found.</li>
+ * </ul>
+ * </li>
+ *
+ * <li><strong>getMessage(String code, Object... args)</strong>: Retrieves and
+ * formats the message associated with the given code, using the default locale
+ * from {@code LocaleContextHolder} and the provided arguments.
+ * <p>
+ * <b>Parameters:</b>
+ * </p>
+ * <ul>
+ * <li><strong>code</strong>: The key for the desired message.</li>
+ * <li><strong>args</strong>: Arguments to format the message.</li>
+ * </ul>
+ * <p>
+ * <b>Returns:</b>
+ * </p>
+ * <ul>
+ * <li>The formatted message, or the code itself if the message is not
+ * found.</li>
+ * </ul>
+ * </li>
+ * </ul>
+ *
+ * <h2>Usage Example:</h2>
+ *
+ * <pre>{@code
+ * // Assuming there is a message property file named "messages.properties" with
+ * // a key "welcome.message"
+ * String message = MessageUtils.getMessage("welcome.message", Locale.US);
+ * // Output: "Welcome to our application!"
+ *
+ * // With arguments
+ * String formattedMessage = MessageUtils.getMessage("welcome.user", Locale.US, "Tien");
+ * // Output: "Welcome to our application, John!"
+ *
+ * // Using default locale
+ * String defaultMessage = MessageUtils.getMessage("default.message");
+ * // Output will be based on the default locale set in LocaleContextHolder
+ * }</pre>
+ *
+ * <h2>Notes:</h2>
+ * <p>
+ * The `MessageUtils` class relies on `ResourceBundle` for message retrieval.
+ * Ensure that the resource bundle files (e.g., `messages.properties`,
+ * `messages_en.properties`) are correctly placed in the classpath. The class
+ * also uses `LocaleContextHolder` to fetch the default locale, which should be
+ * properly configured in your Spring application context.
+ * </p>
+ *
+ * <p>
+ * Logging is performed for exceptions occurring during message retrieval,
+ * helping in debugging issues with missing or malformed messages.
+ * </p>
+ */
 @Slf4j
 @Component
 @ConditionalOnProperty(value = "minio.enabled", havingValue = "true", matchIfMissing = false)

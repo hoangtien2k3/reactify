@@ -36,6 +36,13 @@ import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import reactor.core.publisher.Mono;
 
+/**
+ * Configuration class for setting up security and CORS (Cross-Origin Resource
+ * Sharing) policies in a Spring WebFlux application. This class configures how
+ * security is handled across the application, including whitelisting certain
+ * URIs and methods, setting up CORS configurations, and configuring OAuth2
+ * resource server support.
+ */
 @Slf4j
 @RequiredArgsConstructor
 @Configuration
@@ -45,6 +52,25 @@ public class WebConfig {
 
     private final WhiteListProperties whiteListProperties;
 
+    /**
+     * Configures the security filter chain for the application.
+     *
+     * <p>
+     * Sets up various security settings including CORS, authorization rules, and
+     * OAuth2 resource server configurations. The method reads whitelist
+     * configurations and applies them to permit access to certain paths and methods
+     * without authentication.
+     * </p>
+     *
+     * @param http
+     *            the {@link ServerHttpSecurity} instance used to configure the
+     *            security settings
+     * @param jwtAuthenticationConverter
+     *            the {@link Converter} to convert JWT tokens to authentication
+     *            tokens
+     * @return a {@link SecurityWebFilterChain} configured with the defined security
+     *         settings
+     */
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(
             ServerHttpSecurity http, Converter<Jwt, Mono<AbstractAuthenticationToken>> jwtAuthenticationConverter) {
@@ -92,6 +118,17 @@ public class WebConfig {
     // return configurationSource;
     // }
 
+    /**
+     * Provides CORS configuration for the application.
+     *
+     * <p>
+     * Sets up CORS to allow requests from any origin with any HTTP method, and
+     * permits all headers. CORS settings apply to all paths in the application.
+     * </p>
+     *
+     * @return a {@link CorsConfigurationSource} instance with the defined CORS
+     *         settings
+     */
     private CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(List.of("*"));

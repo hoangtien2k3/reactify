@@ -43,15 +43,65 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+/**
+ * A WebFlux filter for logging HTTP response bodies in a Spring Gateway
+ * application. This filter decorates the response object to capture and log the
+ * response body content. It is typically used in non-production environments to
+ * help with debugging and monitoring.
+ * <p>
+ * The filter can handle large response bodies by configuring the maximum
+ * in-memory size, and it supports both Mono and Flux types of responses.
+ *
+ * <h2>Key Features:</h2>
+ * <ul>
+ * <li>Logs HTTP response bodies for requests that match certain criteria.</li>
+ * <li>Decorates the response object to intercept and modify the response
+ * body.</li>
+ * <li>Supports both single (Mono) and multiple (Flux) data buffers.</li>
+ * <li>Configurable in-memory buffer size for handling large responses.</li>
+ * </ul>
+ *
+ * <h2>Usage Example:</h2>
+ *
+ * <pre>
+ * {
+ * 	&#64;code
+ * 	&#64;Configuration
+ * 	public class WebFilterConfig {
+ *
+ * 		@Bean
+ * 		&#64;Profile("!prod")
+ * 		public ResponseLogFilter responseLogFilter() {
+ * 			return new ResponseLogFilter();
+ * 		}
+ * 	}
+ * }
+ * </pre>
+ *
+ * <h2>Logging Example:</h2>
+ *
+ * <pre>{@code
+ * // Example log output
+ * [ResponseLogFilter] Response Body: {"status":"OK", "data": {...}}
+ * }</pre>
+ */
 @Log4j2
 @AllArgsConstructor
 @Component
 // @Profile("!prod")
 public class ResponseLogFilter implements WebFilter, Ordered {
+
     private final ExchangeStrategies exchangeStrategies = ExchangeStrategies.builder()
             .codecs(cl -> cl.defaultCodecs().maxInMemorySize(50 * 1024 * 1024))
             .build();
 
+    /**
+     * Converts an InputStream to a byte array.
+     *
+     * @param inStream
+     *            the InputStream to convert
+     * @return the byte array representation of the input stream
+     */
     private static byte[] toByteArray(InputStream inStream) {
         ByteArrayOutputStream swapStream = new ByteArrayOutputStream();
         byte[] buff = new byte[100];
@@ -68,6 +118,27 @@ public class ResponseLogFilter implements WebFilter, Ordered {
         return in_b;
     }
 
+    /**
+     * Filters the incoming HTTP request and decorates the response to log the
+     * response body.
+     *
+     * <h3>Processing Flow:</h3>
+     * <ol>
+     * <li>Checks if the request should log the response body based on the
+     * {@link GatewayContext} settings.</li>
+     * <li>If logging is enabled, wraps the response in a
+     * {@link ServerHttpResponseDecorator}.</li>
+     * <li>The decorator intercepts the response body, logs it, and returns a
+     * modified data buffer.</li>
+     * </ol>
+     *
+     * @param exchange
+     *            The current server web exchange containing the request and
+     *            response.
+     * @param chain
+     *            The WebFilterChain to pass the request to the next filter.
+     * @return A `Mono<Void>` that completes when the filter chain has completed.
+     */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         GatewayContext gatewayContext = exchange.getAttribute(GatewayContext.CACHE_GATEWAY_CONTEXT);
@@ -101,6 +172,16 @@ public class ResponseLogFilter implements WebFilter, Ordered {
         return chain.filter(exchange.mutate().response(responseDecorator).build());
     }
 
+    /**
+     * Logs the content of the response body. This method is called within the
+     * decorated response object to capture the response data as it is written.
+     *
+     * @param buffer
+     *            The DataBuffer containing the response data.
+     * @param exchange
+     *            The current server web exchange.
+     * @return A DataBuffer containing the logged data.
+     */
     private DataBuffer logRequestBody(DataBuffer buffer, ServerWebExchange exchange) {
         InputStream dataBuffer = buffer.asInputStream();
         byte[] bytes = toByteArray(dataBuffer);
@@ -111,16 +192,36 @@ public class ResponseLogFilter implements WebFilter, Ordered {
         return nettyDataBufferFactory.wrap(bytes);
     }
 
+    /**
+     * Specifies the order in which this filter is applied relative to other
+     * filters. Filters with a lower order value are applied first.
+     *
+     * @return The order value for this filter.
+     */
     @Override
     public int getOrder() {
         return 6;
     }
 
+    /**
+     * A wrapper class that adapts a response body Publisher to a
+     * {@link ClientHttpResponse}. This class is used to facilitate logging by
+     * allowing the response body to be accessed and logged before it is returned to
+     * the client.
+     */
     public static class ResponseAdapter implements ClientHttpResponse {
 
         private final Flux<DataBuffer> flux;
         private final HttpHeaders headers;
 
+        /**
+         * Constructs a ResponseAdapter with the given body and headers.
+         *
+         * @param body
+         *            The Publisher that provides the response body.
+         * @param headers
+         *            The headers associated with the response.
+         */
         public ResponseAdapter(Publisher<? extends DataBuffer> body, HttpHeaders headers) {
             this.headers = headers;
             if (body instanceof Flux) {
