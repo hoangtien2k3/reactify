@@ -74,46 +74,6 @@ services:
     networks:
       - ezbuy-network
 
-#  keycloak:
-#    image: quay.io/keycloak/keycloak:25.0.2
-#    restart: always
-#    command: start
-#    links:
-#      - postgres
-#    ports:
-#      - "9082:8080"
-#    depends_on:
-#      - postgresql
-#    environment:
-#      - KC_PROXY_ADDRESS_FORWARDING=true
-#      - KC_HOSTNAME_STRICT=false
-#      - KC_HOSTNAME=keycloak.jimsgarage.co.uk
-#      - KC_PROXY=edge
-#      - KC_HTTP_ENABLED=true
-#      - KC_DB=postgres
-#      - KC_DB_USERNAME=keycloak
-#      - KC_DB_PASSWORD=SUPERsecret
-#      - KC_DB_URL_HOST=postgres
-#      - KC_DB_URL_PORT=5432
-#      - KC_DB_URL_DATABASE=keycloak
-#      - KEYCLOAK_ADMIN=admin
-#      - KEYCLOAK_ADMIN_PASSWORD=password
-#    networks:
-#      proxy:
-#      keycloak:
-#    labels:
-#      - "traefik.enable=true"
-#      - "traefik.http.routers.keycloak.entrypoints=http"
-#      - "traefik.http.routers.keycloak.rule=Host(`keycloak.yourdomain.com`)"
-#      - "traefik.http.middlewares.keycloak-https-redirect.redirectscheme.scheme=https"
-#      - "traefik.http.routers.keycloak.middlewares=keycloak-https-redirect"
-#      - "traefik.http.routers.keycloak-secure.entrypoints=https"
-#      - "traefik.http.routers.keycloak-secure.rule=Host(`keycloak.yourdomain.com`)"
-#      - "traefik.http.routers.keycloak-secure.tls=true"
-#      - "traefik.http.routers.keycloak-secure.service=keycloak"
-#      - "traefik.http.services.keycloak.loadbalancer.server.port=8080"
-#      - "traefik.docker.network=proxy"
-
 
   #minio
   minio:
