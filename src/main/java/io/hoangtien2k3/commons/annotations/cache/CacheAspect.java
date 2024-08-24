@@ -51,6 +51,8 @@ import reactor.core.publisher.Signal;
  * @see CacheMono
  * @see Signal
  */
+/** @deprecated */
+@Deprecated
 @Aspect
 @Configuration
 @Slf4j

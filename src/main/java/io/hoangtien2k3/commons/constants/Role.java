@@ -26,21 +26,7 @@ package io.hoangtien2k3.commons.constants;
  * </p>
  */
 public enum Role {
-    /**
-     * Represents an administrative role with the highest level of permissions.
-     * <p>
-     * Users with this role typically have full access to all system resources and
-     * management capabilities.
-     * </p>
-     */
     ROLE_admin,
-
-    /**
-     * Represents a standard user role with limited permissions.
-     * <p>
-     * Users with this role typically have access to basic functionalities and
-     * resources, but not administrative controls.
-     * </p>
-     */
-    ROLE_user
+    ROLE_user,
+    ROLE_system
 }

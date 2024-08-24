@@ -28,6 +28,8 @@ import reactor.core.publisher.Mono;
  * methods dynamically and handling exceptions.
  * </p>
  */
+/** @deprecated */
+@Deprecated
 @Slf4j
 @Component
 @RequiredArgsConstructor

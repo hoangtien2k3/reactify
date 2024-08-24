@@ -20,7 +20,7 @@ import io.hoangtien2k3.commons.model.response.TraceErrorResponse;
 import io.hoangtien2k3.commons.utils.DataUtil;
 import io.hoangtien2k3.commons.utils.Translator;
 import io.micrometer.tracing.Tracer;
-// import io.r2dbc.spi.R2dbcException;
+import io.r2dbc.spi.R2dbcException;
 import java.nio.file.AccessDeniedException;
 import java.util.List;
 import java.util.Objects;
@@ -112,17 +112,15 @@ public class ExceptionResponseConfig {
      *            the current server web exchange
      * @return a Mono containing the ResponseEntity with TraceErrorResponse
      */
-    // @ExceptionHandler(R2dbcException.class)
-    // public Mono<ResponseEntity<TraceErrorResponse<Object>>> r2dbcException(
-    // R2dbcException ex, ServerWebExchange serverWebExchange) {
-    // String traceId =
-    // Objects.requireNonNull(tracer.currentSpan()).context().traceId();
-    // log.error("R2dbc trace-id {} , error ", traceId, ex);
-    // return Mono.just(new ResponseEntity<>(
-    // new TraceErrorResponse<>(CommonErrorCode.SQL_ERROR, "Server error", null,
-    // traceId),
-    // HttpStatus.INTERNAL_SERVER_ERROR));
-    // }
+    @ExceptionHandler(R2dbcException.class)
+    public Mono<ResponseEntity<TraceErrorResponse<Object>>> r2dbcException(
+            R2dbcException ex, ServerWebExchange serverWebExchange) {
+        String traceId = Objects.requireNonNull(tracer.currentSpan()).context().traceId();
+        log.error("R2dbc trace-id {} , error ", traceId, ex);
+        return Mono.just(new ResponseEntity<>(
+                new TraceErrorResponse<>(CommonErrorCode.SQL_ERROR, "Server error", null, traceId),
+                HttpStatus.INTERNAL_SERVER_ERROR));
+    }
 
     /**
      * Handles access denied exceptions. Logs the exception with a trace ID and

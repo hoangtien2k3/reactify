@@ -53,6 +53,8 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  *
  * @author Your Name
  */
+/** @deprecated */
+@Deprecated
 @Slf4j
 @AllArgsConstructor
 public class CustomizeRemovalListener implements RemovalListener {

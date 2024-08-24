@@ -1,17 +1,20 @@
 # demo config application.yml and application.properties
+server:
+  port: 9730
+
 # spring config
 spring:
   main:
     web-application-type: reactive
     allow-bean-definition-overriding: true
-#  messages:
-#    basename: messages
+  messages:
+    basename: messages
 
   #config r2dbc
-#  r2dbc:
-#    url: r2dbc:postgresql://localhost:5434/auth
-#    username: admin
-#    password: admin
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5434/auth
+    username: admin
+    password: admin
 
 #  codec:
 #    max-in-memory-size: 100MB
@@ -33,6 +36,16 @@ spring:
           jwk-set-uri: http://localhost:8080/realms/ezbuy-server/protocol/openid-connect/certs
       keycloak:
         client-id: ezbuy-client
+
+#cache2l config
+cache2l:
+  reflectionPath: io.hoangtien2k3.commons
+  enable-global-cache: true
+  redis:
+    externalMode: true
+    externalCluster: 10.207.59.4:8001,10.207.59.4:8002,10.207.60.5:8003,10.207.60.6:8004
+    username: redis
+    password: redis@2024
 
 ## unauthenticated endpoints config
 #application:
@@ -92,5 +105,3 @@ spring:
 #proxy-client:
 #  host: 10.207.156.52
 #  port: 3128
-server:
-  port: 9730

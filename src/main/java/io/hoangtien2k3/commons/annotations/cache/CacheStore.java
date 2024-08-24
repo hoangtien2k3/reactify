@@ -60,6 +60,8 @@ import org.springframework.stereotype.Component;
  * @see Caffeine
  * @see Reflections
  */
+/** @deprecated */
+@Deprecated
 @Slf4j
 @Component
 public class CacheStore {
