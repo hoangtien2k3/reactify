@@ -5,19 +5,16 @@ server, exception handler, validate and call API with webclient
 
 This README provides quickstart instructions on running [`fw-commons`]() on bare metal project spring boot.
 
-[![License](https://img.shields.io/badge/license-MIT-green)](https://www.opensource.org/licenses/mit-license.php)
-[![JDK](https://img.shields.io/badge/jdk-21-green.svg)](https://www.oracle.com/java/technologies/downloads/#java21)
-[![Build status](https://github.com/ponfee/commons-core/workflows/build-with-maven/badge.svg)](https://github.com/hoangtien2k3/fw-commons/actions)
-[![Maven Central](https://img.shields.io/badge/maven--central-1.1.0-orange.svg?style=plastic&logo=apachemaven)](https://central.sonatype.com/artifact/io.github.hoangtien2k3/fw-commons/1.1.0)
-[![Gradle](https://img.shields.io/badge/gradle-1.1.0-orange.svg?style=plastic&logo=apachemaven)](https://central.sonatype.com/artifact/io.github.hoangtien2k3/fw-commons/1.1.0)
 
-
-[![CircleCI](https://circleci.com/gh/hoangtien2k3/fw-commons.svg?style=svg)](https://app.circleci.com/pipelines/github/hoangtien2k3/fw-commons)
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/project/overview?id=hoangtien2k3_fw-commons)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=hoangtien2k3_fw-commons&metric=bugs)](https://sonarcloud.io/project/issues?issueStatuses=OPEN%2CCONFIRMED&id=hoangtien2k3_fw-commons)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=hoangtien2k3_fw-commons&metric=coverage)](https://sonarcloud.io/dashboard?id=hoangtien2k3_fw-commons)
+
+[![CircleCI](https://circleci.com/gh/hoangtien2k3/fw-commons.svg?style=svg)](https://app.circleci.com/pipelines/github/hoangtien2k3/fw-commons)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=hoangtien2k3_fw-commons&metric=ncloc)](https://sonarcloud.io/summary/overall?id=hoangtien2k3_fw-commons)
+![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/fw-commons?label=latest%20release)
+[![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![JDK](https://img.shields.io/badge/jdk-21-green.svg)](https://www.oracle.com/java/technologies/downloads/#java21)
+[![Build status](https://github.com/ponfee/commons-core/workflows/build-with-maven/badge.svg)](https://github.com/hoangtien2k3/fw-commons/actions)
 
 
 #### ⬇️ [Download From Gradle and Maven Central](https://central.sonatype.com/artifact/io.github.hoangtien2k3/fw-commons/1.1.3) 
