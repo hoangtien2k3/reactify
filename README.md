@@ -71,17 +71,10 @@ If you would like to contribute to the development of this project, please follo
 
 ## License
 
-This project is licensed under the [`MIT License`](LICENSE).
-
-```text
-MIT License
-Copyright (c) 2024 Hoàng Anh Tiến
-```
+[Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Contributors ✨
 
-<table>
-  <tr>
-    <td align="center"><a href="https://www.linkedin.com/in/hoangtien2k3/"><img src="https://avatars.githubusercontent.com/u/122768076?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Hoàng Anh Tiến</b></sub></a><br /><a href="https://github.com/hoangtien2k3/news-app/commits?author=hoangtien2k3" title="Code">💻</a> <a href="#maintenance-hoangtien2k3" title="Maintenance">🚧</a> <a href="#ideas-hoangtien2k3" title="Ideas, Planning, & Feedback">🤔</a> <a href="#design-hoangtien2k3" title="Design">🎨</a> <a href="https://github.com/hoangtien2k3/news-app/issues?q=author%hoangtien2k3" title="Bug reports">🐛</a></td>
-  </tr>
-</table>
+<a href="https://github.com/hoangtien2k3/fw-commons/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=hoangtien2k3/fw-commons" />
+</a>
