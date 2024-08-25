@@ -5,8 +5,6 @@ server, exception handler, validate and call API with webclient
 
 This README provides quickstart instructions on running [`fw-commons`]() on bare metal project spring boot.
 
-
-
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/project/overview?id=hoangtien2k3_fw-commons)
 
 [![CircleCI](https://circleci.com/gh/hoangtien2k3/fw-commons.svg?style=svg)](https://app.circleci.com/pipelines/github/hoangtien2k3/fw-commons)
@@ -16,8 +14,7 @@ This README provides quickstart instructions on running [`fw-commons`]() on bare
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/9383/badge)](https://bestpractices.coreinfrastructure.org/projects/9383)
 [![Build status](https://github.com/ponfee/commons-core/workflows/build-with-maven/badge.svg)](https://github.com/hoangtien2k3/fw-commons/actions)
 
-
-#### ⬇️ [Download From Gradle and Maven Central](https://central.sonatype.com/artifact/io.github.hoangtien2k3/fw-commons/1.1.3) 
+#### ⬇️ [Download From Gradle and Maven Central](https://central.sonatype.com/artifact/io.github.hoangtien2k3/fw-commons/1.1.3)
 
 #### Gradle
 
@@ -26,8 +23,8 @@ implementation("io.github.hoangtien2k3:fw-commons:1.1.3")
 ```
 
 #### Maven
-
 ```xml
+
 <dependency>
     <groupId>io.github.hoangtien2k3</groupId>
     <artifactId>fw-commons</artifactId>
