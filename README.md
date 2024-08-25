@@ -14,8 +14,8 @@ This README provides quickstart instructions on running [`fw-commons`]() on bare
 
 [![CircleCI](https://circleci.com/gh/hoangtien2k3/fw-commons.svg?style=svg)](https://app.circleci.com/pipelines/github/hoangtien2k3/fw-commons)
 
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/dashboard?id=piomin_sample-spring-kafka-microservices)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=hoangtien2k3_fw-commons&metric=bugs)](https://sonarcloud.io/project/overview?id=hoangtien2k3_fw-commons)
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/project/overview?id=hoangtien2k3_fw-commons)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=hoangtien2k3_fw-commons&metric=bugs)](https://sonarcloud.io/project/issues?issueStatuses=OPEN%2CCONFIRMED&id=hoangtien2k3_fw-commons)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=hoangtien2k3_fw-commons&metric=coverage)](https://sonarcloud.io/dashboard?id=hoangtien2k3_fw-commons)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=hoangtien2k3_fw-commons&metric=ncloc)](https://sonarcloud.io/summary/overall?id=hoangtien2k3_fw-commons)
 
