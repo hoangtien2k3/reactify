@@ -32,6 +32,23 @@ implementation("io.github.hoangtien2k3:fw-commons:1.1.3")
 </dependency>
 ```
 
+## DataUitls
+
+#### Gradle
+```kotlin
+implementation("io.github.hoangtien2k3:utils:1.1.4")
+```
+
+#### Maven
+```xml
+
+<dependency>
+    <groupId>io.github.hoangtien2k3</groupId>
+    <artifactId>utils</artifactId>
+    <version>1.1.4</version>
+</dependency>
+```
+
 ## Installation and Getting Started
 
 1. Correct and complete setup to start the program `application.yml` or `application.properties`
