@@ -34,8 +34,9 @@ import org.springframework.context.annotation.ImportResource;
 @ComponentScan(basePackages = {"io.hoangtien2k3.commons.*"})
 @ImportResource({"classpath*:applicationContext.xml"})
 // @EnableDiscoveryClient
-public class FwCommonsApplication {
+public class SpringCommonsApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(FwCommonsApplication.class, args);
+        SpringApplication.run(SpringCommonsApplication.class, args);
     }
 }

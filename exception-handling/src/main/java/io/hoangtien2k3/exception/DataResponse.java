@@ -17,7 +17,6 @@ package io.hoangtien2k3.exception;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -18,7 +18,8 @@ package io.hoangtien2k3.commons.filter.webclient;
 import io.hoangtien2k3.commons.utils.ReactiveOAuth2Utils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.oauth2.client.*;
+import org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientManager;
+import org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
 
 /**

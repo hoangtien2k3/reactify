@@ -16,11 +16,10 @@
 package io.hoangtien2k3.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.MultiValueMap;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Set;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.MultiValueMap;
 
 /**
  * Utility class for truncating strings and handling serialization of objects.

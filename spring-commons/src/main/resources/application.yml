@@ -1,6 +1,4 @@
 # demo config application.yml and application.properties
-server:
-  port: 9730
 
 # spring config
 spring:
@@ -15,9 +13,8 @@ spring:
     url: r2dbc:postgresql://localhost:5434/auth
     username: admin
     password: admin
-
-#  codec:
-#    max-in-memory-size: 100MB
+  codec:
+    max-in-memory-size: 100MB
 
   #config oauth2 with keycloak
   security:
@@ -101,7 +98,7 @@ cache2l:
 #generate public key
 #hashing-password:
 #  public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw5e+CZbXbC8SRbrp+X9O4QRrKQWRu2zJpYGmGtP3bdS6NtsVBaJz2hHwF1KeEzZTnlW/jy7NOYYR5Rp5nD1RfAJooxZxgO7BcZZKbsnBNe+KLUQrxNOgkx2ZpMs60UdzToz0IvIN5L5NFaiKq5/WwRpG4aIM8iV/ME1L/QQw0FDD7m/2PUxDlANXJl5hZgXfZ1hpo/31HXkBofJTWJ/MdTAnxR4u5y+mXYUsf9GmCmA5exPpPZZv1qT1D7AWv0CXi5Ftd2ylbD6jAtF5MC1ngO4FEGZh9uTwXQh2x8FJmc2U7KKTQMWuhbXtkANVVLMg+GPx7lTxDTwQpKmldf5UDuuzcBQIDAQAB
-#
+
 #proxy-client:
 #  host: 10.207.156.52
 #  port: 3128

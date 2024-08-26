@@ -47,7 +47,7 @@ import reactor.core.publisher.Signal;
  * </p>
  *
  * @see LocalCache
- * @see CacheStore
+ * @see io.hoangtien2k3.commons.annotations.cache.CacheStore
  * @see SimpleKeyGenerator
  * @see CacheMono
  * @see Signal

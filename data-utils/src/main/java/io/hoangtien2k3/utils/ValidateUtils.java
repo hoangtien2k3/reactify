@@ -15,14 +15,13 @@
  */
 package io.hoangtien2k3.utils;
 
-import lombok.extern.slf4j.Slf4j;
+import static io.hoangtien2k3.utils.constants.Regex.LINK;
+import static io.hoangtien2k3.utils.constants.Regex.NUMBER_REGEX;
 
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static io.hoangtien2k3.utils.constants.Regex.LINK;
-import static io.hoangtien2k3.utils.constants.Regex.NUMBER_REGEX;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Utility class for validating various types of input. Provides methods to

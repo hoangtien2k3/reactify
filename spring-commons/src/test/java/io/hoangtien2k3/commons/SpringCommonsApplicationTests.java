@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FwCommonsApplicationTests {
+class SpringCommonsApplicationTests {
 
     @Test
     void contextLoads() {}

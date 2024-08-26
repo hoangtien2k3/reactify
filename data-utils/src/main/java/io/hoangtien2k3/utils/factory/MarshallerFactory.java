@@ -15,14 +15,13 @@
  */
 package io.hoangtien2k3.utils.factory;
 
-import lombok.extern.slf4j.Slf4j;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MarshallerFactory {

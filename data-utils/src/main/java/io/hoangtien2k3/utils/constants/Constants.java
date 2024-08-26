@@ -15,10 +15,9 @@
  */
 package io.hoangtien2k3.utils.constants;
 
-import org.springframework.http.MediaType;
-
 import java.util.Arrays;
 import java.util.List;
+import org.springframework.http.MediaType;
 
 public final class Constants {
     public static final String NAME_PATTERN =

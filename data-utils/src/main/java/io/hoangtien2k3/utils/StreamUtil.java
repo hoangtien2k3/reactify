@@ -15,10 +15,9 @@
  */
 package io.hoangtien2k3.utils;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Utility class for handling stream operations.

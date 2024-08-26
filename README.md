@@ -14,40 +14,30 @@ This README provides quickstart instructions on running [`fw-commons`]() on bare
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/9383/badge)](https://bestpractices.coreinfrastructure.org/projects/9383)
 [![Build status](https://github.com/ponfee/commons-core/workflows/build-with-maven/badge.svg)](https://github.com/hoangtien2k3/fw-commons/actions)
 
-#### ⬇️ [Download From Gradle and Maven Central](https://central.sonatype.com/artifact/io.github.hoangtien2k3/fw-commons/1.1.3)
+#### ⬇️ [Download From Gradle and Maven Central](https://central.sonatype.com/namespace/io.github.hoangtien2k3)
 
 #### Gradle
 
 ```kotlin
-implementation("io.github.hoangtien2k3:fw-commons:1.1.3")
+
+def latest = "1.1.4" // or check the latest from maven central repository
+
+//fw-commons
+implementation("io.github.hoangtien2k3:fw-commons:$latest")
+
+//spring-commons
+implementation("io.github.hoangtien2k3:spring-commons:$latest")
+
+//utils
+implementation("io.github.hoangtien2k3:utils:$latest")
+
+//data-utils
+implementation("io.github.hoangtien2k3:data-utils:$latest")
+
+//exception-handling
+implementation("io.github.hoangtien2k3:exception-handling:$latest")
 ```
 
-#### Maven
-```xml
-
-<dependency>
-    <groupId>io.github.hoangtien2k3</groupId>
-    <artifactId>fw-commons</artifactId>
-    <version>1.1.3</version>
-</dependency>
-```
-
-## DataUitls
-
-#### Gradle
-```kotlin
-implementation("io.github.hoangtien2k3:utils:1.1.4")
-```
-
-#### Maven
-```xml
-
-<dependency>
-    <groupId>io.github.hoangtien2k3</groupId>
-    <artifactId>utils</artifactId>
-    <version>1.1.4</version>
-</dependency>
-```
 
 ## Installation and Getting Started
 

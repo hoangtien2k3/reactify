@@ -15,13 +15,12 @@
  */
 package io.hoangtien2k3.utils.factory;
 
-import lombok.extern.slf4j.Slf4j;
-
+import java.util.HashMap;
+import java.util.Map;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.util.HashMap;
-import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Factory class for creating and caching {@link Unmarshaller} instances.

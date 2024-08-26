@@ -16,13 +16,12 @@
 package io.hoangtien2k3.utils;
 
 import io.netty.buffer.UnpooledByteBufAllocator;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import org.apache.logging.log4j.Logger;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.core.io.buffer.NettyDataBufferFactory;
-
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 
 /**
  * Utility class for logging request and response data buffers. Provides methods
