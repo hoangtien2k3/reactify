@@ -13,19 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.hoangtien2k3.exception.response;
+package io.hoangtien2k3.exception;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.hoangtien2k3.exception.Translator;
-import io.hoangtien2k3.exception.constants.MessageConstant;
+
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
-
-import java.io.Serializable;
 
 /**
  * Represents a standardized response structure for API responses.

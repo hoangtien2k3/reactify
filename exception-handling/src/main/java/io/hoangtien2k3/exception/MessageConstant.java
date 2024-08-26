@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.hoangtien2k3.exception.constants;
+package io.hoangtien2k3.exception;
 
 public class MessageConstant {
     public static final String SUCCESS = "success";

@@ -13,14 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.hoangtien2k3.exception.exception;
+package io.hoangtien2k3.exception;
 
-import io.hoangtien2k3.exception.Translator;
+import java.util.Arrays;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import java.util.Arrays;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

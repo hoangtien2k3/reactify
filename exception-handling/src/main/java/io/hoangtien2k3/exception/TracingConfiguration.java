@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.hoangtien2k3.exception.config;
+package io.hoangtien2k3.exception;
 
 import brave.Tracing;
 import io.micrometer.tracing.Tracer;

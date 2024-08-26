@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.hoangtien2k3.exception.config.exception;
+package io.hoangtien2k3.exception;
 
-import io.hoangtien2k3.exception.Translator;
-import io.hoangtien2k3.exception.constants.CommonErrorCode;
-import io.hoangtien2k3.exception.exception.BusinessException;
-import io.hoangtien2k3.exception.response.TraceErrorResponse;
 import io.micrometer.tracing.Tracer;
+import java.nio.file.AccessDeniedException;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -32,11 +32,6 @@ import org.springframework.web.bind.support.WebExchangeBindException;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.ServerWebInputException;
 import reactor.core.publisher.Mono;
-
-import java.nio.file.AccessDeniedException;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * <h2>Exception Handlers:</h2>
