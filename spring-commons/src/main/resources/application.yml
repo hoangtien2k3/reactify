@@ -45,35 +45,35 @@ cache2l:
     password: redis@2024
 
 ## unauthenticated endpoints config
-#application:
-#  http-logging:
-#    request:
-#      enable: true
-#      header: true
-#      param: true
-#      body: true
-#    response:
-#      enable: true
-#      body: true
-#  whiteList:
-#    - uri: /actuator/health
-#      methods:
-#        - GET
-#    - uri: /v1/demo/post
-#      methods:
-#        - POST
-#    - uri: /v1/demo/put
-#      methods:
-#        - PUT
-#    - uri: /v1/demo/delete
-#      methods:
-#        - DELETE
-#    - uri: /v1/demo/head
-#      methods:
-#        - HEAD
-#    - uri: /v1/demo/options
-#      methods:
-#        - OPTIONS
+application:
+  http-logging:
+    request:
+      enable: true
+      header: true
+      param: true
+      body: true
+    response:
+      enable: true
+      body: true
+  whiteList:
+    - uri: /actuator/health
+      methods:
+        - GET
+    - uri: /v1/demo/post
+      methods:
+        - POST
+    - uri: /v1/demo/put
+      methods:
+        - PUT
+    - uri: /v1/demo/delete
+      methods:
+        - DELETE
+    - uri: /v1/demo/head
+      methods:
+        - HEAD
+    - uri: /v1/demo/options
+      methods:
+        - OPTIONS
 
 # web client config
 #client:

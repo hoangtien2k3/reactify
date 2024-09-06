@@ -72,6 +72,10 @@ If you would like to contribute to the development of this project, please follo
 
 ![Alt](https://repobeats.axiom.co/api/embed/31a861bf21d352264c5c122808407abafb97b0ef.svg "Repobeats analytics image")
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=hoangtien2k3/fw-commons&type=Date)](https://star-history.com/#hoangtien2k3/fw-commons&Date)
+
 ## Contributors ✨
 
 <a href="https://github.com/hoangtien2k3/fw-commons/graphs/contributors">
