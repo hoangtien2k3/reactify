@@ -72,9 +72,16 @@ If you would like to contribute to the development of this project, please follo
 
 ![Alt](https://repobeats.axiom.co/api/embed/31a861bf21d352264c5c122808407abafb97b0ef.svg "Repobeats analytics image")
 
+
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=hoangtien2k3/fw-commons&type=Date)](https://star-history.com/#hoangtien2k3/fw-commons&Date)
+<a href="https://star-history.com/#hoangtien2k3/fw-commons&Timeline">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=hoangtien2k3/fw-commons&type=Timeline&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=hoangtien2k3/fw-commons&type=Timeline" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=hoangtien2k3/fw-commons&type=Timeline" />
+ </picture>
+</a>
 
 ## Contributors ✨
 
