@@ -16,7 +16,28 @@ This README provides quickstart instructions on running [`fw-commons`]() on bare
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/9383/badge)](https://bestpractices.coreinfrastructure.org/projects/9383)
 [![Build status](https://github.com/ponfee/commons-core/workflows/build-with-maven/badge.svg)](https://github.com/hoangtien2k3/fw-commons/actions)
 
-#### ⬇️ [Download From Gradle and Maven Central](https://central.sonatype.com/namespace/io.github.hoangtien2k3)
+## Download
+Gradle is the only supported build configuration, so just add the dependency to your project build.gradle file:
+
+⬇️ [Download From Gradle and Maven Central](https://central.sonatype.com/namespace/io.github.hoangtien2k3)
+
+```kotlin
+dependencies {
+  implementation 'io.github.hoangtien2k3:fw-commons:$latest'
+}
+```
+
+```maven
+<dependency>
+   <groupId>io.github.hoangtien2k3</groupId>
+   <artifactId>fw-commons</artifactId>
+   <version>${latest}</version>
+</dependency>
+```
+
+The latest `fw-commons` version is: ![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/fw-commons?label=latest%20release)
+
+The latest stable lib `fw-commons` version is: latestVersion Click [here](https://central.sonatype.com/namespace/io.github.hoangtien2k3) for more information on fw-commons.
 
 #### Gradle
 
