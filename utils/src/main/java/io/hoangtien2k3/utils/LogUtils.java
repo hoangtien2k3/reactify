@@ -32,6 +32,7 @@ import org.springframework.http.MediaType;
  * logging.
  *
  * @since 20/07/2024
+ * @author hoangtien2k3
  */
 public class LogUtils {
 

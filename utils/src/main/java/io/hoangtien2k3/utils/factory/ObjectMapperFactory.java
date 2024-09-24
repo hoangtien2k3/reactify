@@ -26,33 +26,38 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.IOException;
 
 /**
- * Factory class for creating and configuring {@link ObjectMapper} instances.
+ * Factory class for creating and configuring
+ * {@link com.fasterxml.jackson.databind.ObjectMapper} instances.
  * <p>
  * The {@code ObjectMapperFactory} class provides methods to obtain different
- * configurations of Jackson's {@link ObjectMapper}. It includes configurations
- * for handling JSON deserialization, serialization, and custom deserializers.
+ * configurations of Jackson's
+ * {@link com.fasterxml.jackson.databind.ObjectMapper}. It includes
+ * configurations for handling JSON deserialization, serialization, and custom
+ * deserializers.
  * </p>
  *
  * <h2>Class Overview:</h2>
  * <p>
- * This class provides static methods to retrieve {@link ObjectMapper} instances
- * with different configurations: - <code>getInstance</code>: Provides a
- * singleton instance with custom configurations. - <code>getInstance2</code>:
- * Provides a second instance with a different configuration. -
- * <code>defaultGetInstance</code>: Provides a default instance with standard
- * configurations.
+ * This class provides static methods to retrieve
+ * {@link com.fasterxml.jackson.databind.ObjectMapper} instances with different
+ * configurations: - <code>getInstance</code>: Provides a singleton instance
+ * with custom configurations. - <code>getInstance2</code>: Provides a second
+ * instance with a different configuration. - <code>defaultGetInstance</code>:
+ * Provides a default instance with standard configurations.
  * </p>
  *
  * <h2>Methods:</h2>
  * <ul>
- * <li><strong>getInstance</strong>: Provides a singleton {@link ObjectMapper}
- * instance with custom configurations.
+ * <li><strong>getInstance</strong>: Provides a singleton
+ * {@link com.fasterxml.jackson.databind.ObjectMapper} instance with custom
+ * configurations.
  * <ul>
  * <li><strong>Returns:</strong>
  * <p>
- * A singleton instance of {@link ObjectMapper} configured with custom settings
- * such as ignoring unknown properties, accepting single values as arrays,
- * unwrapping single value arrays, and registering custom deserializers.
+ * A singleton instance of {@link com.fasterxml.jackson.databind.ObjectMapper}
+ * configured with custom settings such as ignoring unknown properties,
+ * accepting single values as arrays, unwrapping single value arrays, and
+ * registering custom deserializers.
  * </p>
  * </li>
  * <li><strong>Configuration:</strong>
@@ -70,13 +75,14 @@ import java.io.IOException;
  * </li>
  * </ul>
  * </li>
- * <li><strong>getInstance2</strong>: Provides a second {@link ObjectMapper}
- * instance with alternative configurations.
+ * <li><strong>getInstance2</strong>: Provides a second
+ * {@link com.fasterxml.jackson.databind.ObjectMapper} instance with alternative
+ * configurations.
  * <ul>
  * <li><strong>Returns:</strong>
  * <p>
- * A new instance of {@link ObjectMapper} configured to ignore unknown
- * properties and accept single values as arrays.
+ * A new instance of {@link com.fasterxml.jackson.databind.ObjectMapper}
+ * configured to ignore unknown properties and accept single values as arrays.
  * </p>
  * </li>
  * <li><strong>Configuration:</strong>
@@ -90,13 +96,14 @@ import java.io.IOException;
  * </ul>
  * </li>
  * <li><strong>defaultGetInstance</strong>: Provides a default
- * {@link ObjectMapper} instance with standard configurations.
+ * {@link com.fasterxml.jackson.databind.ObjectMapper} instance with standard
+ * configurations.
  * <ul>
  * <li><strong>Returns:</strong>
  * <p>
- * A new instance of {@link ObjectMapper} configured to ignore unknown
- * properties, accept single values as arrays, include non-null values only, and
- * register available modules.
+ * A new instance of {@link com.fasterxml.jackson.databind.ObjectMapper}
+ * configured to ignore unknown properties, accept single values as arrays,
+ * include non-null values only, and register available modules.
  * </p>
  * </li>
  * <li><strong>Configuration:</strong>
@@ -150,10 +157,13 @@ import java.io.IOException;
  * <h2>Notes:</h2>
  * <p>
  * This factory class is designed to provide different configurations for
- * Jackson's {@link ObjectMapper} based on the needs of different use cases.
- * Custom deserializers and module registrations are handled within the factory
- * to ensure consistent configuration across various parts of the application.
+ * Jackson's {@link com.fasterxml.jackson.databind.ObjectMapper} based on the
+ * needs of different use cases. Custom deserializers and module registrations
+ * are handled within the factory to ensure consistent configuration across
+ * various parts of the application.
  * </p>
+ *
+ * @author hoangtien2k3
  */
 public class ObjectMapperFactory {
     private static ObjectMapper objectMapper;
@@ -161,14 +171,16 @@ public class ObjectMapperFactory {
     private static ObjectMapper defaultGetInstance = new ObjectMapper();
 
     /**
-     * Provides a singleton {@link ObjectMapper} instance with custom
-     * configurations.
+     * Provides a singleton {@link com.fasterxml.jackson.databind.ObjectMapper}
+     * instance with custom configurations.
      * <p>
      * Configures the instance to ignore unknown properties, accept single values as
      * arrays, unwrap single value arrays, and register custom deserializers.
      * </p>
      *
-     * @return A singleton instance of {@link ObjectMapper} with custom settings.
+     * @return A singleton instance of
+     *         {@link com.fasterxml.jackson.databind.ObjectMapper} with custom
+     *         settings.
      */
     public static ObjectMapper getInstance() {
         if (objectMapper == null) {
@@ -186,14 +198,15 @@ public class ObjectMapperFactory {
     }
 
     /**
-     * Provides a second {@link ObjectMapper} instance with alternative
-     * configurations.
+     * Provides a second {@link com.fasterxml.jackson.databind.ObjectMapper}
+     * instance with alternative configurations.
      * <p>
      * Configures the instance to ignore unknown properties and accept single values
      * as arrays.
      * </p>
      *
-     * @return A new instance of {@link ObjectMapper} with alternative settings.
+     * @return A new instance of {@link com.fasterxml.jackson.databind.ObjectMapper}
+     *         with alternative settings.
      */
     public static ObjectMapper getInstance2() {
         objectMapperV2.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -202,14 +215,15 @@ public class ObjectMapperFactory {
     }
 
     /**
-     * Provides a default {@link ObjectMapper} instance with standard
-     * configurations.
+     * Provides a default {@link com.fasterxml.jackson.databind.ObjectMapper}
+     * instance with standard configurations.
      * <p>
      * Configures the instance to ignore unknown properties, accept single values as
      * arrays, include non-null values only, and register all available modules.
      * </p>
      *
-     * @return A new instance of {@link ObjectMapper} with standard settings.
+     * @return A new instance of {@link com.fasterxml.jackson.databind.ObjectMapper}
+     *         with standard settings.
      */
     public static ObjectMapper defaultGetInstance() {
         defaultGetInstance.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

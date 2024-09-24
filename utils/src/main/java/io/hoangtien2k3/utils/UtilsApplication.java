@@ -18,9 +18,24 @@ package io.hoangtien2k3.utils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * <p>
+ * UtilsApplication class.
+ * </p>
+ *
+ * @author hoangtien2k3
+ */
 @SpringBootApplication
 public class UtilsApplication {
 
+    /**
+     * <p>
+     * main.
+     * </p>
+     *
+     * @param args
+     *            an array of {@link java.lang.String} objects
+     */
     public static void main(String[] args) {
         SpringApplication.run(UtilsApplication.class, args);
     }

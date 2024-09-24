@@ -12,7 +12,7 @@
 
     <groupId>io.github.hoangtien2k3</groupId>
     <artifactId>reactify-core</artifactId>
-    <version>${reactify.version}</version>
+    <version>1.1.5</version>
     <packaging>pom</packaging>
     <name>reactify-core</name>
     <description>Java library for developing backend with reactive programming</description>
@@ -251,7 +251,7 @@
                 <artifactId>license-maven-plugin</artifactId>
                 <version>4.0.rc2</version>
                 <configuration>
-                    <header>src/main/resources/license-header.txt</header>
+                    <header>src/main/resources/header.txt</header>
                     <includes>
                         <include>**/*.java</include>
                     </includes>

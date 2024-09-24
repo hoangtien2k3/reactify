@@ -22,14 +22,17 @@ import lombok.NoArgsConstructor;
 /**
  * Exception class representing an error that cannot be retried.
  * <p>
- * This exception extends {@link BusinessException} and is used to signal errors
- * that are not eligible for retrying, indicating that the error condition is
- * permanent and requires manual intervention or resolution.
+ * This exception extends
+ * {@link io.hoangtien2k3.utils.exception.BusinessException} and is used to
+ * signal errors that are not eligible for retrying, indicating that the error
+ * condition is permanent and requires manual intervention or resolution.
  * </p>
  * <p>
  * The exception carries an error code and a message to provide details about
  * the error.
  * </p>
+ *
+ * @author hoangtien2k3
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

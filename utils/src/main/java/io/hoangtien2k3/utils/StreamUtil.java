@@ -23,8 +23,8 @@ import lombok.extern.slf4j.Slf4j;
  * Utility class for handling stream operations.
  * <p>
  * The {@code StreamUtil} class provides a static method for converting an
- * {@link InputStream} into a byte array. This is useful for reading data from a
- * stream and processing it as a byte array.
+ * {@link java.io.InputStream} into a byte array. This is useful for reading
+ * data from a stream and processing it as a byte array.
  * </p>
  *
  * <h2>Class Overview:</h2>
@@ -60,8 +60,9 @@ import lombok.extern.slf4j.Slf4j;
  * </li>
  * <li><strong>Exceptions:</strong>
  * <p>
- * If an error occurs during the reading process (e.g., an {@link Exception} is
- * thrown), an error message is logged, and an empty byte array is returned.
+ * If an error occurs during the reading process (e.g., an
+ * {@link java.lang.Exception} is thrown), an error message is logged, and an
+ * empty byte array is returned.
  * </p>
  * </li>
  * </ul>
@@ -83,16 +84,18 @@ import lombok.extern.slf4j.Slf4j;
  * reached. The method ensures that all data from the input stream is captured
  * in the resulting byte array.
  * </p>
+ *
+ * @author hoangtien2k3
  */
 @Slf4j
 public class StreamUtil {
 
     /**
-     * Converts an {@link InputStream} into a byte array.
+     * Converts an {@link java.io.InputStream} into a byte array.
      * <p>
      * This method reads data from the input stream in chunks and writes it to a
-     * {@link ByteArrayOutputStream}. Once all data has been read, it is converted
-     * into a byte array and returned.
+     * {@link java.io.ByteArrayOutputStream}. Once all data has been read, it is
+     * converted into a byte array and returned.
      * </p>
      *
      * @param inStream

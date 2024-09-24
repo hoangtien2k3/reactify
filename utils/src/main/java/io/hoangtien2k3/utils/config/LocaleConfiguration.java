@@ -30,12 +30,15 @@ import org.springframework.web.server.i18n.LocaleContextResolver;
  * handle internationalization (i18n) and localization in a Spring Boot
  * application.
  * </p>
+ *
+ * @author hoangtien2k3
  */
 @Configuration
 public class LocaleConfiguration {
 
     /**
-     * Configures the {@link LocaleContextResolver} bean.
+     * Configures the
+     * {@link org.springframework.web.server.i18n.LocaleContextResolver} bean.
      * <p>
      * This bean is responsible for resolving the locale based on the
      * Accept-Language header in the HTTP request.
@@ -44,8 +47,9 @@ public class LocaleConfiguration {
      * In this configuration, the default locale is set to Vietnamese (vi).
      * </p>
      *
-     * @return an instance of {@link LocaleContextResolver} configured with the
-     *         default locale
+     * @return an instance of
+     *         {@link org.springframework.web.server.i18n.LocaleContextResolver}
+     *         configured with the default locale
      */
     @Bean("localeContextResolver2")
     public LocaleContextResolver localeContextResolver() {
@@ -55,7 +59,9 @@ public class LocaleConfiguration {
     }
 
     /**
-     * Configures the {@link ReloadableResourceBundleMessageSource} bean.
+     * Configures the
+     * {@link org.springframework.context.support.ReloadableResourceBundleMessageSource}
+     * bean.
      * <p>
      * This bean is used to load and reload message bundles for internationalization
      * purposes.
@@ -69,7 +75,8 @@ public class LocaleConfiguration {
      * the default message if no translation is found.
      * </p>
      *
-     * @return an instance of {@link ReloadableResourceBundleMessageSource}
+     * @return an instance of
+     *         {@link org.springframework.context.support.ReloadableResourceBundleMessageSource}
      *         configured for loading messages
      */
     @Bean

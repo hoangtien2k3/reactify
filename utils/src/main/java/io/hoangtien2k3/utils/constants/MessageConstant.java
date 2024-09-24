@@ -15,8 +15,18 @@
  */
 package io.hoangtien2k3.utils.constants;
 
+/**
+ * <p>
+ * MessageConstant class.
+ * </p>
+ *
+ * @author hoangtien2k3
+ */
 public class MessageConstant {
+    /** Constant <code>SUCCESS="success"</code> */
     public static final String SUCCESS = "success";
+    /** Constant <code>FAIL="fail"</code> */
     public static final String FAIL = "fail";
+    /** Constant <code>ERROR_CODE_SUCCESS="0"</code> */
     public static final String ERROR_CODE_SUCCESS = "0";
 }

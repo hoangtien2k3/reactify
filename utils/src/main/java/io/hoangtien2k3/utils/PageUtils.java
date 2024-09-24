@@ -78,6 +78,8 @@ package io.hoangtien2k3.utils;
  * method returns 0, which might result in incorrect pagination behavior if not
  * handled properly in the application logic.
  * </p>
+ *
+ * @author hoangtien2k3
  */
 public class PageUtils {
 

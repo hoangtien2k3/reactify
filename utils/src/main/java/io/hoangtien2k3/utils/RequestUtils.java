@@ -22,6 +22,8 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 /**
  * Utility class for handling HTTP requests. Provides methods to extract the
  * real IP address from request headers and to generate offline cache keys.
+ *
+ * @author hoangtien2k3
  */
 public class RequestUtils {
 

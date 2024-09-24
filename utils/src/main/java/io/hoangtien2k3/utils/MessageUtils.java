@@ -152,6 +152,8 @@ import org.springframework.context.i18n.LocaleContextHolder;
  * Logging is performed for exceptions occurring during message retrieval,
  * helping in debugging issues with missing or malformed messages.
  * </p>
+ *
+ * @author hoangtien2k3
  */
 @Slf4j
 public class MessageUtils {

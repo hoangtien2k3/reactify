@@ -26,6 +26,8 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Utility class for validating various types of input. Provides methods to
  * validate strings against regular expressions, phone numbers, UUIDs, and URLs.
+ *
+ * @author hoangtien2k3
  */
 @Slf4j
 public class ValidateUtils {

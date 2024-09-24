@@ -24,23 +24,39 @@ import java.util.LinkedList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * <p>
+ * SortingUtils class.
+ * </p>
+ *
+ * @author hoangtien2k3
+ */
 @Slf4j
 public class SortingUtils {
-    // for example
+
+    /**
+     * <p>
+     * main.
+     * </p>
+     *
+     * @param args
+     *            an array of {@link java.lang.String} objects
+     */
     public static void main(String[] args) {
         String sort = "-username,+id,++object";
         System.out.println(parseSorting(sort, BusinessException.class));
     }
 
     /**
-     * Parses the sorting configuration string and converts it to a database query
-     * string.
+     * <p>
+     * parseSorting.
+     * </p>
      *
      * @param sortConfig
-     *            the sorting configuration string
+     *            a {@link java.lang.String} object
      * @param objectClass
-     *            the class of the object to be sorted
-     * @return the database query string for sorting
+     *            a {@link java.lang.Class} object
+     * @return a {@link java.lang.String} object
      */
     public static String parseSorting(String sortConfig, Class objectClass) {
         List<String> convertSorting =
@@ -54,13 +70,15 @@ public class SortingUtils {
     }
 
     /**
-     * Converts the sorting configuration string to a list of sorting fields.
+     * <p>
+     * convertSorting.
+     * </p>
      *
      * @param sortConfig
-     *            the sorting configuration string
+     *            a {@link java.lang.String} object
      * @param objectClass
-     *            the class of the object to be sorted
-     * @return the list of sorting fields
+     *            a {@link java.lang.Class} object
+     * @return a {@link java.util.List} object
      */
     public static List<String> convertSorting(String sortConfig, Class objectClass) {
         if (DataUtil.isNullOrEmpty(sortConfig)) {
@@ -84,18 +102,6 @@ public class SortingUtils {
         return orderList;
     }
 
-    /**
-     * Handles individual sorting elements and adds them to the order list.
-     *
-     * @param element
-     *            the sorting element
-     * @param operator
-     *            the sorting operator
-     * @param fields
-     *            the list of valid fields
-     * @param orderList
-     *            the list to add the sorting element to
-     */
     private static void handleElement(String element, String operator, List<String> fields, List<String> orderList) {
         if (element.length() <= operator.length()) {
             return;
@@ -106,13 +112,6 @@ public class SortingUtils {
         }
     }
 
-    /**
-     * Retrieves all field names of the given class.
-     *
-     * @param object
-     *            the class of the object
-     * @return the list of field names
-     */
     private static List<String> getFieldsOfClass(Class object) {
         List<String> filedNames = new ArrayList<>();
         for (Field field : getAllFields(object)) {
@@ -121,13 +120,6 @@ public class SortingUtils {
         return filedNames;
     }
 
-    /**
-     * Converts the sorting operator to the corresponding SQL keyword.
-     *
-     * @param operator
-     *            the sorting operator
-     * @return the SQL keyword for the sorting operator
-     */
     private static String convertOperator(String operator) {
         if (Constants.Sorting.MINUS_OPERATOR.equals(operator)) {
             return Constants.Sorting.DESC;
@@ -136,13 +128,6 @@ public class SortingUtils {
         }
     }
 
-    /**
-     * Retrieves all fields of the given class, including inherited fields.
-     *
-     * @param clazz
-     *            the class of the object
-     * @return the array of fields
-     */
     private static Field[] getAllFields(Class<?> clazz) {
         Field[] fields = clazz.getDeclaredFields();
         Class<?> superClass = clazz.getSuperclass();

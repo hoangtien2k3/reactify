@@ -34,6 +34,7 @@ import org.springframework.stereotype.Component;
  * Also supports conversion of lists and byte arrays to objects.
  *
  * @since 20/07/2024
+ * @author hoangtien2k3
  */
 @Slf4j
 @Component
@@ -124,8 +125,6 @@ public class ObjectMapperUtil {
      * @param <T>
      *            the type of the object
      * @return the object represented by the byte array
-     * @throws UnRetryableException
-     *             if the conversion fails
      */
     public <T> T convertToObject(byte[] byteArray, Class<T> valueType) {
         try {
@@ -145,8 +144,6 @@ public class ObjectMapperUtil {
      * @param <T>
      *            the type of the objects
      * @return the list of objects represented by the input list
-     * @throws UnRetryableException
-     *             if the conversion fails
      */
     public <T> List<T> convertToObject(List<Object> input, Class<T> valueType) {
         try {
@@ -170,8 +167,6 @@ public class ObjectMapperUtil {
      * @param <T>
      *            the type of the object
      * @return the object represented by the input object
-     * @throws UnRetryableException
-     *             if the conversion fails
      */
     public <T> T convertToObject(Object input, Class<T> valueType) {
         try {

@@ -148,6 +148,8 @@ import org.springframework.util.MultiValueMap;
  * {@code ObjectMapper} for serialization of objects and handles exceptions
  * gracefully by logging errors and returning default values when necessary.
  * </p>
+ *
+ * @author hoangtien2k3
  */
 @Slf4j
 public class TruncateUtils {

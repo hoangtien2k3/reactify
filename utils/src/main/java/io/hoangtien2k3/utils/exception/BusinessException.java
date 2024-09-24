@@ -24,14 +24,15 @@ import lombok.NoArgsConstructor;
  * Exception class used to represent business logic errors in the application.
  *
  * <p>
- * This class extends {@link RuntimeException} and provides additional
+ * This class extends {@link java.lang.RuntimeException} and provides additional
  * information such as an error code, an error message, and optional parameters
  * for the message. The message and parameters are translated to a localized
- * format using the {@link Translator} class.
+ * format using the {@link io.hoangtien2k3.utils.Translator} class.
  * </p>
  *
  * @see RuntimeException
  * @see Translator
+ * @author hoangtien2k3
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -43,12 +44,12 @@ public class BusinessException extends RuntimeException {
     private Object[] paramsMsg;
 
     /**
-     * Constructs a new {@link BusinessException} with the specified error code and
-     * message.
+     * Constructs a new {@link io.hoangtien2k3.utils.exception.BusinessException}
+     * with the specified error code and message.
      *
      * <p>
-     * The message is translated to a localized format using the {@link Translator}
-     * class.
+     * The message is translated to a localized format using the
+     * {@link io.hoangtien2k3.utils.Translator} class.
      * </p>
      *
      * @param errorCode
@@ -62,13 +63,13 @@ public class BusinessException extends RuntimeException {
     }
 
     /**
-     * Constructs a new {@link BusinessException} with the specified error code,
-     * message, and parameters.
+     * Constructs a new {@link io.hoangtien2k3.utils.exception.BusinessException}
+     * with the specified error code, message, and parameters.
      *
      * <p>
      * The message and parameters are translated to a localized format using the
-     * {@link Translator} class. The parameters are used to format the error
-     * message.
+     * {@link io.hoangtien2k3.utils.Translator} class. The parameters are used to
+     * format the error message.
      * </p>
      *
      * @param errorCode

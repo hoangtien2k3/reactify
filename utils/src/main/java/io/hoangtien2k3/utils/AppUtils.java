@@ -24,9 +24,10 @@ import reactor.core.scheduler.Schedulers;
  * A utility class for handling reactive streams with various configurations.
  *
  * <p>
- * This class provides methods to execute {@link Mono} streams with different
- * configurations, including setting timeouts and handling errors. It uses a
- * bounded elastic scheduler for executing the streams.
+ * This class provides methods to execute {@link reactor.core.publisher.Mono}
+ * streams with different configurations, including setting timeouts and
+ * handling errors. It uses a bounded elastic scheduler for executing the
+ * streams.
  * </p>
  *
  * <p>
@@ -40,11 +41,12 @@ import reactor.core.scheduler.Schedulers;
 public class AppUtils {
 
     /**
-     * Executes a {@link Mono} stream on a bounded elastic scheduler with a timeout
-     * of 2 minutes. Logs any errors that occur during execution.
+     * Executes a {@link reactor.core.publisher.Mono} stream on a bounded elastic
+     * scheduler with a timeout of 2 minutes. Logs any errors that occur during
+     * execution.
      *
      * @param functionMono
-     *            the {@link Mono} stream to be executed
+     *            the {@link reactor.core.publisher.Mono} stream to be executed
      */
     public static void runHiddenStream(Mono<?> functionMono) {
         functionMono
@@ -55,11 +57,12 @@ public class AppUtils {
     }
 
     /**
-     * Executes a {@link Mono} stream on a bounded elastic scheduler with a
-     * specified timeout. Logs any errors that occur during execution.
+     * Executes a {@link reactor.core.publisher.Mono} stream on a bounded elastic
+     * scheduler with a specified timeout. Logs any errors that occur during
+     * execution.
      *
      * @param functionMono
-     *            the {@link Mono} stream to be executed
+     *            the {@link reactor.core.publisher.Mono} stream to be executed
      * @param timeout
      *            the timeout duration in minutes
      */
@@ -72,11 +75,11 @@ public class AppUtils {
     }
 
     /**
-     * Executes a {@link Mono} stream on a bounded elastic scheduler without any
-     * timeout. Logs any errors that occur during execution.
+     * Executes a {@link reactor.core.publisher.Mono} stream on a bounded elastic
+     * scheduler without any timeout. Logs any errors that occur during execution.
      *
      * @param functionMono
-     *            the {@link Mono} stream to be executed
+     *            the {@link reactor.core.publisher.Mono} stream to be executed
      */
     public static void runHiddenStreamWithoutTimeout(Mono<?> functionMono) {
         functionMono
@@ -86,14 +89,15 @@ public class AppUtils {
     }
 
     /**
-     * Executes a {@link Mono} stream and returns a {@link Mono} of {@code Boolean}
-     * indicating success or failure. If the stream is empty, it returns
-     * {@code true}. If an error occurs, it returns {@code false}.
+     * Executes a {@link reactor.core.publisher.Mono} stream and returns a
+     * {@link reactor.core.publisher.Mono} of {@code Boolean} indicating success or
+     * failure. If the stream is empty, it returns {@code true}. If an error occurs,
+     * it returns {@code false}.
      *
      * @param functionMono
-     *            the {@link Mono} stream to be executed
-     * @return a {@link Mono} of {@code Boolean} indicating the result of the
-     *         operation
+     *            the {@link reactor.core.publisher.Mono} stream to be executed
+     * @return a {@link reactor.core.publisher.Mono} of {@code Boolean} indicating
+     *         the result of the operation
      */
     public static Mono<Boolean> insertData(Mono<?> functionMono) {
         return functionMono.map(rs -> true).switchIfEmpty(Mono.just(true)).onErrorResume(throwable -> Mono.just(false));

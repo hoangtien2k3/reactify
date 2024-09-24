@@ -79,6 +79,8 @@ import org.apache.commons.lang3.StringUtils;
  * additional escaping or handling might be required for other special
  * characters or SQL injection prevention.
  * </p>
+ *
+ * @author hoangtien2k3
  */
 public class SQLUtils {
 

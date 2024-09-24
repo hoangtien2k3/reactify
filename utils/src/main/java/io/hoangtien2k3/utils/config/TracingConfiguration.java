@@ -32,14 +32,19 @@ import org.springframework.context.annotation.Configuration;
  * The configuration defines two beans:
  * </p>
  * <ul>
- * <li>{@link Tracer}: The primary interface used for tracing operations.</li>
- * <li>{@link Tracing}: The builder for creating a new tracing instance.</li>
+ * <li>{@link io.micrometer.tracing.Tracer}: The primary interface used for
+ * tracing operations.</li>
+ * <li>{@link brave.Tracing}: The builder for creating a new tracing
+ * instance.</li>
  * </ul>
+ *
+ * @author hoangtien2k3
  */
 @Configuration
 public class TracingConfiguration {
     /**
-     * Creates a {@link Tracer} bean that is used for tracing operations.
+     * Creates a {@link io.micrometer.tracing.Tracer} bean that is used for tracing
+     * operations.
      * <p>
      * In this configuration, it returns a NOOP (no-operation) tracer. This is a
      * placeholder tracer that does nothing. This can be useful when tracing is
@@ -51,8 +56,10 @@ public class TracingConfiguration {
      * </p>
      *
      * @param tracing
-     *            the {@link Tracing} instance to be used for creating the tracer.
-     * @return a {@link Tracer} instance configured as a NOOP tracer.
+     *            the {@link brave.Tracing} instance to be used for creating the
+     *            tracer.
+     * @return a {@link io.micrometer.tracing.Tracer} instance configured as a NOOP
+     *         tracer.
      */
     @Bean
     public Tracer tracer(Tracing tracing) {
@@ -60,10 +67,10 @@ public class TracingConfiguration {
     }
 
     /**
-     * Creates a {@link Tracing} bean used for tracing operations.
+     * Creates a {@link brave.Tracing} bean used for tracing operations.
      * <p>
-     * This method creates and configures a new {@link Tracing} instance using the
-     * builder pattern.
+     * This method creates and configures a new {@link brave.Tracing} instance using
+     * the builder pattern.
      * </p>
      * <p>
      * The configuration here does not include any specific tracing settings or
@@ -71,7 +78,7 @@ public class TracingConfiguration {
      * based on your tracing and monitoring needs.
      * </p>
      *
-     * @return a configured {@link Tracing} instance.
+     * @return a configured {@link brave.Tracing} instance.
      */
     @Bean
     public Tracing tracing() {
