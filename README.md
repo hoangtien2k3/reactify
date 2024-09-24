@@ -1,11 +1,11 @@
 ![fw-commons](https://socialify.git.ci/hoangtien2k3/fw-commons/image?description=1&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fi.ibb.co%2FN366vtQ%2Fhoangtien2k3.png&owner=1&pattern=Brick%20Wall&pulls=1&stargazers=1&theme=Auto)
 
-# fw-commons
+# Reactify
 
-Fw-Commons [a commons Java lib]() with spring boot framework, Supports using keycloak, filter, trace log, cached, minio
+Reactify [a commons Java lib]() with spring boot framework, Supports using keycloak, filter, trace log, cached, minio
 server, exception handler, validate and call API with webclient
 
-This README provides quickstart instructions on running [`fw-commons`]() on bare metal project spring boot.
+This README provides quickstart instructions on running [`reactify`]() on bare metal project spring boot.
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/project/overview?id=hoangtien2k3_fw-commons)
 
@@ -35,9 +35,9 @@ dependencies {
 </dependency>
 ```
 
-The latest `fw-commons` version is: ![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/fw-commons?label=latest%20release)
+The latest `reactify` version is: ![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/fw-commons?label=latest%20release)
 
-The latest stable lib `fw-commons` version is: latestVersion Click [here](https://central.sonatype.com/namespace/io.github.hoangtien2k3) for more information on fw-commons.
+The latest stable lib `reactify` version is: latestVersion Click [here](https://central.sonatype.com/namespace/io.github.hoangtien2k3) for more information on reactify.
 
 ## Installation and Getting Started
 
@@ -91,4 +91,9 @@ If you would like to contribute to the development of this project, please follo
 
 ## License
 
-[Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+This project is licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+
+```
+Apache License
+Copyright (c) 2024 Hoàng Anh Tiến
+```
