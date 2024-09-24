@@ -19,6 +19,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * <p>HttpLogResponse class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

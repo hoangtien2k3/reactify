@@ -45,6 +45,11 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 import reactor.util.context.Context;
 
+/**
+ * <p>PerformanceLogFilter class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Component
 @RequiredArgsConstructor
 public class PerformanceLogFilter implements WebFilter, Ordered {
@@ -54,6 +59,7 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
     private static final int MAX_BYTE = 800; // Max byte allow to print
     private final Environment environment;
 
+    /** {@inheritDoc} */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         long startMillis = System.currentTimeMillis();
@@ -330,6 +336,7 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
         setTraceIdInMDC(traceId);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int getOrder() {
         return 7;

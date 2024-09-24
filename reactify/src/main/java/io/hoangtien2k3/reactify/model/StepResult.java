@@ -17,6 +17,11 @@ package io.hoangtien2k3.reactify.model;
 
 import lombok.Getter;
 
+/**
+ * <p>StepResult class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Getter
 public class StepResult {
     private final boolean success;
@@ -27,10 +32,21 @@ public class StepResult {
         this.message = message;
     }
 
+    /**
+     * <p>success.</p>
+     *
+     * @return a {@link io.hoangtien2k3.reactify.model.StepResult} object
+     */
     public static StepResult success() {
         return new StepResult(true, null);
     }
 
+    /**
+     * <p>failure.</p>
+     *
+     * @param message a {@link java.lang.String} object
+     * @return a {@link io.hoangtien2k3.reactify.model.StepResult} object
+     */
     public static StepResult failure(String message) {
         return new StepResult(false, message);
     }

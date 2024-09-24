@@ -26,12 +26,18 @@ import org.springframework.web.reactive.function.client.ExchangeFunction;
 import reactor.core.publisher.Mono;
 import reactor.util.retry.Retry;
 
+/**
+ * <p>WebClientRetryHandler class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Slf4j
 @RequiredArgsConstructor
 public class WebClientRetryHandler implements ExchangeFilterFunction {
 
     private final RetryProperties properties;
 
+    /** {@inheritDoc} */
     @Override
     public Mono<ClientResponse> filter(ClientRequest request, ExchangeFunction next) {
         Retry retry = Retry.max(properties.getCount())

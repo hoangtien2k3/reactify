@@ -19,11 +19,22 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * <p>UnRetryableException class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 public class UnRetryableException extends BusinessException {
 
+    /**
+     * <p>Constructor for UnRetryableException.</p>
+     *
+     * @param errorCode a {@link java.lang.String} object
+     * @param message a {@link java.lang.String} object
+     */
     public UnRetryableException(String errorCode, String message) {
         super(errorCode, message);
     }

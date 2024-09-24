@@ -21,6 +21,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /** @deprecated */
+/**
+ * <p>LocalCache class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Deprecated
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

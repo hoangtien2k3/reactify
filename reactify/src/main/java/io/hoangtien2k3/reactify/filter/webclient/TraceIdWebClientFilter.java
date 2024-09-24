@@ -24,11 +24,17 @@ import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.ExchangeFunction;
 import reactor.core.publisher.Mono;
 
+/**
+ * <p>TraceIdWebClientFilter class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Component
 @RequiredArgsConstructor
 public class TraceIdWebClientFilter implements ExchangeFilterFunction {
     private final Tracer tracer;
 
+    /** {@inheritDoc} */
     @Override
     public Mono<ClientResponse> filter(ClientRequest request, ExchangeFunction next) {
         return Mono.defer(() -> {

@@ -54,6 +54,7 @@ import reactor.core.publisher.Mono;
  * Spring WebFlux.
  *
  * @author: hoangtien2k3
+ * @author hoangtien2k3
  */
 @Component
 @Slf4j
@@ -62,9 +63,9 @@ public class HttpLoggingFilter implements WebFilter, Ordered {
     private final HttpLogProperties httpLogProperties;
 
     /**
-     * Returns the order of the filter.
+     * {@inheritDoc}
      *
-     * @return the order of the filter
+     * Returns the order of the filter.
      */
     @Override
     public int getOrder() {
@@ -72,13 +73,9 @@ public class HttpLoggingFilter implements WebFilter, Ordered {
     }
 
     /**
-     * Filters the HTTP request and response, logging the details.
+     * {@inheritDoc}
      *
-     * @param exchange
-     *            the current server exchange
-     * @param chain
-     *            the web filter chain
-     * @return a Mono that indicates when request processing is complete
+     * Filters the HTTP request and response, logging the details.
      */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {

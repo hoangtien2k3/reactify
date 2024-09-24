@@ -22,6 +22,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import reactor.util.context.Context;
 
+/**
+ * <p>LoggerDTO class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

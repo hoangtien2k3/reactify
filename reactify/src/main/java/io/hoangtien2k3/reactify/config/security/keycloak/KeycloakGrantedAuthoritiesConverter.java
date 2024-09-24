@@ -32,6 +32,11 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.util.ObjectUtils;
 
+/**
+ * <p>KeycloakGrantedAuthoritiesConverter class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @RequiredArgsConstructor
 public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
     private static final String ROLES = "roles";
@@ -43,6 +48,7 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
 
     private final String clientId;
 
+    /** {@inheritDoc} */
     @Override
     public Collection<GrantedAuthority> convert(Jwt jwt) {
         var realmRoles = realmRoles(jwt);
@@ -60,6 +66,12 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
         return Optional.ofNullable(defaultAuthoritiesConverter.convert(jwt)).orElse(emptySet());
     }
 
+    /**
+     * <p>realmRoles.</p>
+     *
+     * @param jwt a {@link org.springframework.security.oauth2.jwt.Jwt} object
+     * @return a {@link java.util.List} object
+     */
     @SuppressWarnings("unchecked")
     protected List<String> realmRoles(Jwt jwt) {
         return Optional.ofNullable(jwt.getClaimAsMap(CLAIM_REALM_ACCESS))
@@ -67,6 +79,13 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
                 .orElse(emptyList());
     }
 
+    /**
+     * <p>clientRoles.</p>
+     *
+     * @param jwt a {@link org.springframework.security.oauth2.jwt.Jwt} object
+     * @param clientId a {@link java.lang.String} object
+     * @return a {@link java.util.List} object
+     */
     @SuppressWarnings("unchecked")
     protected List<String> clientRoles(Jwt jwt, String clientId) {
         if (ObjectUtils.isEmpty(clientId)) {

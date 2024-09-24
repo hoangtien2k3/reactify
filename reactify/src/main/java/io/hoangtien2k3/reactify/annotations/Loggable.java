@@ -21,6 +21,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * <p>Loggable class.</p>
+ *
  * @author hoangtien2k3
  */
 @Retention(RetentionPolicy.RUNTIME)

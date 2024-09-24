@@ -30,6 +30,8 @@ import reactor.core.scheduler.Schedulers;
  * Utility class for translating message codes to localized messages. Provides
  * methods to translate message codes to messages in different locales. Supports
  * synchronous and asynchronous translation.
+ *
+ * @author hoangtien2k3
  */
 @Component
 public class Translator {

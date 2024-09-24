@@ -42,6 +42,11 @@ import reactor.cache.CacheMono;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Signal;
 
+/**
+ * <p>Cache2LAspect class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Aspect
 @Configuration
 @Log4j2
@@ -74,6 +79,13 @@ public class Cache2LAspect {
     @Pointcut("@annotation(io.hoangtien2k3.reactify.aop.cache.Cache2L)")
     private void processAnnotation() {}
 
+    /**
+     * <p>aroundAdvice.</p>
+     *
+     * @param pjp a {@link org.aspectj.lang.ProceedingJoinPoint} object
+     * @return a {@link java.lang.Object} object
+     * @throws java.lang.Throwable if any.
+     */
     @Around("processAnnotation()")
     public Object aroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
         Object[] args = pjp.getArgs();
@@ -216,6 +228,9 @@ public class Cache2LAspect {
         }
     }
 
+    /**
+     * <p>redisHealthCheckJob.</p>
+     */
     @Scheduled(fixedDelay = 50000)
     public void redisHealthCheckJob() {
         if (!enableGlobalCache) {

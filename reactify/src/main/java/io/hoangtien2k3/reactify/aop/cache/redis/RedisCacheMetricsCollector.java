@@ -20,19 +20,35 @@ import io.prometheus.client.CounterMetricFamily;
 import java.util.*;
 import org.springframework.stereotype.Component;
 
+/**
+ * <p>RedisCacheMetricsCollector class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Component
 public class RedisCacheMetricsCollector extends Collector {
 
     private final RedisCacheKeyCounter redisCacheKey;
 
+    /**
+     * <p>Constructor for RedisCacheMetricsCollector.</p>
+     *
+     * @param redisCacheKey a {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheKeyCounter} object
+     */
     public RedisCacheMetricsCollector(RedisCacheKeyCounter redisCacheKey) {
         this.redisCacheKey = redisCacheKey;
     }
 
+    /**
+     * <p>addCache.</p>
+     *
+     * @param cacheName a {@link java.lang.String} object
+     */
     public void addCache(String cacheName) {
         redisCacheKey.addCache(cacheName);
     }
 
+    /** {@inheritDoc} */
     @Override
     public List<MetricFamilySamples> collect() {
         List<MetricFamilySamples> mfs = new ArrayList<>();

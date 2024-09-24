@@ -22,10 +22,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+/**
+ * <p>GatewayContext class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Getter
 @Setter
 @ToString
 public class GatewayContext {
+    /** Constant <code>CACHE_GATEWAY_CONTEXT="cacheGatewayContext"</code> */
     public static final String CACHE_GATEWAY_CONTEXT = "cacheGatewayContext";
 
     /** whether read request data */

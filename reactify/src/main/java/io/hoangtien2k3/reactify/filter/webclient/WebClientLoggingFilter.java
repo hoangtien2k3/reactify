@@ -24,6 +24,11 @@ import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.ExchangeFunction;
 import reactor.core.publisher.Mono;
 
+/**
+ * <p>WebClientLoggingFilter class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Slf4j
 @RequiredArgsConstructor
 public class WebClientLoggingFilter implements ExchangeFilterFunction {
@@ -31,6 +36,7 @@ public class WebClientLoggingFilter implements ExchangeFilterFunction {
     private static final String OBFUSCATE_HEADER = "xxxxx";
     private final List<String> obfuscateHeader;
 
+    /** {@inheritDoc} */
     @Override
     public Mono<ClientResponse> filter(ClientRequest request, ExchangeFunction next) {
         log.info("Start Call API - Method: {} {}", request.method(), request.url());

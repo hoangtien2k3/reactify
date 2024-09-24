@@ -44,6 +44,11 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+/**
+ * <p>ResponseLogFilter class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Log4j2
 @AllArgsConstructor
 @Component
@@ -69,6 +74,7 @@ public class ResponseLogFilter implements WebFilter, Ordered {
         return in_b;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         GatewayContext gatewayContext = exchange.getAttribute(GatewayContext.CACHE_GATEWAY_CONTEXT);
@@ -112,6 +118,7 @@ public class ResponseLogFilter implements WebFilter, Ordered {
         return nettyDataBufferFactory.wrap(bytes);
     }
 
+    /** {@inheritDoc} */
     @Override
     public int getOrder() {
         return 6;

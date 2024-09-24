@@ -21,15 +21,35 @@ import java.util.ResourceBundle;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.i18n.LocaleContextHolder;
 
+/**
+ * <p>MessageUtils class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Slf4j
 public class MessageUtils {
 
     private static final String BASE_NAME = "messages";
 
+    /**
+     * <p>getMessage.</p>
+     *
+     * @param code a {@link java.lang.String} object
+     * @param locale a {@link java.util.Locale} object
+     * @return a {@link java.lang.String} object
+     */
     public static String getMessage(String code, Locale locale) {
         return getMessage(code, locale, null);
     }
 
+    /**
+     * <p>getMessage.</p>
+     *
+     * @param code a {@link java.lang.String} object
+     * @param locale a {@link java.util.Locale} object
+     * @param args a {@link java.lang.Object} object
+     * @return a {@link java.lang.String} object
+     */
     public static String getMessage(String code, Locale locale, Object... args) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle(BASE_NAME, locale);
         String message;
@@ -44,10 +64,23 @@ public class MessageUtils {
         return message;
     }
 
+    /**
+     * <p>getMessage.</p>
+     *
+     * @param code a {@link java.lang.String} object
+     * @return a {@link java.lang.String} object
+     */
     public static String getMessage(String code) {
         return getMessage(code, LocaleContextHolder.getLocale(), null);
     }
 
+    /**
+     * <p>getMessage.</p>
+     *
+     * @param code a {@link java.lang.String} object
+     * @param args a {@link java.lang.Object} object
+     * @return a {@link java.lang.String} object
+     */
     public static String getMessage(String code, Object... args) {
         return getMessage(code, LocaleContextHolder.getLocale(), args);
     }

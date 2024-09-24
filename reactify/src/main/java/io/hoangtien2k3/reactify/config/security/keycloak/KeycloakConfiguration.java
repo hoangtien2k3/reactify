@@ -25,6 +25,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import reactor.core.publisher.Mono;
 
+/**
+ * <p>KeycloakConfiguration class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Configuration
 public class KeycloakConfiguration {
 

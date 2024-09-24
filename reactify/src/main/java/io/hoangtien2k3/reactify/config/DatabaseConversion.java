@@ -32,9 +32,19 @@ import org.springframework.data.relational.core.mapping.NamingStrategy;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
+/**
+ * <p>DatabaseConversion class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Slf4j
 @Component
 public class DatabaseConversion {
+    /**
+     * <p>getR2dbcConverter.</p>
+     *
+     * @return a {@link org.springframework.data.r2dbc.convert.MappingR2dbcConverter} object
+     */
     public MappingR2dbcConverter getR2dbcConverter() {
         R2dbcMappingContext mappingContext = getR2dbcMappingContext();
         R2dbcCustomConversions r2dbcCustomConversions = getR2dbcCustomConversions();
@@ -53,6 +63,11 @@ public class DatabaseConversion {
         return R2dbcCustomConversions.of(MySqlDialect.INSTANCE, getListConverters());
     }
 
+    /**
+     * <p>getListConverters.</p>
+     *
+     * @return a {@link java.util.List} object
+     */
     public List<Object> getListConverters() {
         List<Object> converters = new ArrayList<>();
         converters.add(InstantWriteConverter.INSTANCE);

@@ -19,6 +19,11 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+/**
+ * <p>MinioProperties class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Data
 @Component
 @ConfigurationProperties(prefix = "minio")

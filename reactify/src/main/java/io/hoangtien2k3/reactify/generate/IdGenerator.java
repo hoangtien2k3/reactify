@@ -17,9 +17,19 @@ package io.hoangtien2k3.reactify.generate;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * <p>IdGenerator class.</p>
+ *
+ * @author hoangtien2k3
+ */
 public class IdGenerator {
     private static final AtomicInteger idCounter = new AtomicInteger();
 
+    /**
+     * <p>generateId.</p>
+     *
+     * @return a int
+     */
     public static int generateId() {
         return idCounter.incrementAndGet();
     }

@@ -22,6 +22,8 @@ import lombok.Getter;
 /**
  * This is class to gen RSAKeyPair (publicKey and privateKey) <a href=
  * "https://www.devglan.com/java8/rsa-encryption-decryption-java">...</a>
+ *
+ * @author hoangtien2k3
  */
 @Getter
 public class RSAKeyPairGenerator {
@@ -29,6 +31,11 @@ public class RSAKeyPairGenerator {
     private final PrivateKey privateKey;
     private final PublicKey publicKey;
 
+    /**
+     * <p>Constructor for RSAKeyPairGenerator.</p>
+     *
+     * @throws java.security.NoSuchAlgorithmException if any.
+     */
     public RSAKeyPairGenerator() throws NoSuchAlgorithmException {
         // RSA to indicate Asymmetric Encryption (public-key cryptography)
         KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
@@ -39,6 +46,12 @@ public class RSAKeyPairGenerator {
         this.publicKey = pair.getPublic();
     }
 
+    /**
+     * <p>main.</p>
+     *
+     * @param args an array of {@link java.lang.String} objects
+     * @throws java.security.NoSuchAlgorithmException if any.
+     */
     public static void main(String[] args) throws NoSuchAlgorithmException {
         RSAKeyPairGenerator rsaKeyPairGenerator = new RSAKeyPairGenerator();
         String publicKey = Base64.getEncoder()

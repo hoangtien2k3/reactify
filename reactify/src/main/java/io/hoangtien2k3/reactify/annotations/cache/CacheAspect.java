@@ -30,6 +30,11 @@ import reactor.core.publisher.Mono;
 import reactor.core.publisher.Signal;
 
 /** @deprecated */
+/**
+ * <p>CacheAspect class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Deprecated
 @Aspect
 @Configuration
@@ -38,6 +43,13 @@ public class CacheAspect {
     @Pointcut("@annotation(io.hoangtien2k3.reactify.annotations.LocalCache)")
     private void processAnnotation() {}
 
+    /**
+     * <p>aroundAdvice.</p>
+     *
+     * @param joinPoint a {@link org.aspectj.lang.ProceedingJoinPoint} object
+     * @return a {@link java.lang.Object} object
+     * @throws java.lang.Throwable if any.
+     */
     @Around("processAnnotation()")
     public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] args = joinPoint.getArgs();

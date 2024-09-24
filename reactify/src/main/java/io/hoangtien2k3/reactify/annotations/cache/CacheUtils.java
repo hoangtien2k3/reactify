@@ -23,12 +23,22 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 /** @deprecated */
+/**
+ * <p>CacheUtils class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Deprecated
 @Slf4j
 @Component
 @RequiredArgsConstructor
 public class CacheUtils {
 
+    /**
+     * <p>invokeMethod.</p>
+     *
+     * @param method a {@link java.lang.reflect.Method} object
+     */
     public static void invokeMethod(Method method) {
         try {
             Class declaringClass = method.getDeclaringClass();

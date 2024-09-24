@@ -28,6 +28,11 @@ import org.springframework.r2dbc.core.DatabaseClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+/**
+ * <p>BaseTemplateRepository class.</p>
+ *
+ * @author hoangtien2k3
+ */
 public class BaseTemplateRepository {
 
     @Autowired
@@ -35,6 +40,9 @@ public class BaseTemplateRepository {
 
     private ObjectMapper objectMapper;
 
+    /**
+     * <p>Constructor for BaseTemplateRepository.</p>
+     */
     public BaseTemplateRepository() {
         objectMapper = JsonMapper.builder()
                 .addModule(new JavaTimeModule())
@@ -43,6 +51,15 @@ public class BaseTemplateRepository {
                 .build();
     }
 
+    /**
+     * <p>listQuery.</p>
+     *
+     * @param sql a {@link java.lang.String} object
+     * @param params a {@link java.util.Map} object
+     * @param type a {@link java.lang.Class} object
+     * @param <T> a T class
+     * @return a {@link reactor.core.publisher.Flux} object
+     */
     protected <T> Flux<T> listQuery(String sql, Map<String, Object> params, Class<T> type) {
         DatabaseClient.GenericExecuteSpec spec =
                 entityTemplate.getDatabaseClient().sql(sql);
@@ -54,6 +71,13 @@ public class BaseTemplateRepository {
         return spec.fetch().all().map(raw -> convert(raw, type));
     }
 
+    /**
+     * <p>countQuery.</p>
+     *
+     * @param sql a {@link java.lang.String} object
+     * @param params a {@link java.util.Map} object
+     * @return a {@link reactor.core.publisher.Mono} object
+     */
     protected Mono<Long> countQuery(String sql, Map<String, Object> params) {
         String query = "select count(*) as common_count_col from (" + sql + ") as common_count_alias";
         DatabaseClient.GenericExecuteSpec spec =
@@ -69,6 +93,14 @@ public class BaseTemplateRepository {
                 .cast(Long.class);
     }
 
+    /**
+     * <p>convert.</p>
+     *
+     * @param raw a {@link java.util.Map} object
+     * @param type a {@link java.lang.Class} object
+     * @param <T> a T class
+     * @return a T object
+     */
     protected <T> T convert(Map<String, Object> raw, Class<T> type) {
         return objectMapper.convertValue(raw, type);
     }

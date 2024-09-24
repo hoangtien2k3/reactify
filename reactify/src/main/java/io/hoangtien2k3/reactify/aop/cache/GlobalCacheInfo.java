@@ -18,6 +18,11 @@ package io.hoangtien2k3.reactify.aop.cache;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+ * <p>GlobalCacheInfo class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Data
 @AllArgsConstructor
 public class GlobalCacheInfo {

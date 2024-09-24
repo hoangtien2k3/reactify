@@ -36,12 +36,20 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+/**
+ * <p>LoggerSchedule class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Configuration
 @RequiredArgsConstructor
 @Slf4j
 public class LoggerSchedule {
     private static final Logger logPerf = LoggerFactory.getLogger("perfLogger");
 
+    /**
+     * <p>scheduleSaveLogClick.</p>
+     */
     @Scheduled(fixedDelay = 3000)
     public void scheduleSaveLogClick() {
         long analyId = System.currentTimeMillis();

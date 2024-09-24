@@ -23,6 +23,8 @@ import javax.crypto.Cipher;
 
 /**
  * This is code example to check giai ma
+ *
+ * @author hoangtien2k3
  */
 public class RSACryptoExample {
 

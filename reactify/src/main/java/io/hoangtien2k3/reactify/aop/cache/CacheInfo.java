@@ -19,6 +19,11 @@ import com.github.benmanes.caffeine.cache.Cache;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+ * <p>CacheInfo class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Data
 @AllArgsConstructor
 public class CacheInfo {

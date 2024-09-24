@@ -47,6 +47,11 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+/**
+ * <p>GatewayContextFilter class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Component
 @Log4j2
 @AllArgsConstructor
@@ -55,11 +60,13 @@ public class GatewayContextFilter implements WebFilter, Ordered {
     private HttpLogProperties httpLogProperties;
     private CodecConfigurer codecConfigurer;
 
+    /** {@inheritDoc} */
     @Override
     public int getOrder() {
         return Ordered.HIGHEST_PRECEDENCE;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();

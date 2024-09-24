@@ -18,6 +18,11 @@ package io.hoangtien2k3.reactify.aop.cache.redis;
 import java.util.concurrent.atomic.LongAdder;
 import lombok.Data;
 
+/**
+ * <p>RedisCacheStats class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Data
 public class RedisCacheStats {
     private LongAdder hitCount = new LongAdder();

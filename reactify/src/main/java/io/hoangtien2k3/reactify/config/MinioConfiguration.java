@@ -22,6 +22,11 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * <p>MinioConfiguration class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
@@ -29,6 +34,11 @@ public class MinioConfiguration {
 
     private final MinioProperties minioProperties;
 
+    /**
+     * <p>minioClient.</p>
+     *
+     * @return a {@link io.minio.MinioClient} object
+     */
     @Bean
     @ConditionalOnProperty(value = "minio.enabled", havingValue = "true", matchIfMissing = false)
     public MinioClient minioClient() {

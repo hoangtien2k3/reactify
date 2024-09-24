@@ -22,6 +22,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 
+/**
+ * <p>WebClientProperties class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

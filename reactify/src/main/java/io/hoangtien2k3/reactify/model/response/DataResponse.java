@@ -32,6 +32,7 @@ import org.springframework.http.HttpStatus;
  *
  * @param <T>
  *            the type of the response data
+ * @author hoangtien2k3
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(Include.NON_NULL)

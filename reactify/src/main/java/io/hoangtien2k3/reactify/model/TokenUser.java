@@ -22,6 +22,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * <p>TokenUser class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @JsonIgnoreProperties
 @Data
 @AllArgsConstructor

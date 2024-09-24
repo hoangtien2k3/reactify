@@ -25,6 +25,11 @@ import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.ExchangeFunction;
 import reactor.core.publisher.Mono;
 
+/**
+ * <p>WebClientMonitoringFilter class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Slf4j
 @Data
 @RequiredArgsConstructor
@@ -35,6 +40,7 @@ public class WebClientMonitoringFilter implements ExchangeFilterFunction {
     // private WebClientExchangeTagsProvider tagsProvider = new
     // DefaultWebClientExchangeTagsProvider();
 
+    /** {@inheritDoc} */
     @Override
     public Mono<ClientResponse> filter(ClientRequest clientRequest, ExchangeFunction exchangeFunction) {
         return exchangeFunction

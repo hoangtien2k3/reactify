@@ -21,15 +21,31 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * <p>RedisCache2lCollectorConfiguration class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Configuration
 @ConditionalOnProperty(value = "cache2l.enable-global-cache", havingValue = "true")
 public class RedisCache2lCollectorConfiguration {
 
+    /**
+     * <p>redisCacheKey.</p>
+     *
+     * @return a {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheKeyCounter} object
+     */
     @Bean
     public RedisCacheKeyCounter redisCacheKey() {
         return new RedisCacheKeyCounter();
     }
 
+    /**
+     * <p>initRedisCacheMetricCollector.</p>
+     *
+     * @param redisCacheKey a {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheKeyCounter} object
+     * @return a {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheMetricsCollector} object
+     */
     @Bean(name = "redisCacheMetricsCollector")
     public RedisCacheMetricsCollector initRedisCacheMetricCollector(RedisCacheKeyCounter redisCacheKey) {
         return new RedisCacheMetricsCollector(redisCacheKey).register();

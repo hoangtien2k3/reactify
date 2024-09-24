@@ -24,6 +24,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
+ * <p>HttpLogProperties class.</p>
+ *
  * @author hoangtien2k3
  */
 @Component

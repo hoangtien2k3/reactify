@@ -21,6 +21,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * <p>BusinessException class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
@@ -29,11 +34,24 @@ public class BusinessException extends RuntimeException {
     private String message;
     private Object[] paramsMsg;
 
+    /**
+     * <p>Constructor for BusinessException.</p>
+     *
+     * @param errorCode a {@link java.lang.String} object
+     * @param message a {@link java.lang.String} object
+     */
     public BusinessException(String errorCode, String message) {
         this.errorCode = errorCode;
         this.message = Translator.toLocaleVi(message);
     }
 
+    /**
+     * <p>Constructor for BusinessException.</p>
+     *
+     * @param errorCode a {@link java.lang.String} object
+     * @param message a {@link java.lang.String} object
+     * @param paramsMsg a {@link java.lang.String} object
+     */
     public BusinessException(String errorCode, String message, String... paramsMsg) {
         this.errorCode = errorCode;
         this.paramsMsg = Arrays.stream(paramsMsg).map(Translator::toLocaleVi).toArray(String[]::new);

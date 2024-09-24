@@ -23,8 +23,18 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import reactor.core.publisher.Mono;
 
+/**
+ * <p>Cache2LUtils class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Log4j2
 public class Cache2LUtils {
+    /**
+     * <p>invokeMethod.</p>
+     *
+     * @param method a {@link java.lang.reflect.Method} object
+     */
     public static void invokeMethod(Method method) {
         try {
             Class declaringClass = method.getDeclaringClass();
@@ -41,6 +51,12 @@ public class Cache2LUtils {
         }
     }
 
+    /**
+     * <p>getRedisCache2lTemplate.</p>
+     *
+     * @param redisConnectionFactory a {@link org.springframework.data.redis.connection.RedisConnectionFactory} object
+     * @return a {@link org.springframework.data.redis.core.RedisTemplate} object
+     */
     public static RedisTemplate<Object, Object> getRedisCache2lTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<Object, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory);

@@ -64,97 +64,165 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import reactor.core.publisher.Mono;
 
+/**
+ * <p>DataUtil class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Slf4j
 public class DataUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(DataUtil.class);
 
+    /** Constant <code>FORMAT_YMD</code> */
     public static final SimpleDateFormat FORMAT_YMD = new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMD);
+    /** Constant <code>FORMAT_DMY</code> */
     public static final SimpleDateFormat FORMAT_DMY = new SimpleDateFormat(CommonConstant.DATE_FORMAT_DMY);
+    /** Constant <code>FORMAT_S_MY</code> */
     public static final SimpleDateFormat FORMAT_S_MY = new SimpleDateFormat(CommonConstant.DATE_FORMAT_S_MY);
+    /** Constant <code>FORMAT_S_YM</code> */
     public static final SimpleDateFormat FORMAT_S_YM = new SimpleDateFormat(CommonConstant.DATE_FORMAT_S_YM);
+    /** Constant <code>FORMAT_HH_MM</code> */
     public static final SimpleDateFormat FORMAT_HH_MM = new SimpleDateFormat(CommonConstant.DATE_FORMAT_HH_MM);
+    /** Constant <code>FORMAT_HH_MM_24</code> */
     public static final SimpleDateFormat FORMAT_HH_MM_24 = new SimpleDateFormat(CommonConstant.DATE_FORMAT_HM);
 
+    /** Constant <code>FORMAT_DMYHMS_HYPHEN</code> */
     public static final SimpleDateFormat FORMAT_DMYHMS_HYPHEN =
             new SimpleDateFormat(CommonConstant.DATE_FORMAT_DMY_HMS);
+    /** Constant <code>FORMAT_MDYHMS_12_HOUR</code> */
     public static final SimpleDateFormat FORMAT_MDYHMS_12_HOUR =
             new SimpleDateFormat(CommonConstant.DATE_FORMAT_MDY_HMS_12_HOUR);
+    /** Constant <code>NUMBER_DF</code> */
     public static final DecimalFormat NUMBER_DF = new DecimalFormat("#.##");
+    /** Constant <code>FORMAT_DMY_HYPHEN</code> */
     public static final SimpleDateFormat FORMAT_DMY_HYPHEN =
             new SimpleDateFormat(CommonConstant.FORMAT_DATE_DMY_HYPHEN);
+    /** Constant <code>FORMAT_DMYHMS</code> */
     public static final SimpleDateFormat FORMAT_DMYHMS = new SimpleDateFormat(CommonConstant.DATE_FORMAT_DMYHMS);
+    /** Constant <code>FORMAT_DMYHM</code> */
     public static final SimpleDateFormat FORMAT_DMYHM = new SimpleDateFormat(CommonConstant.DATE_FORMAT_DMYHM);
+    /** Constant <code>FORMAT_DATE_FORMAT_YM2</code> */
     public static final SimpleDateFormat FORMAT_DATE_FORMAT_YM2 = new SimpleDateFormat(DATE_FORMAT_YM2);
+    /** Constant <code>FORMAT_DATE_FORMAT_SHORT_YYYY</code> */
     public static final SimpleDateFormat FORMAT_DATE_FORMAT_SHORT_YYYY =
             new SimpleDateFormat(CommonConstant.DATE_FORMAT_SHORT_YYYY);
+    /** Constant <code>FORMAT_YMD_T_HH_MM_SS</code> */
     public static final SimpleDateFormat FORMAT_YMD_T_HH_MM_SS =
             new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMD_T_HH_MM_SS);
+    /** Constant <code>FORMAT_YMD_T_HMS</code> */
     public static final SimpleDateFormat FORMAT_YMD_T_HMS = new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMD_T_HMS);
+    /** Constant <code>FORMAT_HMS</code> */
     public static final SimpleDateFormat FORMAT_HMS = new SimpleDateFormat(CommonConstant.DATE_FORMAT_HMS);
+    /** Constant <code>FORMAT_SHORT</code> */
     public static final SimpleDateFormat FORMAT_SHORT = new SimpleDateFormat(CommonConstant.DATE_FORMAT_SHORT);
+    /** Constant <code>FORMAT_HMS_NORMAL</code> */
     public static final SimpleDateFormat FORMAT_HMS_NORMAL =
             new SimpleDateFormat(CommonConstant.DATE_FORMAT_HMS_NORMAL);
+    /** Constant <code>FORMAT_YDM_INSTANT</code> */
     public static final SimpleDateFormat FORMAT_YDM_INSTANT =
             new SimpleDateFormat(CommonConstant.DATE_FORMAT_YDM_INSTANT);
+    /** Constant <code>FORMAT_DMY_HMS</code> */
     public static final SimpleDateFormat FORMAT_DMY_HMS = new SimpleDateFormat(CommonConstant.DATE_FORMAT_DMY_HMS);
+    /** Constant <code>FORMAT_DATE</code> */
     public static final SimpleDateFormat FORMAT_DATE = new SimpleDateFormat(CommonConstant.DATE_FORMAT);
+    /** Constant <code>FORMAT_DATE_2</code> */
     public static final SimpleDateFormat FORMAT_DATE_2 = new SimpleDateFormat(CommonConstant.DATE_FORMAT_2);
+    /** Constant <code>FORMAT_DATE_3</code> */
     public static final SimpleDateFormat FORMAT_DATE_3 = new SimpleDateFormat(CommonConstant.DATE_FORMAT_3);
+    /** Constant <code>FORMAT_YMD_HMS</code> */
     public static final SimpleDateFormat FORMAT_YMD_HMS = new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMD_HMS);
+    /** Constant <code>FORMAT_YMDHMS</code> */
     public static final SimpleDateFormat FORMAT_YMDHMS = new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMDHMS);
+    /** Constant <code>FORMAT_YMDH</code> */
     public static final SimpleDateFormat FORMAT_YMDH = new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMDH);
+    /** Constant <code>FORMAT_HMDMY</code> */
     public static final SimpleDateFormat FORMAT_HMDMY = new SimpleDateFormat(CommonConstant.DATE_TIME_FORMAT_HMDMY);
+    /** Constant <code>FORMAT_YM2</code> */
     public static final SimpleDateFormat FORMAT_YM2 = new SimpleDateFormat(DATE_FORMAT_YM2);
+    /** Constant <code>FORMAT_MD_HMS_END_DAY</code> */
     public static final SimpleDateFormat FORMAT_MD_HMS_END_DAY =
             new SimpleDateFormat(CommonConstant.DATE_FORMAT_END_DAY);
+    /** Constant <code>FORMAT_YMD_HMS_BEGIN_DAY</code> */
     public static final SimpleDateFormat FORMAT_YMD_HMS_BEGIN_DAY =
             new SimpleDateFormat(CommonConstant.DATE_FORMAT_BEGIN_DAY);
+    /** Constant <code>FORMAT_YMDTHMS_ZER0</code> */
     public static final SimpleDateFormat FORMAT_YMDTHMS_ZER0 =
             new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMDTHMS_ZER0);
+    /** Constant <code>FORMAT_YMDTHMS_ZER0_24HRS</code> */
     public static final SimpleDateFormat FORMAT_YMDTHMS_ZER0_24HRS =
             new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMDTHMS_ZERO_24HRS);
+    /** Constant <code>FORMAT_HM_DMY</code> */
     public static final SimpleDateFormat FORMAT_HM_DMY = new SimpleDateFormat(CommonConstant.DATE_FORMAT_HM_DMY);
+    /** Constant <code>FORMAT_HM_DMY1</code> */
     public static final SimpleDateFormat FORMAT_HM_DMY1 = new SimpleDateFormat(CommonConstant.DATE_FORMAT_HM_DMY1);
+    /** Constant <code>FORMAT_S_YMD</code> */
     public static final SimpleDateFormat FORMAT_S_YMD = new SimpleDateFormat(CommonConstant.DATE_FORMAT_S_YMD);
+    /** Constant <code>FORMAT_S_YMD_HMS</code> */
     public static final SimpleDateFormat FORMAT_S_YMD_HMS = new SimpleDateFormat(CommonConstant.DATE_FORMAT_S_YMD_HMS);
+    /** Constant <code>FORMAT_YMDTHMS_GMT_7</code> */
     public static final SimpleDateFormat FORMAT_YMDTHMS_GMT_7 =
             new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMDTHMS_GMT_7);
+    /** Constant <code>FORMAT_YMDTHMS_GMT_7_2</code> */
     public static final SimpleDateFormat FORMAT_YMDTHMS_GMT_7_2 =
             new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMDTHMS_GMT_7_2);
+    /** Constant <code>FORMAT_DATE_DMY_HM</code> */
     public static final SimpleDateFormat FORMAT_DATE_DMY_HM = new SimpleDateFormat(CommonConstant.DATE_FORMAT_DMY_HM);
+    /** Constant <code>FORMAT_FORMAT_HM_DMY</code> */
     public static final SimpleDateFormat FORMAT_FORMAT_HM_DMY = new SimpleDateFormat(CommonConstant.DATE_FORMAT_HM_DMY);
+    /** Constant <code>DATE_TIME_YMD</code> */
     public static final DateTimeFormatter DATE_TIME_YMD = DateTimeFormatter.ofPattern(CommonConstant.DATE_FORMAT_YMD);
+    /** Constant <code>DATE_TIME_DMY_HMS</code> */
     public static final DateTimeFormatter DATE_TIME_DMY_HMS =
             DateTimeFormatter.ofPattern(CommonConstant.DATE_FORMAT_DMY_HMS);
+    /** Constant <code>DATE_TIME_DMY</code> */
     public static final DateTimeFormatter DATE_TIME_DMY = DateTimeFormatter.ofPattern(CommonConstant.DATE_FORMAT_DMY);
+    /** Constant <code>DATE_FORMAT_DMYHM</code> */
     public static final DateTimeFormatter DATE_FORMAT_DMYHM =
             DateTimeFormatter.ofPattern(CommonConstant.DATE_FORMAT_DMYHM);
+    /** Constant <code>DATE_TIME_YMDTHMS_ZEO_24HRS</code> */
     public static final DateTimeFormatter DATE_TIME_YMDTHMS_ZEO_24HRS =
             DateTimeFormatter.ofPattern(CommonConstant.DATE_FORMAT_YMDTHMS_ZERO_24HRS);
+    /** Constant <code>PATTERN_REGEX_PHONE_ASTERISK</code> */
     public static final Pattern PATTERN_REGEX_PHONE_ASTERISK = Pattern.compile(CommonConstant.REGEX_PHONE_ASTERISK);
+    /** Constant <code>PATTERN_REGEX_PATTERN_CHECK</code> */
     public static final Pattern PATTERN_REGEX_PATTERN_CHECK = Pattern.compile(CommonConstant.PATTER_CHECK);
+    /** Constant <code>PATTERN_REGEX_NUMBER_PREFIX_CHECK</code> */
     public static final Pattern PATTERN_REGEX_NUMBER_PREFIX_CHECK =
             Pattern.compile(CommonConstant.COMMON_PREFIX.NUMBER_PREFIX);
+    /** Constant <code>PATTERN_REGEX_ONLY_NUMBER_CHECK</code> */
     public static final Pattern PATTERN_REGEX_ONLY_NUMBER_CHECK =
             Pattern.compile(CommonConstant.COMMON_PREFIX.REGEX_ONLY_NUMBER);
+    /** Constant <code>FORMAT_DATE_FORMAT</code> */
     public static final SimpleDateFormat FORMAT_DATE_FORMAT = new SimpleDateFormat(CommonConstant.DATE_FORMAT);
+    /** Constant <code>FORMAT_DATE_FORMAT_MILI</code> */
     public static final SimpleDateFormat FORMAT_DATE_FORMAT_MILI =
             new SimpleDateFormat(CommonConstant.DATE_FORMAT_MILI);
+    /** Constant <code>FORMAT_DATE_FORMAT_HM</code> */
     public static final SimpleDateFormat FORMAT_DATE_FORMAT_HM = new SimpleDateFormat(CommonConstant.DATE_FORMAT_HM);
+    /** Constant <code>DATE_FORMAT_END_DAY</code> */
     public static final SimpleDateFormat DATE_FORMAT_END_DAY = new SimpleDateFormat(CommonConstant.DATE_FORMAT_END_DAY);
 
+    /** Constant <code>NUMBER_SEPARATOR_SYMBOL_FORMAT</code> */
     public static final DecimalFormatSymbols NUMBER_SEPARATOR_SYMBOL_FORMAT = new DecimalFormatSymbols();
+    /** Constant <code>NUMBER_SEPARATOR_SYMBOL</code> */
     public static final DecimalFormat NUMBER_SEPARATOR_SYMBOL = new DecimalFormat("", NUMBER_SEPARATOR_SYMBOL_FORMAT);
+    /** Constant <code>DECIMAL_FORMAT_NUMBER_SEPERATOR</code> */
     public static final DecimalFormat DECIMAL_FORMAT_NUMBER_SEPERATOR = new DecimalFormat("#,##0");
 
+    /** Constant <code>DECIMAL_FORMAT_SYMBOLS</code> */
     public static final DecimalFormatSymbols DECIMAL_FORMAT_SYMBOLS = new DecimalFormatSymbols(Locale.GERMAN);
+    /** Constant <code>DECIMAL_FORMAT_NUMBER_COMMA</code> */
     public static final DecimalFormat DECIMAL_FORMAT_NUMBER_COMMA =
             new DecimalFormat("#,###,###,###.###", DECIMAL_FORMAT_SYMBOLS);
 
+    /** Constant <code>RANDOM</code> */
     public static final SecureRandom RANDOM = new SecureRandom();
 
+    /** Constant <code>TEXT_TIMEZONE_VN="Asia/Ha_Noi"</code> */
     public static final String TEXT_TIMEZONE_VN = "Asia/Ha_Noi";
+    /** Constant <code>TIMEZONE_VN</code> */
     public static final TimeZone TIMEZONE_VN = TimeZone.getTimeZone(TEXT_TIMEZONE_VN);
+    /** Constant <code>CALENDAR</code> */
     public static Calendar CALENDAR = Calendar.getInstance();
 
     static {

@@ -34,9 +34,22 @@ import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
+/**
+ * <p>DataWsUtil class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Slf4j
 public class DataWsUtil {
 
+    /**
+     * <p>getDataByTag.</p>
+     *
+     * @param realData a {@link java.lang.String} object
+     * @param fromKey a {@link java.lang.String} object
+     * @param toKey a {@link java.lang.String} object
+     * @return a {@link java.lang.String} object
+     */
     public static String getDataByTag(String realData, String fromKey, String toKey) {
         String data = "";
         if (!DataUtil.isNullOrEmpty(fromKey) && !DataUtil.isNullOrEmpty(realData) && realData.contains(fromKey)) {
@@ -48,6 +61,14 @@ public class DataWsUtil {
         return data;
     }
 
+    /**
+     * <p>wrapTag.</p>
+     *
+     * @param data a {@link java.lang.String} object
+     * @param openTag a {@link java.lang.String} object
+     * @param closeTag a {@link java.lang.String} object
+     * @return a {@link java.lang.String} object
+     */
     public static String wrapTag(String data, String openTag, String closeTag) {
         if (DataUtil.isNullOrEmpty(openTag) || DataUtil.isNullOrEmpty(closeTag) || DataUtil.isNullOrEmpty(data)) {
             return "";
@@ -55,10 +76,24 @@ public class DataWsUtil {
         return openTag + data + closeTag;
     }
 
+    /**
+     * <p>wrapTagReturn.</p>
+     *
+     * @param data a {@link java.lang.String} object
+     * @return a {@link java.lang.String} object
+     */
     public static String wrapTagReturn(String data) {
         return wrapTag(data, Constants.XmlConst.TAG_OPEN_RETURN, Constants.XmlConst.TAG_OPEN_RETURN);
     }
 
+    /**
+     * <p>xmlToObj.</p>
+     *
+     * @param xml a {@link java.lang.String} object
+     * @param clz a {@link java.lang.Class} object
+     * @param <T> a T class
+     * @return a T object
+     */
     public static <T> T xmlToObj(String xml, Class clz) {
         try {
             StringReader reader = new StringReader(xml.trim());
@@ -69,6 +104,13 @@ public class DataWsUtil {
         return null;
     }
 
+    /**
+     * <p>parseXmlFile.</p>
+     *
+     * @param in a {@link java.lang.String} object
+     * @return a {@link org.w3c.dom.Document} object
+     * @throws java.lang.Exception if any.
+     */
     public static Document parseXmlFile(String in) throws Exception {
         try {
             DocumentBuilderFactory dbf = getDocumentBuilderFactory();
@@ -81,6 +123,12 @@ public class DataWsUtil {
         }
     }
 
+    /**
+     * <p>fixSecurityDocumentBuilder.</p>
+     *
+     * @param dbf a {@link javax.xml.parsers.DocumentBuilderFactory} object
+     * @throws javax.xml.parsers.ParserConfigurationException if any.
+     */
     public static void fixSecurityDocumentBuilder(DocumentBuilderFactory dbf) throws ParserConfigurationException {
         String FEATURE = "http://apache.org/xml/features/disallow-doctype-decl";
         dbf.setFeature(FEATURE, true);
@@ -105,6 +153,12 @@ public class DataWsUtil {
         dbf.setExpandEntityReferences(false);
     }
 
+    /**
+     * <p>getDocumentBuilderFactory.</p>
+     *
+     * @return a {@link javax.xml.parsers.DocumentBuilderFactory} object
+     * @throws javax.xml.parsers.ParserConfigurationException if any.
+     */
     public static DocumentBuilderFactory getDocumentBuilderFactory() throws ParserConfigurationException {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         fixSecurityDocumentBuilder(dbf);
@@ -112,6 +166,12 @@ public class DataWsUtil {
         return dbf;
     }
 
+    /**
+     * <p>formatXML.</p>
+     *
+     * @param unformattedXml a {@link java.lang.String} object
+     * @return a {@link java.lang.String} object
+     */
     public static String formatXML(String unformattedXml) {
         try {
             Document document = parseXmlFile(unformattedXml);
@@ -130,6 +190,14 @@ public class DataWsUtil {
         }
     }
 
+    /**
+     * <p>getListDataByTag.</p>
+     *
+     * @param realData a {@link java.lang.String} object
+     * @param fromKey a {@link java.lang.String} object
+     * @param toKey a {@link java.lang.String} object
+     * @return a {@link java.util.List} object
+     */
     public static List<String> getListDataByTag(String realData, String fromKey, String toKey) {
         List<String> list = new ArrayList<>();
         if (DataUtil.isNullOrEmpty(realData)) {

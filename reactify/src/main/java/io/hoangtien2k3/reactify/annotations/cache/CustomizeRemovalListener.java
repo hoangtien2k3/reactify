@@ -24,12 +24,18 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /** @deprecated */
+/**
+ * <p>CustomizeRemovalListener class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Deprecated
 @Slf4j
 @AllArgsConstructor
 public class CustomizeRemovalListener implements RemovalListener {
     private Method method;
 
+    /** {@inheritDoc} */
     @Override
     public void onRemoval(@Nullable Object key, @Nullable Object value, @NonNull RemovalCause removalCause) {
         if (removalCause.wasEvicted()) {

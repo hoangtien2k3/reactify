@@ -22,8 +22,20 @@ import org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClient
 import org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
 
+/**
+ * <p>ClientRegistrationFilter class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Configuration
 public class ClientRegistrationFilter {
+    /**
+     * <p>authorizedClientManager.</p>
+     *
+     * @param clientRegistrationRepository a {@link org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository} object
+     * @param authorizedClientService a {@link org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientService} object
+     * @return a {@link org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientManager} object
+     */
     @Bean
     public ReactiveOAuth2AuthorizedClientManager authorizedClientManager(
             ReactiveClientRegistrationRepository clientRegistrationRepository,

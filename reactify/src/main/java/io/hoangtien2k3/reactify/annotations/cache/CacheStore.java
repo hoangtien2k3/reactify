@@ -34,6 +34,11 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 /** @deprecated */
+/**
+ * <p>CacheStore class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Deprecated
 @Slf4j
 @Component
@@ -81,10 +86,21 @@ public class CacheStore {
         log.info("Finish initializing {} cache", caches.size());
     }
 
+    /**
+     * <p>getCache.</p>
+     *
+     * @param key a {@link java.lang.String} object
+     * @return a {@link com.github.benmanes.caffeine.cache.Cache} object
+     */
     public static Cache getCache(String key) {
         return caches.get(key);
     }
 
+    /**
+     * <p>autoLoad.</p>
+     *
+     * @param event a {@link org.springframework.context.event.ContextRefreshedEvent} object
+     */
     @Async
     @EventListener
     public void autoLoad(ContextRefreshedEvent event) {

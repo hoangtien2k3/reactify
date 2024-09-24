@@ -15,7 +15,19 @@
  */
 package io.hoangtien2k3.reactify.utils;
 
+/**
+ * <p>PageUtils class.</p>
+ *
+ * @author hoangtien2k3
+ */
 public class PageUtils {
+    /**
+     * <p>getOffset.</p>
+     *
+     * @param page a {@link java.lang.Integer} object
+     * @param size a {@link java.lang.Integer} object
+     * @return a int
+     */
     public static int getOffset(Integer page, Integer size) {
         if (page == null || page <= 0 || size == null || size <= 0) return 0;
         return (page - 1) * size;

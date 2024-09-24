@@ -27,7 +27,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-/** Gateway Plugin Properties */
+/**
+ * Gateway Plugin Properties
+ *
+ * @author hoangtien2k3
+ */
 @Slf4j
 @Getter
 @Setter
@@ -36,6 +40,7 @@ import org.springframework.util.CollectionUtils;
 @Component
 @ConfigurationProperties(value = "spring.plugin.config")
 public class GatewayPluginProperties implements InitializingBean {
+    /** Constant <code>GATEWAY_PLUGIN_PROPERTIES_PREFIX="spring.plugin.config"</code> */
     public static final String GATEWAY_PLUGIN_PROPERTIES_PREFIX = "spring.plugin.config";
 
     private Boolean readRequestData = false;
@@ -46,6 +51,7 @@ public class GatewayPluginProperties implements InitializingBean {
     /** Hide header on log */
     private List<String> hideHeaderList = Collections.emptyList();
 
+    /** {@inheritDoc} */
     @Override
     public void afterPropertiesSet() throws Exception {
         if (!CollectionUtils.isEmpty(hideHeaderList)) {

@@ -23,10 +23,22 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * <p>MarshallerFactory class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Slf4j
 public class MarshallerFactory {
     private static Map<Class, Marshaller> instance = new HashMap<>();
 
+    /**
+     * <p>convertObjectToXML.</p>
+     *
+     * @param obj a {@link java.lang.Object} object
+     * @param cls a {@link java.lang.Class} object
+     * @return a {@link java.lang.String} object
+     */
     public static String convertObjectToXML(Object obj, Class cls) {
         Marshaller marshaller = instance.get(cls);
         String xmlTxt = "";

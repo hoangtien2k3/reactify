@@ -17,11 +17,31 @@ package io.hoangtien2k3.reactify.model;
 
 import reactor.core.publisher.Mono;
 
+/**
+ * <p>SagaStep interface.</p>
+ *
+ * @author hoangtien2k3
+ */
 public interface SagaStep {
 
+    /**
+     * <p>complete.</p>
+     *
+     * @return a boolean
+     */
     boolean complete();
 
+    /**
+     * <p>execute.</p>
+     *
+     * @return a {@link reactor.core.publisher.Mono} object
+     */
     Mono<StepResult> execute();
 
+    /**
+     * <p>revert.</p>
+     *
+     * @return a {@link reactor.core.publisher.Mono} object
+     */
     Mono<Boolean> revert();
 }

@@ -23,11 +23,17 @@ import lombok.extern.log4j.Log4j2;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
+/**
+ * <p>CustomizeRemovalListener class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Log4j2
 @AllArgsConstructor
 public class CustomizeRemovalListener implements RemovalListener {
     private Method method;
 
+    /** {@inheritDoc} */
     @Override
     public void onRemoval(@Nullable Object o, @Nullable Object o2, @NonNull RemovalCause removalCause) {
         if (removalCause.wasEvicted()) {

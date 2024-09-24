@@ -17,9 +17,19 @@ package io.hoangtien2k3.reactify.factory;
 
 import org.modelmapper.ModelMapper;
 
+/**
+ * <p>ModelMapperFactory class.</p>
+ *
+ * @author hoangtien2k3
+ */
 public class ModelMapperFactory {
     private static ModelMapper modelMapper = new ModelMapper();
 
+    /**
+     * <p>getInstance.</p>
+     *
+     * @return a {@link org.modelmapper.ModelMapper} object
+     */
     public static ModelMapper getInstance() {
         return modelMapper;
     }

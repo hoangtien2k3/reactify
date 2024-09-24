@@ -21,11 +21,21 @@ import java.util.concurrent.ConcurrentMap;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
+/**
+ * <p>RedisCacheKeyCounter class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Log4j2
 @Component
 public class RedisCacheKeyCounter {
     protected final ConcurrentMap<String, RedisCacheStats> redisKeys = new ConcurrentHashMap<>();
 
+    /**
+     * <p>recordHit.</p>
+     *
+     * @param cacheName a {@link java.lang.String} object
+     */
     public void recordHit(String cacheName) {
         if (redisKeys.containsKey(cacheName)) {
             redisKeys.get(cacheName).getHitCount().add(1);
@@ -34,6 +44,11 @@ public class RedisCacheKeyCounter {
         }
     }
 
+    /**
+     * <p>recordMiss.</p>
+     *
+     * @param cacheName a {@link java.lang.String} object
+     */
     public void recordMiss(String cacheName) {
         if (redisKeys.containsKey(cacheName)) {
             redisKeys.get(cacheName).getMissCount().add(1);
@@ -42,6 +57,11 @@ public class RedisCacheKeyCounter {
         }
     }
 
+    /**
+     * <p>addCache.</p>
+     *
+     * @param cacheName a {@link java.lang.String} object
+     */
     public void addCache(String cacheName) {
         if (!redisKeys.containsKey(cacheName)) {
             redisKeys.put(cacheName, new RedisCacheStats());
@@ -50,6 +70,12 @@ public class RedisCacheKeyCounter {
         }
     }
 
+    /**
+     * <p>getHitsByKey.</p>
+     *
+     * @param cacheName a {@link java.lang.String} object
+     * @return a long
+     */
     public long getHitsByKey(String cacheName) {
         if (redisKeys.containsKey(cacheName)) {
             return redisKeys.get(cacheName).getHitCount().sum();
@@ -59,6 +85,12 @@ public class RedisCacheKeyCounter {
         }
     }
 
+    /**
+     * <p>getMissByKey.</p>
+     *
+     * @param cacheName a {@link java.lang.String} object
+     * @return a long
+     */
     public long getMissByKey(String cacheName) {
         if (redisKeys.containsKey(cacheName)) {
             return redisKeys.get(cacheName).getMissCount().sum();
@@ -68,6 +100,12 @@ public class RedisCacheKeyCounter {
         }
     }
 
+    /**
+     * <p>getRequestCountByKey.</p>
+     *
+     * @param cacheName a {@link java.lang.String} object
+     * @return a long
+     */
     public long getRequestCountByKey(String cacheName) {
         if (redisKeys.containsKey(cacheName)) {
             return saturatedAdd(this.getHitsByKey(cacheName), this.getMissByKey(cacheName));
@@ -82,6 +120,11 @@ public class RedisCacheKeyCounter {
         return (a ^ b) < 0L | (a ^ naiveSum) >= 0L ? naiveSum : Long.MAX_VALUE + (naiveSum >>> 63 ^ 1L);
     }
 
+    /**
+     * <p>getKeys.</p>
+     *
+     * @return a {@link java.util.Set} object
+     */
     public Set<String> getKeys() {
         return redisKeys.keySet();
     }

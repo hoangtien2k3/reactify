@@ -34,6 +34,8 @@ import reactor.core.publisher.Mono;
 /**
  * Utility class for security-related operations. Provides methods to extract
  * the current user, generate HMAC, and check authorization.
+ *
+ * @author hoangtien2k3
  */
 public class SecurityUtils {
 
@@ -106,7 +108,7 @@ public class SecurityUtils {
      * @param algorithm
      *            the algorithm to be used for signing
      * @return the generated HMAC as a String
-     * @throws SignatureException
+     * @throws java.security.SignatureException
      *             if an error occurs during HMAC generation
      */
     public static String hmac(String data, String key, String algorithm) throws SignatureException {

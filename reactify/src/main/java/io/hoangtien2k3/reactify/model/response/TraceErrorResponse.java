@@ -23,6 +23,7 @@ import lombok.Setter;
  *
  * @param <T>
  *            the type of the response data
+ * @author hoangtien2k3
  */
 @Getter
 @Setter

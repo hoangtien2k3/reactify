@@ -30,6 +30,11 @@ import org.springframework.data.redis.connection.lettuce.LettuceClientConfigurat
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
+/**
+ * <p>RedisExternalCache2lConfiguration class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Configuration
 @ConditionalOnExpression("${cache2l.enable-global-cache:false} and ${cache2l.redis.externalMode:false}")
 public class RedisExternalCache2lConfiguration {
@@ -42,6 +47,11 @@ public class RedisExternalCache2lConfiguration {
     @Value("${cache2l.redis.username:}")
     private String redisUsername;
 
+    /**
+     * <p>getLettuceConnectionFactory.</p>
+     *
+     * @return a {@link org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory} object
+     */
     @Bean(name = "redisClusterExternalConnectionFactory")
     public LettuceConnectionFactory getLettuceConnectionFactory() {
         List<String> clusterNodes = Arrays.asList(cluster.split(","));
@@ -59,6 +69,12 @@ public class RedisExternalCache2lConfiguration {
         return new LettuceConnectionFactory(redisClusterConfiguration, clientConfig);
     }
 
+    /**
+     * <p>getRedisTemplate.</p>
+     *
+     * @param redisConnectionFactory a {@link org.springframework.data.redis.connection.RedisConnectionFactory} object
+     * @return a {@link org.springframework.data.redis.core.RedisTemplate} object
+     */
     @Bean(name = "redisExternalCache2LTemplate")
     @ConditionalOnExpression("'${cache2l.redis.externalCluster:}' != ''")
     public RedisTemplate<Object, Object> getRedisTemplate(

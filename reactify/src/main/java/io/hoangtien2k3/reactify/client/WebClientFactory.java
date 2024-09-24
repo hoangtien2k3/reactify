@@ -50,6 +50,11 @@ import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
 import reactor.netty.transport.ProxyProvider;
 
+/**
+ * <p>WebClientFactory class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Slf4j
 @RequiredArgsConstructor
 @Data
@@ -58,11 +63,17 @@ public class WebClientFactory implements InitializingBean {
     private final ReactiveOAuth2AuthorizedClientManager authorizedClientManager;
     private List<WebClientProperties> webClients;
 
+    /** {@inheritDoc} */
     @Override
     public void afterPropertiesSet() {
         initWebClients(webClients);
     }
 
+    /**
+     * <p>initWebClients.</p>
+     *
+     * @param webClients a {@link java.util.List} object
+     */
     public void initWebClients(List<WebClientProperties> webClients) {
         final ConfigurableListableBeanFactory beanFactory =
                 ((ConfigurableApplicationContext) applicationContext).getBeanFactory();
@@ -74,6 +85,12 @@ public class WebClientFactory implements InitializingBean {
         }
     }
 
+    /**
+     * <p>createNewClient.</p>
+     *
+     * @param webClientProperties a {@link io.hoangtien2k3.reactify.client.properties.WebClientProperties} object
+     * @return a {@link org.springframework.web.reactive.function.client.WebClient} object
+     */
     public WebClient createNewClient(WebClientProperties webClientProperties) {
         if (!isValidProperties(webClientProperties)) {
             log.error("Failed to setup a webClientProperties {}", webClientProperties.getName());

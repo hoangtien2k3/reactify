@@ -15,6 +15,11 @@
  */
 package io.hoangtien2k3.reactify.constants;
 
+/**
+ * <p>Role class.</p>
+ *
+ * @author hoangtien2k3
+ */
 public enum Role {
     ROLE_admin,
     ROLE_user,

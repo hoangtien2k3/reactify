@@ -49,10 +49,16 @@ import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
 import reactor.netty.transport.ProxyProvider;
 
+/**
+ * <p>BaseRestClientImpl class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Slf4j
 @Service
 public class BaseRestClientImpl<T> implements BaseRestClient<T> {
 
+    /** {@inheritDoc} */
     @Override
     public Mono<Optional<T>> get(
             WebClient webClient,
@@ -87,6 +93,7 @@ public class BaseRestClientImpl<T> implements BaseRestClient<T> {
                 });
     }
 
+    /** {@inheritDoc} */
     @Override
     public Mono<String> getRaw(
             WebClient webClient,
@@ -109,6 +116,7 @@ public class BaseRestClientImpl<T> implements BaseRestClient<T> {
                 });
     }
 
+    /** {@inheritDoc} */
     @Override
     public Mono<Optional<T>> post(
             WebClient webClient,
@@ -139,6 +147,7 @@ public class BaseRestClientImpl<T> implements BaseRestClient<T> {
                 });
     }
 
+    /** {@inheritDoc} */
     @Override
     public Mono<Optional<T>> postFormData(
             WebClient webClient,
@@ -166,6 +175,7 @@ public class BaseRestClientImpl<T> implements BaseRestClient<T> {
                 });
     }
 
+    /** {@inheritDoc} */
     @Override
     public Optional<T> processReturn(String response, Class<?> resultClass) {
         if (DataUtil.isNullOrEmpty(response)) {
@@ -175,6 +185,7 @@ public class BaseRestClientImpl<T> implements BaseRestClient<T> {
         return Optional.ofNullable(result);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Mono<Optional<T>> delete(
             WebClient webClient,
@@ -217,6 +228,7 @@ public class BaseRestClientImpl<T> implements BaseRestClient<T> {
         return !DataUtil.isNullOrEmpty(payload) ? payload : new LinkedMultiValueMap<>();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Mono<String> callApiCertificateFileService(
             WebClient webClient,
@@ -245,6 +257,7 @@ public class BaseRestClientImpl<T> implements BaseRestClient<T> {
                 });
     }
 
+    /** {@inheritDoc} */
     @Override
     public Mono<Optional<T>> callPostBodyJson(
             WebClient webClient,
@@ -277,6 +290,8 @@ public class BaseRestClientImpl<T> implements BaseRestClient<T> {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * proxy for https protocol
      */
     @Override
@@ -318,6 +333,8 @@ public class BaseRestClientImpl<T> implements BaseRestClient<T> {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * proxy for http protocol (dang phai su dung lib khac vi ham proxyClient khong
      * ho tro http)
      */
@@ -333,6 +350,7 @@ public class BaseRestClientImpl<T> implements BaseRestClient<T> {
                 .build();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Mono<Optional<T>> callPostBodyJsonForLocalDateTime(
             WebClient webClient,
@@ -362,6 +380,7 @@ public class BaseRestClientImpl<T> implements BaseRestClient<T> {
                 });
     }
 
+    /** {@inheritDoc} */
     @Override
     public Mono<String> postRawBodyJson(
             WebClient webClient, String url, MultiValueMap<String, String> headerList, Object payload) {
@@ -382,6 +401,7 @@ public class BaseRestClientImpl<T> implements BaseRestClient<T> {
                 });
     }
 
+    /** {@inheritDoc} */
     @Override
     public Mono<String> getRawWithFixedUri(WebClient webClient, String uri, MultiValueMap<String, String> headerMap) {
         return webClient

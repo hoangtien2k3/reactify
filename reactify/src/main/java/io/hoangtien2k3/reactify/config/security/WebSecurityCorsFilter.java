@@ -20,10 +20,16 @@ import org.springframework.web.reactive.config.CorsRegistry;
 import org.springframework.web.reactive.config.EnableWebFlux;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 
+/**
+ * <p>WebSecurityCorsFilter class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Configuration
 @EnableWebFlux
 public class WebSecurityCorsFilter implements WebFluxConfigurer {
 
+    /** {@inheritDoc} */
     @Override
     public void addCorsMappings(CorsRegistry corsRegistry) {
         corsRegistry

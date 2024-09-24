@@ -29,6 +29,11 @@ import org.springframework.data.redis.connection.lettuce.LettuceClientConfigurat
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
+/**
+ * <p>RedisK8sCache2lConfiguration class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Log4j2
 @Configuration
 @ConditionalOnExpression("${cache2l.enable-global-cache:false} and !${cache2l.redis.externalMode:false}")
@@ -49,11 +54,21 @@ public class RedisK8sCache2lConfiguration {
     @Value("${cache2l.redis.password:}")
     private String redisPassword;
 
+    /**
+     * <p>redisMasterConnectionFactory.</p>
+     *
+     * @return a {@link org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory} object
+     */
     @Bean(name = "redisMasterConnectionFactory")
     public LettuceConnectionFactory redisMasterConnectionFactory() {
         return getLettuceConnectionFactory(redisMasterHost, redisMasterPort);
     }
 
+    /**
+     * <p>redisSlaveConnectionFactory.</p>
+     *
+     * @return a {@link org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory} object
+     */
     @Bean(name = "redisSlaveConnectionFactory")
     public LettuceConnectionFactory redisSlaveConnectionFactory() {
         return getLettuceConnectionFactory(redisSlaveHost, redisSlavePort);
@@ -72,12 +87,24 @@ public class RedisK8sCache2lConfiguration {
         return new LettuceConnectionFactory(redisStandaloneConfiguration, clientConfig);
     }
 
+    /**
+     * <p>redisMasterTemplate.</p>
+     *
+     * @param redisConnectionFactory a {@link org.springframework.data.redis.connection.RedisConnectionFactory} object
+     * @return a {@link org.springframework.data.redis.core.RedisTemplate} object
+     */
     @Bean(name = "redisMasterCache2LTemplate")
     public RedisTemplate<Object, Object> redisMasterTemplate(
             @Qualifier("redisMasterConnectionFactory") RedisConnectionFactory redisConnectionFactory) {
         return Cache2LUtils.getRedisCache2lTemplate(redisConnectionFactory);
     }
 
+    /**
+     * <p>redisSlaveTemplate.</p>
+     *
+     * @param redisConnectionFactory a {@link org.springframework.data.redis.connection.RedisConnectionFactory} object
+     * @return a {@link org.springframework.data.redis.core.RedisTemplate} object
+     */
     @Bean(name = "redisSlaveCache2LTemplate")
     public RedisTemplate<Object, Object> redisSlaveTemplate(
             @Qualifier("redisSlaveConnectionFactory") RedisConnectionFactory redisConnectionFactory) {

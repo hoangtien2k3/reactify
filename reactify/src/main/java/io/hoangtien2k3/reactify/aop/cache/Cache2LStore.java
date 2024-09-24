@@ -37,6 +37,11 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+/**
+ * <p>Cache2LStore class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @Log4j2
 @Component
 public class Cache2LStore {
@@ -49,6 +54,13 @@ public class Cache2LStore {
     private static String reflectionPath;
 
     @Autowired(required = false)
+    /**
+     * <p>Constructor for Cache2LStore.</p>
+     *
+     * @param reflectionPath a {@link java.lang.String} object
+     * @param enableGlobalCache a boolean
+     * @param redisCacheMetricsCollector a {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheMetricsCollector} object
+     */
     public Cache2LStore(
             @Value("${cache2l.reflectionPath:io.hoangtien2k3.commons}") String reflectionPath,
             @Value("${cache2l.enable-global-cache:true}") boolean enableGlobalCache,
@@ -168,6 +180,11 @@ public class Cache2LStore {
         Class<?> valueType;
     }
 
+    /**
+     * <p>autoLoad.</p>
+     *
+     * @param event a {@link org.springframework.context.event.ContextRefreshedEvent} object
+     */
     @Async
     @EventListener
     public void autoLoad(ContextRefreshedEvent event) {
@@ -180,6 +197,12 @@ public class Cache2LStore {
         }
     }
 
+    /**
+     * <p>getCache.</p>
+     *
+     * @param key a {@link java.lang.String} object
+     * @return a {@link com.github.benmanes.caffeine.cache.Cache} object
+     */
     public static Cache<Object, Object> getCache(String key) {
         CacheInfo cacheInfo = caches.get(key);
         if (cacheInfo == null) {
@@ -188,18 +211,42 @@ public class Cache2LStore {
         return cacheInfo.getCache();
     }
 
+    /**
+     * <p>useGlobalCache.</p>
+     *
+     * @param key a {@link java.lang.String} object
+     * @return a boolean
+     */
     public static boolean useGlobalCache(String key) {
         return (caches.get(key).getGlobalCacheInfo() != null);
     }
 
+    /**
+     * <p>isOptional.</p>
+     *
+     * @param key a {@link java.lang.String} object
+     * @return a boolean
+     */
     public static boolean isOptional(String key) {
         return caches.get(key).getGlobalCacheInfo().isOptional();
     }
 
+    /**
+     * <p>getType.</p>
+     *
+     * @param key a {@link java.lang.String} object
+     * @return a {@link java.lang.Class} object
+     */
     public static Class<?> getType(String key) {
         return caches.get(key).getGlobalCacheInfo().getType();
     }
 
+    /**
+     * <p>getWrapType.</p>
+     *
+     * @param key a {@link java.lang.String} object
+     * @return a {@link java.lang.Class} object
+     */
     public static Class<?> getWrapType(String key) {
         if (useGlobalCache(key)) {
             return caches.get(key).getGlobalCacheInfo().getWrapType();
@@ -208,6 +255,12 @@ public class Cache2LStore {
         }
     }
 
+    /**
+     * <p>getMapKeyType.</p>
+     *
+     * @param key a {@link java.lang.String} object
+     * @return a {@link java.lang.Class} object
+     */
     public static Class<?> getMapKeyType(String key) {
         if (useGlobalCache(key)) {
             return caches.get(key).getGlobalCacheInfo().getMapKeyType();
@@ -216,6 +269,12 @@ public class Cache2LStore {
         }
     }
 
+    /**
+     * <p>getMapValueType.</p>
+     *
+     * @param key a {@link java.lang.String} object
+     * @return a {@link java.lang.Class} object
+     */
     public static Class<?> getMapValueType(String key) {
         if (useGlobalCache(key)) {
             return caches.get(key).getGlobalCacheInfo().getMapValueType();

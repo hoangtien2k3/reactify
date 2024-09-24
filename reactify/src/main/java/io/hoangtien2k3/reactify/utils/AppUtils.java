@@ -22,6 +22,8 @@ import reactor.core.scheduler.Schedulers;
 
 /**
  * Utility class for handling reactive streams with various configurations.
+ *
+ * @author hoangtien2k3
  */
 @Slf4j
 public class AppUtils {

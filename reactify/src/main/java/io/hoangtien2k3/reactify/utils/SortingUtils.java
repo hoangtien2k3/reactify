@@ -25,6 +25,8 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * <p>SortingUtils class.</p>
+ *
  * @author hoangtien2k3
  *         <p>
  *         Ho tro parse sorting thanh cau query trong database
@@ -32,6 +34,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SortingUtils {
     // for example
+    /**
+     * <p>main.</p>
+     *
+     * @param args an array of {@link java.lang.String} objects
+     */
     public static void main(String[] args) {
         String sort = "-username,+id,++object";
         System.out.println(parseSorting(sort, TokenUser.class));

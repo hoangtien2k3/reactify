@@ -21,6 +21,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * <p>ClientLogProperties class.</p>
+ *
+ * @author hoangtien2k3
+ */
 @AllArgsConstructor
 @Data
 @NoArgsConstructor

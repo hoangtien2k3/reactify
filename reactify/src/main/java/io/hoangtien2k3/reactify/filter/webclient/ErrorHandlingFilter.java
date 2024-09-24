@@ -23,7 +23,13 @@ import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.ExchangeFunction;
 import reactor.core.publisher.Mono;
 
+/**
+ * <p>ErrorHandlingFilter class.</p>
+ *
+ * @author hoangtien2k3
+ */
 public class ErrorHandlingFilter implements ExchangeFilterFunction {
+    /** {@inheritDoc} */
     @Override
     public Mono<ClientResponse> filter(ClientRequest request, ExchangeFunction next) {
         return next.exchange(request).flatMap(clientResponse -> {

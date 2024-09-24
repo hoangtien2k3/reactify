@@ -15,22 +15,43 @@
  */
 package io.hoangtien2k3.reactify.constants;
 
+/**
+ * <p>MessageConstant class.</p>
+ *
+ * @author hoangtien2k3
+ */
 public class MessageConstant {
+    /** Constant <code>SUCCESS="success"</code> */
     public static final String SUCCESS = "success";
+    /** Constant <code>FAIL="fail"</code> */
     public static final String FAIL = "fail";
+    /** Constant <code>ERROR_CODE_SUCCESS="0"</code> */
     public static final String ERROR_CODE_SUCCESS = "0";
 
+    /** Constant <code>PARAMS_INVALID="params.invalid"</code> */
     public static final String PARAMS_INVALID = "params.invalid";
+    /** Constant <code>QUERY_CART_ITEM_NOT_FOUND="query.cartItem.not.found"</code> */
     public static final String QUERY_CART_ITEM_NOT_FOUND = "query.cartItem.not.found";
+    /** Constant <code>ORGANIZATION_INVALID="organization.invalid"</code> */
     public static final String ORGANIZATION_INVALID = "organization.invalid";
+    /** Constant <code>ORGANIZATION_NOT_FOUND="organization.notFound"</code> */
     public static final String ORGANIZATION_NOT_FOUND = "organization.notFound";
+    /** Constant <code>USER_NOT_IN_ORGANIZATION="user.notFound.in.organization"</code> */
     public static final String USER_NOT_IN_ORGANIZATION = "user.notFound.in.organization";
+    /** Constant <code>ORGANIZATION_LEVEL1_NOT_FOUND="organization.level1.notFound"</code> */
     public static final String ORGANIZATION_LEVEL1_NOT_FOUND = "organization.level1.notFound";
+    /** Constant <code>POSITION_NOT_EXISTS="postion.not.exists"</code> */
     public static final String POSITION_NOT_EXISTS = "postion.not.exists";
+    /** Constant <code>USER_NAME_NOT_EXISTS="user.name.not.exists"</code> */
     public static final String USER_NAME_NOT_EXISTS = "user.name.not.exists";
+    /** Constant <code>CODE_NOT_EXISTS="employee.code.not.exists"</code> */
     public static final String CODE_NOT_EXISTS = "employee.code.not.exists";
+    /** Constant <code>ORGANIZATION_NOT_EXISTS="organization.not.exists"</code> */
     public static final String ORGANIZATION_NOT_EXISTS = "organization.not.exists";
+    /** Constant <code>MANAGER_NOT_EXISTS="manager.not.exists"</code> */
     public static final String MANAGER_NOT_EXISTS = "manager.not.exists";
+    /** Constant <code>EMPLOYEE_ORGANIZATION_IS_EXISTS="employee.organization.is.exists"</code> */
     public static final String EMPLOYEE_ORGANIZATION_IS_EXISTS = "employee.organization.is.exists";
+    /** Constant <code>EMPLOYEE_ORGANIZATION_NOT_EXISTS="organization.employee.is.exists"</code> */
     public static final String EMPLOYEE_ORGANIZATION_NOT_EXISTS = "organization.employee.is.exists";
 }
