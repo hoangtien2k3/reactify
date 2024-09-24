@@ -23,14 +23,14 @@ Gradle is the only supported build configuration, so just add the dependency to 
 
 ```kotlin
 dependencies {
-  implementation 'io.github.hoangtien2k3:fw-commons:$latest'
+  implementation 'io.github.hoangtien2k3:reactify:$latest'
 }
 ```
 
 ```maven
 <dependency>
    <groupId>io.github.hoangtien2k3</groupId>
-   <artifactId>fw-commons</artifactId>
+   <artifactId>reactify</artifactId>
    <version>${latest}</version>
 </dependency>
 ```
@@ -38,29 +38,6 @@ dependencies {
 The latest `fw-commons` version is: ![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/fw-commons?label=latest%20release)
 
 The latest stable lib `fw-commons` version is: latestVersion Click [here](https://central.sonatype.com/namespace/io.github.hoangtien2k3) for more information on fw-commons.
-
-#### Gradle
-
-```kotlin
-
-def latest = "1.1.4" // or check the latest from maven central repository
-
-//fw-commons
-implementation("io.github.hoangtien2k3:fw-commons:$latest")
-
-//spring-commons
-implementation("io.github.hoangtien2k3:spring-commons:$latest")
-
-//utils
-implementation("io.github.hoangtien2k3:utils:$latest")
-
-//data-utils
-implementation("io.github.hoangtien2k3:data-utils:$latest")
-
-//exception-handling
-implementation("io.github.hoangtien2k3:exception-handling:$latest")
-```
-
 
 ## Installation and Getting Started
 
