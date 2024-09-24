@@ -45,7 +45,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * <p>ResponseLogFilter class.</p>
+ * <p>
+ * ResponseLogFilter class.
+ * </p>
  *
  * @author hoangtien2k3
  */

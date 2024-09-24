@@ -18,7 +18,9 @@ package io.hoangtien2k3.reactify.model.logging;
 import lombok.*;
 
 /**
- * <p>LogField class.</p>
+ * <p>
+ * LogField class.
+ * </p>
  *
  * @author hoangtien2k3
  */

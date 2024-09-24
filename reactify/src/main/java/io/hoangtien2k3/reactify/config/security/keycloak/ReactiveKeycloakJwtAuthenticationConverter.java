@@ -30,7 +30,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * <p>ReactiveKeycloakJwtAuthenticationConverter class.</p>
+ * <p>
+ * ReactiveKeycloakJwtAuthenticationConverter class.
+ * </p>
  *
  * @see org.springframework.security.oauth2.server.resource.authentication.ReactiveJwtAuthenticationConverter
  * @author hoangtien2k3
@@ -42,9 +44,13 @@ public final class ReactiveKeycloakJwtAuthenticationConverter
     private final Converter<Jwt, Flux<GrantedAuthority>> jwtGrantedAuthoritiesConverter;
 
     /**
-     * <p>Constructor for ReactiveKeycloakJwtAuthenticationConverter.</p>
+     * <p>
+     * Constructor for ReactiveKeycloakJwtAuthenticationConverter.
+     * </p>
      *
-     * @param jwtGrantedAuthoritiesConverter a {@link org.springframework.core.convert.converter.Converter} object
+     * @param jwtGrantedAuthoritiesConverter
+     *            a {@link org.springframework.core.convert.converter.Converter}
+     *            object
      */
     public ReactiveKeycloakJwtAuthenticationConverter(
             Converter<Jwt, Collection<GrantedAuthority>> jwtGrantedAuthoritiesConverter) {
@@ -64,9 +70,12 @@ public final class ReactiveKeycloakJwtAuthenticationConverter
     }
 
     /**
-     * <p>extractUsername.</p>
+     * <p>
+     * extractUsername.
+     * </p>
      *
-     * @param jwt a {@link org.springframework.security.oauth2.jwt.Jwt} object
+     * @param jwt
+     *            a {@link org.springframework.security.oauth2.jwt.Jwt} object
      * @return a {@link java.lang.String} object
      */
     protected String extractUsername(Jwt jwt) {

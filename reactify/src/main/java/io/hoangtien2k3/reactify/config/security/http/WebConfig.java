@@ -38,7 +38,9 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import reactor.core.publisher.Mono;
 
 /**
- * <p>WebConfig class.</p>
+ * <p>
+ * WebConfig class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -52,11 +54,20 @@ public class WebConfig {
     private final WhiteListProperties whiteListProperties;
 
     /**
-     * <p>springSecurityFilterChain.</p>
+     * <p>
+     * springSecurityFilterChain.
+     * </p>
      *
-     * @param http a {@link org.springframework.security.config.web.server.ServerHttpSecurity} object
-     * @param jwtAuthenticationConverter a {@link org.springframework.core.convert.converter.Converter} object
-     * @return a {@link org.springframework.security.web.server.SecurityWebFilterChain} object
+     * @param http
+     *            a
+     *            {@link org.springframework.security.config.web.server.ServerHttpSecurity}
+     *            object
+     * @param jwtAuthenticationConverter
+     *            a {@link org.springframework.core.convert.converter.Converter}
+     *            object
+     * @return a
+     *         {@link org.springframework.security.web.server.SecurityWebFilterChain}
+     *         object
      */
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(

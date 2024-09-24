@@ -27,7 +27,9 @@ import reactor.core.publisher.Mono;
 import reactor.util.retry.Retry;
 
 /**
- * <p>WebClientRetryHandler class.</p>
+ * <p>
+ * WebClientRetryHandler class.
+ * </p>
  *
  * @author hoangtien2k3
  */

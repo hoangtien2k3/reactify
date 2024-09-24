@@ -33,7 +33,9 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtGra
 import org.springframework.util.ObjectUtils;
 
 /**
- * <p>KeycloakGrantedAuthoritiesConverter class.</p>
+ * <p>
+ * KeycloakGrantedAuthoritiesConverter class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -67,9 +69,12 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
     }
 
     /**
-     * <p>realmRoles.</p>
+     * <p>
+     * realmRoles.
+     * </p>
      *
-     * @param jwt a {@link org.springframework.security.oauth2.jwt.Jwt} object
+     * @param jwt
+     *            a {@link org.springframework.security.oauth2.jwt.Jwt} object
      * @return a {@link java.util.List} object
      */
     @SuppressWarnings("unchecked")
@@ -80,10 +85,14 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
     }
 
     /**
-     * <p>clientRoles.</p>
+     * <p>
+     * clientRoles.
+     * </p>
      *
-     * @param jwt a {@link org.springframework.security.oauth2.jwt.Jwt} object
-     * @param clientId a {@link java.lang.String} object
+     * @param jwt
+     *            a {@link org.springframework.security.oauth2.jwt.Jwt} object
+     * @param clientId
+     *            a {@link java.lang.String} object
      * @return a {@link java.util.List} object
      */
     @SuppressWarnings("unchecked")

@@ -25,7 +25,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
 /**
- * <p>SpringCommonsApplication class.</p>
+ * <p>
+ * SpringCommonsApplication class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -42,9 +44,12 @@ import org.springframework.context.annotation.ImportResource;
 public class SpringCommonsApplication {
 
     /**
-     * <p>main.</p>
+     * <p>
+     * main.
+     * </p>
      *
-     * @param args an array of {@link java.lang.String} objects
+     * @param args
+     *            an array of {@link java.lang.String} objects
      */
     public static void main(String[] args) {
         SpringApplication.run(SpringCommonsApplication.class, args);

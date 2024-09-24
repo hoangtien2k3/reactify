@@ -20,7 +20,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * <p>MinioProperties class.</p>
+ * <p>
+ * MinioProperties class.
+ * </p>
  *
  * @author hoangtien2k3
  */

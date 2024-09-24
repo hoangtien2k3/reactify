@@ -21,7 +21,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * <p>UserDTO class.</p>
+ * <p>
+ * UserDTO class.
+ * </p>
  *
  * @author hoangtien2k3
  */

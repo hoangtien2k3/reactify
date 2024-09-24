@@ -16,7 +16,9 @@
 package io.hoangtien2k3.reactify.constants;
 
 /**
- * <p>CommonConstant class.</p>
+ * <p>
+ * CommonConstant class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -114,17 +116,28 @@ public class CommonConstant {
     public static final String DATE_FORMAT_END_DAY = "yyyy-MM-dd 23:59:59";
     /** Constant <code>DATE_FORMAT_BEGIN_DAY="yyyy-MM-dd 00:00:00"</code> */
     public static final String DATE_FORMAT_BEGIN_DAY = "yyyy-MM-dd 00:00:00";
-    /** Constant <code>DATE_FORMAT_YMDTHMS_ZER0="yyyy-mm-dd'T'hh:mm:ss.000+0000"</code> */
+    /**
+     * Constant
+     * <code>DATE_FORMAT_YMDTHMS_ZER0="yyyy-mm-dd'T'hh:mm:ss.000+0000"</code>
+     */
     public static final String DATE_FORMAT_YMDTHMS_ZER0 = "yyyy-mm-dd'T'hh:mm:ss.000+0000";
-    /** Constant <code>DATE_FORMAT_YMDTHMS_ZERO_24HRS="yyyy-MM-dd'T'HH:mm:ss.000+0000"</code> */
+    /**
+     * Constant
+     * <code>DATE_FORMAT_YMDTHMS_ZERO_24HRS="yyyy-MM-dd'T'HH:mm:ss.000+0000"</code>
+     */
     public static final String DATE_FORMAT_YMDTHMS_ZERO_24HRS = "yyyy-MM-dd'T'HH:mm:ss.000+0000";
     /** Constant <code>DATE_FORMAT_HM_DMY="HH:mm | dd/MM/yyyy"</code> */
     public static final String DATE_FORMAT_HM_DMY = "HH:mm | dd/MM/yyyy";
     /** Constant <code>DATE_FORMAT_HM_DMY1="HH:mm dd/MM/yyyy"</code> */
     public static final String DATE_FORMAT_HM_DMY1 = "HH:mm dd/MM/yyyy";
-    /** Constant <code>DATE_FORMAT_YMDTHMS_GMT_7="yyyy-MM-dd'T'00:00:00+07:00"</code> */
+    /**
+     * Constant <code>DATE_FORMAT_YMDTHMS_GMT_7="yyyy-MM-dd'T'00:00:00+07:00"</code>
+     */
     public static final String DATE_FORMAT_YMDTHMS_GMT_7 = "yyyy-MM-dd'T'00:00:00+07:00";
-    /** Constant <code>DATE_FORMAT_YMDTHMS_GMT_7_2="yyyy-MM-dd'T'HH:mm:ss+07:00"</code> */
+    /**
+     * Constant
+     * <code>DATE_FORMAT_YMDTHMS_GMT_7_2="yyyy-MM-dd'T'HH:mm:ss+07:00"</code>
+     */
     public static final String DATE_FORMAT_YMDTHMS_GMT_7_2 = "yyyy-MM-dd'T'HH:mm:ss+07:00";
     /** Constant <code>DATE_FORMAT_HM="HH:mm"</code> */
     public static final String DATE_FORMAT_HM = "HH:mm";
@@ -183,21 +196,33 @@ public class CommonConstant {
     public static final String REGEX_PLUS = "\\+";
     /** Constant <code>REGEX_DATE_DMY="([0-9]{2})-([0-9]{2})-([0-9]{4})"</code> */
     public static final String REGEX_DATE_DMY = "([0-9]{2})-([0-9]{2})-([0-9]{4})";
-    /** Constant <code>REGEX_VIETTEL_NUMBER_FORMAT="^8496\\d{7}$|^8497\\d{7}$|^8498\\d{7}$|"{trunked}</code> */
+    /**
+     * Constant
+     * <code>REGEX_VIETTEL_NUMBER_FORMAT="^8496\\d{7}$|^8497\\d{7}$|^8498\\d{7}$|"{trunked}</code>
+     */
     public static final String REGEX_VIETTEL_NUMBER_FORMAT =
             "^8496\\d{7}$|^8497\\d{7}$|^8498\\d{7}$|^8416\\d{8}$|0?96\\d{7}$|0?97\\d{7}$|^0?98\\d{7}$|^0?16\\d{8}$";
     /** Constant <code>REGEX_PAPER_NUMBER_FORMAT="/\\=(.*?)\\;/"</code> */
     public static final String REGEX_PAPER_NUMBER_FORMAT = "/\\=(.*?)\\;/";
     /** Constant <code>REGEX_PAPER_NUMBER_FORMAT_2="^[0-9a-zA-Z]{8,12}$"</code> */
     public static final String REGEX_PAPER_NUMBER_FORMAT_2 = "^[0-9a-zA-Z]{8,12}$";
-    /** Constant <code>REGEX_DATE_FORMAT_DMY="^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012"{trunked}</code> */
+    /**
+     * Constant
+     * <code>REGEX_DATE_FORMAT_DMY="^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012"{trunked}</code>
+     */
     public static final String REGEX_DATE_FORMAT_DMY =
             "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-((20|2[0-9])[0-9]{2})$";
     /** Constant <code>REGEX_CHECK_ID_NO="/^.{9,12}$/u"</code> */
     public static final String REGEX_CHECK_ID_NO = "/^.{9,12}$/u";
-    /** Constant <code>REGEX_CHECK_BASE_64="^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|"{trunked}</code> */
+    /**
+     * Constant
+     * <code>REGEX_CHECK_BASE_64="^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|"{trunked}</code>
+     */
     public static final String REGEX_CHECK_BASE_64 = "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)?$";
-    /** Constant <code>REGEX_CALENDAR_FROM_TIME="(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5]["{trunked}</code> */
+    /**
+     * Constant
+     * <code>REGEX_CALENDAR_FROM_TIME="(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5]["{trunked}</code>
+     */
     public static final String REGEX_CALENDAR_FROM_TIME = "(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])";
     /** Constant <code>PATTER_CHECK="^[^*]+$"</code> */
     public static final String PATTER_CHECK = "^[^*]+$";
@@ -209,7 +234,10 @@ public class CommonConstant {
     public static final String PHONE_PATTERN_2 = "^[0-9]{9,12}$";
     /** Constant <code>REGEX_PHONE_ASTERISK="^[-*0-9]+$"</code> */
     public static final String REGEX_PHONE_ASTERISK = "^[-*0-9]+$";
-    /** Constant <code>REGEX_BASE_64="^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|["{trunked}</code> */
+    /**
+     * Constant
+     * <code>REGEX_BASE_64="^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|["{trunked}</code>
+     */
     public static final String REGEX_BASE_64 =
             "^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$";
     /** Constant <code>REGEX_ASTERISK="^[^*]+$"</code> */

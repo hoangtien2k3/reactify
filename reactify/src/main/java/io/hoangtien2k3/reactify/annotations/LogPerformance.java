@@ -21,7 +21,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * <p>LogPerformance class.</p>
+ * <p>
+ * LogPerformance class.
+ * </p>
  *
  * @author hoangtien2k3
  */

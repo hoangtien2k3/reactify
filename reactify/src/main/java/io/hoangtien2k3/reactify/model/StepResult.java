@@ -18,7 +18,9 @@ package io.hoangtien2k3.reactify.model;
 import lombok.Getter;
 
 /**
- * <p>StepResult class.</p>
+ * <p>
+ * StepResult class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -33,7 +35,9 @@ public class StepResult {
     }
 
     /**
-     * <p>success.</p>
+     * <p>
+     * success.
+     * </p>
      *
      * @return a {@link io.hoangtien2k3.reactify.model.StepResult} object
      */
@@ -42,9 +46,12 @@ public class StepResult {
     }
 
     /**
-     * <p>failure.</p>
+     * <p>
+     * failure.
+     * </p>
      *
-     * @param message a {@link java.lang.String} object
+     * @param message
+     *            a {@link java.lang.String} object
      * @return a {@link io.hoangtien2k3.reactify.model.StepResult} object
      */
     public static StepResult failure(String message) {

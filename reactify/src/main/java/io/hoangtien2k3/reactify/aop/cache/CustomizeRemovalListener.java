@@ -24,7 +24,9 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
- * <p>CustomizeRemovalListener class.</p>
+ * <p>
+ * CustomizeRemovalListener class.
+ * </p>
  *
  * @author hoangtien2k3
  */

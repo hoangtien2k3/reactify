@@ -38,7 +38,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 /**
- * <p>Cache2LStore class.</p>
+ * <p>
+ * Cache2LStore class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -55,11 +57,18 @@ public class Cache2LStore {
 
     @Autowired(required = false)
     /**
-     * <p>Constructor for Cache2LStore.</p>
+     * <p>
+     * Constructor for Cache2LStore.
+     * </p>
      *
-     * @param reflectionPath a {@link java.lang.String} object
-     * @param enableGlobalCache a boolean
-     * @param redisCacheMetricsCollector a {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheMetricsCollector} object
+     * @param reflectionPath
+     *            a {@link java.lang.String} object
+     * @param enableGlobalCache
+     *            a boolean
+     * @param redisCacheMetricsCollector
+     *            a
+     *            {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheMetricsCollector}
+     *            object
      */
     public Cache2LStore(
             @Value("${cache2l.reflectionPath:io.hoangtien2k3.commons}") String reflectionPath,
@@ -181,9 +190,13 @@ public class Cache2LStore {
     }
 
     /**
-     * <p>autoLoad.</p>
+     * <p>
+     * autoLoad.
+     * </p>
      *
-     * @param event a {@link org.springframework.context.event.ContextRefreshedEvent} object
+     * @param event
+     *            a {@link org.springframework.context.event.ContextRefreshedEvent}
+     *            object
      */
     @Async
     @EventListener
@@ -198,9 +211,12 @@ public class Cache2LStore {
     }
 
     /**
-     * <p>getCache.</p>
+     * <p>
+     * getCache.
+     * </p>
      *
-     * @param key a {@link java.lang.String} object
+     * @param key
+     *            a {@link java.lang.String} object
      * @return a {@link com.github.benmanes.caffeine.cache.Cache} object
      */
     public static Cache<Object, Object> getCache(String key) {
@@ -212,9 +228,12 @@ public class Cache2LStore {
     }
 
     /**
-     * <p>useGlobalCache.</p>
+     * <p>
+     * useGlobalCache.
+     * </p>
      *
-     * @param key a {@link java.lang.String} object
+     * @param key
+     *            a {@link java.lang.String} object
      * @return a boolean
      */
     public static boolean useGlobalCache(String key) {
@@ -222,9 +241,12 @@ public class Cache2LStore {
     }
 
     /**
-     * <p>isOptional.</p>
+     * <p>
+     * isOptional.
+     * </p>
      *
-     * @param key a {@link java.lang.String} object
+     * @param key
+     *            a {@link java.lang.String} object
      * @return a boolean
      */
     public static boolean isOptional(String key) {
@@ -232,9 +254,12 @@ public class Cache2LStore {
     }
 
     /**
-     * <p>getType.</p>
+     * <p>
+     * getType.
+     * </p>
      *
-     * @param key a {@link java.lang.String} object
+     * @param key
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.Class} object
      */
     public static Class<?> getType(String key) {
@@ -242,9 +267,12 @@ public class Cache2LStore {
     }
 
     /**
-     * <p>getWrapType.</p>
+     * <p>
+     * getWrapType.
+     * </p>
      *
-     * @param key a {@link java.lang.String} object
+     * @param key
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.Class} object
      */
     public static Class<?> getWrapType(String key) {
@@ -256,9 +284,12 @@ public class Cache2LStore {
     }
 
     /**
-     * <p>getMapKeyType.</p>
+     * <p>
+     * getMapKeyType.
+     * </p>
      *
-     * @param key a {@link java.lang.String} object
+     * @param key
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.Class} object
      */
     public static Class<?> getMapKeyType(String key) {
@@ -270,9 +301,12 @@ public class Cache2LStore {
     }
 
     /**
-     * <p>getMapValueType.</p>
+     * <p>
+     * getMapValueType.
+     * </p>
      *
-     * @param key a {@link java.lang.String} object
+     * @param key
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.Class} object
      */
     public static Class<?> getMapValueType(String key) {

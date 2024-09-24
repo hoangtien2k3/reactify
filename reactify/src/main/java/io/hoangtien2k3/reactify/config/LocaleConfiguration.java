@@ -23,16 +23,21 @@ import org.springframework.web.server.i18n.AcceptHeaderLocaleContextResolver;
 import org.springframework.web.server.i18n.LocaleContextResolver;
 
 /**
- * <p>LocaleConfiguration class.</p>
+ * <p>
+ * LocaleConfiguration class.
+ * </p>
  *
  * @author hoangtien2k3
  */
 @Configuration
 public class LocaleConfiguration {
     /**
-     * <p>localeContextResolver.</p>
+     * <p>
+     * localeContextResolver.
+     * </p>
      *
-     * @return a {@link org.springframework.web.server.i18n.LocaleContextResolver} object
+     * @return a {@link org.springframework.web.server.i18n.LocaleContextResolver}
+     *         object
      */
     @Bean("localeContextResolver2")
     public LocaleContextResolver localeContextResolver() {
@@ -42,9 +47,13 @@ public class LocaleConfiguration {
     }
 
     /**
-     * <p>messageSource.</p>
+     * <p>
+     * messageSource.
+     * </p>
      *
-     * @return a {@link org.springframework.context.support.ReloadableResourceBundleMessageSource} object
+     * @return a
+     *         {@link org.springframework.context.support.ReloadableResourceBundleMessageSource}
+     *         object
      */
     @Bean
     public ReloadableResourceBundleMessageSource messageSource() {

@@ -22,16 +22,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * <p>TracingConfiguration class.</p>
+ * <p>
+ * TracingConfiguration class.
+ * </p>
  *
  * @author hoangtien2k3
  */
 @Configuration
 public class TracingConfiguration {
     /**
-     * <p>tracer.</p>
+     * <p>
+     * tracer.
+     * </p>
      *
-     * @param tracing a {@link brave.Tracing} object
+     * @param tracing
+     *            a {@link brave.Tracing} object
      * @return a {@link io.micrometer.tracing.Tracer} object
      */
     @Bean
@@ -40,7 +45,9 @@ public class TracingConfiguration {
     }
 
     /**
-     * <p>tracing.</p>
+     * <p>
+     * tracing.
+     * </p>
      *
      * @return a {@link brave.Tracing} object
      */

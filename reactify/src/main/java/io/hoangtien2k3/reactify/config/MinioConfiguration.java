@@ -23,7 +23,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * <p>MinioConfiguration class.</p>
+ * <p>
+ * MinioConfiguration class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -35,7 +37,9 @@ public class MinioConfiguration {
     private final MinioProperties minioProperties;
 
     /**
-     * <p>minioClient.</p>
+     * <p>
+     * minioClient.
+     * </p>
      *
      * @return a {@link io.minio.MinioClient} object
      */

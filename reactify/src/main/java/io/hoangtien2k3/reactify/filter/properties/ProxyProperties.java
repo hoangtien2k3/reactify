@@ -20,7 +20,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * <p>ProxyProperties class.</p>
+ * <p>
+ * ProxyProperties class.
+ * </p>
  *
  * @author hoangtien2k3
  */

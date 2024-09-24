@@ -23,7 +23,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * <p>TokenUser class.</p>
+ * <p>
+ * TokenUser class.
+ * </p>
  *
  * @author hoangtien2k3
  */

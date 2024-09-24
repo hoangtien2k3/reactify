@@ -40,7 +40,9 @@ import org.springframework.web.server.ServerWebInputException;
 import reactor.core.publisher.Mono;
 
 /**
- * <p>ExceptionResponseConfig class.</p>
+ * <p>
+ * ExceptionResponseConfig class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -51,10 +53,14 @@ public class ExceptionResponseConfig {
     private final Tracer tracer;
 
     /**
-     * <p>runtimeException.</p>
+     * <p>
+     * runtimeException.
+     * </p>
      *
-     * @param ex a {@link java.lang.RuntimeException} object
-     * @param serverWebExchange a {@link org.springframework.web.server.ServerWebExchange} object
+     * @param ex
+     *            a {@link java.lang.RuntimeException} object
+     * @param serverWebExchange
+     *            a {@link org.springframework.web.server.ServerWebExchange} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     @ExceptionHandler(RuntimeException.class)
@@ -68,10 +74,14 @@ public class ExceptionResponseConfig {
     }
 
     /**
-     * <p>r2dbcException.</p>
+     * <p>
+     * r2dbcException.
+     * </p>
      *
-     * @param ex a {@link io.r2dbc.spi.R2dbcException} object
-     * @param serverWebExchange a {@link org.springframework.web.server.ServerWebExchange} object
+     * @param ex
+     *            a {@link io.r2dbc.spi.R2dbcException} object
+     * @param serverWebExchange
+     *            a {@link org.springframework.web.server.ServerWebExchange} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     @ExceptionHandler(R2dbcException.class)
@@ -85,10 +95,14 @@ public class ExceptionResponseConfig {
     }
 
     /**
-     * <p>accessDeniedException.</p>
+     * <p>
+     * accessDeniedException.
+     * </p>
      *
-     * @param ex a {@link java.nio.file.AccessDeniedException} object
-     * @param serverWebExchange a {@link org.springframework.web.server.ServerWebExchange} object
+     * @param ex
+     *            a {@link java.nio.file.AccessDeniedException} object
+     * @param serverWebExchange
+     *            a {@link org.springframework.web.server.ServerWebExchange} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     @ExceptionHandler(AccessDeniedException.class)
@@ -102,9 +116,14 @@ public class ExceptionResponseConfig {
     }
 
     /**
-     * <p>dataBufferLimitException.</p>
+     * <p>
+     * dataBufferLimitException.
+     * </p>
      *
-     * @param ex a {@link org.springframework.core.io.buffer.DataBufferLimitException} object
+     * @param ex
+     *            a
+     *            {@link org.springframework.core.io.buffer.DataBufferLimitException}
+     *            object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     @ExceptionHandler(DataBufferLimitException.class)
@@ -118,10 +137,15 @@ public class ExceptionResponseConfig {
     }
 
     /**
-     * <p>serverInputException.</p>
+     * <p>
+     * serverInputException.
+     * </p>
      *
-     * @param ex a {@link org.springframework.web.server.ServerWebInputException} object
-     * @param serverWebExchange a {@link org.springframework.web.server.ServerWebExchange} object
+     * @param ex
+     *            a {@link org.springframework.web.server.ServerWebInputException}
+     *            object
+     * @param serverWebExchange
+     *            a {@link org.springframework.web.server.ServerWebExchange} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     @ExceptionHandler(ServerWebInputException.class)
@@ -135,10 +159,16 @@ public class ExceptionResponseConfig {
     }
 
     /**
-     * <p>serverInputException.</p>
+     * <p>
+     * serverInputException.
+     * </p>
      *
-     * @param ex a {@link org.springframework.web.bind.support.WebExchangeBindException} object
-     * @param serverWebExchange a {@link org.springframework.web.server.ServerWebExchange} object
+     * @param ex
+     *            a
+     *            {@link org.springframework.web.bind.support.WebExchangeBindException}
+     *            object
+     * @param serverWebExchange
+     *            a {@link org.springframework.web.server.ServerWebExchange} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     @ExceptionHandler(WebExchangeBindException.class)
@@ -166,10 +196,15 @@ public class ExceptionResponseConfig {
     }
 
     /**
-     * <p>businessException.</p>
+     * <p>
+     * businessException.
+     * </p>
      *
-     * @param ex a {@link io.hoangtien2k3.reactify.exception.BusinessException} object
-     * @param serverWebExchange a {@link org.springframework.web.server.ServerWebExchange} object
+     * @param ex
+     *            a {@link io.hoangtien2k3.reactify.exception.BusinessException}
+     *            object
+     * @param serverWebExchange
+     *            a {@link org.springframework.web.server.ServerWebExchange} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     @ExceptionHandler(BusinessException.class)

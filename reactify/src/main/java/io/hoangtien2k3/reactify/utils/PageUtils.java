@@ -16,16 +16,22 @@
 package io.hoangtien2k3.reactify.utils;
 
 /**
- * <p>PageUtils class.</p>
+ * <p>
+ * PageUtils class.
+ * </p>
  *
  * @author hoangtien2k3
  */
 public class PageUtils {
     /**
-     * <p>getOffset.</p>
+     * <p>
+     * getOffset.
+     * </p>
      *
-     * @param page a {@link java.lang.Integer} object
-     * @param size a {@link java.lang.Integer} object
+     * @param page
+     *            a {@link java.lang.Integer} object
+     * @param size
+     *            a {@link java.lang.Integer} object
      * @return a int
      */
     public static int getOffset(Integer page, Integer size) {

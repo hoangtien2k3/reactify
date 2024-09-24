@@ -22,7 +22,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
 /**
- * <p>RedisCacheKeyCounter class.</p>
+ * <p>
+ * RedisCacheKeyCounter class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -32,9 +34,12 @@ public class RedisCacheKeyCounter {
     protected final ConcurrentMap<String, RedisCacheStats> redisKeys = new ConcurrentHashMap<>();
 
     /**
-     * <p>recordHit.</p>
+     * <p>
+     * recordHit.
+     * </p>
      *
-     * @param cacheName a {@link java.lang.String} object
+     * @param cacheName
+     *            a {@link java.lang.String} object
      */
     public void recordHit(String cacheName) {
         if (redisKeys.containsKey(cacheName)) {
@@ -45,9 +50,12 @@ public class RedisCacheKeyCounter {
     }
 
     /**
-     * <p>recordMiss.</p>
+     * <p>
+     * recordMiss.
+     * </p>
      *
-     * @param cacheName a {@link java.lang.String} object
+     * @param cacheName
+     *            a {@link java.lang.String} object
      */
     public void recordMiss(String cacheName) {
         if (redisKeys.containsKey(cacheName)) {
@@ -58,9 +66,12 @@ public class RedisCacheKeyCounter {
     }
 
     /**
-     * <p>addCache.</p>
+     * <p>
+     * addCache.
+     * </p>
      *
-     * @param cacheName a {@link java.lang.String} object
+     * @param cacheName
+     *            a {@link java.lang.String} object
      */
     public void addCache(String cacheName) {
         if (!redisKeys.containsKey(cacheName)) {
@@ -71,9 +82,12 @@ public class RedisCacheKeyCounter {
     }
 
     /**
-     * <p>getHitsByKey.</p>
+     * <p>
+     * getHitsByKey.
+     * </p>
      *
-     * @param cacheName a {@link java.lang.String} object
+     * @param cacheName
+     *            a {@link java.lang.String} object
      * @return a long
      */
     public long getHitsByKey(String cacheName) {
@@ -86,9 +100,12 @@ public class RedisCacheKeyCounter {
     }
 
     /**
-     * <p>getMissByKey.</p>
+     * <p>
+     * getMissByKey.
+     * </p>
      *
-     * @param cacheName a {@link java.lang.String} object
+     * @param cacheName
+     *            a {@link java.lang.String} object
      * @return a long
      */
     public long getMissByKey(String cacheName) {
@@ -101,9 +118,12 @@ public class RedisCacheKeyCounter {
     }
 
     /**
-     * <p>getRequestCountByKey.</p>
+     * <p>
+     * getRequestCountByKey.
+     * </p>
      *
-     * @param cacheName a {@link java.lang.String} object
+     * @param cacheName
+     *            a {@link java.lang.String} object
      * @return a long
      */
     public long getRequestCountByKey(String cacheName) {
@@ -121,7 +141,9 @@ public class RedisCacheKeyCounter {
     }
 
     /**
-     * <p>getKeys.</p>
+     * <p>
+     * getKeys.
+     * </p>
      *
      * @return a {@link java.util.Set} object
      */

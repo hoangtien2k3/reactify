@@ -21,7 +21,9 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
- * <p>ApplicationContextProvider class.</p>
+ * <p>
+ * ApplicationContextProvider class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -30,7 +32,9 @@ public class ApplicationContextProvider implements ApplicationContextAware {
     private static ApplicationContext context;
 
     /**
-     * <p>getApplicationContext.</p>
+     * <p>
+     * getApplicationContext.
+     * </p>
      *
      * @return a {@link org.springframework.context.ApplicationContext} object
      */

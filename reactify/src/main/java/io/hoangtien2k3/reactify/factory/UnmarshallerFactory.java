@@ -23,7 +23,9 @@ import javax.xml.bind.Unmarshaller;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>UnmarshallerFactory class.</p>
+ * <p>
+ * UnmarshallerFactory class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -33,9 +35,12 @@ public class UnmarshallerFactory {
     private static Map<Class, Unmarshaller> instance = new HashMap<>();
 
     /**
-     * <p>Getter for the field <code>instance</code>.</p>
+     * <p>
+     * Getter for the field <code>instance</code>.
+     * </p>
      *
-     * @param clz a {@link java.lang.Class} object
+     * @param clz
+     *            a {@link java.lang.Class} object
      * @return a {@link javax.xml.bind.Unmarshaller} object
      */
     public static Unmarshaller getInstance(Class clz) {

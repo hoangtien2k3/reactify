@@ -20,7 +20,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * <p>CacheInfo class.</p>
+ * <p>
+ * CacheInfo class.
+ * </p>
  *
  * @author hoangtien2k3
  */

@@ -21,7 +21,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * <p>LogPerf class.</p>
+ * <p>
+ * LogPerf class.
+ * </p>
  *
  * @author hoangtien2k3
  */

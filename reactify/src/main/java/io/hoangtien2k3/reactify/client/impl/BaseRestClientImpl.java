@@ -50,7 +50,9 @@ import reactor.netty.resources.ConnectionProvider;
 import reactor.netty.transport.ProxyProvider;
 
 /**
- * <p>BaseRestClientImpl class.</p>
+ * <p>
+ * BaseRestClientImpl class.
+ * </p>
  *
  * @author hoangtien2k3
  */

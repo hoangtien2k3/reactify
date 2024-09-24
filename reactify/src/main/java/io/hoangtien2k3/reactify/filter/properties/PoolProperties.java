@@ -20,7 +20,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * <p>PoolProperties class.</p>
+ * <p>
+ * PoolProperties class.
+ * </p>
  *
  * @author hoangtien2k3
  */

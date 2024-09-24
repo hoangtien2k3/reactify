@@ -41,7 +41,9 @@ import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
 /**
- * <p>MinioUtils class.</p>
+ * <p>
+ * MinioUtils class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -62,9 +64,15 @@ public class MinioUtils {
     public static final String IMAGE_JPEG_CONTENT_TYPE = "image/jpeg";
     /** Constant <code>PDF_CONTENT_TYPE="application/pdf"</code> */
     public static final String PDF_CONTENT_TYPE = "application/pdf";
-    /** Constant <code>XLSX_CONTENT_TYPE="application/vnd.openxmlformats-officedo"{trunked}</code> */
+    /**
+     * Constant
+     * <code>XLSX_CONTENT_TYPE="application/vnd.openxmlformats-officedo"{trunked}</code>
+     */
     public static final String XLSX_CONTENT_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-    /** Constant <code>DOCX_CONTENT_TYPE="application/vnd.openxmlformats-officedo"{trunked}</code> */
+    /**
+     * Constant
+     * <code>DOCX_CONTENT_TYPE="application/vnd.openxmlformats-officedo"{trunked}</code>
+     */
     public static final String DOCX_CONTENT_TYPE =
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
     /** Constant <code>TEXT_CONTENT_TYPE="text/plain"</code> */
@@ -123,9 +131,12 @@ public class MinioUtils {
     }
 
     /**
-     * <p>isBucketExist.</p>
+     * <p>
+     * isBucketExist.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<Boolean> isBucketExist(String bucketName) {
@@ -145,9 +156,12 @@ public class MinioUtils {
     }
 
     /**
-     * <p>makeBucket.</p>
+     * <p>
+     * makeBucket.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<Void> makeBucket(String bucketName) {
@@ -167,10 +181,14 @@ public class MinioUtils {
     }
 
     /**
-     * <p>makeFolder.</p>
+     * <p>
+     * makeFolder.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
-     * @param folderName a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param folderName
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<Void> makeFolder(String bucketName, String folderName) {
@@ -202,12 +220,18 @@ public class MinioUtils {
     }
 
     /**
-     * <p>uploadFile.</p>
+     * <p>
+     * uploadFile.
+     * </p>
      *
-     * @param inputStream a {@link java.io.InputStream} object
-     * @param bucketName a {@link java.lang.String} object
-     * @param folderName a {@link java.lang.String} object
-     * @param contentType a {@link java.lang.String} object
+     * @param inputStream
+     *            a {@link java.io.InputStream} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param folderName
+     *            a {@link java.lang.String} object
+     * @param contentType
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<String> uploadFile(InputStream inputStream, String bucketName, String folderName, String contentType) {
@@ -243,13 +267,20 @@ public class MinioUtils {
     }
 
     /**
-     * <p>upload.</p>
+     * <p>
+     * upload.
+     * </p>
      *
-     * @param data an array of {@link byte} objects
-     * @param fileName a {@link java.lang.String} object
-     * @param bucketName a {@link java.lang.String} object
-     * @param folderName a {@link java.lang.String} object
-     * @param contentType a {@link java.lang.String} object
+     * @param data
+     *            an array of {@link byte} objects
+     * @param fileName
+     *            a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param folderName
+     *            a {@link java.lang.String} object
+     * @param contentType
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<String> upload(byte[] data, String fileName, String bucketName, String folderName, String contentType) {
@@ -273,11 +304,16 @@ public class MinioUtils {
     }
 
     /**
-     * <p>updateObject.</p>
+     * <p>
+     * updateObject.
+     * </p>
      *
-     * @param bucket a {@link java.lang.String} object
-     * @param object a {@link java.lang.String} object
-     * @param bytes an array of {@link byte} objects
+     * @param bucket
+     *            a {@link java.lang.String} object
+     * @param object
+     *            a {@link java.lang.String} object
+     * @param bytes
+     *            an array of {@link byte} objects
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<String> updateObject(String bucket, String object, byte[] bytes) {
@@ -286,12 +322,18 @@ public class MinioUtils {
     }
 
     /**
-     * <p>uploadFiles.</p>
+     * <p>
+     * uploadFiles.
+     * </p>
      *
-     * @param inputStreamList a {@link java.util.List} object
-     * @param bucketName a {@link java.lang.String} object
-     * @param folderName a {@link java.lang.String} object
-     * @param contentType a {@link java.lang.String} object
+     * @param inputStreamList
+     *            a {@link java.util.List} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param folderName
+     *            a {@link java.lang.String} object
+     * @param contentType
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Flux} object
      */
     public Flux<String> uploadFiles(
@@ -321,10 +363,14 @@ public class MinioUtils {
     }
 
     /**
-     * <p>downloadFileByFilePath.</p>
+     * <p>
+     * downloadFileByFilePath.
+     * </p>
      *
-     * @param bucket a {@link java.lang.String} object
-     * @param object a {@link java.lang.String} object
+     * @param bucket
+     *            a {@link java.lang.String} object
+     * @param object
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Flux} object
      */
     public Flux<String> downloadFileByFilePath(String bucket, String object) {
@@ -346,11 +392,16 @@ public class MinioUtils {
     }
 
     /**
-     * <p>downloadFile.</p>
+     * <p>
+     * downloadFile.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
-     * @param objectName a {@link java.lang.String} object
-     * @param fileName a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param objectName
+     *            a {@link java.lang.String} object
+     * @param fileName
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<Void> downloadFile(String bucketName, String objectName, String fileName) {
@@ -358,11 +409,16 @@ public class MinioUtils {
     }
 
     /**
-     * <p>downloadFileBlock.</p>
+     * <p>
+     * downloadFileBlock.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
-     * @param objectName a {@link java.lang.String} object
-     * @param fileName a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param objectName
+     *            a {@link java.lang.String} object
+     * @param fileName
+     *            a {@link java.lang.String} object
      */
     public void downloadFileBlock(String bucketName, String objectName, String fileName) {
         try {
@@ -392,10 +448,14 @@ public class MinioUtils {
     }
 
     /**
-     * <p>copyObject.</p>
+     * <p>
+     * copyObject.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
-     * @param objectName a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param objectName
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<ObjectWriteResponse> copyObject(String bucketName, String objectName) {
@@ -422,11 +482,16 @@ public class MinioUtils {
     }
 
     /**
-     * <p>copyObject.</p>
+     * <p>
+     * copyObject.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
-     * @param sourceObject a {@link java.lang.String} object
-     * @param destinationObject a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param sourceObject
+     *            a {@link java.lang.String} object
+     * @param destinationObject
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<ObjectWriteResponse> copyObject(String bucketName, String sourceObject, String destinationObject) {
@@ -435,10 +500,14 @@ public class MinioUtils {
     }
 
     /**
-     * <p>getObjectUrl.</p>
+     * <p>
+     * getObjectUrl.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
-     * @param objectName a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param objectName
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<String> getObjectUrl(String bucketName, String objectName) {
@@ -453,12 +522,18 @@ public class MinioUtils {
     }
 
     /**
-     * <p>updateFile.</p>
+     * <p>
+     * updateFile.
+     * </p>
      *
-     * @param filePath a {@link java.lang.String} object
-     * @param bucketName a {@link java.lang.String} object
-     * @param objectName a {@link java.lang.String} object
-     * @param contentType a {@link java.lang.String} object
+     * @param filePath
+     *            a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param objectName
+     *            a {@link java.lang.String} object
+     * @param contentType
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<Void> updateFile(String filePath, String bucketName, String objectName, String contentType) {
@@ -480,9 +555,12 @@ public class MinioUtils {
     }
 
     /**
-     * <p>getObjectUrl.</p>
+     * <p>
+     * getObjectUrl.
+     * </p>
      *
-     * @param objectName a {@link java.lang.String} object
+     * @param objectName
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.String} object
      */
     public String getObjectUrl(String objectName) {
@@ -490,11 +568,16 @@ public class MinioUtils {
     }
 
     /**
-     * <p>handleObjectName.</p>
+     * <p>
+     * handleObjectName.
+     * </p>
      *
-     * @param contentType a {@link java.lang.String} object
-     * @param objectName a {@link java.lang.String} object
-     * @param folderName a {@link java.lang.String} object
+     * @param contentType
+     *            a {@link java.lang.String} object
+     * @param objectName
+     *            a {@link java.lang.String} object
+     * @param folderName
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.String} object
      */
     public String handleObjectName(String contentType, String objectName, String folderName) {
@@ -529,10 +612,14 @@ public class MinioUtils {
     }
 
     /**
-     * <p>getPrivateObjectUrl.</p>
+     * <p>
+     * getPrivateObjectUrl.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
-     * @param objectName a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param objectName
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<String> getPrivateObjectUrl(String bucketName, String objectName) {
@@ -554,10 +641,14 @@ public class MinioUtils {
     }
 
     /**
-     * <p>removeObject.</p>
+     * <p>
+     * removeObject.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
-     * @param objectName a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param objectName
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<Void> removeObject(String bucketName, String objectName) {
@@ -567,12 +658,18 @@ public class MinioUtils {
     }
 
     /**
-     * <p>getPrivateObjectUrl.</p>
+     * <p>
+     * getPrivateObjectUrl.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
-     * @param objectName a {@link java.lang.String} object
-     * @param timeout a int
-     * @param timeUnit a {@link java.util.concurrent.TimeUnit} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param objectName
+     *            a {@link java.lang.String} object
+     * @param timeout
+     *            a int
+     * @param timeUnit
+     *            a {@link java.util.concurrent.TimeUnit} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<String> getPrivateObjectUrl(String bucketName, String objectName, int timeout, TimeUnit timeUnit) {
@@ -585,9 +682,12 @@ public class MinioUtils {
     }
 
     /**
-     * <p>validateBucketExisted.</p>
+     * <p>
+     * validateBucketExisted.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<Void> validateBucketExisted(String bucketName) {
@@ -617,14 +717,21 @@ public class MinioUtils {
     }
 
     /**
-     * <p>uploadFileNoRename.</p>
+     * <p>
+     * uploadFileNoRename.
+     * </p>
      *
-     * @param inputStream a {@link java.io.InputStream} object
-     * @param bucketName a {@link java.lang.String} object
-     * @param contentType a {@link java.lang.String} object
-     * @param objectName a {@link java.lang.String} object
+     * @param inputStream
+     *            a {@link java.io.InputStream} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param contentType
+     *            a {@link java.lang.String} object
+     * @param objectName
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     public Mono<String> uploadFileNoRename(
             InputStream inputStream, String bucketName, String contentType, String objectName) throws Exception {
@@ -650,13 +757,19 @@ public class MinioUtils {
     }
 
     /**
-     * <p>uploadFile.</p>
+     * <p>
+     * uploadFile.
+     * </p>
      *
-     * @param inputStream a {@link java.io.InputStream} object
-     * @param bucketName a {@link java.lang.String} object
-     * @param contentType a {@link java.lang.String} object
+     * @param inputStream
+     *            a {@link java.io.InputStream} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param contentType
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     public Mono<String> uploadFile(InputStream inputStream, String bucketName, String contentType) throws Exception {
         String objectName = UUID.randomUUID().toString().replace("-", "");
@@ -682,11 +795,16 @@ public class MinioUtils {
     }
 
     /**
-     * <p>uploadFile.</p>
+     * <p>
+     * uploadFile.
+     * </p>
      *
-     * @param filePath a {@link java.lang.String} object
-     * @param file an array of {@link byte} objects
-     * @param bucket a {@link java.lang.String} object
+     * @param filePath
+     *            a {@link java.lang.String} object
+     * @param file
+     *            an array of {@link byte} objects
+     * @param bucket
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<String> uploadFile(String filePath, byte[] file, String bucket) {
@@ -696,13 +814,19 @@ public class MinioUtils {
     }
 
     /**
-     * <p>uploadFileReturnObjectName.</p>
+     * <p>
+     * uploadFileReturnObjectName.
+     * </p>
      *
-     * @param inputStream a {@link java.io.InputStream} object
-     * @param bucketName a {@link java.lang.String} object
-     * @param contentType a {@link java.lang.String} object
+     * @param inputStream
+     *            a {@link java.io.InputStream} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param contentType
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
-     * @throws java.lang.RuntimeException if any.
+     * @throws java.lang.RuntimeException
+     *             if any.
      */
     public Mono<String> uploadFileReturnObjectName(InputStream inputStream, String bucketName, String contentType)
             throws RuntimeException {
@@ -759,11 +883,15 @@ public class MinioUtils {
     }
 
     /**
-     * <p>removeObject.</p>
+     * <p>
+     * removeObject.
+     * </p>
      *
-     * @param url a {@link java.lang.String} object
+     * @param url
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     public Mono<Void> removeObject(String url) throws Exception {
         return Mono.fromRunnable(() -> removeObjectByUrlSync(url));
@@ -789,11 +917,16 @@ public class MinioUtils {
     }
 
     /**
-     * <p>uploadFile.</p>
+     * <p>
+     * uploadFile.
+     * </p>
      *
-     * @param bytes an array of {@link byte} objects
-     * @param bucketName a {@link java.lang.String} object
-     * @param object a {@link java.lang.String} object
+     * @param bytes
+     *            an array of {@link byte} objects
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param object
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<String> uploadFile(byte[] bytes, String bucketName, String object) {
@@ -812,10 +945,14 @@ public class MinioUtils {
     }
 
     /**
-     * <p>createBucketIfNotExist.</p>
+     * <p>
+     * createBucketIfNotExist.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
-     * @param objectLock a boolean
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param objectLock
+     *            a boolean
      */
     public void createBucketIfNotExist(String bucketName, boolean objectLock) {
         try {
@@ -833,10 +970,14 @@ public class MinioUtils {
     }
 
     /**
-     * <p>getObjectNameFromUrl.</p>
+     * <p>
+     * getObjectNameFromUrl.
+     * </p>
      *
-     * @param folderContent a {@link java.lang.String} object
-     * @param url a {@link java.lang.String} object
+     * @param folderContent
+     *            a {@link java.lang.String} object
+     * @param url
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.String} object
      */
     public static String getObjectNameFromUrl(String folderContent, String url) {
@@ -845,10 +986,14 @@ public class MinioUtils {
     }
 
     /**
-     * <p>getBase64FromUrl.</p>
+     * <p>
+     * getBase64FromUrl.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
-     * @param url a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param url
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.String} object
      */
     public String getBase64FromUrl(String bucketName, String url) {
@@ -866,11 +1011,16 @@ public class MinioUtils {
     }
 
     /**
-     * <p>uploadFileReturnObject.</p>
+     * <p>
+     * uploadFileReturnObject.
+     * </p>
      *
-     * @param inputStream a {@link java.io.InputStream} object
-     * @param bucketName a {@link java.lang.String} object
-     * @param contentType a {@link java.lang.String} object
+     * @param inputStream
+     *            a {@link java.io.InputStream} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param contentType
+     *            a {@link java.lang.String} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public Mono<String> uploadFileReturnObject(InputStream inputStream, String bucketName, String contentType) {
@@ -882,10 +1032,14 @@ public class MinioUtils {
     }
 
     /**
-     * <p>getUrlOfObject.</p>
+     * <p>
+     * getUrlOfObject.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
-     * @param objectName a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param objectName
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.String} object
      */
     public String getUrlOfObject(String bucketName, String objectName) {
@@ -893,20 +1047,33 @@ public class MinioUtils {
     }
 
     /**
-     * <p>getObject.</p>
+     * <p>
+     * getObject.
+     * </p>
      *
-     * @param bucketName a {@link java.lang.String} object
-     * @param objectName a {@link java.lang.String} object
+     * @param bucketName
+     *            a {@link java.lang.String} object
+     * @param objectName
+     *            a {@link java.lang.String} object
      * @return a {@link java.io.InputStream} object
-     * @throws io.minio.errors.ServerException if any.
-     * @throws io.minio.errors.InsufficientDataException if any.
-     * @throws io.minio.errors.ErrorResponseException if any.
-     * @throws java.io.IOException if any.
-     * @throws java.security.NoSuchAlgorithmException if any.
-     * @throws java.security.InvalidKeyException if any.
-     * @throws io.minio.errors.InvalidResponseException if any.
-     * @throws io.minio.errors.XmlParserException if any.
-     * @throws io.minio.errors.InternalException if any.
+     * @throws io.minio.errors.ServerException
+     *             if any.
+     * @throws io.minio.errors.InsufficientDataException
+     *             if any.
+     * @throws io.minio.errors.ErrorResponseException
+     *             if any.
+     * @throws java.io.IOException
+     *             if any.
+     * @throws java.security.NoSuchAlgorithmException
+     *             if any.
+     * @throws java.security.InvalidKeyException
+     *             if any.
+     * @throws io.minio.errors.InvalidResponseException
+     *             if any.
+     * @throws io.minio.errors.XmlParserException
+     *             if any.
+     * @throws io.minio.errors.InternalException
+     *             if any.
      */
     public InputStream getObject(String bucketName, String objectName)
             throws ServerException, InsufficientDataException, ErrorResponseException, IOException,

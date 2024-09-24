@@ -23,7 +23,9 @@ import lombok.NoArgsConstructor;
 import reactor.util.context.Context;
 
 /**
- * <p>LoggerDTO class.</p>
+ * <p>
+ * LoggerDTO class.
+ * </p>
  *
  * @author hoangtien2k3
  */

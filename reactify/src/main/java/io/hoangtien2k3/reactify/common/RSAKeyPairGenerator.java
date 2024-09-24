@@ -32,9 +32,12 @@ public class RSAKeyPairGenerator {
     private final PublicKey publicKey;
 
     /**
-     * <p>Constructor for RSAKeyPairGenerator.</p>
+     * <p>
+     * Constructor for RSAKeyPairGenerator.
+     * </p>
      *
-     * @throws java.security.NoSuchAlgorithmException if any.
+     * @throws java.security.NoSuchAlgorithmException
+     *             if any.
      */
     public RSAKeyPairGenerator() throws NoSuchAlgorithmException {
         // RSA to indicate Asymmetric Encryption (public-key cryptography)
@@ -47,10 +50,14 @@ public class RSAKeyPairGenerator {
     }
 
     /**
-     * <p>main.</p>
+     * <p>
+     * main.
+     * </p>
      *
-     * @param args an array of {@link java.lang.String} objects
-     * @throws java.security.NoSuchAlgorithmException if any.
+     * @param args
+     *            an array of {@link java.lang.String} objects
+     * @throws java.security.NoSuchAlgorithmException
+     *             if any.
      */
     public static void main(String[] args) throws NoSuchAlgorithmException {
         RSAKeyPairGenerator rsaKeyPairGenerator = new RSAKeyPairGenerator();

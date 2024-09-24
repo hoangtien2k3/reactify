@@ -35,7 +35,9 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
 /**
- * <p>DataWsUtil class.</p>
+ * <p>
+ * DataWsUtil class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -43,11 +45,16 @@ import org.xml.sax.InputSource;
 public class DataWsUtil {
 
     /**
-     * <p>getDataByTag.</p>
+     * <p>
+     * getDataByTag.
+     * </p>
      *
-     * @param realData a {@link java.lang.String} object
-     * @param fromKey a {@link java.lang.String} object
-     * @param toKey a {@link java.lang.String} object
+     * @param realData
+     *            a {@link java.lang.String} object
+     * @param fromKey
+     *            a {@link java.lang.String} object
+     * @param toKey
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.String} object
      */
     public static String getDataByTag(String realData, String fromKey, String toKey) {
@@ -62,11 +69,16 @@ public class DataWsUtil {
     }
 
     /**
-     * <p>wrapTag.</p>
+     * <p>
+     * wrapTag.
+     * </p>
      *
-     * @param data a {@link java.lang.String} object
-     * @param openTag a {@link java.lang.String} object
-     * @param closeTag a {@link java.lang.String} object
+     * @param data
+     *            a {@link java.lang.String} object
+     * @param openTag
+     *            a {@link java.lang.String} object
+     * @param closeTag
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.String} object
      */
     public static String wrapTag(String data, String openTag, String closeTag) {
@@ -77,9 +89,12 @@ public class DataWsUtil {
     }
 
     /**
-     * <p>wrapTagReturn.</p>
+     * <p>
+     * wrapTagReturn.
+     * </p>
      *
-     * @param data a {@link java.lang.String} object
+     * @param data
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.String} object
      */
     public static String wrapTagReturn(String data) {
@@ -87,11 +102,16 @@ public class DataWsUtil {
     }
 
     /**
-     * <p>xmlToObj.</p>
+     * <p>
+     * xmlToObj.
+     * </p>
      *
-     * @param xml a {@link java.lang.String} object
-     * @param clz a {@link java.lang.Class} object
-     * @param <T> a T class
+     * @param xml
+     *            a {@link java.lang.String} object
+     * @param clz
+     *            a {@link java.lang.Class} object
+     * @param <T>
+     *            a T class
      * @return a T object
      */
     public static <T> T xmlToObj(String xml, Class clz) {
@@ -105,11 +125,15 @@ public class DataWsUtil {
     }
 
     /**
-     * <p>parseXmlFile.</p>
+     * <p>
+     * parseXmlFile.
+     * </p>
      *
-     * @param in a {@link java.lang.String} object
+     * @param in
+     *            a {@link java.lang.String} object
      * @return a {@link org.w3c.dom.Document} object
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     public static Document parseXmlFile(String in) throws Exception {
         try {
@@ -124,10 +148,14 @@ public class DataWsUtil {
     }
 
     /**
-     * <p>fixSecurityDocumentBuilder.</p>
+     * <p>
+     * fixSecurityDocumentBuilder.
+     * </p>
      *
-     * @param dbf a {@link javax.xml.parsers.DocumentBuilderFactory} object
-     * @throws javax.xml.parsers.ParserConfigurationException if any.
+     * @param dbf
+     *            a {@link javax.xml.parsers.DocumentBuilderFactory} object
+     * @throws javax.xml.parsers.ParserConfigurationException
+     *             if any.
      */
     public static void fixSecurityDocumentBuilder(DocumentBuilderFactory dbf) throws ParserConfigurationException {
         String FEATURE = "http://apache.org/xml/features/disallow-doctype-decl";
@@ -154,10 +182,13 @@ public class DataWsUtil {
     }
 
     /**
-     * <p>getDocumentBuilderFactory.</p>
+     * <p>
+     * getDocumentBuilderFactory.
+     * </p>
      *
      * @return a {@link javax.xml.parsers.DocumentBuilderFactory} object
-     * @throws javax.xml.parsers.ParserConfigurationException if any.
+     * @throws javax.xml.parsers.ParserConfigurationException
+     *             if any.
      */
     public static DocumentBuilderFactory getDocumentBuilderFactory() throws ParserConfigurationException {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -167,9 +198,12 @@ public class DataWsUtil {
     }
 
     /**
-     * <p>formatXML.</p>
+     * <p>
+     * formatXML.
+     * </p>
      *
-     * @param unformattedXml a {@link java.lang.String} object
+     * @param unformattedXml
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.String} object
      */
     public static String formatXML(String unformattedXml) {
@@ -191,11 +225,16 @@ public class DataWsUtil {
     }
 
     /**
-     * <p>getListDataByTag.</p>
+     * <p>
+     * getListDataByTag.
+     * </p>
      *
-     * @param realData a {@link java.lang.String} object
-     * @param fromKey a {@link java.lang.String} object
-     * @param toKey a {@link java.lang.String} object
+     * @param realData
+     *            a {@link java.lang.String} object
+     * @param fromKey
+     *            a {@link java.lang.String} object
+     * @param toKey
+     *            a {@link java.lang.String} object
      * @return a {@link java.util.List} object
      */
     public static List<String> getListDataByTag(String realData, String fromKey, String toKey) {

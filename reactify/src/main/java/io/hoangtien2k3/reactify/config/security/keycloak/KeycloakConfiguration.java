@@ -26,7 +26,9 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import reactor.core.publisher.Mono;
 
 /**
- * <p>KeycloakConfiguration class.</p>
+ * <p>
+ * KeycloakConfiguration class.
+ * </p>
  *
  * @author hoangtien2k3
  */

@@ -22,7 +22,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * <p>MonitoringProperties class.</p>
+ * <p>
+ * MonitoringProperties class.
+ * </p>
  *
  * @author hoangtien2k3
  */

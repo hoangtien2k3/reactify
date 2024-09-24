@@ -51,7 +51,9 @@ import reactor.netty.resources.ConnectionProvider;
 import reactor.netty.transport.ProxyProvider;
 
 /**
- * <p>WebClientFactory class.</p>
+ * <p>
+ * WebClientFactory class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -70,9 +72,12 @@ public class WebClientFactory implements InitializingBean {
     }
 
     /**
-     * <p>initWebClients.</p>
+     * <p>
+     * initWebClients.
+     * </p>
      *
-     * @param webClients a {@link java.util.List} object
+     * @param webClients
+     *            a {@link java.util.List} object
      */
     public void initWebClients(List<WebClientProperties> webClients) {
         final ConfigurableListableBeanFactory beanFactory =
@@ -86,10 +91,16 @@ public class WebClientFactory implements InitializingBean {
     }
 
     /**
-     * <p>createNewClient.</p>
+     * <p>
+     * createNewClient.
+     * </p>
      *
-     * @param webClientProperties a {@link io.hoangtien2k3.reactify.client.properties.WebClientProperties} object
-     * @return a {@link org.springframework.web.reactive.function.client.WebClient} object
+     * @param webClientProperties
+     *            a
+     *            {@link io.hoangtien2k3.reactify.client.properties.WebClientProperties}
+     *            object
+     * @return a {@link org.springframework.web.reactive.function.client.WebClient}
+     *         object
      */
     public WebClient createNewClient(WebClientProperties webClientProperties) {
         if (!isValidProperties(webClientProperties)) {

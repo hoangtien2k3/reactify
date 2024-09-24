@@ -24,7 +24,9 @@ import reactor.core.publisher.Mono;
 
 /** @deprecated */
 /**
- * <p>CacheUtils class.</p>
+ * <p>
+ * CacheUtils class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -35,9 +37,12 @@ import reactor.core.publisher.Mono;
 public class CacheUtils {
 
     /**
-     * <p>invokeMethod.</p>
+     * <p>
+     * invokeMethod.
+     * </p>
      *
-     * @param method a {@link java.lang.reflect.Method} object
+     * @param method
+     *            a {@link java.lang.reflect.Method} object
      */
     public static void invokeMethod(Method method) {
         try {

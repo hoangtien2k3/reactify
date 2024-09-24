@@ -29,7 +29,9 @@ import org.checkerframework.checker.index.qual.NonNegative;
 import reactor.core.publisher.Mono;
 
 /**
- * <p>CacheUtils class.</p>
+ * <p>
+ * CacheUtils class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -41,11 +43,16 @@ public class CacheUtils {
     private CacheUtils() {}
 
     /**
-     * <p>of.</p>
+     * <p>
+     * of.
+     * </p>
      *
-     * @param duration a {@link java.time.Duration} object
-     * @param fn a {@link java.util.function.Function} object
-     * @param <T> a T class
+     * @param duration
+     *            a {@link java.time.Duration} object
+     * @param fn
+     *            a {@link java.util.function.Function} object
+     * @param <T>
+     *            a T class
      * @return a {@link java.util.function.Function} object
      */
     public static <T> Function<String, T> of(@NotNull Duration duration, @NotNull Function<String, T> fn) {
@@ -56,11 +63,16 @@ public class CacheUtils {
     }
 
     /**
-     * <p>of.</p>
+     * <p>
+     * of.
+     * </p>
      *
-     * @param duration a {@link java.time.Duration} object
-     * @param supplier a {@link java.util.function.Supplier} object
-     * @param <T> a T class
+     * @param duration
+     *            a {@link java.time.Duration} object
+     * @param supplier
+     *            a {@link java.util.function.Supplier} object
+     * @param <T>
+     *            a T class
      * @return a {@link java.util.function.Supplier} object
      */
     public static <T> Supplier<T> of(@NotNull Duration duration, @NotNull Supplier<T> supplier) {
@@ -69,11 +81,16 @@ public class CacheUtils {
     }
 
     /**
-     * <p>ofMono.</p>
+     * <p>
+     * ofMono.
+     * </p>
      *
-     * @param duration a {@link java.time.Duration} object
-     * @param fn a {@link java.util.function.Function} object
-     * @param <T> a T class
+     * @param duration
+     *            a {@link java.time.Duration} object
+     * @param fn
+     *            a {@link java.util.function.Function} object
+     * @param <T>
+     *            a T class
      * @return a {@link java.util.function.Function} object
      */
     public static <T> Function<String, Mono<T>> ofMono(Duration duration, Function<String, Mono<T>> fn) {
@@ -83,11 +100,16 @@ public class CacheUtils {
     }
 
     /**
-     * <p>ofMonoFixedKey.</p>
+     * <p>
+     * ofMonoFixedKey.
+     * </p>
      *
-     * @param duration a {@link java.time.Duration} object
-     * @param mono a {@link reactor.core.publisher.Mono} object
-     * @param <T> a T class
+     * @param duration
+     *            a {@link java.time.Duration} object
+     * @param mono
+     *            a {@link reactor.core.publisher.Mono} object
+     * @param <T>
+     *            a T class
      * @return a {@link reactor.core.publisher.Mono} object
      */
     public static <T> Mono<T> ofMonoFixedKey(@NotNull Duration duration, @NotNull Mono<T> mono) {
@@ -97,14 +119,22 @@ public class CacheUtils {
 
     // TODO : close cache metrics to build test local
     /**
-     * <p>caffeine.</p>
+     * <p>
+     * caffeine.
+     * </p>
      *
-     * @param duration a {@link java.time.Duration} object
-     * @param maximumSize a long
-     * @param cacheClass a {@link java.lang.Class} object
-     * @param cacheName a {@link java.lang.String} object
-     * @param <K> a K class
-     * @param <V> a V class
+     * @param duration
+     *            a {@link java.time.Duration} object
+     * @param maximumSize
+     *            a long
+     * @param cacheClass
+     *            a {@link java.lang.Class} object
+     * @param cacheName
+     *            a {@link java.lang.String} object
+     * @param <K>
+     *            a K class
+     * @param <V>
+     *            a V class
      * @return a {@link com.github.benmanes.caffeine.cache.Cache} object
      */
     public static <K, V> Cache<K, V> caffeine(

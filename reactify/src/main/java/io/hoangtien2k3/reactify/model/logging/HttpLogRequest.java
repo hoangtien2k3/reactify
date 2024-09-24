@@ -20,7 +20,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * <p>HttpLogRequest class.</p>
+ * <p>
+ * HttpLogRequest class.
+ * </p>
  *
  * @author hoangtien2k3
  */

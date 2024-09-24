@@ -27,7 +27,9 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.stereotype.Component;
 
 /**
- * <p>CipherManager class.</p>
+ * <p>
+ * CipherManager class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -36,9 +38,12 @@ public class CipherManager {
     private final Cipher rsaCipher;
 
     /**
-     * <p>Constructor for CipherManager.</p>
+     * <p>
+     * Constructor for CipherManager.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     public CipherManager() throws Exception {
         Security.addProvider(new BouncyCastleProvider());
@@ -47,10 +52,14 @@ public class CipherManager {
 
     // ma hoa password custom
     /**
-     * <p>encrypt.</p>
+     * <p>
+     * encrypt.
+     * </p>
      *
-     * @param message a {@link java.lang.String} object
-     * @param publicKeyString a {@link java.lang.String} object
+     * @param message
+     *            a {@link java.lang.String} object
+     * @param publicKeyString
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.String} object
      */
     public String encrypt(String message, String publicKeyString) {

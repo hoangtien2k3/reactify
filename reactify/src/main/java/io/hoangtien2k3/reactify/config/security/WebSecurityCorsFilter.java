@@ -21,7 +21,9 @@ import org.springframework.web.reactive.config.EnableWebFlux;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 /**
- * <p>WebSecurityCorsFilter class.</p>
+ * <p>
+ * WebSecurityCorsFilter class.
+ * </p>
  *
  * @author hoangtien2k3
  */

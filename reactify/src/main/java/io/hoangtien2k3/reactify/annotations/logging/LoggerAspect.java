@@ -23,7 +23,9 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * <p>LoggerAspect class.</p>
+ * <p>
+ * LoggerAspect class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -34,7 +36,9 @@ public class LoggerAspect {
     private final LoggerAspectUtils loggerAspectUtils;
 
     /**
-     * <p>performancePointCut.</p>
+     * <p>
+     * performancePointCut.
+     * </p>
      */
     @Pointcut("(execution(* io.hoangtien2k3.reactify.*.controller..*(..)) || "
             + "execution(* io.hoangtien2k3.reactify.*.service..*(..))  ||  "
@@ -47,11 +51,15 @@ public class LoggerAspect {
     private void logPerfMethods() {}
 
     /**
-     * <p>logAround.</p>
+     * <p>
+     * logAround.
+     * </p>
      *
-     * @param joinPoint a {@link org.aspectj.lang.ProceedingJoinPoint} object
+     * @param joinPoint
+     *            a {@link org.aspectj.lang.ProceedingJoinPoint} object
      * @return a {@link java.lang.Object} object
-     * @throws java.lang.Throwable if any.
+     * @throws java.lang.Throwable
+     *             if any.
      */
     @Around("performancePointCut() || logPerfMethods()")
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {

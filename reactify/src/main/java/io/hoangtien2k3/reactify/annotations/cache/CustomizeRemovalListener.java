@@ -25,7 +25,9 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 /** @deprecated */
 /**
- * <p>CustomizeRemovalListener class.</p>
+ * <p>
+ * CustomizeRemovalListener class.
+ * </p>
  *
  * @author hoangtien2k3
  */

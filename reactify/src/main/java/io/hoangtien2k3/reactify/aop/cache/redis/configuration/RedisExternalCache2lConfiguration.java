@@ -31,7 +31,9 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 
 /**
- * <p>RedisExternalCache2lConfiguration class.</p>
+ * <p>
+ * RedisExternalCache2lConfiguration class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -48,9 +50,13 @@ public class RedisExternalCache2lConfiguration {
     private String redisUsername;
 
     /**
-     * <p>getLettuceConnectionFactory.</p>
+     * <p>
+     * getLettuceConnectionFactory.
+     * </p>
      *
-     * @return a {@link org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory} object
+     * @return a
+     *         {@link org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory}
+     *         object
      */
     @Bean(name = "redisClusterExternalConnectionFactory")
     public LettuceConnectionFactory getLettuceConnectionFactory() {
@@ -70,9 +76,14 @@ public class RedisExternalCache2lConfiguration {
     }
 
     /**
-     * <p>getRedisTemplate.</p>
+     * <p>
+     * getRedisTemplate.
+     * </p>
      *
-     * @param redisConnectionFactory a {@link org.springframework.data.redis.connection.RedisConnectionFactory} object
+     * @param redisConnectionFactory
+     *            a
+     *            {@link org.springframework.data.redis.connection.RedisConnectionFactory}
+     *            object
      * @return a {@link org.springframework.data.redis.core.RedisTemplate} object
      */
     @Bean(name = "redisExternalCache2LTemplate")

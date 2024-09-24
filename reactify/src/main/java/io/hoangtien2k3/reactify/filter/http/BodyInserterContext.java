@@ -25,7 +25,9 @@ import org.springframework.web.reactive.function.BodyInserter;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 
 /**
- * <p>BodyInserterContext class.</p>
+ * <p>
+ * BodyInserterContext class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -33,16 +35,23 @@ public class BodyInserterContext implements BodyInserter.Context {
     private final ExchangeStrategies exchangeStrategies;
 
     /**
-     * <p>Constructor for BodyInserterContext.</p>
+     * <p>
+     * Constructor for BodyInserterContext.
+     * </p>
      */
     public BodyInserterContext() {
         this.exchangeStrategies = ExchangeStrategies.withDefaults();
     }
 
     /**
-     * <p>Constructor for BodyInserterContext.</p>
+     * <p>
+     * Constructor for BodyInserterContext.
+     * </p>
      *
-     * @param exchangeStrategies a {@link org.springframework.web.reactive.function.client.ExchangeStrategies} object
+     * @param exchangeStrategies
+     *            a
+     *            {@link org.springframework.web.reactive.function.client.ExchangeStrategies}
+     *            object
      */
     public BodyInserterContext(ExchangeStrategies exchangeStrategies) {
         this.exchangeStrategies = exchangeStrategies;

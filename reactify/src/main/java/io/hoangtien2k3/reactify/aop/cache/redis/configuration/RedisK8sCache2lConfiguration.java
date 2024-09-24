@@ -30,7 +30,9 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 
 /**
- * <p>RedisK8sCache2lConfiguration class.</p>
+ * <p>
+ * RedisK8sCache2lConfiguration class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -55,9 +57,13 @@ public class RedisK8sCache2lConfiguration {
     private String redisPassword;
 
     /**
-     * <p>redisMasterConnectionFactory.</p>
+     * <p>
+     * redisMasterConnectionFactory.
+     * </p>
      *
-     * @return a {@link org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory} object
+     * @return a
+     *         {@link org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory}
+     *         object
      */
     @Bean(name = "redisMasterConnectionFactory")
     public LettuceConnectionFactory redisMasterConnectionFactory() {
@@ -65,9 +71,13 @@ public class RedisK8sCache2lConfiguration {
     }
 
     /**
-     * <p>redisSlaveConnectionFactory.</p>
+     * <p>
+     * redisSlaveConnectionFactory.
+     * </p>
      *
-     * @return a {@link org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory} object
+     * @return a
+     *         {@link org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory}
+     *         object
      */
     @Bean(name = "redisSlaveConnectionFactory")
     public LettuceConnectionFactory redisSlaveConnectionFactory() {
@@ -88,9 +98,14 @@ public class RedisK8sCache2lConfiguration {
     }
 
     /**
-     * <p>redisMasterTemplate.</p>
+     * <p>
+     * redisMasterTemplate.
+     * </p>
      *
-     * @param redisConnectionFactory a {@link org.springframework.data.redis.connection.RedisConnectionFactory} object
+     * @param redisConnectionFactory
+     *            a
+     *            {@link org.springframework.data.redis.connection.RedisConnectionFactory}
+     *            object
      * @return a {@link org.springframework.data.redis.core.RedisTemplate} object
      */
     @Bean(name = "redisMasterCache2LTemplate")
@@ -100,9 +115,14 @@ public class RedisK8sCache2lConfiguration {
     }
 
     /**
-     * <p>redisSlaveTemplate.</p>
+     * <p>
+     * redisSlaveTemplate.
+     * </p>
      *
-     * @param redisConnectionFactory a {@link org.springframework.data.redis.connection.RedisConnectionFactory} object
+     * @param redisConnectionFactory
+     *            a
+     *            {@link org.springframework.data.redis.connection.RedisConnectionFactory}
+     *            object
      * @return a {@link org.springframework.data.redis.core.RedisTemplate} object
      */
     @Bean(name = "redisSlaveCache2LTemplate")

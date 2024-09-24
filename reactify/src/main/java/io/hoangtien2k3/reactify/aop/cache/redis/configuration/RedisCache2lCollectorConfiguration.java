@@ -22,7 +22,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * <p>RedisCache2lCollectorConfiguration class.</p>
+ * <p>
+ * RedisCache2lCollectorConfiguration class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -31,9 +33,13 @@ import org.springframework.context.annotation.Configuration;
 public class RedisCache2lCollectorConfiguration {
 
     /**
-     * <p>redisCacheKey.</p>
+     * <p>
+     * redisCacheKey.
+     * </p>
      *
-     * @return a {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheKeyCounter} object
+     * @return a
+     *         {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheKeyCounter}
+     *         object
      */
     @Bean
     public RedisCacheKeyCounter redisCacheKey() {
@@ -41,10 +47,17 @@ public class RedisCache2lCollectorConfiguration {
     }
 
     /**
-     * <p>initRedisCacheMetricCollector.</p>
+     * <p>
+     * initRedisCacheMetricCollector.
+     * </p>
      *
-     * @param redisCacheKey a {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheKeyCounter} object
-     * @return a {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheMetricsCollector} object
+     * @param redisCacheKey
+     *            a
+     *            {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheKeyCounter}
+     *            object
+     * @return a
+     *         {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheMetricsCollector}
+     *         object
      */
     @Bean(name = "redisCacheMetricsCollector")
     public RedisCacheMetricsCollector initRedisCacheMetricCollector(RedisCacheKeyCounter redisCacheKey) {

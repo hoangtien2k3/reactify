@@ -23,13 +23,14 @@ import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ReactiveHttpOutputMessage;
-import org.springframework.http.client.reactive.ClientHttpRequest;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * Implementation of {@link org.springframework.http.client.reactive.ClientHttpRequest} that saves body as a field.
+ * Implementation of
+ * {@link org.springframework.http.client.reactive.ClientHttpRequest} that saves
+ * body as a field.
  *
  * @author hoangtien2k3
  */
@@ -44,10 +45,14 @@ public class CachedBodyOutputMessage implements ReactiveHttpOutputMessage {
             Flux.error(new IllegalStateException("The body is not set. " + "Did handling complete with success?"));
 
     /**
-     * <p>Constructor for CachedBodyOutputMessage.</p>
+     * <p>
+     * Constructor for CachedBodyOutputMessage.
+     * </p>
      *
-     * @param exchange a {@link org.springframework.web.server.ServerWebExchange} object
-     * @param httpHeaders a {@link org.springframework.http.HttpHeaders} object
+     * @param exchange
+     *            a {@link org.springframework.web.server.ServerWebExchange} object
+     * @param httpHeaders
+     *            a {@link org.springframework.http.HttpHeaders} object
      */
     public CachedBodyOutputMessage(ServerWebExchange exchange, HttpHeaders httpHeaders) {
         this.bufferFactory = exchange.getResponse().bufferFactory();

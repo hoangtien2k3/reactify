@@ -24,7 +24,9 @@ import org.springframework.web.reactive.function.client.ExchangeFunction;
 import reactor.core.publisher.Mono;
 
 /**
- * <p>ErrorHandlingFilter class.</p>
+ * <p>
+ * ErrorHandlingFilter class.
+ * </p>
  *
  * @author hoangtien2k3
  */

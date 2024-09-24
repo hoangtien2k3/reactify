@@ -22,7 +22,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.i18n.LocaleContextHolder;
 
 /**
- * <p>MessageUtils class.</p>
+ * <p>
+ * MessageUtils class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -32,10 +34,14 @@ public class MessageUtils {
     private static final String BASE_NAME = "messages";
 
     /**
-     * <p>getMessage.</p>
+     * <p>
+     * getMessage.
+     * </p>
      *
-     * @param code a {@link java.lang.String} object
-     * @param locale a {@link java.util.Locale} object
+     * @param code
+     *            a {@link java.lang.String} object
+     * @param locale
+     *            a {@link java.util.Locale} object
      * @return a {@link java.lang.String} object
      */
     public static String getMessage(String code, Locale locale) {
@@ -43,11 +49,16 @@ public class MessageUtils {
     }
 
     /**
-     * <p>getMessage.</p>
+     * <p>
+     * getMessage.
+     * </p>
      *
-     * @param code a {@link java.lang.String} object
-     * @param locale a {@link java.util.Locale} object
-     * @param args a {@link java.lang.Object} object
+     * @param code
+     *            a {@link java.lang.String} object
+     * @param locale
+     *            a {@link java.util.Locale} object
+     * @param args
+     *            a {@link java.lang.Object} object
      * @return a {@link java.lang.String} object
      */
     public static String getMessage(String code, Locale locale, Object... args) {
@@ -65,9 +76,12 @@ public class MessageUtils {
     }
 
     /**
-     * <p>getMessage.</p>
+     * <p>
+     * getMessage.
+     * </p>
      *
-     * @param code a {@link java.lang.String} object
+     * @param code
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.String} object
      */
     public static String getMessage(String code) {
@@ -75,10 +89,14 @@ public class MessageUtils {
     }
 
     /**
-     * <p>getMessage.</p>
+     * <p>
+     * getMessage.
+     * </p>
      *
-     * @param code a {@link java.lang.String} object
-     * @param args a {@link java.lang.Object} object
+     * @param code
+     *            a {@link java.lang.String} object
+     * @param args
+     *            a {@link java.lang.Object} object
      * @return a {@link java.lang.String} object
      */
     public static String getMessage(String code, Object... args) {

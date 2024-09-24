@@ -26,7 +26,9 @@ import org.springframework.web.reactive.function.client.ExchangeFunction;
 import reactor.core.publisher.Mono;
 
 /**
- * <p>WebClientMonitoringFilter class.</p>
+ * <p>
+ * WebClientMonitoringFilter class.
+ * </p>
  *
  * @author hoangtien2k3
  */

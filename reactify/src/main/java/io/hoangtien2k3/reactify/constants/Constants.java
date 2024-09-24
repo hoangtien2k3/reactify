@@ -22,15 +22,23 @@ import org.slf4j.MDC;
 import org.springframework.http.MediaType;
 
 /**
- * <p>Constants class.</p>
+ * <p>
+ * Constants class.
+ * </p>
  *
  * @author hoangtien2k3
  */
 public final class Constants {
-    /** Constant <code>NAME_PATTERN="^[a-zA-Z&agrave;&aacute;&atilde;ạảăắằẳẵ"{trunked}</code> */
+    /**
+     * Constant
+     * <code>NAME_PATTERN="^[a-zA-Z&agrave;&aacute;&atilde;ạảăắằẳẵ"{trunked}</code>
+     */
     public static final String NAME_PATTERN =
             "^[a-zA-ZàáãạảăắằẳẵặâấầẩẫậèéẹẻẽêềếểễệđìíĩỉịòóõọỏôốồổỗộơớờởỡợùúũụủưứừửữựỳỵỷỹýÀÁÃẠẢĂẮẰẲẴẶÂẤẦẨẪẬÈÉẸẺẼÊỀẾỂỄỆĐÌÍĨỈỊÒÓÕỌỎÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨỤỦƯỨỪỬỮỰỲỴỶỸÝ\\s]+$";
-    /** Constant <code>EMAIL_PATTERN="^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+["{trunked}</code> */
+    /**
+     * Constant
+     * <code>EMAIL_PATTERN="^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+["{trunked}</code>
+     */
     public static final String EMAIL_PATTERN = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
     /** Constant <code>DATE_PATTERN="\\d{2}[/]\\d{2}[/]\\d{4}"</code> */
     public static final String DATE_PATTERN = "\\d{2}[/]\\d{2}[/]\\d{4}";
@@ -59,11 +67,14 @@ public final class Constants {
             MediaType.TEXT_PLAIN,
             MediaType.TEXT_XML,
             MediaType.MULTIPART_FORM_DATA);
+
     private static final List<String> SENSITIVE_HEADERS = Arrays.asList("authorization", "proxy-authorization");
 
     // for prevent sonar issues
     /**
-     * <p>getSensitiveHeaders.</p>
+     * <p>
+     * getSensitiveHeaders.
+     * </p>
      *
      * @return a {@link java.util.List} object
      */

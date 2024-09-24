@@ -20,7 +20,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * <p>TimeoutProperties class.</p>
+ * <p>
+ * TimeoutProperties class.
+ * </p>
  *
  * @author hoangtien2k3
  */

@@ -29,7 +29,9 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * <p>BaseTemplateRepository class.</p>
+ * <p>
+ * BaseTemplateRepository class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -41,7 +43,9 @@ public class BaseTemplateRepository {
     private ObjectMapper objectMapper;
 
     /**
-     * <p>Constructor for BaseTemplateRepository.</p>
+     * <p>
+     * Constructor for BaseTemplateRepository.
+     * </p>
      */
     public BaseTemplateRepository() {
         objectMapper = JsonMapper.builder()
@@ -52,12 +56,18 @@ public class BaseTemplateRepository {
     }
 
     /**
-     * <p>listQuery.</p>
+     * <p>
+     * listQuery.
+     * </p>
      *
-     * @param sql a {@link java.lang.String} object
-     * @param params a {@link java.util.Map} object
-     * @param type a {@link java.lang.Class} object
-     * @param <T> a T class
+     * @param sql
+     *            a {@link java.lang.String} object
+     * @param params
+     *            a {@link java.util.Map} object
+     * @param type
+     *            a {@link java.lang.Class} object
+     * @param <T>
+     *            a T class
      * @return a {@link reactor.core.publisher.Flux} object
      */
     protected <T> Flux<T> listQuery(String sql, Map<String, Object> params, Class<T> type) {
@@ -72,10 +82,14 @@ public class BaseTemplateRepository {
     }
 
     /**
-     * <p>countQuery.</p>
+     * <p>
+     * countQuery.
+     * </p>
      *
-     * @param sql a {@link java.lang.String} object
-     * @param params a {@link java.util.Map} object
+     * @param sql
+     *            a {@link java.lang.String} object
+     * @param params
+     *            a {@link java.util.Map} object
      * @return a {@link reactor.core.publisher.Mono} object
      */
     protected Mono<Long> countQuery(String sql, Map<String, Object> params) {
@@ -94,11 +108,16 @@ public class BaseTemplateRepository {
     }
 
     /**
-     * <p>convert.</p>
+     * <p>
+     * convert.
+     * </p>
      *
-     * @param raw a {@link java.util.Map} object
-     * @param type a {@link java.lang.Class} object
-     * @param <T> a T class
+     * @param raw
+     *            a {@link java.util.Map} object
+     * @param type
+     *            a {@link java.lang.Class} object
+     * @param <T>
+     *            a T class
      * @return a T object
      */
     protected <T> T convert(Map<String, Object> raw, Class<T> type) {

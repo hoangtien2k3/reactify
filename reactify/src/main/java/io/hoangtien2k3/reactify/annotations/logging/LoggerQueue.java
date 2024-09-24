@@ -26,7 +26,9 @@ import lombok.extern.slf4j.Slf4j;
 import reactor.util.context.Context;
 
 /**
- * <p>LoggerQueue class.</p>
+ * <p>
+ * LoggerQueue class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -43,9 +45,12 @@ public class LoggerQueue {
     private int countSuccess = 0;
 
     /**
-     * <p>getInstance.</p>
+     * <p>
+     * getInstance.
+     * </p>
      *
-     * @return a {@link io.hoangtien2k3.reactify.annotations.logging.LoggerQueue} object
+     * @return a {@link io.hoangtien2k3.reactify.annotations.logging.LoggerQueue}
+     *         object
      */
     public static LoggerQueue getInstance() {
         if (mMe == null) {
@@ -59,14 +64,18 @@ public class LoggerQueue {
     }
 
     /**
-     * <p>clearQueue.</p>
+     * <p>
+     * clearQueue.
+     * </p>
      */
     public void clearQueue() {
         myQueue.clear();
     }
 
     /**
-     * <p>getQueue.</p>
+     * <p>
+     * getQueue.
+     * </p>
      *
      * @return a {@link io.hoangtien2k3.reactify.model.logging.LoggerDTO} object
      */
@@ -75,9 +84,12 @@ public class LoggerQueue {
     }
 
     /**
-     * <p>addQueue.</p>
+     * <p>
+     * addQueue.
+     * </p>
      *
-     * @param task a {@link io.hoangtien2k3.reactify.model.logging.LoggerDTO} object
+     * @param task
+     *            a {@link io.hoangtien2k3.reactify.model.logging.LoggerDTO} object
      * @return a boolean
      */
     public boolean addQueue(LoggerDTO task) {
@@ -90,19 +102,32 @@ public class LoggerQueue {
     }
 
     /**
-     * <p>addQueue.</p>
+     * <p>
+     * addQueue.
+     * </p>
      *
-     * @param contextRef a {@link java.util.concurrent.atomic.AtomicReference} object
-     * @param newSpan a {@link brave.Span} object
-     * @param service a {@link java.lang.String} object
-     * @param startTime a {@link java.lang.Long} object
-     * @param endTime a {@link java.lang.Long} object
-     * @param result a {@link java.lang.String} object
-     * @param obj a {@link java.lang.Object} object
-     * @param logType a {@link java.lang.String} object
-     * @param actionType a {@link java.lang.String} object
-     * @param args an array of {@link java.lang.Object} objects
-     * @param title a {@link java.lang.String} object
+     * @param contextRef
+     *            a {@link java.util.concurrent.atomic.AtomicReference} object
+     * @param newSpan
+     *            a {@link brave.Span} object
+     * @param service
+     *            a {@link java.lang.String} object
+     * @param startTime
+     *            a {@link java.lang.Long} object
+     * @param endTime
+     *            a {@link java.lang.Long} object
+     * @param result
+     *            a {@link java.lang.String} object
+     * @param obj
+     *            a {@link java.lang.Object} object
+     * @param logType
+     *            a {@link java.lang.String} object
+     * @param actionType
+     *            a {@link java.lang.String} object
+     * @param args
+     *            an array of {@link java.lang.Object} objects
+     * @param title
+     *            a {@link java.lang.String} object
      * @return a boolean
      */
     public boolean addQueue(
@@ -130,7 +155,9 @@ public class LoggerQueue {
     }
 
     /**
-     * <p>getRecords.</p>
+     * <p>
+     * getRecords.
+     * </p>
      *
      * @return a {@link java.util.List} object
      */
@@ -143,7 +170,9 @@ public class LoggerQueue {
     }
 
     /**
-     * <p>getQueueSize.</p>
+     * <p>
+     * getQueueSize.
+     * </p>
      *
      * @return a int
      */
@@ -152,7 +181,9 @@ public class LoggerQueue {
     }
 
     /**
-     * <p>resetCount.</p>
+     * <p>
+     * resetCount.
+     * </p>
      */
     public void resetCount() {
         countSuccess = 0;

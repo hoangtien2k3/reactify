@@ -22,17 +22,23 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.MultiValueMap;
 
 /**
- * <p>TruncateUtils class.</p>
+ * <p>
+ * TruncateUtils class.
+ * </p>
  *
  * @author hoangtien2k3
  */
 @Slf4j
 public class TruncateUtils {
     /**
-     * <p>truncate.</p>
+     * <p>
+     * truncate.
+     * </p>
      *
-     * @param s a {@link java.lang.String} object
-     * @param maxByte a int
+     * @param s
+     *            a {@link java.lang.String} object
+     * @param maxByte
+     *            a int
      * @return a {@link java.lang.String} object
      */
     public static String truncate(String s, int maxByte) {
@@ -52,10 +58,14 @@ public class TruncateUtils {
     }
 
     /**
-     * <p>truncateBody.</p>
+     * <p>
+     * truncateBody.
+     * </p>
      *
-     * @param s a {@link java.lang.String} object
-     * @param maxByte a int
+     * @param s
+     *            a {@link java.lang.String} object
+     * @param maxByte
+     *            a int
      * @return a {@link java.lang.String} object
      */
     public static String truncateBody(String s, int maxByte) {
@@ -90,9 +100,12 @@ public class TruncateUtils {
     }
 
     /**
-     * <p>truncateBody.</p>
+     * <p>
+     * truncateBody.
+     * </p>
      *
-     * @param responseBody a {@link java.lang.Object} object
+     * @param responseBody
+     *            a {@link java.lang.Object} object
      * @return a {@link java.lang.String} object
      */
     public static String truncateBody(Object responseBody) {

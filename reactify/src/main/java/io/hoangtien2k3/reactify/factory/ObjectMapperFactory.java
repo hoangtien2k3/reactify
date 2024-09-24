@@ -26,7 +26,9 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.IOException;
 
 /**
- * <p>ObjectMapperFactory class.</p>
+ * <p>
+ * ObjectMapperFactory class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -36,7 +38,9 @@ public class ObjectMapperFactory {
     private static final ObjectMapper defaultGetInstance = new ObjectMapper();
 
     /**
-     * <p>getInstance.</p>
+     * <p>
+     * getInstance.
+     * </p>
      *
      * @return a {@link com.fasterxml.jackson.databind.ObjectMapper} object
      */
@@ -56,7 +60,9 @@ public class ObjectMapperFactory {
     }
 
     /**
-     * <p>getInstance2.</p>
+     * <p>
+     * getInstance2.
+     * </p>
      *
      * @return a {@link com.fasterxml.jackson.databind.ObjectMapper} object
      */
@@ -67,7 +73,9 @@ public class ObjectMapperFactory {
     }
 
     /**
-     * <p>defaultGetInstance.</p>
+     * <p>
+     * defaultGetInstance.
+     * </p>
      *
      * @return a {@link com.fasterxml.jackson.databind.ObjectMapper} object
      */

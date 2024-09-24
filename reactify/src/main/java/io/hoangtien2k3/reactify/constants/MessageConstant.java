@@ -16,7 +16,9 @@
 package io.hoangtien2k3.reactify.constants;
 
 /**
- * <p>MessageConstant class.</p>
+ * <p>
+ * MessageConstant class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -30,15 +32,23 @@ public class MessageConstant {
 
     /** Constant <code>PARAMS_INVALID="params.invalid"</code> */
     public static final String PARAMS_INVALID = "params.invalid";
-    /** Constant <code>QUERY_CART_ITEM_NOT_FOUND="query.cartItem.not.found"</code> */
+    /**
+     * Constant <code>QUERY_CART_ITEM_NOT_FOUND="query.cartItem.not.found"</code>
+     */
     public static final String QUERY_CART_ITEM_NOT_FOUND = "query.cartItem.not.found";
     /** Constant <code>ORGANIZATION_INVALID="organization.invalid"</code> */
     public static final String ORGANIZATION_INVALID = "organization.invalid";
     /** Constant <code>ORGANIZATION_NOT_FOUND="organization.notFound"</code> */
     public static final String ORGANIZATION_NOT_FOUND = "organization.notFound";
-    /** Constant <code>USER_NOT_IN_ORGANIZATION="user.notFound.in.organization"</code> */
+    /**
+     * Constant
+     * <code>USER_NOT_IN_ORGANIZATION="user.notFound.in.organization"</code>
+     */
     public static final String USER_NOT_IN_ORGANIZATION = "user.notFound.in.organization";
-    /** Constant <code>ORGANIZATION_LEVEL1_NOT_FOUND="organization.level1.notFound"</code> */
+    /**
+     * Constant
+     * <code>ORGANIZATION_LEVEL1_NOT_FOUND="organization.level1.notFound"</code>
+     */
     public static final String ORGANIZATION_LEVEL1_NOT_FOUND = "organization.level1.notFound";
     /** Constant <code>POSITION_NOT_EXISTS="postion.not.exists"</code> */
     public static final String POSITION_NOT_EXISTS = "postion.not.exists";
@@ -50,8 +60,14 @@ public class MessageConstant {
     public static final String ORGANIZATION_NOT_EXISTS = "organization.not.exists";
     /** Constant <code>MANAGER_NOT_EXISTS="manager.not.exists"</code> */
     public static final String MANAGER_NOT_EXISTS = "manager.not.exists";
-    /** Constant <code>EMPLOYEE_ORGANIZATION_IS_EXISTS="employee.organization.is.exists"</code> */
+    /**
+     * Constant
+     * <code>EMPLOYEE_ORGANIZATION_IS_EXISTS="employee.organization.is.exists"</code>
+     */
     public static final String EMPLOYEE_ORGANIZATION_IS_EXISTS = "employee.organization.is.exists";
-    /** Constant <code>EMPLOYEE_ORGANIZATION_NOT_EXISTS="organization.employee.is.exists"</code> */
+    /**
+     * Constant
+     * <code>EMPLOYEE_ORGANIZATION_NOT_EXISTS="organization.employee.is.exists"</code>
+     */
     public static final String EMPLOYEE_ORGANIZATION_NOT_EXISTS = "organization.employee.is.exists";
 }

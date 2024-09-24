@@ -40,7 +40,9 @@ import org.springframework.util.CollectionUtils;
 @Component
 @ConfigurationProperties(value = "spring.plugin.config")
 public class GatewayPluginProperties implements InitializingBean {
-    /** Constant <code>GATEWAY_PLUGIN_PROPERTIES_PREFIX="spring.plugin.config"</code> */
+    /**
+     * Constant <code>GATEWAY_PLUGIN_PROPERTIES_PREFIX="spring.plugin.config"</code>
+     */
     public static final String GATEWAY_PLUGIN_PROPERTIES_PREFIX = "spring.plugin.config";
 
     private Boolean readRequestData = false;

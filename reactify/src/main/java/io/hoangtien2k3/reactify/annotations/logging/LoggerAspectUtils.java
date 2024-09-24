@@ -35,7 +35,9 @@ import reactor.core.publisher.Mono;
 import reactor.util.context.Context;
 
 /**
- * <p>LoggerAspectUtils class.</p>
+ * <p>
+ * LoggerAspectUtils class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -55,11 +57,15 @@ public class LoggerAspectUtils {
     private void init() {}
 
     /**
-     * <p>logAround.</p>
+     * <p>
+     * logAround.
+     * </p>
      *
-     * @param joinPoint a {@link org.aspectj.lang.ProceedingJoinPoint} object
+     * @param joinPoint
+     *            a {@link org.aspectj.lang.ProceedingJoinPoint} object
      * @return a {@link java.lang.Object} object
-     * @throws java.lang.Throwable if any.
+     * @throws java.lang.Throwable
+     *             if any.
      */
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();

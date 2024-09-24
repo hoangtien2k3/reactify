@@ -18,15 +18,20 @@ package io.hoangtien2k3.reactify.utils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * <p>SQLUtils class.</p>
+ * <p>
+ * SQLUtils class.
+ * </p>
  *
  * @author hoangtien2k3
  */
 public class SQLUtils {
     /**
-     * <p>replaceSpecialDigit.</p>
+     * <p>
+     * replaceSpecialDigit.
+     * </p>
      *
-     * @param value a {@link java.lang.String} object
+     * @param value
+     *            a {@link java.lang.String} object
      * @return a {@link java.lang.String} object
      */
     public static String replaceSpecialDigit(String value) {

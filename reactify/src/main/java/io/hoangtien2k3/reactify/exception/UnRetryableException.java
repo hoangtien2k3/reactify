@@ -20,7 +20,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * <p>UnRetryableException class.</p>
+ * <p>
+ * UnRetryableException class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -30,10 +32,14 @@ import lombok.NoArgsConstructor;
 public class UnRetryableException extends BusinessException {
 
     /**
-     * <p>Constructor for UnRetryableException.</p>
+     * <p>
+     * Constructor for UnRetryableException.
+     * </p>
      *
-     * @param errorCode a {@link java.lang.String} object
-     * @param message a {@link java.lang.String} object
+     * @param errorCode
+     *            a {@link java.lang.String} object
+     * @param message
+     *            a {@link java.lang.String} object
      */
     public UnRetryableException(String errorCode, String message) {
         super(errorCode, message);

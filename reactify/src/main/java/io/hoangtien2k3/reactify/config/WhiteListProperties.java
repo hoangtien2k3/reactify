@@ -22,7 +22,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * <p>WhiteListProperties class.</p>
+ * <p>
+ * WhiteListProperties class.
+ * </p>
  *
  * @author hoangtien2k3
  */

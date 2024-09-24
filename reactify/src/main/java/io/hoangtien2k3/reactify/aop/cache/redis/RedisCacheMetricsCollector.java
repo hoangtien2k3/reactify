@@ -21,7 +21,9 @@ import java.util.*;
 import org.springframework.stereotype.Component;
 
 /**
- * <p>RedisCacheMetricsCollector class.</p>
+ * <p>
+ * RedisCacheMetricsCollector class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -31,18 +33,26 @@ public class RedisCacheMetricsCollector extends Collector {
     private final RedisCacheKeyCounter redisCacheKey;
 
     /**
-     * <p>Constructor for RedisCacheMetricsCollector.</p>
+     * <p>
+     * Constructor for RedisCacheMetricsCollector.
+     * </p>
      *
-     * @param redisCacheKey a {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheKeyCounter} object
+     * @param redisCacheKey
+     *            a
+     *            {@link io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheKeyCounter}
+     *            object
      */
     public RedisCacheMetricsCollector(RedisCacheKeyCounter redisCacheKey) {
         this.redisCacheKey = redisCacheKey;
     }
 
     /**
-     * <p>addCache.</p>
+     * <p>
+     * addCache.
+     * </p>
      *
-     * @param cacheName a {@link java.lang.String} object
+     * @param cacheName
+     *            a {@link java.lang.String} object
      */
     public void addCache(String cacheName) {
         redisCacheKey.addCache(cacheName);

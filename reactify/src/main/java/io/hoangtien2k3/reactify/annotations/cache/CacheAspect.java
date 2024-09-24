@@ -31,7 +31,9 @@ import reactor.core.publisher.Signal;
 
 /** @deprecated */
 /**
- * <p>CacheAspect class.</p>
+ * <p>
+ * CacheAspect class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -44,11 +46,15 @@ public class CacheAspect {
     private void processAnnotation() {}
 
     /**
-     * <p>aroundAdvice.</p>
+     * <p>
+     * aroundAdvice.
+     * </p>
      *
-     * @param joinPoint a {@link org.aspectj.lang.ProceedingJoinPoint} object
+     * @param joinPoint
+     *            a {@link org.aspectj.lang.ProceedingJoinPoint} object
      * @return a {@link java.lang.Object} object
-     * @throws java.lang.Throwable if any.
+     * @throws java.lang.Throwable
+     *             if any.
      */
     @Around("processAnnotation()")
     public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {

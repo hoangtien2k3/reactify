@@ -16,7 +16,9 @@
 package io.hoangtien2k3.reactify.constants;
 
 /**
- * <p>CommonErrorCode class.</p>
+ * <p>
+ * CommonErrorCode class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -47,7 +49,10 @@ public class CommonErrorCode {
     public static final String TRUST_MST_01 = "trust_mst_01";
     /** Constant <code>TRUST_MST_02="trust_mst_02"</code> */
     public static final String TRUST_MST_02 = "trust_mst_02";
-    /** Constant <code>COMPANY_NOT_FOUND_TRUST_INDENTITY="company_not_found_trust_indentity"</code> */
+    /**
+     * Constant
+     * <code>COMPANY_NOT_FOUND_TRUST_INDENTITY="company_not_found_trust_indentity"</code>
+     */
     public static final String COMPANY_NOT_FOUND_TRUST_INDENTITY = "company_not_found_trust_indentity";
     /** Constant <code>GROUP_INFO_NOT_FOUND="group_info_not_found"</code> */
     public static final String GROUP_INFO_NOT_FOUND = "group_info_not_found";

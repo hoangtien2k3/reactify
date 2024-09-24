@@ -26,7 +26,9 @@ import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
 /**
- * <p>Abstract SagaProcess class.</p>
+ * <p>
+ * Abstract SagaProcess class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -34,7 +36,9 @@ import reactor.core.scheduler.Schedulers;
 public abstract class SagaProcess {
 
     /**
-     * <p>getSteps.</p>
+     * <p>
+     * getSteps.
+     * </p>
      *
      * @return a {@link java.util.List} object
      */
@@ -43,7 +47,9 @@ public abstract class SagaProcess {
     protected final List<SagaStep> executedStep = new LinkedList<>();
 
     /**
-     * <p>execute.</p>
+     * <p>
+     * execute.
+     * </p>
      *
      * @return a {@link reactor.core.publisher.Flux} object
      */
@@ -64,7 +70,9 @@ public abstract class SagaProcess {
     }
 
     /**
-     * <p>revert.</p>
+     * <p>
+     * revert.
+     * </p>
      *
      * @return a {@link reactor.core.publisher.Flux} object
      */

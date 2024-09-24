@@ -22,7 +22,9 @@ import java.lang.annotation.Target;
 
 /** @deprecated */
 /**
- * <p>LocalCache class.</p>
+ * <p>
+ * LocalCache class.
+ * </p>
  *
  * @author hoangtien2k3
  */

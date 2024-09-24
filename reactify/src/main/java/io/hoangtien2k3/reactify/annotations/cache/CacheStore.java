@@ -35,7 +35,9 @@ import org.springframework.stereotype.Component;
 
 /** @deprecated */
 /**
- * <p>CacheStore class.</p>
+ * <p>
+ * CacheStore class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -87,9 +89,12 @@ public class CacheStore {
     }
 
     /**
-     * <p>getCache.</p>
+     * <p>
+     * getCache.
+     * </p>
      *
-     * @param key a {@link java.lang.String} object
+     * @param key
+     *            a {@link java.lang.String} object
      * @return a {@link com.github.benmanes.caffeine.cache.Cache} object
      */
     public static Cache getCache(String key) {
@@ -97,9 +102,13 @@ public class CacheStore {
     }
 
     /**
-     * <p>autoLoad.</p>
+     * <p>
+     * autoLoad.
+     * </p>
      *
-     * @param event a {@link org.springframework.context.event.ContextRefreshedEvent} object
+     * @param event
+     *            a {@link org.springframework.context.event.ContextRefreshedEvent}
+     *            object
      */
     @Async
     @EventListener

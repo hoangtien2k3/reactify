@@ -33,7 +33,9 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 /**
- * <p>DatabaseConversion class.</p>
+ * <p>
+ * DatabaseConversion class.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -41,9 +43,13 @@ import reactor.core.publisher.Mono;
 @Component
 public class DatabaseConversion {
     /**
-     * <p>getR2dbcConverter.</p>
+     * <p>
+     * getR2dbcConverter.
+     * </p>
      *
-     * @return a {@link org.springframework.data.r2dbc.convert.MappingR2dbcConverter} object
+     * @return a
+     *         {@link org.springframework.data.r2dbc.convert.MappingR2dbcConverter}
+     *         object
      */
     public MappingR2dbcConverter getR2dbcConverter() {
         R2dbcMappingContext mappingContext = getR2dbcMappingContext();
@@ -64,7 +70,9 @@ public class DatabaseConversion {
     }
 
     /**
-     * <p>getListConverters.</p>
+     * <p>
+     * getListConverters.
+     * </p>
      *
      * @return a {@link java.util.List} object
      */

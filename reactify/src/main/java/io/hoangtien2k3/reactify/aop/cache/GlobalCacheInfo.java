@@ -19,7 +19,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * <p>GlobalCacheInfo class.</p>
+ * <p>
+ * GlobalCacheInfo class.
+ * </p>
  *
  * @author hoangtien2k3
  */
