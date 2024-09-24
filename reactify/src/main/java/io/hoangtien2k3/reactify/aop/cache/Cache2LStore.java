@@ -21,13 +21,11 @@ import com.github.benmanes.caffeine.cache.Scheduler;
 import io.hoangtien2k3.reactify.aop.cache.redis.RedisCacheMetricsCollector;
 import io.prometheus.client.cache.caffeine.CacheMetricsCollector;
 import jakarta.annotation.PostConstruct;
-
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.time.Duration;
 import java.util.*;
-
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.reflections.Reflections;
@@ -115,13 +113,16 @@ public class Cache2LStore {
         ParameterizedType returnType = (ParameterizedType) method.getGenericReturnType();
         TypeInfo typeInfo = extractTypeInfo(returnType);
 
-        caches.put(cacheName, new CacheInfo(cache, new GlobalCacheInfo(
-                typeInfo.isOptional(),
-                typeInfo.actualType,
-                typeInfo.wrapType,
-                typeInfo.keyType,
-                typeInfo.valueType))
-        );
+        caches.put(
+                cacheName,
+                new CacheInfo(
+                        cache,
+                        new GlobalCacheInfo(
+                                typeInfo.isOptional(),
+                                typeInfo.actualType,
+                                typeInfo.wrapType,
+                                typeInfo.keyType,
+                                typeInfo.valueType)));
         REDIS_CACHE_METRICS_COLLECTOR.addCache(cacheName);
     }
 
