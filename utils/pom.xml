@@ -2,19 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.2</version>
-		<relativePath/>
+		<groupId>io.github.hoangtien2k3</groupId>
+		<artifactId>reactify-core</artifactId>
+		<version>${reactify.version}</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<groupId>io.github.hoangtien2k3</groupId>
 	<artifactId>utils</artifactId>
-	<version>1.1.4</version>
+	<version>${reactify.version}</version>
 	<packaging>jar</packaging>
 	<name>utils</name>
-	<description>utils start with spring boot</description>
+	<description>Java library for developing backend with reactive programming</description>
 	<url>https://github.com/hoangtien2k3/fw-commons</url>
 
 	<licenses>

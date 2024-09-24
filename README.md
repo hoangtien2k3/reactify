@@ -51,7 +51,7 @@ Here is a quick teaser of a complete Spring Boot application in Java:
 
 ```java
 @SpringBootApplication
-@ComponentScan(basePackages = {"io.hoangtien2k3.commons.*"})
+@ComponentScan(basePackages = {"io.hoangtien2k3.reactify.*"})
 @ImportResource({"classpath*:applicationContext.xml"})
 public class Example {
 
