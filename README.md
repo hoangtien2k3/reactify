@@ -37,7 +37,7 @@ The latest `reactify` version is: ![GitHub Release](https://img.shields.io/githu
 
 The latest stable lib `reactify` version is: latestVersion Click [here](https://central.sonatype.com/namespace/io.github.hoangtien2k3) for more information on reactify.
 
-## Installation and Getting Started
+## Getting Started
 
 1. Correct and complete setup to start the program `application.yml` or `application.properties`
    with [CONFIG](src/main/resources/application.yml)
