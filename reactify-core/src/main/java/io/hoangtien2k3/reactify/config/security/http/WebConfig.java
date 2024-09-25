@@ -15,9 +15,9 @@
  */
 package io.hoangtien2k3.reactify.config.security.http;
 
+import io.hoangtien2k3.reactify.DataUtil;
 import io.hoangtien2k3.reactify.config.WhiteListProperties;
 import io.hoangtien2k3.reactify.model.WhiteList;
-import io.hoangtien2k3.reactify.utils.DataUtil;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

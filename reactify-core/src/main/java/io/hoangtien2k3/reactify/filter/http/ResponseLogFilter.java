@@ -17,8 +17,8 @@ package io.hoangtien2k3.reactify.filter.http;
 
 import static reactor.core.scheduler.Schedulers.single;
 
+import io.hoangtien2k3.reactify.LogUtils;
 import io.hoangtien2k3.reactify.model.GatewayContext;
-import io.hoangtien2k3.reactify.utils.LogUtils;
 import io.netty.buffer.UnpooledByteBufAllocator;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;

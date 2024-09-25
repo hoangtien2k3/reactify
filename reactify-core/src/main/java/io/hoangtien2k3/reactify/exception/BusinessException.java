@@ -15,7 +15,7 @@
  */
 package io.hoangtien2k3.reactify.exception;
 
-import io.hoangtien2k3.reactify.utils.Translator;
+import io.hoangtien2k3.reactify.Translator;
 import java.util.Arrays;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

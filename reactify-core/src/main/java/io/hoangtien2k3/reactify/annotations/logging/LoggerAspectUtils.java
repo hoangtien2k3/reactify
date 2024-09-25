@@ -17,9 +17,9 @@ package io.hoangtien2k3.reactify.annotations.logging;
 
 import brave.Span;
 import brave.Tracer;
+import io.hoangtien2k3.reactify.DataUtil;
 import io.hoangtien2k3.reactify.annotations.LogPerformance;
 import io.hoangtien2k3.reactify.exception.BusinessException;
-import io.hoangtien2k3.reactify.utils.DataUtil;
 import java.lang.reflect.Method;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.annotation.PostConstruct;

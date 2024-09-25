@@ -17,13 +17,13 @@ package io.hoangtien2k3.reactify.client;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+import io.hoangtien2k3.reactify.DataUtil;
 import io.hoangtien2k3.reactify.client.properties.WebClientProperties;
 import io.hoangtien2k3.reactify.constants.Constants;
 import io.hoangtien2k3.reactify.filter.properties.ProxyProperties;
 import io.hoangtien2k3.reactify.filter.webclient.WebClientLoggingFilter;
 import io.hoangtien2k3.reactify.filter.webclient.WebClientMonitoringFilter;
 import io.hoangtien2k3.reactify.filter.webclient.WebClientRetryHandler;
-import io.hoangtien2k3.reactify.utils.DataUtil;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.epoll.EpollChannelOption;
 import io.netty.handler.ssl.SslContext;

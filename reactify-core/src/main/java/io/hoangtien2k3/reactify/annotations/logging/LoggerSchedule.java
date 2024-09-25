@@ -17,12 +17,12 @@ package io.hoangtien2k3.reactify.annotations.logging;
 
 import static io.hoangtien2k3.reactify.constants.Constants.MAX_BYTE;
 
+import io.hoangtien2k3.reactify.DataUtil;
+import io.hoangtien2k3.reactify.RequestUtils;
+import io.hoangtien2k3.reactify.TruncateUtils;
 import io.hoangtien2k3.reactify.factory.ObjectMapperFactory;
 import io.hoangtien2k3.reactify.model.logging.LogField;
 import io.hoangtien2k3.reactify.model.logging.LoggerDTO;
-import io.hoangtien2k3.reactify.utils.DataUtil;
-import io.hoangtien2k3.reactify.utils.RequestUtils;
-import io.hoangtien2k3.reactify.utils.TruncateUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

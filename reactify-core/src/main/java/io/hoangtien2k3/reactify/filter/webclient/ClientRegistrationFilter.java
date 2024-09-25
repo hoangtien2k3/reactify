@@ -15,7 +15,7 @@
  */
 package io.hoangtien2k3.reactify.filter.webclient;
 
-import io.hoangtien2k3.reactify.utils.ReactiveOAuth2Utils;
+import io.hoangtien2k3.reactify.ReactiveOAuth2Utils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientManager;

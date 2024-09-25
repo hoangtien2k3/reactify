@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.hoangtien2k3.reactify.utils;
+package io.hoangtien2k3.reactify;
 
 import org.springframework.security.oauth2.client.*;
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;

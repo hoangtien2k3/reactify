@@ -17,12 +17,12 @@ package io.hoangtien2k3.reactify.client.impl;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+import io.hoangtien2k3.reactify.DataUtil;
+import io.hoangtien2k3.reactify.ObjectMapperUtil;
 import io.hoangtien2k3.reactify.client.BaseRestClient;
 import io.hoangtien2k3.reactify.constants.CommonErrorCode;
 import io.hoangtien2k3.reactify.constants.Constants;
 import io.hoangtien2k3.reactify.exception.BusinessException;
-import io.hoangtien2k3.reactify.utils.DataUtil;
-import io.hoangtien2k3.reactify.utils.ObjectMapperUtil;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.epoll.EpollChannelOption;
 import io.netty.handler.ssl.SslContext;

@@ -18,11 +18,11 @@ package io.hoangtien2k3.reactify.filter.http;
 import static io.hoangtien2k3.reactify.constants.Constants.MAX_BYTE;
 import static reactor.core.scheduler.Schedulers.single;
 
+import io.hoangtien2k3.reactify.RequestUtils;
+import io.hoangtien2k3.reactify.TruncateUtils;
 import io.hoangtien2k3.reactify.constants.Constants;
 import io.hoangtien2k3.reactify.filter.properties.HttpLogProperties;
 import io.hoangtien2k3.reactify.model.GatewayContext;
-import io.hoangtien2k3.reactify.utils.RequestUtils;
-import io.hoangtien2k3.reactify.utils.TruncateUtils;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
