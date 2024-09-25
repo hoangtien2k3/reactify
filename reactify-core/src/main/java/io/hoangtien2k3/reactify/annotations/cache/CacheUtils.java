@@ -22,7 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-/** @deprecated */
 /**
  * <p>
  * CacheUtils class.
@@ -30,7 +29,6 @@ import reactor.core.publisher.Mono;
  *
  * @author hoangtien2k3
  */
-@Deprecated
 @Slf4j
 @Component
 @RequiredArgsConstructor

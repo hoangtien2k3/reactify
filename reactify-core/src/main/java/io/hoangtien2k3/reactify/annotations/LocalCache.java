@@ -20,7 +20,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/** @deprecated */
 /**
  * <p>
  * LocalCache class.
@@ -28,7 +27,6 @@ import java.lang.annotation.Target;
  *
  * @author hoangtien2k3
  */
-@Deprecated
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LocalCache {

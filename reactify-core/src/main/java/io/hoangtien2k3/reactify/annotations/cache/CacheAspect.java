@@ -29,7 +29,6 @@ import reactor.cache.CacheMono;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Signal;
 
-/** @deprecated */
 /**
  * <p>
  * CacheAspect class.
@@ -37,7 +36,6 @@ import reactor.core.publisher.Signal;
  *
  * @author hoangtien2k3
  */
-@Deprecated
 @Aspect
 @Configuration
 @Slf4j

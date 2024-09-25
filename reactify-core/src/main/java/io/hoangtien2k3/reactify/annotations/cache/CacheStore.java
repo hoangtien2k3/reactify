@@ -33,7 +33,6 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-/** @deprecated */
 /**
  * <p>
  * CacheStore class.
@@ -41,7 +40,6 @@ import org.springframework.stereotype.Component;
  *
  * @author hoangtien2k3
  */
-@Deprecated
 @Slf4j
 @Component
 public class CacheStore {

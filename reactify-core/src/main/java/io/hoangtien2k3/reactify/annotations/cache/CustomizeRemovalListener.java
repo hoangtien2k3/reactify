@@ -23,7 +23,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-/** @deprecated */
 /**
  * <p>
  * CustomizeRemovalListener class.
@@ -31,7 +30,6 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  *
  * @author hoangtien2k3
  */
-@Deprecated
 @Slf4j
 @AllArgsConstructor
 public class CustomizeRemovalListener implements RemovalListener {
