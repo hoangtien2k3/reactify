@@ -1,5 +1,3 @@
-![fw-commons](https://socialify.git.ci/hoangtien2k3/fw-commons/image?description=1&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fi.ibb.co%2FN366vtQ%2Fhoangtien2k3.png&owner=1&pattern=Brick%20Wall&pulls=1&stargazers=1&theme=Auto)
-
 # Reactify
 
 Reactify [a commons Java lib]() with spring boot framework, Supports using keycloak, filter, trace log, cached, minio
@@ -39,7 +37,7 @@ The latest `reactify` version is: ![GitHub Release](https://img.shields.io/githu
 
 The latest stable lib `reactify` version is: latestVersion Click [here](https://central.sonatype.com/namespace/io.github.hoangtien2k3) for more information on reactify.
 
-## Installation and Getting Started
+## Getting Started
 
 1. Correct and complete setup to start the program `application.yml` or `application.properties`
    with [CONFIG](src/main/resources/application.yml)
