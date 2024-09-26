@@ -84,7 +84,7 @@ If you would like to contribute to the development of this project, please follo
 ## Contributors ✨
 
 <a href="https://github.com/hoangtien2k3/fw-commons/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=hoangtien2k3/fw-commons" />
+  <img src="https://contrib.rocks/image?repo=hoangtien2k3/reactify" />
 </a>
 
 ## License
