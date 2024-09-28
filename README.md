@@ -5,9 +5,11 @@ server, exception handler, validate and call API with webclient
 
 This README provides quickstart instructions on running [`reactify`]() on bare metal project spring boot.
 
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/project/overview?id=hoangtien2k3_reactify)
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=hoangtien2k3_reactify)](https://sonarcloud.io/summary/new_code?id=hoangtien2k3_reactify)
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=hoangtien2k3_reactify)
 
 [![CircleCI](https://circleci.com/gh/hoangtien2k3/reactify.svg?style=svg)](https://app.circleci.com/pipelines/github/hoangtien2k3/reactify)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=hoangtien2k3_reactify&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=hoangtien2k3_reactify)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=hoangtien2k3_reactify&metric=ncloc)](https://sonarcloud.io/summary/overall?id=hoangtien2k3_reactify)
 ![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/reactify?label=latest%20release)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
