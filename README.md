@@ -34,7 +34,7 @@ dependencies {
 </dependency>
 ```
 
-The latest `reactify` version is: ![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/fw-commons?label=latest%20release)
+The latest `reactify` version is: [![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/reactify?label=latest)](https://mvnrepository.com/artifact/io.github.hoangtien2k3/reactify)
 
 The latest stable lib `reactify` version is: latestVersion Click [here](https://central.sonatype.com/namespace/io.github.hoangtien2k3) for more information on reactify.
 
