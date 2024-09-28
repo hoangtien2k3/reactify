@@ -11,7 +11,7 @@ This README provides quickstart instructions on running [`reactify`]() on bare m
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=hoangtien2k3_reactify&metric=ncloc)](https://sonarcloud.io/summary/overall?id=hoangtien2k3_reactify)
 ![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/reactify?label=latest%20release)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
-[![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/9383/badge)](https://bestpractices.coreinfrastructure.org/projects/9383)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9383/badge)](https://www.bestpractices.dev/projects/9383)
 [![Build status](https://github.com/ponfee/commons-core/workflows/build-with-maven/badge.svg)](https://github.com/hoangtien2k3/reactify/actions)
 
 ## Download
