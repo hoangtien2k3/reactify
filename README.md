@@ -5,7 +5,6 @@ server, exception handler, validate and call API with webclient
 
 This README provides quickstart instructions on running [`reactify`]() on bare metal project spring boot.
 
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=hoangtien2k3_reactify)](https://sonarcloud.io/summary/new_code?id=hoangtien2k3_reactify)
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=hoangtien2k3_reactify)
 
 [![CircleCI](https://circleci.com/gh/hoangtien2k3/reactify.svg?style=svg)](https://app.circleci.com/pipelines/github/hoangtien2k3/reactify)
