@@ -92,7 +92,7 @@ If you would like to contribute to the development of this project, please follo
 
 ## Contributors ✨
 
-<a href="https://github.com/hoangtien2k3/fw-commons/graphs/contributors">
+<a href="https://github.com/hoangtien2k3/reactify/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=hoangtien2k3/reactify" />
 </a>
 
