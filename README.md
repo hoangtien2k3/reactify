@@ -18,7 +18,7 @@ This README provides quickstart instructions on running [`reactify`]() on bare m
 [![CircleCI](https://circleci.com/gh/hoangtien2k3/reactify.svg?style=svg)](https://app.circleci.com/pipelines/github/hoangtien2k3/reactify)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=hoangtien2k3_reactify&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=hoangtien2k3_reactify)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=hoangtien2k3_reactify&metric=ncloc)](https://sonarcloud.io/summary/overall?id=hoangtien2k3_reactify)
-![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/reactify?label=latest%20release)
+[![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/reactify?label=latest%20release)](https://mvnrepository.com/artifact/io.github.hoangtien2k3/reactify)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9383/badge)](https://www.bestpractices.dev/projects/9383)
 [![Build status](https://github.com/ponfee/commons-core/workflows/build-with-maven/badge.svg)](https://github.com/hoangtien2k3/reactify/actions)
@@ -26,7 +26,7 @@ This README provides quickstart instructions on running [`reactify`]() on bare m
 ## Download
 Gradle is the only supported build configuration, so just add the dependency to your project build.gradle file:
 
-⬇️ [Download From Gradle and Maven Central](https://central.sonatype.com/namespace/io.github.hoangtien2k3)
+⬇️ Download Gradle and Maven
 
 ```kotlin
 dependencies {
@@ -42,7 +42,7 @@ dependencies {
 </dependency>
 ```
 
-The latest `reactify` version is: ![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/fw-commons?label=latest%20release)
+The latest `reactify` version is: [![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/reactify?label=latest)](https://mvnrepository.com/artifact/io.github.hoangtien2k3/reactify)
 
 The latest stable lib `reactify` version is: latestVersion Click [here](https://central.sonatype.com/namespace/io.github.hoangtien2k3) for more information on reactify.
 
