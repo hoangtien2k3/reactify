@@ -35,18 +35,16 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a
-     *            {@link org.springframework.web.reactive.function.client.WebClient}
-     *            object
+     *            a {@link WebClient} object
      * @param url
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param headerList
-     *            a {@link org.springframework.util.MultiValueMap} object
+     *            a {@link MultiValueMap} object
      * @param payload
-     *            a {@link org.springframework.util.MultiValueMap} object
+     *            a {@link MultiValueMap} object
      * @param resultClass
-     *            a {@link java.lang.Class} object
-     * @return a {@link reactor.core.publisher.Mono} object
+     *            a {@link Class} object
+     * @return a {@link Mono} object
      */
     Mono<Optional<T>> get(
             WebClient webClient,
@@ -61,16 +59,14 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a
-     *            {@link org.springframework.web.reactive.function.client.WebClient}
-     *            object
+     *            a {@link WebClient} object
      * @param url
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param headerMap
-     *            a {@link org.springframework.util.MultiValueMap} object
+     *            a {@link MultiValueMap} object
      * @param payload
-     *            a {@link org.springframework.util.MultiValueMap} object
-     * @return a {@link reactor.core.publisher.Mono} object
+     *            a {@link MultiValueMap} object
+     * @return a {@link Mono} object
      */
     Mono<String> getRaw(
             WebClient webClient,
@@ -84,18 +80,16 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a
-     *            {@link org.springframework.web.reactive.function.client.WebClient}
-     *            object
+     *            a {@link WebClient} object
      * @param url
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param headerList
-     *            a {@link org.springframework.util.MultiValueMap} object
+     *            a {@link MultiValueMap} object
      * @param payload
-     *            a {@link java.lang.Object} object
+     *            a {@link Object} object
      * @param resultClass
-     *            a {@link java.lang.Class} object
-     * @return a {@link reactor.core.publisher.Mono} object
+     *            a {@link Class} object
+     * @return a {@link Mono} object
      */
     Mono<Optional<T>> post(
             WebClient webClient,
@@ -110,18 +104,16 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a
-     *            {@link org.springframework.web.reactive.function.client.WebClient}
-     *            object
+     *            a {@link WebClient} object
      * @param url
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param headerList
-     *            a {@link org.springframework.util.MultiValueMap} object
+     *            a {@link MultiValueMap} object
      * @param formData
-     *            a {@link org.springframework.util.MultiValueMap} object
+     *            a {@link MultiValueMap} object
      * @param resultClass
-     *            a {@link java.lang.Class} object
-     * @return a {@link reactor.core.publisher.Mono} object
+     *            a {@link Class} object
+     * @return a {@link Mono} object
      */
     Mono<Optional<T>> postFormData(
             WebClient webClient,
@@ -136,18 +128,16 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a
-     *            {@link org.springframework.web.reactive.function.client.WebClient}
-     *            object
+     *            a {@link WebClient} object
      * @param url
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param headerList
-     *            a {@link org.springframework.util.MultiValueMap} object
+     *            a {@link MultiValueMap} object
      * @param payload
-     *            a {@link org.springframework.util.MultiValueMap} object
+     *            a {@link MultiValueMap} object
      * @param resultClass
-     *            a {@link java.lang.Class} object
-     * @return a {@link reactor.core.publisher.Mono} object
+     *            a {@link Class} object
+     * @return a {@link Mono} object
      */
     Mono<Optional<T>> delete(
             WebClient webClient,
@@ -162,10 +152,10 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param response
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param resultClass
-     *            a {@link java.lang.Class} object
-     * @return a {@link java.util.Optional} object
+     *            a {@link Class} object
+     * @return a {@link Optional} object
      */
     Optional<T> processReturn(String response, Class<?> resultClass);
 
@@ -175,18 +165,16 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a
-     *            {@link org.springframework.web.reactive.function.client.WebClient}
-     *            object
+     *            a {@link WebClient} object
      * @param url
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param headerList
-     *            a {@link org.springframework.util.MultiValueMap} object
+     *            a {@link MultiValueMap} object
      * @param payload
-     *            a {@link java.lang.Object} object
+     *            a {@link Object} object
      * @param resultClass
-     *            a {@link java.lang.Class} object
-     * @return a {@link reactor.core.publisher.Mono} object
+     *            a {@link Class} object
+     * @return a {@link Mono} object
      */
     Mono<String> callApiCertificateFileService(
             WebClient webClient,
@@ -201,18 +189,16 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a
-     *            {@link org.springframework.web.reactive.function.client.WebClient}
-     *            object
+     *            a {@link WebClient} object
      * @param url
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param headerList
-     *            a {@link org.springframework.util.MultiValueMap} object
+     *            a {@link MultiValueMap} object
      * @param payload
-     *            a {@link java.lang.Object} object
+     *            a {@link Object} object
      * @param resultClass
-     *            a {@link java.lang.Class} object
-     * @return a {@link reactor.core.publisher.Mono} object
+     *            a {@link Class} object
+     * @return a {@link Mono} object
      */
     Mono<Optional<T>> callPostBodyJson(
             WebClient webClient,
@@ -227,13 +213,12 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param proxyHost
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param proxyPort
-     *            a {@link java.lang.Integer} object
+     *            a {@link Integer} object
      * @param proxyEnable
-     *            a {@link java.lang.Boolean} object
-     * @return a {@link org.springframework.web.reactive.function.client.WebClient}
-     *         object
+     *            a {@link Boolean} object
+     * @return a {@link WebClient} object
      */
     WebClient proxyClient(String proxyHost, Integer proxyPort, Boolean proxyEnable);
 
@@ -243,11 +228,10 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param proxyHost
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param proxyPort
-     *            a {@link java.lang.Integer} object
-     * @return a {@link org.springframework.web.reactive.function.client.WebClient}
-     *         object
+     *            a {@link Integer} object
+     * @return a {@link WebClient} object
      */
     WebClient proxyHttpClient(String proxyHost, Integer proxyPort);
 
@@ -257,18 +241,16 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a
-     *            {@link org.springframework.web.reactive.function.client.WebClient}
-     *            object
+     *            a {@link WebClient} object
      * @param url
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param headerList
-     *            a {@link org.springframework.util.MultiValueMap} object
+     *            a {@link MultiValueMap} object
      * @param payload
-     *            a {@link java.lang.Object} object
+     *            a {@link Object} object
      * @param resultClass
-     *            a {@link java.lang.Class} object
-     * @return a {@link reactor.core.publisher.Mono} object
+     *            a {@link Class} object
+     * @return a {@link Mono} object
      */
     Mono<Optional<T>> callPostBodyJsonForLocalDateTime(
             WebClient webClient,
@@ -283,16 +265,14 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a
-     *            {@link org.springframework.web.reactive.function.client.WebClient}
-     *            object
+     *            a {@link WebClient} object
      * @param url
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param headerList
-     *            a {@link org.springframework.util.MultiValueMap} object
+     *            a {@link MultiValueMap} object
      * @param payload
-     *            a {@link java.lang.Object} object
-     * @return a {@link reactor.core.publisher.Mono} object
+     *            a {@link Object} object
+     * @return a {@link Mono} object
      */
     Mono<String> postRawBodyJson(
             WebClient webClient, String url, MultiValueMap<String, String> headerList, Object payload);
@@ -303,14 +283,12 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a
-     *            {@link org.springframework.web.reactive.function.client.WebClient}
-     *            object
+     *            a {@link WebClient} object
      * @param uri
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param headerMap
-     *            a {@link org.springframework.util.MultiValueMap} object
-     * @return a {@link reactor.core.publisher.Mono} object
+     *            a {@link MultiValueMap} object
+     * @return a {@link Mono} object
      */
     Mono<String> getRawWithFixedUri(WebClient webClient, String uri, MultiValueMap<String, String> headerMap);
 }

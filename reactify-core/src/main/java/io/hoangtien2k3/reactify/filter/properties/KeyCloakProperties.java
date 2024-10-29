@@ -15,10 +15,6 @@
  */
 package io.hoangtien2k3.reactify.filter.properties;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 /**
  * <p>
  * KeyCloakProperties class.
@@ -26,10 +22,4 @@ import lombok.NoArgsConstructor;
  *
  * @author hoangtien2k3
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class KeyCloakProperties {
-    private String clientId;
-    private String clientSecret;
-}
+public record KeyCloakProperties(String clientId, String clientSecret) {}

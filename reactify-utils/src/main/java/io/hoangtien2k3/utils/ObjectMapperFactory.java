@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.hoangtien2k3.reactify.factory;
+package io.hoangtien2k3.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
@@ -25,24 +25,22 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.IOException;
 
-/**
- * <p>
- * ObjectMapperFactory class.
- * </p>
- *
- * @author hoangtien2k3
- */
 public class ObjectMapperFactory {
     private static ObjectMapper objectMapper;
     private static final ObjectMapper objectMapperV2 = new ObjectMapper();
     private static final ObjectMapper defaultGetInstance = new ObjectMapper();
 
     /**
+     * Provides a singleton {@link com.fasterxml.jackson.databind.ObjectMapper}
+     * instance with custom configurations.
      * <p>
-     * getInstance.
+     * Configures the instance to ignore unknown properties, accept single values as
+     * arrays, unwrap single value arrays, and register custom deserializers.
      * </p>
      *
-     * @return a {@link ObjectMapper} object
+     * @return A singleton instance of
+     *         {@link com.fasterxml.jackson.databind.ObjectMapper} with custom
+     *         settings.
      */
     public static ObjectMapper getInstance() {
         if (objectMapper == null) {
@@ -60,11 +58,15 @@ public class ObjectMapperFactory {
     }
 
     /**
+     * Provides a second {@link com.fasterxml.jackson.databind.ObjectMapper}
+     * instance with alternative configurations.
      * <p>
-     * getInstance2.
+     * Configures the instance to ignore unknown properties and accept single values
+     * as arrays.
      * </p>
      *
-     * @return a {@link ObjectMapper} object
+     * @return A new instance of {@link com.fasterxml.jackson.databind.ObjectMapper}
+     *         with alternative settings.
      */
     public static ObjectMapper getInstance2() {
         objectMapperV2.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -73,11 +75,15 @@ public class ObjectMapperFactory {
     }
 
     /**
+     * Provides a default {@link com.fasterxml.jackson.databind.ObjectMapper}
+     * instance with standard configurations.
      * <p>
-     * defaultGetInstance.
+     * Configures the instance to ignore unknown properties, accept single values as
+     * arrays, include non-null values only, and register all available modules.
      * </p>
      *
-     * @return a {@link ObjectMapper} object
+     * @return A new instance of {@link com.fasterxml.jackson.databind.ObjectMapper}
+     *         with standard settings.
      */
     public static ObjectMapper defaultGetInstance() {
         defaultGetInstance.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -87,6 +93,9 @@ public class ObjectMapperFactory {
         return defaultGetInstance;
     }
 
+    /**
+     * Custom deserializer for handling numeric and boolean values.
+     */
     private static class NumericBooleanDeserializer extends JsonDeserializer<Boolean> {
         @Override
         public Boolean deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {

@@ -16,9 +16,6 @@
 package io.hoangtien2k3.reactify.model;
 
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * <p>
@@ -27,10 +24,4 @@ import lombok.NoArgsConstructor;
  *
  * @author hoangtien2k3
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class WhiteList {
-    private String uri;
-    private List<String> methods;
-}
+public record WhiteList(String uri, List<String> methods) {}

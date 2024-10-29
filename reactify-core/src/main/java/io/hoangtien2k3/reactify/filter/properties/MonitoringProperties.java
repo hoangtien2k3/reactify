@@ -17,9 +17,6 @@ package io.hoangtien2k3.reactify.filter.properties;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.logging.LoggingMeterRegistry;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * <p>
@@ -28,10 +25,8 @@ import lombok.NoArgsConstructor;
  *
  * @author hoangtien2k3
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class MonitoringProperties {
-    private boolean isEnable = true;
-    private MeterRegistry meterRegistry = new LoggingMeterRegistry();
+public record MonitoringProperties(boolean isEnable, MeterRegistry meterRegistry) {
+    public MonitoringProperties() {
+        this(true, new LoggingMeterRegistry());
+    }
 }

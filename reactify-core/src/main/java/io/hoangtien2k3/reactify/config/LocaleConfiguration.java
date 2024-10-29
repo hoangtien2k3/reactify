@@ -36,8 +36,7 @@ public class LocaleConfiguration {
      * localeContextResolver.
      * </p>
      *
-     * @return a {@link org.springframework.web.server.i18n.LocaleContextResolver}
-     *         object
+     * @return a {@link LocaleContextResolver} object
      */
     @Bean("localeContextResolver2")
     public LocaleContextResolver localeContextResolver() {
@@ -51,9 +50,7 @@ public class LocaleConfiguration {
      * messageSource.
      * </p>
      *
-     * @return a
-     *         {@link org.springframework.context.support.ReloadableResourceBundleMessageSource}
-     *         object
+     * @return a {@link ReloadableResourceBundleMessageSource} object
      */
     @Bean
     public ReloadableResourceBundleMessageSource messageSource() {

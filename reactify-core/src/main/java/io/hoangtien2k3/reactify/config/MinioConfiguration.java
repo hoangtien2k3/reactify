@@ -41,7 +41,7 @@ public class MinioConfiguration {
      * minioClient.
      * </p>
      *
-     * @return a {@link io.minio.MinioClient} object
+     * @return a {@link MinioClient} object
      */
     @Bean
     @ConditionalOnProperty(value = "minio.enabled", havingValue = "true", matchIfMissing = false)

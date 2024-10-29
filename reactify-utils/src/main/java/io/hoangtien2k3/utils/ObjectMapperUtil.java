@@ -19,24 +19,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import io.hoangtien2k3.utils.constants.CommonErrorCode;
-import io.hoangtien2k3.utils.exception.UnRetryableException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-/**
- * Utility class for handling JSON serialization and deserialization using
- * Jackson. Provides methods to convert objects to JSON strings and vice versa.
- * Also supports conversion of lists and byte arrays to objects.
- *
- * @since 20/07/2024
- * @author hoangtien2k3
- */
-@Slf4j
 @Component
 public class ObjectMapperUtil {
     private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -62,7 +50,6 @@ public class ObjectMapperUtil {
         try {
             return objectMapper.writeValueAsString(object);
         } catch (JsonProcessingException ex) {
-            log.error("Convert to Object error ", ex);
             return null;
         }
     }
@@ -86,7 +73,6 @@ public class ObjectMapperUtil {
         try {
             return objectMapper.readValue(objectString, valueType);
         } catch (Exception ex) {
-            log.error("Convert to Object error ", ex);
             return null;
         }
     }
@@ -130,7 +116,7 @@ public class ObjectMapperUtil {
         try {
             return objectMapper.readValue(byteArray, valueType);
         } catch (Exception ex) {
-            throw new UnRetryableException(CommonErrorCode.UN_DESERIALIZE, ex.getMessage());
+            return null;
         }
     }
 
@@ -153,7 +139,7 @@ public class ObjectMapperUtil {
             }
             return results;
         } catch (Exception ex) {
-            throw new UnRetryableException(CommonErrorCode.UN_DESERIALIZE, ex.getMessage());
+            return null;
         }
     }
 
@@ -172,7 +158,7 @@ public class ObjectMapperUtil {
         try {
             return objectMapper.convertValue(input, valueType);
         } catch (Exception ex) {
-            throw new UnRetryableException(CommonErrorCode.UN_DESERIALIZE, ex.getMessage());
+            return null;
         }
     }
 

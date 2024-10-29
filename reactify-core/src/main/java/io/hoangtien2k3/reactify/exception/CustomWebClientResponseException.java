@@ -41,9 +41,9 @@ public class CustomWebClientResponseException extends WebClientResponseException
      * </p>
      *
      * @param errorBody
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param statusCode
-     *            a {@link org.springframework.http.HttpStatus} object
+     *            a {@link HttpStatus} object
      */
     public CustomWebClientResponseException(String errorBody, HttpStatus statusCode) {
         super(statusCode.value(), statusCode.getReasonPhrase(), null, errorBody.getBytes(), null);

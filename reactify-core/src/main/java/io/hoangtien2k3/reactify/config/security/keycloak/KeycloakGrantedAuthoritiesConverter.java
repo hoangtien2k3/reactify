@@ -25,6 +25,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -52,7 +53,7 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
 
     /** {@inheritDoc} */
     @Override
-    public Collection<GrantedAuthority> convert(Jwt jwt) {
+    public Collection<GrantedAuthority> convert(@NotNull Jwt jwt) {
         var realmRoles = realmRoles(jwt);
         var clientRoles = clientRoles(jwt, clientId);
 
@@ -74,8 +75,8 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
      * </p>
      *
      * @param jwt
-     *            a {@link org.springframework.security.oauth2.jwt.Jwt} object
-     * @return a {@link java.util.List} object
+     *            a {@link Jwt} object
+     * @return a {@link List} object
      */
     @SuppressWarnings("unchecked")
     protected List<String> realmRoles(Jwt jwt) {
@@ -90,10 +91,10 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
      * </p>
      *
      * @param jwt
-     *            a {@link org.springframework.security.oauth2.jwt.Jwt} object
+     *            a {@link Jwt} object
      * @param clientId
-     *            a {@link java.lang.String} object
-     * @return a {@link java.util.List} object
+     *            a {@link String} object
+     * @return a {@link List} object
      */
     @SuppressWarnings("unchecked")
     protected List<String> clientRoles(Jwt jwt, String clientId) {

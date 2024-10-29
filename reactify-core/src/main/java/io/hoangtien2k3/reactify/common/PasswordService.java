@@ -27,6 +27,7 @@ import java.util.Base64;
  * @author hoangtien2k3
  */
 public class PasswordService {
+
     private static PasswordService instance;
 
     private PasswordService() {}
@@ -37,9 +38,9 @@ public class PasswordService {
      * </p>
      *
      * @param plaintext
-     *            a {@link java.lang.String} object
-     * @return a {@link java.lang.String} object
-     * @throws java.lang.Exception
+     *            a {@link String} object
+     * @return a {@link String} object
+     * @throws Exception
      *             if any.
      */
     public synchronized String encrypt(String plaintext) throws Exception {
@@ -55,7 +56,7 @@ public class PasswordService {
      * Getter for the field <code>instance</code>.
      * </p>
      *
-     * @return a {@link io.hoangtien2k3.reactify.common.PasswordService} object
+     * @return a {@link PasswordService} object
      */
     public static synchronized PasswordService getInstance() {
         if (instance == null) {

@@ -49,8 +49,7 @@ public class LoggerQueue {
      * getInstance.
      * </p>
      *
-     * @return a {@link io.hoangtien2k3.reactify.annotations.logging.LoggerQueue}
-     *         object
+     * @return a {@link LoggerQueue} object
      */
     public static LoggerQueue getInstance() {
         if (mMe == null) {
@@ -77,7 +76,7 @@ public class LoggerQueue {
      * getQueue.
      * </p>
      *
-     * @return a {@link io.hoangtien2k3.reactify.model.logging.LoggerDTO} object
+     * @return a {@link LoggerDTO} object
      */
     public LoggerDTO getQueue() {
         return myQueue.poll();
@@ -89,7 +88,7 @@ public class LoggerQueue {
      * </p>
      *
      * @param task
-     *            a {@link io.hoangtien2k3.reactify.model.logging.LoggerDTO} object
+     *            a {@link LoggerDTO} object
      * @return a boolean
      */
     public boolean addQueue(LoggerDTO task) {
@@ -107,27 +106,27 @@ public class LoggerQueue {
      * </p>
      *
      * @param contextRef
-     *            a {@link java.util.concurrent.atomic.AtomicReference} object
+     *            a {@link AtomicReference} object
      * @param newSpan
-     *            a {@link brave.Span} object
+     *            a {@link Span} object
      * @param service
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param startTime
-     *            a {@link java.lang.Long} object
+     *            a {@link Long} object
      * @param endTime
-     *            a {@link java.lang.Long} object
+     *            a {@link Long} object
      * @param result
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param obj
-     *            a {@link java.lang.Object} object
+     *            a {@link Object} object
      * @param logType
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param actionType
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param args
-     *            an array of {@link java.lang.Object} objects
+     *            an array of {@link Object} objects
      * @param title
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @return a boolean
      */
     public boolean addQueue(
@@ -159,7 +158,7 @@ public class LoggerQueue {
      * getRecords.
      * </p>
      *
-     * @return a {@link java.util.List} object
+     * @return a {@link List} object
      */
     public List<LoggerDTO> getRecords() {
         List<LoggerDTO> records = new ArrayList<>();

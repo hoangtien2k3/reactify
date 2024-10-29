@@ -34,7 +34,7 @@ public class StreamUtil {
      * </p>
      *
      * @param inStream
-     *            a {@link java.io.InputStream} object
+     *            a {@link InputStream} object
      * @return an array of {@link byte} objects
      */
     public static byte[] streamToByteArray(InputStream inStream) {

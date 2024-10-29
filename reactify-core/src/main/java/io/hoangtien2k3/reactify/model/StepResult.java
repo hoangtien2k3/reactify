@@ -39,7 +39,7 @@ public class StepResult {
      * success.
      * </p>
      *
-     * @return a {@link io.hoangtien2k3.reactify.model.StepResult} object
+     * @return a {@link StepResult} object
      */
     public static StepResult success() {
         return new StepResult(true, null);
@@ -51,8 +51,8 @@ public class StepResult {
      * </p>
      *
      * @param message
-     *            a {@link java.lang.String} object
-     * @return a {@link io.hoangtien2k3.reactify.model.StepResult} object
+     *            a {@link String} object
+     * @return a {@link StepResult} object
      */
     public static StepResult failure(String message) {
         return new StepResult(false, message);

@@ -36,10 +36,10 @@ public class TruncateUtils {
      * </p>
      *
      * @param s
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param maxByte
      *            a int
-     * @return a {@link java.lang.String} object
+     * @return a {@link String} object
      */
     public static String truncate(String s, int maxByte) {
         try {
@@ -63,10 +63,10 @@ public class TruncateUtils {
      * </p>
      *
      * @param s
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param maxByte
      *            a int
-     * @return a {@link java.lang.String} object
+     * @return a {@link String} object
      */
     public static String truncateBody(String s, int maxByte) {
         int b = 0;
@@ -105,8 +105,8 @@ public class TruncateUtils {
      * </p>
      *
      * @param responseBody
-     *            a {@link java.lang.Object} object
-     * @return a {@link java.lang.String} object
+     *            a {@link Object} object
+     * @return a {@link String} object
      */
     public static String truncateBody(Object responseBody) {
         ObjectMapper objectMapper = new ObjectMapper();

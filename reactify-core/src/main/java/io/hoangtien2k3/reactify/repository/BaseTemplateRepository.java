@@ -40,7 +40,7 @@ public class BaseTemplateRepository {
     @Autowired
     private R2dbcEntityTemplate entityTemplate;
 
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
     /**
      * <p>
@@ -61,14 +61,14 @@ public class BaseTemplateRepository {
      * </p>
      *
      * @param sql
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param params
-     *            a {@link java.util.Map} object
+     *            a {@link Map} object
      * @param type
-     *            a {@link java.lang.Class} object
+     *            a {@link Class} object
      * @param <T>
      *            a T class
-     * @return a {@link reactor.core.publisher.Flux} object
+     * @return a {@link Flux} object
      */
     protected <T> Flux<T> listQuery(String sql, Map<String, Object> params, Class<T> type) {
         DatabaseClient.GenericExecuteSpec spec =
@@ -87,10 +87,10 @@ public class BaseTemplateRepository {
      * </p>
      *
      * @param sql
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param params
-     *            a {@link java.util.Map} object
-     * @return a {@link reactor.core.publisher.Mono} object
+     *            a {@link Map} object
+     * @return a {@link Mono} object
      */
     protected Mono<Long> countQuery(String sql, Map<String, Object> params) {
         String query = "select count(*) as common_count_col from (" + sql + ") as common_count_alias";
@@ -113,9 +113,9 @@ public class BaseTemplateRepository {
      * </p>
      *
      * @param raw
-     *            a {@link java.util.Map} object
+     *            a {@link Map} object
      * @param type
-     *            a {@link java.lang.Class} object
+     *            a {@link Class} object
      * @param <T>
      *            a T class
      * @return a T object

@@ -42,7 +42,7 @@ public class CipherManager {
      * Constructor for CipherManager.
      * </p>
      *
-     * @throws java.lang.Exception
+     * @throws Exception
      *             if any.
      */
     public CipherManager() throws Exception {
@@ -50,17 +50,16 @@ public class CipherManager {
         this.rsaCipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding", "BC");
     }
 
-    // ma hoa password custom
     /**
      * <p>
      * encrypt.
      * </p>
      *
      * @param message
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param publicKeyString
-     *            a {@link java.lang.String} object
-     * @return a {@link java.lang.String} object
+     *            a {@link String} object
+     * @return a {@link String} object
      */
     public String encrypt(String message, String publicKeyString) {
         try {

@@ -76,7 +76,7 @@ public final class Constants {
      * getSensitiveHeaders.
      * </p>
      *
-     * @return a {@link java.util.List} object
+     * @return a {@link List} object
      */
     public static List<String> getSensitiveHeaders() {
         return SENSITIVE_HEADERS;

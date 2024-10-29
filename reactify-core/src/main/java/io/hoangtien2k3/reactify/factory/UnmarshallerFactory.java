@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UnmarshallerFactory {
 
-    private static Map<Class, Unmarshaller> instance = new HashMap<>();
+    private static final Map<Class<?>, Unmarshaller> instance = new HashMap<>();
 
     /**
      * <p>
@@ -40,10 +40,10 @@ public class UnmarshallerFactory {
      * </p>
      *
      * @param clz
-     *            a {@link java.lang.Class} object
-     * @return a {@link javax.xml.bind.Unmarshaller} object
+     *            a {@link Class} object
+     * @return a {@link Unmarshaller} object
      */
-    public static Unmarshaller getInstance(Class clz) {
+    public static Unmarshaller getInstance(Class<?> clz) {
         Unmarshaller obj = instance.get(clz);
         if (obj != null) return obj;
 

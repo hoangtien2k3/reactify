@@ -49,8 +49,7 @@ public final class ReactiveKeycloakJwtAuthenticationConverter
      * </p>
      *
      * @param jwtGrantedAuthoritiesConverter
-     *            a {@link org.springframework.core.convert.converter.Converter}
-     *            object
+     *            a {@link Converter} object
      */
     public ReactiveKeycloakJwtAuthenticationConverter(
             Converter<Jwt, Collection<GrantedAuthority>> jwtGrantedAuthoritiesConverter) {
@@ -62,11 +61,9 @@ public final class ReactiveKeycloakJwtAuthenticationConverter
     /** {@inheritDoc} */
     @Override
     public Mono<AbstractAuthenticationToken> convert(@NotNull Jwt jwt) {
-        // @formatter:off
         return Objects.requireNonNull(this.jwtGrantedAuthoritiesConverter.convert(jwt))
                 .collectList()
                 .map((authorities) -> new JwtAuthenticationToken(jwt, authorities, extractUsername(jwt)));
-        // @formatter:on
     }
 
     /**
@@ -75,10 +72,10 @@ public final class ReactiveKeycloakJwtAuthenticationConverter
      * </p>
      *
      * @param jwt
-     *            a {@link org.springframework.security.oauth2.jwt.Jwt} object
-     * @return a {@link java.lang.String} object
+     *            a {@link Jwt} object
+     * @return a {@link String} object
      */
-    protected String extractUsername(Jwt jwt) {
+    private String extractUsername(Jwt jwt) {
         Map<String, Object> claims = jwt.getClaims();
         if (claims.containsKey(USERNAME_CLAIM)) {
             return (String) claims.get(USERNAME_CLAIM);

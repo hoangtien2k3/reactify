@@ -15,20 +15,15 @@
  */
 package io.hoangtien2k3.reactify.model.logging;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 /**
- * <p>
- * HttpLogResponse class.
- * </p>
+ * Record representing the configuration for HTTP log responses.
  *
- * @author hoangtien2k3
+ * @param enable
+ *            a flag to enable or disable HTTP response logging; defaults to
+ *            true.
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class HttpLogResponse {
-    private boolean enable = true;
+public record HttpLogResponse(boolean enable) {
+    public HttpLogResponse() {
+        this(true);
+    }
 }

@@ -32,16 +32,10 @@ public class ReactiveOAuth2Utils {
      * </p>
      *
      * @param clientRegistrationRepository
-     *            a
-     *            {@link org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository}
-     *            object
+     *            a {@link ReactiveClientRegistrationRepository} object
      * @param authorizedClientService
-     *            a
-     *            {@link org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientService}
-     *            object
-     * @return a
-     *         {@link org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientManager}
-     *         object
+     *            a {@link ReactiveOAuth2AuthorizedClientService} object
+     * @return a {@link ReactiveOAuth2AuthorizedClientManager} object
      */
     public static ReactiveOAuth2AuthorizedClientManager createAuthorizedClientManager(
             ReactiveClientRegistrationRepository clientRegistrationRepository,

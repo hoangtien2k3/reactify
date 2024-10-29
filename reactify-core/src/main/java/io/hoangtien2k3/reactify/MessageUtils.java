@@ -39,10 +39,10 @@ public class MessageUtils {
      * </p>
      *
      * @param code
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param locale
-     *            a {@link java.util.Locale} object
-     * @return a {@link java.lang.String} object
+     *            a {@link Locale} object
+     * @return a {@link String} object
      */
     public static String getMessage(String code, Locale locale) {
         return getMessage(code, locale, null);
@@ -54,12 +54,12 @@ public class MessageUtils {
      * </p>
      *
      * @param code
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param locale
-     *            a {@link java.util.Locale} object
+     *            a {@link Locale} object
      * @param args
-     *            a {@link java.lang.Object} object
-     * @return a {@link java.lang.String} object
+     *            a {@link Object} object
+     * @return a {@link String} object
      */
     public static String getMessage(String code, Locale locale, Object... args) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle(BASE_NAME, locale);
@@ -81,8 +81,8 @@ public class MessageUtils {
      * </p>
      *
      * @param code
-     *            a {@link java.lang.String} object
-     * @return a {@link java.lang.String} object
+     *            a {@link String} object
+     * @return a {@link String} object
      */
     public static String getMessage(String code) {
         return getMessage(code, LocaleContextHolder.getLocale(), null);
@@ -94,10 +94,10 @@ public class MessageUtils {
      * </p>
      *
      * @param code
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param args
-     *            a {@link java.lang.Object} object
-     * @return a {@link java.lang.String} object
+     *            a {@link Object} object
+     * @return a {@link String} object
      */
     public static String getMessage(String code, Object... args) {
         return getMessage(code, LocaleContextHolder.getLocale(), args);

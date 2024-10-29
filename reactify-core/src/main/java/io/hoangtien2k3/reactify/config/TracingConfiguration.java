@@ -36,8 +36,8 @@ public class TracingConfiguration {
      * </p>
      *
      * @param tracing
-     *            a {@link brave.Tracing} object
-     * @return a {@link io.micrometer.tracing.Tracer} object
+     *            a {@link Tracing} object
+     * @return a {@link Tracer} object
      */
     @Bean
     public Tracer tracer(Tracing tracing) {
@@ -49,7 +49,7 @@ public class TracingConfiguration {
      * tracing.
      * </p>
      *
-     * @return a {@link brave.Tracing} object
+     * @return a {@link Tracing} object
      */
     @Bean
     public Tracing tracing() {

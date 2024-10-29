@@ -56,9 +56,9 @@ public class LoggerAspect {
      * </p>
      *
      * @param joinPoint
-     *            a {@link org.aspectj.lang.ProceedingJoinPoint} object
-     * @return a {@link java.lang.Object} object
-     * @throws java.lang.Throwable
+     *            a {@link ProceedingJoinPoint} object
+     * @return a {@link Object} object
+     * @throws Throwable
      *             if any.
      */
     @Around("performancePointCut() || logPerfMethods()")

@@ -50,9 +50,9 @@ public class CachedBodyOutputMessage implements ReactiveHttpOutputMessage {
      * </p>
      *
      * @param exchange
-     *            a {@link org.springframework.web.server.ServerWebExchange} object
+     *            a {@link ServerWebExchange} object
      * @param httpHeaders
-     *            a {@link org.springframework.http.HttpHeaders} object
+     *            a {@link HttpHeaders} object
      */
     public CachedBodyOutputMessage(ServerWebExchange exchange, HttpHeaders httpHeaders) {
         this.bufferFactory = exchange.getResponse().bufferFactory();

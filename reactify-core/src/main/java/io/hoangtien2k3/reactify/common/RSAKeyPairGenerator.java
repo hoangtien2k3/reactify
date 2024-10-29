@@ -36,7 +36,7 @@ public class RSAKeyPairGenerator {
      * Constructor for RSAKeyPairGenerator.
      * </p>
      *
-     * @throws java.security.NoSuchAlgorithmException
+     * @throws NoSuchAlgorithmException
      *             if any.
      */
     public RSAKeyPairGenerator() throws NoSuchAlgorithmException {
@@ -55,8 +55,8 @@ public class RSAKeyPairGenerator {
      * </p>
      *
      * @param args
-     *            an array of {@link java.lang.String} objects
-     * @throws java.security.NoSuchAlgorithmException
+     *            an array of {@link String} objects
+     * @throws NoSuchAlgorithmException
      *             if any.
      */
     public static void main(String[] args) throws NoSuchAlgorithmException {

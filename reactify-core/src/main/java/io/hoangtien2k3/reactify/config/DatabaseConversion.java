@@ -47,9 +47,7 @@ public class DatabaseConversion {
      * getR2dbcConverter.
      * </p>
      *
-     * @return a
-     *         {@link org.springframework.data.r2dbc.convert.MappingR2dbcConverter}
-     *         object
+     * @return a {@link MappingR2dbcConverter} object
      */
     public MappingR2dbcConverter getR2dbcConverter() {
         R2dbcMappingContext mappingContext = getR2dbcMappingContext();
@@ -74,7 +72,7 @@ public class DatabaseConversion {
      * getListConverters.
      * </p>
      *
-     * @return a {@link java.util.List} object
+     * @return a {@link List} object
      */
     public List<Object> getListConverters() {
         List<Object> converters = new ArrayList<>();
@@ -108,12 +106,10 @@ public class DatabaseConversion {
         @Override
         public String convert(Blob source) {
             try {
-                return source == null
-                        ? null
-                        : Mono.from(source.stream())
-                                .map(bb -> StandardCharsets.UTF_8.decode(bb).toString())
-                                .toFuture()
-                                .get();
+                return Mono.from(source.stream())
+                        .map(bb -> StandardCharsets.UTF_8.decode(bb).toString())
+                        .toFuture()
+                        .get();
             } catch (Exception e) {
                 log.error("Exception when read blob value", e);
                 return null;

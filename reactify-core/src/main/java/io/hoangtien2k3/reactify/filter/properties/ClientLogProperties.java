@@ -17,9 +17,6 @@ package io.hoangtien2k3.reactify.filter.properties;
 
 import io.hoangtien2k3.reactify.constants.Constants;
 import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * <p>
@@ -28,10 +25,8 @@ import lombok.NoArgsConstructor;
  *
  * @author hoangtien2k3
  */
-@AllArgsConstructor
-@Data
-@NoArgsConstructor
-public class ClientLogProperties {
-    private boolean enable = true;
-    private List<String> obfuscateHeaders = Constants.getSensitiveHeaders();
+public record ClientLogProperties(boolean enable, List<String> obfuscateHeaders) {
+    public ClientLogProperties() {
+        this(true, Constants.getSensitiveHeaders());
+    }
 }

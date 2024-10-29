@@ -15,33 +15,47 @@
  */
 package io.hoangtien2k3.reactify.model.logging;
 
-import lombok.*;
-
 /**
- * <p>
- * LogField class.
- * </p>
+ * Record representing log fields for tracking service requests and responses.
  *
- * @author hoangtien2k3
+ * @param traceId
+ *            a unique identifier for tracing the request across services.
+ * @param requestId
+ *            a unique identifier for the request within the service.
+ * @param service
+ *            the name of the service handling the request.
+ * @param duration
+ *            the time taken to process the request in milliseconds.
+ * @param logType
+ *            the type of log (e.g., INFO, ERROR).
+ * @param actionType
+ *            the type of action performed (e.g., CREATE, UPDATE, DELETE).
+ * @param startTime
+ *            the timestamp when the request started processing.
+ * @param endTime
+ *            the timestamp when the request finished processing.
+ * @param clientAddress
+ *            the address of the client making the request.
+ * @param title
+ *            a brief title or description of the log entry.
+ * @param inputs
+ *            the inputs or parameters received in the request.
+ * @param response
+ *            the response returned by the service.
+ * @param result
+ *            the outcome of the request processing (e.g., SUCCESS, FAILURE).
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@Builder
-public class LogField {
-    private String traceId;
-    private String requestId;
-    private String service;
-    private Long duration;
-    private String logType;
-    private String actionType;
-    private Long startTime;
-    private Long endTime;
-    private String clientAddress;
-    private String title;
-    private String inputs;
-    private String response;
-    private String result;
-}
+public record LogField(
+        String traceId,
+        String requestId,
+        String service,
+        Long duration,
+        String logType,
+        String actionType,
+        Long startTime,
+        Long endTime,
+        String clientAddress,
+        String title,
+        String inputs,
+        String response,
+        String result) {}

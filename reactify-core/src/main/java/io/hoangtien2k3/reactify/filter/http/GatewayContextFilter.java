@@ -72,15 +72,15 @@ public class GatewayContextFilter implements WebFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
-        boolean enableRequest = httpLogProperties.getRequest().isEnable();
-        boolean enableResponse = httpLogProperties.getResponse().isEnable();
+        boolean enableRequest = httpLogProperties.getRequest().enable();
+        boolean enableResponse = httpLogProperties.getResponse().enable();
         if (Constants.EXCLUDE_LOGGING_ENDPOINTS.contains(request.getPath().toString())
                 || (!enableRequest && !enableResponse)) {
             return chain.filter(exchange);
         }
         GatewayContext gatewayContext = new GatewayContext();
-        gatewayContext.setReadRequestData(httpLogProperties.getRequest().isEnable());
-        gatewayContext.setReadResponseData(httpLogProperties.getResponse().isEnable());
+        gatewayContext.setReadRequestData(httpLogProperties.getRequest().enable());
+        gatewayContext.setReadResponseData(httpLogProperties.getResponse().enable());
         HttpHeaders headers = request.getHeaders();
         gatewayContext.setRequestHeaders(headers);
         gatewayContext.setStartTime(System.currentTimeMillis());
@@ -184,10 +184,10 @@ public class GatewayContextFilter implements WebFilter, Ordered {
                      * use BodyInserter to InsertFormData Body
                      */
                     BodyInserter<String, ReactiveHttpOutputMessage> bodyInserter =
-                            BodyInserters.fromObject(formDataBodyString);
+                            BodyInserters.fromValue(formDataBodyString);
                     CachedBodyOutputMessage cachedBodyOutputMessage =
                             new CachedBodyOutputMessage(exchange, httpHeaders);
-                    log.debug("[GatewayContext]Rewrite Form Data :{}", formDataBodyString);
+                    log.debug("[GatewayContext] Rewrite Form Data :{}", formDataBodyString);
                     return bodyInserter
                             .insert(cachedBodyOutputMessage, new BodyInserterContext())
                             .then(Mono.defer(() -> {

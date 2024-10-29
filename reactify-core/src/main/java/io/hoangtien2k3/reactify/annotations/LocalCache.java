@@ -21,11 +21,53 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * <p>
- * LocalCache class.
- * </p>
+ * Annotation to indicate that a method's result should be cached locally. This
+ * can improve performance by avoiding redundant computations or repeated data
+ * retrieval from external sources.
  *
- * @author hoangtien2k3
+ * <p>
+ * The caching behavior is defined by the properties of the annotation:
+ * <ul>
+ * <li><strong>durationInMinute</strong>: The duration for which the cached
+ * result is valid, specified in minutes.</li>
+ * <li><strong>maxRecord</strong>: The maximum number of records that can be
+ * stored in the cache.</li>
+ * <li><strong>autoCache</strong>: A flag indicating whether caching should be
+ * done automatically or manually.</li>
+ * </ul>
+ *
+ * <p>
+ * This annotation should be applied to methods that return a result that can
+ * benefit from caching.
+ *
+ * <h3>Usage Example:</h3>
+ *
+ * <pre>
+ * &#64;LocalCache(durationInMinute = 10, maxRecord = 500, autoCache = true)
+ * public MyObject fetchData(String param) {
+ * 	// Method implementation that retrieves data
+ * }
+ * </pre>
+ *
+ * <h3>Annotation Properties:</h3>
+ * <dl>
+ * <dt>durationInMinute</dt>
+ * <dd>The time period in minutes for which the cached data is valid. Default is
+ * 120 minutes.</dd>
+ *
+ * <dt>maxRecord</dt>
+ * <dd>The maximum number of entries that can be cached. Default is 1000
+ * entries.</dd>
+ *
+ * <dt>autoCache</dt>
+ * <dd>If set to true, the method result will be automatically cached. Default
+ * is false.</dd>
+ * </dl>
+ *
+ * <p>
+ * This annotation is intended for use in performance-sensitive applications
+ * where reducing latency and resource consumption is critical.
+ * </p>
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

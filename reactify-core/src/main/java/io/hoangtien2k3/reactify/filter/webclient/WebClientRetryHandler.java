@@ -42,9 +42,9 @@ public class WebClientRetryHandler implements ExchangeFilterFunction {
     /** {@inheritDoc} */
     @Override
     public Mono<ClientResponse> filter(ClientRequest request, ExchangeFunction next) {
-        Retry retry = Retry.max(properties.getCount())
-                .filter(e -> properties.getMethods().contains(request.method())
-                        && properties.getExceptions().stream()
+        Retry retry = Retry.max(properties.count())
+                .filter(e -> properties.methods().contains(request.method())
+                        && properties.exceptions().stream()
                                 .anyMatch(clazz ->
                                         clazz.isInstance(e) || clazz.isInstance(NestedExceptionUtils.getRootCause(e))))
                 .doBeforeRetry(retrySignal -> {

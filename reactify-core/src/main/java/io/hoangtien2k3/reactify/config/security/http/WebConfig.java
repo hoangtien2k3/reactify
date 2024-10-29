@@ -59,15 +59,10 @@ public class WebConfig {
      * </p>
      *
      * @param http
-     *            a
-     *            {@link org.springframework.security.config.web.server.ServerHttpSecurity}
-     *            object
+     *            a {@link ServerHttpSecurity} object
      * @param jwtAuthenticationConverter
-     *            a {@link org.springframework.core.convert.converter.Converter}
-     *            object
-     * @return a
-     *         {@link org.springframework.security.web.server.SecurityWebFilterChain}
-     *         object
+     *            a {@link Converter} object
+     * @return a {@link SecurityWebFilterChain} object
      */
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(
@@ -77,9 +72,9 @@ public class WebConfig {
         List<WhiteList> whiteListList = whiteListProperties.getWhiteList();
         if (!DataUtil.isNullOrEmpty(whiteListList)) {
             for (WhiteList whiteList : whiteListList) {
-                String uri = whiteList.getUri();
+                String uri = whiteList.uri();
                 log.info("whitelist: {}", uri);
-                List<String> methods = whiteList.getMethods();
+                List<String> methods = whiteList.methods();
                 if (!DataUtil.isNullOrEmpty(methods)) {
                     for (String method : methods) {
                         HttpMethod convertedMethod = HttpMethod.valueOf(method);
@@ -103,18 +98,6 @@ public class WebConfig {
 
         return http.build();
     }
-
-    // @Bean
-    // public CorsConfigurationSource corsConfigurationSource() {
-    // UrlBasedCorsConfigurationSource configurationSource = new
-    // UrlBasedCorsConfigurationSource();
-    // CorsConfiguration corsConfiguration = new CorsConfiguration();
-    // corsConfiguration.setAllowedOrigins(List.of("*"));
-    // corsConfiguration.setAllowedMethods(List.of("*"));
-    // corsConfiguration.setAllowedHeaders(List.of("*"));
-    // configurationSource.registerCorsConfiguration("/**", corsConfiguration);
-    // return configurationSource;
-    // }
 
     private CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();

@@ -37,9 +37,9 @@ public class UnRetryableException extends BusinessException {
      * </p>
      *
      * @param errorCode
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param message
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      */
     public UnRetryableException(String errorCode, String message) {
         super(errorCode, message);

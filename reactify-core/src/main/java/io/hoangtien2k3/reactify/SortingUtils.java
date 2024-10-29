@@ -42,7 +42,7 @@ public class SortingUtils {
      * </p>
      *
      * @param args
-     *            an array of {@link java.lang.String} objects
+     *            an array of {@link String} objects
      */
     public static void main(String[] args) {
         String sort = "-username,+id,++object";

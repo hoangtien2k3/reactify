@@ -108,7 +108,7 @@ public class SecurityUtils {
      * @param algorithm
      *            the algorithm to be used for signing
      * @return the generated HMAC as a String
-     * @throws java.security.SignatureException
+     * @throws SignatureException
      *             if an error occurs during HMAC generation
      */
     public static String hmac(String data, String key, String algorithm) throws SignatureException {

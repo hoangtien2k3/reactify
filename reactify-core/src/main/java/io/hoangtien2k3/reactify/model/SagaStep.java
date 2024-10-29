@@ -40,7 +40,7 @@ public interface SagaStep {
      * execute.
      * </p>
      *
-     * @return a {@link reactor.core.publisher.Mono} object
+     * @return a {@link Mono} object
      */
     Mono<StepResult> execute();
 
@@ -49,7 +49,7 @@ public interface SagaStep {
      * revert.
      * </p>
      *
-     * @return a {@link reactor.core.publisher.Mono} object
+     * @return a {@link Mono} object
      */
     Mono<Boolean> revert();
 }

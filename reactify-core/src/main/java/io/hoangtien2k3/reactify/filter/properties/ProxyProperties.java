@@ -15,10 +15,6 @@
  */
 package io.hoangtien2k3.reactify.filter.properties;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 /**
  * <p>
  * ProxyProperties class.
@@ -26,13 +22,8 @@ import lombok.NoArgsConstructor;
  *
  * @author hoangtien2k3
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class ProxyProperties {
-    private boolean enable = false;
-    private String httpHost;
-    private Integer httpPort;
-    private String httpsHost;
-    private Integer httpsPort;
+public record ProxyProperties(boolean enable, String httpHost, Integer httpPort, String httpsHost, Integer httpsPort) {
+    public ProxyProperties() {
+        this(false, null, null, null, null);
+    }
 }

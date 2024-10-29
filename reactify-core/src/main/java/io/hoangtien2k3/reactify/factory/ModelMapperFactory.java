@@ -25,14 +25,15 @@ import org.modelmapper.ModelMapper;
  * @author hoangtien2k3
  */
 public class ModelMapperFactory {
-    private static ModelMapper modelMapper = new ModelMapper();
+
+    private static final ModelMapper modelMapper = new ModelMapper();
 
     /**
      * <p>
      * getInstance.
      * </p>
      *
-     * @return a {@link org.modelmapper.ModelMapper} object
+     * @return a {@link ModelMapper} object
      */
     public static ModelMapper getInstance() {
         return modelMapper;

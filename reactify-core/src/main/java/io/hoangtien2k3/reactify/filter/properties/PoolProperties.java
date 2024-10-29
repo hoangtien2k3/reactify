@@ -15,10 +15,6 @@
  */
 package io.hoangtien2k3.reactify.filter.properties;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 /**
  * <p>
  * PoolProperties class.
@@ -26,10 +22,8 @@ import lombok.NoArgsConstructor;
  *
  * @author hoangtien2k3
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class PoolProperties {
-    private Integer maxSize = 2000;
-    private Integer maxPendingAcquire = 2000;
+public record PoolProperties(Integer maxSize, Integer maxPendingAcquire) {
+    public PoolProperties() {
+        this(2000, 2000);
+    }
 }

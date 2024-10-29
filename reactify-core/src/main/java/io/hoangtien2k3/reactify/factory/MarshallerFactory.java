@@ -32,7 +32,8 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class MarshallerFactory {
-    private static Map<Class, Marshaller> instance = new HashMap<>();
+
+    private static final Map<Class<?>, Marshaller> instance = new HashMap<>();
 
     /**
      * <p>
@@ -40,12 +41,12 @@ public class MarshallerFactory {
      * </p>
      *
      * @param obj
-     *            a {@link java.lang.Object} object
+     *            a {@link Object} object
      * @param cls
-     *            a {@link java.lang.Class} object
-     * @return a {@link java.lang.String} object
+     *            a {@link Class} object
+     * @return a {@link String} object
      */
-    public static String convertObjectToXML(Object obj, Class cls) {
+    public static String convertObjectToXML(Object obj, Class<?> cls) {
         Marshaller marshaller = instance.get(cls);
         String xmlTxt = "";
         try {

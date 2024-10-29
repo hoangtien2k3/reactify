@@ -40,7 +40,7 @@ public abstract class SagaProcess {
      * getSteps.
      * </p>
      *
-     * @return a {@link java.util.List} object
+     * @return a {@link List} object
      */
     public abstract List<SagaStep> getSteps();
 
@@ -51,7 +51,7 @@ public abstract class SagaProcess {
      * execute.
      * </p>
      *
-     * @return a {@link reactor.core.publisher.Flux} object
+     * @return a {@link Flux} object
      */
     public Flux<?> execute() {
         log.info("==================Start execute================");
@@ -74,7 +74,7 @@ public abstract class SagaProcess {
      * revert.
      * </p>
      *
-     * @return a {@link reactor.core.publisher.Flux} object
+     * @return a {@link Flux} object
      */
     public Flux<?> revert() {
         log.info("==================Start rollback================");

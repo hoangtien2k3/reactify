@@ -32,7 +32,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  */
 @Slf4j
 @AllArgsConstructor
-public class CustomizeRemovalListener implements RemovalListener {
+public class CustomizeRemovalListener implements RemovalListener<Object, Object> {
     private Method method;
 
     /** {@inheritDoc} */

@@ -42,9 +42,9 @@ public class BusinessException extends RuntimeException {
      * </p>
      *
      * @param errorCode
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param message
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      */
     public BusinessException(String errorCode, String message) {
         this.errorCode = errorCode;
@@ -57,11 +57,11 @@ public class BusinessException extends RuntimeException {
      * </p>
      *
      * @param errorCode
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param message
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param paramsMsg
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      */
     public BusinessException(String errorCode, String message, String... paramsMsg) {
         this.errorCode = errorCode;

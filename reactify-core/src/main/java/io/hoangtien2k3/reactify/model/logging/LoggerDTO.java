@@ -17,31 +17,43 @@ package io.hoangtien2k3.reactify.model.logging;
 
 import brave.Span;
 import java.util.concurrent.atomic.AtomicReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import reactor.util.context.Context;
 
 /**
- * <p>
- * LoggerDTO class.
- * </p>
+ * Record representing log information within the system.
  *
- * @author hoangtien2k3
+ * @param contextRef
+ *            A reference to the current context.
+ * @param newSpan
+ *            A new Span object to track the operation.
+ * @param service
+ *            The name of the service processing the request.
+ * @param startTime
+ *            The timestamp (in milliseconds) when logging started.
+ * @param endTime
+ *            The timestamp (in milliseconds) when logging ended.
+ * @param result
+ *            The result of the operation (e.g., SUCCESS, FAILURE).
+ * @param response
+ *            The response object from the service.
+ * @param logType
+ *            The type of log (e.g., INFO, ERROR).
+ * @param actionType
+ *            The type of action being performed (e.g., CREATE, UPDATE, DELETE).
+ * @param args
+ *            The arguments passed into the action.
+ * @param title
+ *            A brief title or description of the log.
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class LoggerDTO {
-    AtomicReference<Context> contextRef;
-    Span newSpan;
-    String service;
-    Long startTime;
-    Long endTime;
-    String result;
-    Object response;
-    String logType;
-    String actionType;
-    Object[] args;
-    String title;
-}
+public record LoggerDTO(
+        AtomicReference<Context> contextRef,
+        Span newSpan,
+        String service,
+        Long startTime,
+        Long endTime,
+        String result,
+        Object response,
+        String logType,
+        String actionType,
+        Object[] args,
+        String title) {}

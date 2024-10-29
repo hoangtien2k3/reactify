@@ -92,10 +92,10 @@ public class CacheStore {
      * </p>
      *
      * @param key
-     *            a {@link java.lang.String} object
-     * @return a {@link com.github.benmanes.caffeine.cache.Cache} object
+     *            a {@link String} object
+     * @return a {@link Cache} object
      */
-    public static Cache getCache(String key) {
+    public static Cache<Object, Object> getCache(String key) {
         return caches.get(key);
     }
 
@@ -105,8 +105,7 @@ public class CacheStore {
      * </p>
      *
      * @param event
-     *            a {@link org.springframework.context.event.ContextRefreshedEvent}
-     *            object
+     *            a {@link ContextRefreshedEvent} object
      */
     @Async
     @EventListener

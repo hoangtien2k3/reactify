@@ -29,9 +29,9 @@ public class PageUtils {
      * </p>
      *
      * @param page
-     *            a {@link java.lang.Integer} object
+     *            a {@link Integer} object
      * @param size
-     *            a {@link java.lang.Integer} object
+     *            a {@link Integer} object
      * @return a int
      */
     public static int getOffset(Integer page, Integer size) {

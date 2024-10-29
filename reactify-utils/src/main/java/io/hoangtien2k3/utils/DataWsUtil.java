@@ -15,8 +15,6 @@
  */
 package io.hoangtien2k3.utils;
 
-import io.hoangtien2k3.utils.constants.Constants;
-import io.hoangtien2k3.utils.factory.UnmarshallerFactory;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -30,18 +28,9 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
-/**
- * <p>
- * DataWsUtil class.
- * </p>
- *
- * @author hoangtien2k3
- */
-@Slf4j
 public class DataWsUtil {
 
     /**
@@ -86,42 +75,6 @@ public class DataWsUtil {
             return "";
         }
         return openTag + data + closeTag;
-    }
-
-    /**
-     * <p>
-     * wrapTagReturn.
-     * </p>
-     *
-     * @param data
-     *            a {@link java.lang.String} object
-     * @return a {@link java.lang.String} object
-     */
-    public static String wrapTagReturn(String data) {
-        return wrapTag(data, Constants.XmlConst.TAG_OPEN_RETURN, Constants.XmlConst.TAG_OPEN_RETURN);
-    }
-
-    /**
-     * <p>
-     * xmlToObj.
-     * </p>
-     *
-     * @param xml
-     *            a {@link java.lang.String} object
-     * @param clz
-     *            a {@link java.lang.Class} object
-     * @param <T>
-     *            a T class
-     * @return a T object
-     */
-    public static <T> T xmlToObj(String xml, Class clz) {
-        try {
-            StringReader reader = new StringReader(xml.trim());
-            return (T) UnmarshallerFactory.getInstance(clz).unmarshal(reader);
-        } catch (Exception ex) {
-            log.error("Parse data error {}  :", clz.getName() + ex.getMessage(), ex);
-        }
-        return null;
     }
 
     /**
@@ -219,7 +172,6 @@ public class DataWsUtil {
             transformer.transform(source, xmlOutput);
             return xmlOutput.getWriter().toString();
         } catch (Exception e) {
-            log.error("formatXML error: ", e);
             return "";
         }
     }

@@ -40,7 +40,7 @@ public class CacheUtils {
      * </p>
      *
      * @param method
-     *            a {@link java.lang.reflect.Method} object
+     *            a {@link Method} object
      */
     public static void invokeMethod(Method method) {
         try {

@@ -83,7 +83,7 @@ public class HttpLoggingFilter implements WebFilter, Ordered {
                 new ServerHttpResponseDecorator(exchange.getResponse()) {
                     @Override
                     public Mono<Void> writeWith(Publisher<? extends DataBuffer> body) {
-                        if (httpLogProperties.getResponse().isEnable()) {
+                        if (httpLogProperties.getResponse().enable()) {
                             final MediaType contentType = super.getHeaders().getContentType();
                             if (Constants.VISIBLE_TYPES.contains(contentType)) {
                                 if (body instanceof Mono) {
@@ -127,8 +127,8 @@ public class HttpLoggingFilter implements WebFilter, Ordered {
                 exchange.getRequest().getPath().toString())) {
             return;
         }
-        boolean enableRequest = httpLogProperties.getRequest().isEnable();
-        boolean enableResponse = httpLogProperties.getResponse().isEnable();
+        boolean enableRequest = httpLogProperties.getRequest().enable();
+        boolean enableResponse = httpLogProperties.getResponse().enable();
         if (!enableRequest && !enableResponse) {
             return;
         }

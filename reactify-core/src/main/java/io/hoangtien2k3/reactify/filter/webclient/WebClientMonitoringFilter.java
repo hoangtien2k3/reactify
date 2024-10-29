@@ -16,6 +16,8 @@
 package io.hoangtien2k3.reactify.filter.webclient;
 
 import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
+import java.util.concurrent.TimeUnit;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +44,9 @@ public class WebClientMonitoringFilter implements ExchangeFilterFunction {
     // private WebClientExchangeTagsProvider tagsProvider = new
     // DefaultWebClientExchangeTagsProvider();
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Mono<ClientResponse> filter(ClientRequest clientRequest, ExchangeFunction exchangeFunction) {
         return exchangeFunction
@@ -52,16 +56,33 @@ public class WebClientMonitoringFilter implements ExchangeFilterFunction {
                         Long startTime = signal.getContextView().get(METRICS_WEBCLIENT_START_TIME);
                         ClientResponse clientResponse = signal.get();
                         Throwable throwable = signal.getThrowable();
+                        if (throwable != null) {
+                            log.error(
+                                    "WebClient request to {} failed: {}", clientRequest.url(), throwable.getMessage());
+                        } else {
+                            assert clientResponse != null;
+                            log.info(
+                                    "WebClient request to {} completed with status code: {}",
+                                    clientRequest.url(),
+                                    clientResponse.statusCode());
+                        }
+
                         // Iterable<Tag> tags = tagsProvider.tags(clientRequest, clientResponse,
                         // throwable);
-                        // Timer.builder("http.client.requests ")
-                        // .tags(tags)
-                        // .description("Timer of WebClient operation")
-                        // .publishPercentiles(0.95, 0.99)
-                        // .register(meterRegistry)
-                        // .record(System.nanoTime() - startTime, TimeUnit.NANOSECONDS);
-                        // log.info("Monitoring webClient API {}: {} s", tags, (double)
-                        // (System.nanoTime() - startTime) / Math.pow(10, 9));
+
+                        // record the execution time
+                        long duration = System.nanoTime() - startTime;
+                        Timer.builder("http.client.requests")
+                                // .tags(tags)
+                                .description("Timer for WebClient operations")
+                                .publishPercentiles(0.95, 0.99)
+                                .register(meterRegistry)
+                                .record(duration, TimeUnit.NANOSECONDS);
+
+                        log.info(
+                                "Monitoring WebClient API {}: {} s",
+                                clientRequest.url(),
+                                (double) duration / Math.pow(10, 9));
                     }
                 })
                 .contextWrite((contextView) -> contextView.put(METRICS_WEBCLIENT_START_TIME, System.nanoTime()));

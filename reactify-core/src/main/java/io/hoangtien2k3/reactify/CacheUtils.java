@@ -48,12 +48,12 @@ public class CacheUtils {
      * </p>
      *
      * @param duration
-     *            a {@link java.time.Duration} object
+     *            a {@link Duration} object
      * @param fn
-     *            a {@link java.util.function.Function} object
+     *            a {@link Function} object
      * @param <T>
      *            a T class
-     * @return a {@link java.util.function.Function} object
+     * @return a {@link Function} object
      */
     public static <T> Function<String, T> of(@NotNull Duration duration, @NotNull Function<String, T> fn) {
         final LoadingCache<String, T> cache =
@@ -68,12 +68,12 @@ public class CacheUtils {
      * </p>
      *
      * @param duration
-     *            a {@link java.time.Duration} object
+     *            a {@link Duration} object
      * @param supplier
-     *            a {@link java.util.function.Supplier} object
+     *            a {@link Supplier} object
      * @param <T>
      *            a T class
-     * @return a {@link java.util.function.Supplier} object
+     * @return a {@link Supplier} object
      */
     public static <T> Supplier<T> of(@NotNull Duration duration, @NotNull Supplier<T> supplier) {
         Function<String, T> fn = of(duration, k -> supplier.get());
@@ -86,12 +86,12 @@ public class CacheUtils {
      * </p>
      *
      * @param duration
-     *            a {@link java.time.Duration} object
+     *            a {@link Duration} object
      * @param fn
-     *            a {@link java.util.function.Function} object
+     *            a {@link Function} object
      * @param <T>
      *            a T class
-     * @return a {@link java.util.function.Function} object
+     * @return a {@link Function} object
      */
     public static <T> Function<String, Mono<T>> ofMono(Duration duration, Function<String, Mono<T>> fn) {
         AsyncCache<String, T> cache =
@@ -105,12 +105,12 @@ public class CacheUtils {
      * </p>
      *
      * @param duration
-     *            a {@link java.time.Duration} object
+     *            a {@link Duration} object
      * @param mono
-     *            a {@link reactor.core.publisher.Mono} object
+     *            a {@link Mono} object
      * @param <T>
      *            a T class
-     * @return a {@link reactor.core.publisher.Mono} object
+     * @return a {@link Mono} object
      */
     public static <T> Mono<T> ofMonoFixedKey(@NotNull Duration duration, @NotNull Mono<T> mono) {
         Function<String, Mono<T>> monoFn = ofMono(duration, key -> mono);
@@ -124,18 +124,18 @@ public class CacheUtils {
      * </p>
      *
      * @param duration
-     *            a {@link java.time.Duration} object
+     *            a {@link Duration} object
      * @param maximumSize
      *            a long
      * @param cacheClass
-     *            a {@link java.lang.Class} object
+     *            a {@link Class} object
      * @param cacheName
-     *            a {@link java.lang.String} object
+     *            a {@link String} object
      * @param <K>
      *            a K class
      * @param <V>
      *            a V class
-     * @return a {@link com.github.benmanes.caffeine.cache.Cache} object
+     * @return a {@link Cache} object
      */
     public static <K, V> Cache<K, V> caffeine(
             @NotNull Duration duration,

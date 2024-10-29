@@ -15,10 +15,6 @@
  */
 package io.hoangtien2k3.reactify.filter.properties;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 /**
  * <p>
  * TimeoutProperties class.
@@ -26,10 +22,8 @@ import lombok.NoArgsConstructor;
  *
  * @author hoangtien2k3
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class TimeoutProperties {
-    private int read = 180000;
-    private int connection = 500;
+public record TimeoutProperties(int read, int connection) {
+    public TimeoutProperties() {
+        this(180000, 500);
+    }
 }

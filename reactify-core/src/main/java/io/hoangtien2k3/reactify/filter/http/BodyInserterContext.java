@@ -49,9 +49,7 @@ public class BodyInserterContext implements BodyInserter.Context {
      * </p>
      *
      * @param exchangeStrategies
-     *            a
-     *            {@link org.springframework.web.reactive.function.client.ExchangeStrategies}
-     *            object
+     *            a {@link ExchangeStrategies} object
      */
     public BodyInserterContext(ExchangeStrategies exchangeStrategies) {
         this.exchangeStrategies = exchangeStrategies;

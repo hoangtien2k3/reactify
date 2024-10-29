@@ -15,37 +15,21 @@
  */
 package io.hoangtien2k3.utils;
 
-import io.hoangtien2k3.utils.constants.Constants;
-import io.hoangtien2k3.utils.constants.Regex;
-import io.hoangtien2k3.utils.exception.BusinessException;
+import static io.hoangtien2k3.utils.ValidateUtils.CAMELCASE;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
 
-/**
- * <p>
- * SortingUtils class.
- * </p>
- *
- * @author hoangtien2k3
- */
-@Slf4j
 public class SortingUtils {
 
-    /**
-     * <p>
-     * main.
-     * </p>
-     *
-     * @param args
-     *            an array of {@link java.lang.String} objects
-     */
-    public static void main(String[] args) {
-        String sort = "-username,+id,++object";
-        System.out.println(parseSorting(sort, BusinessException.class));
-    }
+    public static final String SPLIT_OPERATOR = ",";
+    public static final String MINUS_OPERATOR = "-";
+    public static final String PLUS_OPERATOR = "+";
+    public static final String DESC = "desc";
+    public static final String ASC = "asc";
+    public static final String FILED_DISPLAY = "$1_$2";
 
     /**
      * <p>
@@ -58,14 +42,13 @@ public class SortingUtils {
      *            a {@link java.lang.Class} object
      * @return a {@link java.lang.String} object
      */
-    public static String parseSorting(String sortConfig, Class objectClass) {
-        List<String> convertSorting =
-                convertSorting(sortConfig.replaceAll(Regex.CAMELCASE, Constants.Sorting.FILED_DISPLAY), objectClass);
+    public static String parseSorting(String sortConfig, Class<?> objectClass) {
+        List<String> convertSorting = convertSorting(sortConfig.replaceAll(CAMELCASE, FILED_DISPLAY), objectClass);
         if (convertSorting == null || convertSorting.isEmpty()) {
             return null;
         }
         return String.join(
-                Constants.Sorting.SPLIT_OPERATOR,
+                SPLIT_OPERATOR,
                 convertSorting.toString().toLowerCase().replace("[", "").replace("]", ""));
     }
 
@@ -80,23 +63,21 @@ public class SortingUtils {
      *            a {@link java.lang.Class} object
      * @return a {@link java.util.List} object
      */
-    public static List<String> convertSorting(String sortConfig, Class objectClass) {
+    public static List<String> convertSorting(String sortConfig, Class<?> objectClass) {
         if (DataUtil.isNullOrEmpty(sortConfig)) {
             return null;
         }
         List<String> filedNames = getFieldsOfClass(objectClass);
-        String[] sortElements = sortConfig.split(Constants.Sorting.SPLIT_OPERATOR);
+        String[] sortElements = sortConfig.split(SPLIT_OPERATOR);
         List<String> orderList = new LinkedList<>();
         for (String element : sortElements) {
             if (element == null) {
                 continue;
             }
-            if (element.startsWith(Constants.Sorting.MINUS_OPERATOR)) {
-                handleElement(element, Constants.Sorting.MINUS_OPERATOR, filedNames, orderList);
-            } else if (element.startsWith(Constants.Sorting.PLUS_OPERATOR)) {
-                handleElement(element, Constants.Sorting.PLUS_OPERATOR, filedNames, orderList);
-            } else {
-                log.error("Filed invalid ", element);
+            if (element.startsWith(MINUS_OPERATOR)) {
+                handleElement(element, MINUS_OPERATOR, filedNames, orderList);
+            } else if (element.startsWith(PLUS_OPERATOR)) {
+                handleElement(element, PLUS_OPERATOR, filedNames, orderList);
             }
         }
         return orderList;
@@ -112,19 +93,19 @@ public class SortingUtils {
         }
     }
 
-    private static List<String> getFieldsOfClass(Class object) {
+    private static List<String> getFieldsOfClass(Class<?> object) {
         List<String> filedNames = new ArrayList<>();
         for (Field field : getAllFields(object)) {
-            filedNames.add(field.getName().replaceAll(Regex.CAMELCASE, Constants.Sorting.FILED_DISPLAY));
+            filedNames.add(field.getName().replaceAll(CAMELCASE, FILED_DISPLAY));
         }
         return filedNames;
     }
 
     private static String convertOperator(String operator) {
-        if (Constants.Sorting.MINUS_OPERATOR.equals(operator)) {
-            return Constants.Sorting.DESC;
+        if (MINUS_OPERATOR.equals(operator)) {
+            return DESC;
         } else {
-            return Constants.Sorting.ASC;
+            return ASC;
         }
     }
 

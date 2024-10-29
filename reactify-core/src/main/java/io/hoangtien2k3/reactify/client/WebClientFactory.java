@@ -77,7 +77,7 @@ public class WebClientFactory implements InitializingBean {
      * </p>
      *
      * @param webClients
-     *            a {@link java.util.List} object
+     *            a {@link List} object
      */
     public void initWebClients(List<WebClientProperties> webClients) {
         final ConfigurableListableBeanFactory beanFactory =
@@ -96,11 +96,8 @@ public class WebClientFactory implements InitializingBean {
      * </p>
      *
      * @param webClientProperties
-     *            a
-     *            {@link io.hoangtien2k3.reactify.client.properties.WebClientProperties}
-     *            object
-     * @return a {@link org.springframework.web.reactive.function.client.WebClient}
-     *         object
+     *            a {@link WebClientProperties} object
+     * @return a {@link WebClient} object
      */
     public WebClient createNewClient(WebClientProperties webClientProperties) {
         if (!isValidProperties(webClientProperties)) {
@@ -108,16 +105,16 @@ public class WebClientFactory implements InitializingBean {
             return null;
         }
         ConnectionProvider connectionProvider = ConnectionProvider.builder(webClientProperties.getName() + "Pool")
-                .maxConnections(webClientProperties.getPool().getMaxSize())
-                .pendingAcquireMaxCount(webClientProperties.getPool().getMaxPendingAcquire())
+                .maxConnections(webClientProperties.getPool().maxSize())
+                .pendingAcquireMaxCount(webClientProperties.getPool().maxPendingAcquire())
                 .build();
 
         HttpClient httpClient = HttpClient.create(connectionProvider)
                 .option(
                         ChannelOption.CONNECT_TIMEOUT_MILLIS,
-                        webClientProperties.getTimeout().getConnection())
+                        webClientProperties.getTimeout().connection())
                 .responseTimeout(
-                        Duration.ofMillis(webClientProperties.getTimeout().getRead()))
+                        Duration.ofMillis(webClientProperties.getTimeout().read()))
                 .option(ChannelOption.SO_KEEPALIVE, true)
                 .option(EpollChannelOption.TCP_KEEPIDLE, 300)
                 .option(EpollChannelOption.TCP_KEEPINTVL, 60)
@@ -141,18 +138,18 @@ public class WebClientFactory implements InitializingBean {
                                                     + webClientProperties.getPassword())
                                             .getBytes(UTF_8)));
         }
-        if (webClientProperties.getLog().isEnable()) {
+        if (webClientProperties.getLog().enable()) {
             exchangeStrategies.filter(
-                    new WebClientLoggingFilter(webClientProperties.getLog().getObfuscateHeaders()));
+                    new WebClientLoggingFilter(webClientProperties.getLog().obfuscateHeaders()));
         }
         if (webClientProperties.getRetry().isEnable()) {
             exchangeStrategies.filter(new WebClientRetryHandler(webClientProperties.getRetry()));
         }
         if (webClientProperties.getMonitoring().isEnable()) {
             exchangeStrategies.filter(new WebClientMonitoringFilter(
-                    webClientProperties.getMonitoring().getMeterRegistry()));
+                    webClientProperties.getMonitoring().meterRegistry()));
         }
-        if (webClientProperties.getProxy().isEnable()) {
+        if (webClientProperties.getProxy().enable()) {
             httpClient = configProxy(httpClient, webClientProperties.getProxy());
         }
         if (webClientProperties.isInternalOauth()) {
@@ -175,10 +172,10 @@ public class WebClientFactory implements InitializingBean {
     }
 
     private HttpClient configProxy(HttpClient httpClient, ProxyProperties proxyConfig) {
-        var httpHost = proxyConfig.getHttpHost();
-        var httpPort = proxyConfig.getHttpPort();
-        var httpsHost = proxyConfig.getHttpsHost();
-        var httpsPort = proxyConfig.getHttpsPort();
+        var httpHost = proxyConfig.httpHost();
+        var httpPort = proxyConfig.httpPort();
+        var httpsHost = proxyConfig.httpsHost();
+        var httpsPort = proxyConfig.httpsPort();
         if (!DataUtil.isNullOrEmpty(httpHost) && !DataUtil.isNullOrEmpty(httpPort)) {
             httpClient = httpClient.proxy(
                     proxy -> proxy.type(ProxyProvider.Proxy.HTTP).host(httpHost).port(httpPort));

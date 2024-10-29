@@ -15,8 +15,6 @@
  */
 package io.hoangtien2k3.utils;
 
-import static io.hoangtien2k3.utils.constants.CommonConstant.DATE_FORMAT_YM2;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -24,17 +22,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import io.hoangtien2k3.utils.constants.CommonConstant;
-import io.hoangtien2k3.utils.constants.CommonErrorCode;
-import io.hoangtien2k3.utils.exception.BusinessException;
-import io.hoangtien2k3.utils.factory.ObjectMapperFactory;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.security.SecureRandom;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -44,8 +35,6 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAccessor;
 import java.util.*;
-import java.util.regex.Pattern;
-import javax.xml.bind.JAXB;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -54,215 +43,13 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import lombok.extern.slf4j.Slf4j;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.util.ObjectUtils;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
-import reactor.core.publisher.Mono;
 
-/**
- * <p>
- * DataUtil class.
- * </p>
- *
- * @author hoangtien2k3
- */
-@Slf4j
 public class DataUtil {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DataUtil.class);
-
-    /** Constant <code>FORMAT_YMD</code> */
-    public static final SimpleDateFormat FORMAT_YMD = new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMD);
-    /** Constant <code>FORMAT_DMY</code> */
-    public static final SimpleDateFormat FORMAT_DMY = new SimpleDateFormat(CommonConstant.DATE_FORMAT_DMY);
-    /** Constant <code>FORMAT_S_MY</code> */
-    public static final SimpleDateFormat FORMAT_S_MY = new SimpleDateFormat(CommonConstant.DATE_FORMAT_S_MY);
-    /** Constant <code>FORMAT_S_YM</code> */
-    public static final SimpleDateFormat FORMAT_S_YM = new SimpleDateFormat(CommonConstant.DATE_FORMAT_S_YM);
-    /** Constant <code>FORMAT_HH_MM</code> */
-    public static final SimpleDateFormat FORMAT_HH_MM = new SimpleDateFormat(CommonConstant.DATE_FORMAT_HH_MM);
-    /** Constant <code>FORMAT_HH_MM_24</code> */
-    public static final SimpleDateFormat FORMAT_HH_MM_24 = new SimpleDateFormat(CommonConstant.DATE_FORMAT_HM);
-
-    /** Constant <code>FORMAT_DMYHMS_HYPHEN</code> */
-    public static final SimpleDateFormat FORMAT_DMYHMS_HYPHEN =
-            new SimpleDateFormat(CommonConstant.DATE_FORMAT_DMY_HMS);
-    /** Constant <code>FORMAT_MDYHMS_12_HOUR</code> */
-    public static final SimpleDateFormat FORMAT_MDYHMS_12_HOUR =
-            new SimpleDateFormat(CommonConstant.DATE_FORMAT_MDY_HMS_12_HOUR);
-    /** Constant <code>NUMBER_DF</code> */
-    public static final DecimalFormat NUMBER_DF = new DecimalFormat("#.##");
-    /** Constant <code>FORMAT_DMY_HYPHEN</code> */
-    public static final SimpleDateFormat FORMAT_DMY_HYPHEN =
-            new SimpleDateFormat(CommonConstant.FORMAT_DATE_DMY_HYPHEN);
-    /** Constant <code>FORMAT_DMYHMS</code> */
-    public static final SimpleDateFormat FORMAT_DMYHMS = new SimpleDateFormat(CommonConstant.DATE_FORMAT_DMYHMS);
-    /** Constant <code>FORMAT_DMYHM</code> */
-    public static final SimpleDateFormat FORMAT_DMYHM = new SimpleDateFormat(CommonConstant.DATE_FORMAT_DMYHM);
-    /** Constant <code>FORMAT_DATE_FORMAT_YM2</code> */
-    public static final SimpleDateFormat FORMAT_DATE_FORMAT_YM2 = new SimpleDateFormat(DATE_FORMAT_YM2);
-    /** Constant <code>FORMAT_DATE_FORMAT_SHORT_YYYY</code> */
-    public static final SimpleDateFormat FORMAT_DATE_FORMAT_SHORT_YYYY =
-            new SimpleDateFormat(CommonConstant.DATE_FORMAT_SHORT_YYYY);
-    /** Constant <code>FORMAT_YMD_T_HH_MM_SS</code> */
-    public static final SimpleDateFormat FORMAT_YMD_T_HH_MM_SS =
-            new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMD_T_HH_MM_SS);
-    /** Constant <code>FORMAT_YMD_T_HMS</code> */
-    public static final SimpleDateFormat FORMAT_YMD_T_HMS = new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMD_T_HMS);
-    /** Constant <code>FORMAT_HMS</code> */
-    public static final SimpleDateFormat FORMAT_HMS = new SimpleDateFormat(CommonConstant.DATE_FORMAT_HMS);
-    /** Constant <code>FORMAT_SHORT</code> */
-    public static final SimpleDateFormat FORMAT_SHORT = new SimpleDateFormat(CommonConstant.DATE_FORMAT_SHORT);
-    /** Constant <code>FORMAT_HMS_NORMAL</code> */
-    public static final SimpleDateFormat FORMAT_HMS_NORMAL =
-            new SimpleDateFormat(CommonConstant.DATE_FORMAT_HMS_NORMAL);
-    /** Constant <code>FORMAT_YDM_INSTANT</code> */
-    public static final SimpleDateFormat FORMAT_YDM_INSTANT =
-            new SimpleDateFormat(CommonConstant.DATE_FORMAT_YDM_INSTANT);
-    /** Constant <code>FORMAT_DMY_HMS</code> */
-    public static final SimpleDateFormat FORMAT_DMY_HMS = new SimpleDateFormat(CommonConstant.DATE_FORMAT_DMY_HMS);
-    /** Constant <code>FORMAT_DATE</code> */
-    public static final SimpleDateFormat FORMAT_DATE = new SimpleDateFormat(CommonConstant.DATE_FORMAT);
-    /** Constant <code>FORMAT_DATE_2</code> */
-    public static final SimpleDateFormat FORMAT_DATE_2 = new SimpleDateFormat(CommonConstant.DATE_FORMAT_2);
-    /** Constant <code>FORMAT_DATE_3</code> */
-    public static final SimpleDateFormat FORMAT_DATE_3 = new SimpleDateFormat(CommonConstant.DATE_FORMAT_3);
-    /** Constant <code>FORMAT_YMD_HMS</code> */
-    public static final SimpleDateFormat FORMAT_YMD_HMS = new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMD_HMS);
-    /** Constant <code>FORMAT_YMDHMS</code> */
-    public static final SimpleDateFormat FORMAT_YMDHMS = new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMDHMS);
-    /** Constant <code>FORMAT_YMDH</code> */
-    public static final SimpleDateFormat FORMAT_YMDH = new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMDH);
-    /** Constant <code>FORMAT_HMDMY</code> */
-    public static final SimpleDateFormat FORMAT_HMDMY = new SimpleDateFormat(CommonConstant.DATE_TIME_FORMAT_HMDMY);
-    /** Constant <code>FORMAT_YM2</code> */
-    public static final SimpleDateFormat FORMAT_YM2 = new SimpleDateFormat(DATE_FORMAT_YM2);
-    /** Constant <code>FORMAT_MD_HMS_END_DAY</code> */
-    public static final SimpleDateFormat FORMAT_MD_HMS_END_DAY =
-            new SimpleDateFormat(CommonConstant.DATE_FORMAT_END_DAY);
-    /** Constant <code>FORMAT_YMD_HMS_BEGIN_DAY</code> */
-    public static final SimpleDateFormat FORMAT_YMD_HMS_BEGIN_DAY =
-            new SimpleDateFormat(CommonConstant.DATE_FORMAT_BEGIN_DAY);
-    /** Constant <code>FORMAT_YMDTHMS_ZER0</code> */
-    public static final SimpleDateFormat FORMAT_YMDTHMS_ZER0 =
-            new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMDTHMS_ZER0);
-    /** Constant <code>FORMAT_YMDTHMS_ZER0_24HRS</code> */
-    public static final SimpleDateFormat FORMAT_YMDTHMS_ZER0_24HRS =
-            new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMDTHMS_ZERO_24HRS);
-    /** Constant <code>FORMAT_HM_DMY</code> */
-    public static final SimpleDateFormat FORMAT_HM_DMY = new SimpleDateFormat(CommonConstant.DATE_FORMAT_HM_DMY);
-    /** Constant <code>FORMAT_HM_DMY1</code> */
-    public static final SimpleDateFormat FORMAT_HM_DMY1 = new SimpleDateFormat(CommonConstant.DATE_FORMAT_HM_DMY1);
-    /** Constant <code>FORMAT_S_YMD</code> */
-    public static final SimpleDateFormat FORMAT_S_YMD = new SimpleDateFormat(CommonConstant.DATE_FORMAT_S_YMD);
-    /** Constant <code>FORMAT_S_YMD_HMS</code> */
-    public static final SimpleDateFormat FORMAT_S_YMD_HMS = new SimpleDateFormat(CommonConstant.DATE_FORMAT_S_YMD_HMS);
-    /** Constant <code>FORMAT_YMDTHMS_GMT_7</code> */
-    public static final SimpleDateFormat FORMAT_YMDTHMS_GMT_7 =
-            new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMDTHMS_GMT_7);
-    /** Constant <code>FORMAT_YMDTHMS_GMT_7_2</code> */
-    public static final SimpleDateFormat FORMAT_YMDTHMS_GMT_7_2 =
-            new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMDTHMS_GMT_7_2);
-    /** Constant <code>FORMAT_DATE_DMY_HM</code> */
-    public static final SimpleDateFormat FORMAT_DATE_DMY_HM = new SimpleDateFormat(CommonConstant.DATE_FORMAT_DMY_HM);
-    /** Constant <code>FORMAT_FORMAT_HM_DMY</code> */
-    public static final SimpleDateFormat FORMAT_FORMAT_HM_DMY = new SimpleDateFormat(CommonConstant.DATE_FORMAT_HM_DMY);
-    /** Constant <code>DATE_TIME_YMD</code> */
-    public static final DateTimeFormatter DATE_TIME_YMD = DateTimeFormatter.ofPattern(CommonConstant.DATE_FORMAT_YMD);
-    /** Constant <code>DATE_TIME_DMY_HMS</code> */
-    public static final DateTimeFormatter DATE_TIME_DMY_HMS =
-            DateTimeFormatter.ofPattern(CommonConstant.DATE_FORMAT_DMY_HMS);
-    /** Constant <code>DATE_TIME_DMY</code> */
-    public static final DateTimeFormatter DATE_TIME_DMY = DateTimeFormatter.ofPattern(CommonConstant.DATE_FORMAT_DMY);
-    /** Constant <code>DATE_FORMAT_DMYHM</code> */
-    public static final DateTimeFormatter DATE_FORMAT_DMYHM =
-            DateTimeFormatter.ofPattern(CommonConstant.DATE_FORMAT_DMYHM);
-    /** Constant <code>DATE_TIME_YMDTHMS_ZEO_24HRS</code> */
-    public static final DateTimeFormatter DATE_TIME_YMDTHMS_ZEO_24HRS =
-            DateTimeFormatter.ofPattern(CommonConstant.DATE_FORMAT_YMDTHMS_ZERO_24HRS);
-    /** Constant <code>PATTERN_REGEX_PHONE_ASTERISK</code> */
-    public static final Pattern PATTERN_REGEX_PHONE_ASTERISK = Pattern.compile(CommonConstant.REGEX_PHONE_ASTERISK);
-    /** Constant <code>PATTERN_REGEX_NUMBER_PREFIX_CHECK</code> */
-    public static final Pattern PATTERN_REGEX_NUMBER_PREFIX_CHECK =
-            Pattern.compile(CommonConstant.COMMON_PREFIX.NUMBER_PREFIX);
-    /** Constant <code>PATTERN_REGEX_ONLY_NUMBER_CHECK</code> */
-    public static final Pattern PATTERN_REGEX_ONLY_NUMBER_CHECK =
-            Pattern.compile(CommonConstant.COMMON_PREFIX.REGEX_ONLY_NUMBER);
-    /** Constant <code>FORMAT_DATE_FORMAT</code> */
-    public static final SimpleDateFormat FORMAT_DATE_FORMAT = new SimpleDateFormat(CommonConstant.DATE_FORMAT);
-    /** Constant <code>FORMAT_DATE_FORMAT_MILI</code> */
-    public static final SimpleDateFormat FORMAT_DATE_FORMAT_MILI =
-            new SimpleDateFormat(CommonConstant.DATE_FORMAT_MILI);
-    /** Constant <code>FORMAT_DATE_FORMAT_HM</code> */
-    public static final SimpleDateFormat FORMAT_DATE_FORMAT_HM = new SimpleDateFormat(CommonConstant.DATE_FORMAT_HM);
-    /** Constant <code>DATE_FORMAT_END_DAY</code> */
-    public static final SimpleDateFormat DATE_FORMAT_END_DAY = new SimpleDateFormat(CommonConstant.DATE_FORMAT_END_DAY);
-
-    /** Constant <code>NUMBER_SEPARATOR_SYMBOL_FORMAT</code> */
-    public static final DecimalFormatSymbols NUMBER_SEPARATOR_SYMBOL_FORMAT = new DecimalFormatSymbols();
-    /** Constant <code>NUMBER_SEPARATOR_SYMBOL</code> */
-    public static final DecimalFormat NUMBER_SEPARATOR_SYMBOL = new DecimalFormat("", NUMBER_SEPARATOR_SYMBOL_FORMAT);
-    /** Constant <code>DECIMAL_FORMAT_NUMBER_SEPERATOR</code> */
-    public static final DecimalFormat DECIMAL_FORMAT_NUMBER_SEPERATOR = new DecimalFormat("#,##0");
-
-    /** Constant <code>DECIMAL_FORMAT_SYMBOLS</code> */
-    public static final DecimalFormatSymbols DECIMAL_FORMAT_SYMBOLS = new DecimalFormatSymbols(Locale.GERMAN);
-    /** Constant <code>DECIMAL_FORMAT_NUMBER_COMMA</code> */
-    public static final DecimalFormat DECIMAL_FORMAT_NUMBER_COMMA =
-            new DecimalFormat("#,###,###,###.###", DECIMAL_FORMAT_SYMBOLS);
-
-    /** Constant <code>RANDOM</code> */
-    public static final SecureRandom RANDOM = new SecureRandom();
-
-    /** Constant <code>TEXT_TIMEZONE_VN="Asia/Ha_Noi"</code> */
-    public static final String TEXT_TIMEZONE_VN = "Asia/Ha_Noi";
-    /** Constant <code>TIMEZONE_VN</code> */
-    public static final TimeZone TIMEZONE_VN = TimeZone.getTimeZone(TEXT_TIMEZONE_VN);
-    /** Constant <code>CALENDAR</code> */
-    public static Calendar CALENDAR = Calendar.getInstance();
-
-    static {
-        FORMAT_YMD.setTimeZone(TIMEZONE_VN);
-        FORMAT_S_MY.setTimeZone(TIMEZONE_VN);
-        FORMAT_S_YM.setTimeZone(TIMEZONE_VN);
-        FORMAT_DMY.setTimeZone(TIMEZONE_VN);
-        FORMAT_HH_MM.setTimeZone(TIMEZONE_VN);
-        FORMAT_DMYHMS.setTimeZone(TIMEZONE_VN);
-        FORMAT_DMY_HYPHEN.setTimeZone(TIMEZONE_VN);
-        FORMAT_HMS.setTimeZone(TIMEZONE_VN);
-        FORMAT_YDM_INSTANT.setTimeZone(TIMEZONE_VN);
-        FORMAT_DMYHMS_HYPHEN.setTimeZone(TIMEZONE_VN);
-        FORMAT_DATE.setTimeZone(TIMEZONE_VN);
-        FORMAT_DATE_2.setTimeZone(TIMEZONE_VN);
-        FORMAT_YMD_HMS.setTimeZone(TIMEZONE_VN);
-        FORMAT_YMDHMS.setTimeZone(TIMEZONE_VN);
-        FORMAT_YMDH.setTimeZone(TIMEZONE_VN);
-        FORMAT_HMDMY.setTimeZone(TIMEZONE_VN);
-        FORMAT_MD_HMS_END_DAY.setTimeZone(TIMEZONE_VN);
-        FORMAT_FORMAT_HM_DMY.setTimeZone(TIMEZONE_VN);
-        FORMAT_DATE_FORMAT_YM2.setTimeZone(TIMEZONE_VN);
-        FORMAT_DATE_FORMAT_SHORT_YYYY.setTimeZone(TIMEZONE_VN);
-        FORMAT_HM_DMY.setTimeZone(TIMEZONE_VN);
-        FORMAT_HM_DMY1.setTimeZone(TIMEZONE_VN);
-        FORMAT_DATE_DMY_HM.setTimeZone(TIMEZONE_VN);
-        FORMAT_DATE_FORMAT.setTimeZone(TIMEZONE_VN);
-        FORMAT_DATE_FORMAT_MILI.setTimeZone(TIMEZONE_VN);
-        FORMAT_YMD_HMS_BEGIN_DAY.setTimeZone(TIMEZONE_VN);
-        FORMAT_DATE_FORMAT_HM.setTimeZone(TIMEZONE_VN);
-
-        NUMBER_SEPARATOR_SYMBOL_FORMAT.setDecimalSeparator('.');
-        NUMBER_SEPARATOR_SYMBOL_FORMAT.setGroupingSeparator(',');
-
-        DECIMAL_FORMAT_NUMBER_SEPERATOR.setGroupingSize(3);
-        DECIMAL_FORMAT_SYMBOLS.setDecimalSeparator(',');
-        DECIMAL_FORMAT_SYMBOLS.setGroupingSeparator('.');
-
-        CALENDAR.setTimeZone(TIMEZONE_VN);
-    }
 
     /**
      * Checks if an object is null or its string representation is empty.
@@ -377,7 +164,7 @@ public class DataUtil {
             try {
                 result = Integer.parseInt(obj1.toString());
             } catch (Exception ignored) {
-                log.error("safeToInt error: ", ignored);
+
             }
         }
         return result;
@@ -407,7 +194,7 @@ public class DataUtil {
         try {
             result = obj1 == null ? null : (Boolean) obj1;
         } catch (Exception ex) {
-            log.error("safeToBoolean error ", ex);
+
         }
         return result;
     }
@@ -442,7 +229,7 @@ public class DataUtil {
             try {
                 result = Long.parseLong(obj1.toString());
             } catch (Exception ignored) {
-                log.error("safeToInt error: ", ignored);
+                return (long) 1.0;
             }
         }
         return result;
@@ -477,7 +264,6 @@ public class DataUtil {
         try {
             return Double.parseDouble(obj.toString());
         } catch (Exception ex) {
-            log.error("safeToDouble error: ", ex);
             return defaultValue;
         }
     }
@@ -505,7 +291,6 @@ public class DataUtil {
         try {
             return UUID.fromString(input);
         } catch (Exception ex) {
-            log.error("safeToUUID: ", ex);
             return null;
         }
     }
@@ -522,7 +307,6 @@ public class DataUtil {
             UUID uuid = UUID.fromString(input);
             return uuid.toString().equals(input);
         } catch (Exception ex) {
-            log.error("isUUID: ", ex);
             return false;
         }
     }
@@ -619,12 +403,11 @@ public class DataUtil {
         try {
             return (T) ObjectMapperFactory.getInstance().readValue(safeToString(content), clz);
         } catch (JsonProcessingException e) {
-            log.error("Parse json error", e);
+
         }
         try {
             return (T) clz.newInstance();
         } catch (Exception e) {
-            log.error("cast object error: ", e);
             return (T) new Object();
         }
     }
@@ -649,7 +432,6 @@ public class DataUtil {
         try {
             return ObjectMapperFactory.getInstance().readValue(safeToString(content), clz);
         } catch (JsonProcessingException e) {
-            log.error("Parse json error: ", e);
             return defaultValue;
         }
     }
@@ -669,7 +451,6 @@ public class DataUtil {
         try {
             return ObjectMapperFactory.getInstance().writeValueAsString(obj);
         } catch (JsonProcessingException ex) {
-            log.error("parseObjectToString: ", ex);
             return "";
         }
     }
@@ -692,7 +473,6 @@ public class DataUtil {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
             return LocalDateTime.parse(input, formatter);
         } catch (Exception ex) {
-            log.error("convertStringToLocalDateTime error: ", ex);
             return null;
         }
     }
@@ -756,7 +536,6 @@ public class DataUtil {
         try {
             new JSONObject(json);
         } catch (JSONException e) {
-            LOGGER.info(e.getMessage());
             return false;
         }
         return true;
@@ -778,7 +557,6 @@ public class DataUtil {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
             return date.format(formatter);
         } catch (Exception e) {
-            log.error("====> parse local date time to string ==> " + e.getMessage(), e);
             return null;
         }
     }
@@ -805,7 +583,6 @@ public class DataUtil {
             // Combine the date and time to create a LocalDateTime object
             return LocalDateTime.of(date, time);
         } catch (Exception ex) {
-            log.error("Parse error: {}", ex.getMessage());
             return null;
         }
     }
@@ -819,45 +596,6 @@ public class DataUtil {
      */
     public static String appendLikeQuery(String field) {
         return "%" + field + "%";
-    }
-
-    /**
-     * Wraps a Mono in an Optional.
-     *
-     * @param input
-     *            the Mono to wrap
-     * @param <T>
-     *            the type of the Mono
-     * @return a Mono of Optional containing the input Mono
-     */
-    public static <T> Mono<Optional<T>> optional(Mono<T> input) {
-        return input.map(Optional::of).switchIfEmpty(Mono.just(Optional.empty()));
-    }
-
-    /**
-     * Converts an object to an XML string.
-     *
-     * @param arg0
-     *            the object to convert
-     * @param name
-     *            the name of the root element
-     * @return the XML string representation of the object
-     */
-    public static String convertObjectToXMLString(Object arg0, String name) {
-        String xml = "";
-        try {
-            StringWriter sw = new StringWriter();
-            JAXB.marshal(arg0, sw);
-            Document doc = convertStringToDocument(sw.toString());
-            xml = convertDocumentToString(doc);
-            if (!DataUtil.isNullOrEmpty(xml)) {
-                xml = xml.replace("<" + name + ">", "");
-                xml = xml.replace("</" + name + ">", "");
-            }
-        } catch (Exception ex) {
-            return xml;
-        }
-        return xml;
     }
 
     /**
@@ -943,7 +681,7 @@ public class DataUtil {
             try {
                 result = Float.parseFloat(obj1.toString());
             } catch (Exception ignored) {
-                log.error("safeToInt error: ", ignored);
+                return Float.parseFloat("-1");
             }
         }
         return result;
@@ -962,7 +700,7 @@ public class DataUtil {
         if (pageSize == null) {
             pageSize = defaultPageSize;
         } else if (pageSize <= 0) {
-            throw new BusinessException(CommonErrorCode.INVALID_PARAMS, "params.pageSize.invalid");
+            return -1;
         }
         return pageSize;
     }
@@ -981,7 +719,7 @@ public class DataUtil {
         if (pageIndex == null) {
             offset = 1;
         } else if (pageIndex < 0) {
-            throw new BusinessException(CommonErrorCode.INVALID_PARAMS, "params.pageIndex.invalid");
+            return -1;
         } else {
             offset = (pageIndex - 1) * pageSize;
         }
@@ -1013,7 +751,6 @@ public class DataUtil {
         try {
             return LocalDateTime.parse(input, convertDateFormatter);
         } catch (Exception ex) {
-            log.error("convertDateStrToLocalDateTime error: ", ex);
             return null;
         }
     }

@@ -79,16 +79,15 @@ public class LoggerSchedule {
 
     private void process(LoggerDTO record) {
         if (record != null) {
-            String traceId =
-                    !DataUtil.isNullOrEmpty(record.getNewSpan().context().traceIdString())
-                            ? record.getNewSpan().context().traceIdString()
-                            : "";
+            String traceId = !DataUtil.isNullOrEmpty(record.newSpan().context().traceIdString())
+                    ? record.newSpan().context().traceIdString()
+                    : "";
             String ipAddress = null;
             String requestId = null;
-            if (record.getContextRef().get() != null) {
-                if (record.getContextRef().get().hasKey(ServerWebExchange.class)) {
+            if (record.contextRef().get() != null) {
+                if (record.contextRef().get().hasKey(ServerWebExchange.class)) {
                     ServerWebExchange serverWebExchange =
-                            record.getContextRef().get().get(ServerWebExchange.class);
+                            record.contextRef().get().get(ServerWebExchange.class);
                     ServerHttpRequest request = serverWebExchange.getRequest();
                     ipAddress = RequestUtils.getIpAddress(request);
 
@@ -103,8 +102,8 @@ public class LoggerSchedule {
 
             String inputs = null;
             try {
-                if (record.getArgs() != null) {
-                    inputs = ObjectMapperFactory.getInstance().writeValueAsString(getAgrs(record.getArgs()));
+                if (record.args() != null) {
+                    inputs = ObjectMapperFactory.getInstance().writeValueAsString(getAgrs(record.args()));
                 }
             } catch (Exception ex) {
                 log.error("Error while handle record queue: ", ex.getMessage());
@@ -112,18 +111,18 @@ public class LoggerSchedule {
 
             String resStr = null;
             try {
-                if (record.getResponse() instanceof Optional) {
-                    Optional output = (Optional) record.getResponse();
+                if (record.response() instanceof Optional) {
+                    Optional output = (Optional) record.response();
                     if (output.isPresent()) {
                         resStr = ObjectMapperFactory.getInstance().writeValueAsString(output.get());
                     }
                 } else {
-                    if (record.getResponse() != null) {
-                        resStr = ObjectMapperFactory.getInstance().writeValueAsString(record.getResponse());
+                    if (record.response() != null) {
+                        resStr = ObjectMapperFactory.getInstance().writeValueAsString(record.response());
                     }
                 }
             } catch (Exception ex) {
-                log.error("Error while handle record queue: ", ex.getMessage());
+                log.error("Error while handle record queue: {}", ex.getMessage());
             }
             try {
                 inputs = TruncateUtils.truncate(inputs, MAX_BYTE);
@@ -134,17 +133,17 @@ public class LoggerSchedule {
             logInfo(new LogField(
                     traceId,
                     requestId,
-                    record.getService(),
-                    record.getEndTime() - record.getStartTime(),
-                    record.getLogType(),
-                    record.getActionType(),
-                    record.getStartTime(),
-                    record.getEndTime(),
+                    record.service(),
+                    record.endTime() - record.startTime(),
+                    record.logType(),
+                    record.actionType(),
+                    record.startTime(),
+                    record.endTime(),
                     ipAddress,
-                    record.getTitle(),
+                    record.title(),
                     inputs,
                     resStr,
-                    record.getResult()));
+                    record.result()));
         }
     }
 
@@ -152,7 +151,7 @@ public class LoggerSchedule {
         try {
             logPerf.info(ObjectMapperFactory.getInstance().writeValueAsString(logField));
         } catch (Exception ex) {
-            log.error("Error while handle record queue: ", ex.getMessage());
+            log.error("Error while handle record queue: {}", ex.getMessage());
         }
     }
 
