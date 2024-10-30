@@ -93,6 +93,7 @@
     <modules>
         <module>reactify-core</module>
         <module>reactify-utils</module>
+        <module>reactify-cache</module>
     </modules>
 
     <dependencies>
