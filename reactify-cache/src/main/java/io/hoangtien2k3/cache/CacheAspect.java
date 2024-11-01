@@ -13,9 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.hoangtien2k3.cache;
 
 import com.github.benmanes.caffeine.cache.Cache;
+import java.util.Objects;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -27,9 +30,6 @@ import org.springframework.util.ClassUtils;
 import reactor.cache.CacheMono;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Signal;
-
-import java.util.Objects;
-import java.util.Optional;
 
 /**
  * <p>
@@ -64,7 +64,6 @@ public class CacheAspect {
         String name = ClassUtils.getUserClass(joinPoint.getTarget().getClass()).getSimpleName() + "."
                 + joinPoint.getSignature().getName();
         Cache<Object, Object> cache = CacheStore.getCache(name);
-        // return cached mono
         return CacheMono.lookup(k -> Mono.justOrEmpty(cache.getIfPresent(key)).map(Signal::next), key)
                 .onCacheMissResume((Mono<Object>) joinPoint.proceed(args))
                 .andWriteWith((k, sig) -> Mono.fromRunnable(() -> {

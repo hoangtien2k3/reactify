@@ -28,6 +28,10 @@ import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
+import org.springframework.beans.BeansException;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
@@ -42,11 +46,11 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class CacheStore {
+public class CacheStore implements ApplicationContextAware {
 
     private static final HashMap<String, Cache<Object, Object>> caches = new HashMap<>();
     private static final Set<Method> autoLoadMethods = new HashSet<>();
-    private static final String reflectionPath = "io.hoangtien2k3";
+    private static String reflectionPath;
 
     @PostConstruct
     private static void init() {
@@ -114,5 +118,16 @@ public class CacheStore {
             }
             log.info("Finish auto load cache");
         }
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        Class<?> mainApplicationClass = applicationContext
+                .getBeansWithAnnotation(SpringBootApplication.class)
+                .values()
+                .iterator()
+                .next()
+                .getClass();
+        reflectionPath = mainApplicationClass.getPackageName();
     }
 }

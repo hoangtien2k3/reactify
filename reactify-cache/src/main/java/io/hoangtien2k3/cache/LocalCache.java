@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.hoangtien2k3.cache;
 
 import java.lang.annotation.ElementType;
@@ -21,52 +22,51 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation to indicate that a method's result should be cached locally. This
- * can improve performance by avoiding redundant computations or repeated data
- * retrieval from external sources.
+ * Marks a method for local caching to enhance performance by reducing redundant
+ * computations or repeated data retrievals from external sources.
  *
  * <p>
- * The caching behavior is defined by the properties of the annotation:
+ * This annotation enables flexible caching configurations through the following
+ * properties:
  * <ul>
- * <li><strong>durationInMinute</strong>: The duration for which the cached
- * result is valid, specified in minutes.</li>
- * <li><strong>maxRecord</strong>: The maximum number of records that can be
- * stored in the cache.</li>
- * <li><strong>autoCache</strong>: A flag indicating whether caching should be
- * done automatically or manually.</li>
+ * <li><strong>durationInMinute</strong>: Specifies the validity duration of the
+ * cached result, in minutes.</li>
+ * <li><strong>maxRecord</strong>: Defines the maximum number of records the
+ * cache can store.</li>
+ * <li><strong>autoCache</strong>: A flag that determines whether the caching
+ * should activate automatically upon method invocation.</li>
  * </ul>
  *
  * <p>
- * This annotation should be applied to methods that return a result that can
- * benefit from caching.
+ * This annotation is best applied to methods where caching can notably improve
+ * efficiency by retaining data that does not require frequent recalculation.
  *
- * <h3>Usage Example:</h3>
+ * <h3>Example Usage:</h3>
  *
  * <pre>
  * &#64;LocalCache(durationInMinute = 10, maxRecord = 500, autoCache = true)
  * public MyObject fetchData(String param) {
- * 	// Method implementation that retrieves data
+ * 	// Implementation that fetches or computes data
  * }
  * </pre>
  *
  * <h3>Annotation Properties:</h3>
  * <dl>
- * <dt>durationInMinute</dt>
- * <dd>The time period in minutes for which the cached data is valid. Default is
- * 120 minutes.</dd>
+ * <dt><strong>durationInMinute</strong></dt>
+ * <dd>Defines the cache retention time in minutes. Default is 120 minutes.</dd>
  *
- * <dt>maxRecord</dt>
- * <dd>The maximum number of entries that can be cached. Default is 1000
- * entries.</dd>
+ * <dt><strong>maxRecord</strong></dt>
+ * <dd>Limits the number of records that can be cached simultaneously. Default
+ * is 1000 entries.</dd>
  *
- * <dt>autoCache</dt>
- * <dd>If set to true, the method result will be automatically cached. Default
- * is false.</dd>
+ * <dt><strong>autoCache</strong></dt>
+ * <dd>When set to <code>true</code>, the method result is automatically cached
+ * on execution. Default is <code>false</code>.</dd>
  * </dl>
  *
  * <p>
- * This annotation is intended for use in performance-sensitive applications
- * where reducing latency and resource consumption is critical.
+ * This annotation is ideal for performance-critical applications aiming to
+ * reduce latency and optimize resource usage through local caching.
  * </p>
  */
 @Target(ElementType.METHOD)
