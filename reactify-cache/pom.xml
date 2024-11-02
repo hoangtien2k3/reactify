@@ -3,13 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>io.github.hoangtien2k3</groupId>
-		<artifactId>reactify</artifactId>
-		<version>1.1.6</version>
-		<relativePath>../pom.xml</relativePath>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.5</version>
+		<relativePath/>
 	</parent>
+	<groupId>io.github.hoangtien2k3</groupId>
 	<artifactId>reactify-cache</artifactId>
-	<version>1.1.6</version>
+	<version>1.1.7</version>
 	<name>reactify-cache</name>
 	<packaging>jar</packaging>
 	<description>Java lib using caffeine cache</description>
@@ -76,10 +77,6 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
