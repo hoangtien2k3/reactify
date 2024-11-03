@@ -13,16 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
 
 /**
- * <p>
- * PageUtils class.
- * </p>
- *
- * @author hoangtien2k3
+ * Utility class for data manipulation and processing. This class contains
+ * static methods for various data-related operations.
  */
 public class PageUtils {
+
+    /**
+     * Constructs a new instance of {@code PageUtils}.
+     */
+    public PageUtils() {}
+
     /**
      * <p>
      * getOffset.

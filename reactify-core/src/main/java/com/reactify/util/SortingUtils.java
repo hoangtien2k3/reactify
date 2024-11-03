@@ -13,29 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
 
 import com.reactify.constants.Constants;
 import com.reactify.constants.Regex;
 import com.reactify.model.TokenUser;
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>
- * SortingUtils class.
- * </p>
- *
- * @author hoangtien2k3
- *         <p>
- *         Ho tro parse sorting thanh cau query trong database
+ * Utility class for data manipulation and processing. This class contains
+ * static methods for various data-related operations.
  */
 @Slf4j
 public class SortingUtils {
-    // for example
+
+    /**
+     * Constructs a new instance of {@code SortingUtils}.
+     */
+    public SortingUtils() {}
+
     /**
      * <p>
      * main.
@@ -59,7 +60,7 @@ public class SortingUtils {
      *            the class of the object to be sorted
      * @return the database query string for sorting
      */
-    public static String parseSorting(String sortConfig, Class objectClass) {
+    public static String parseSorting(String sortConfig, Class<?> objectClass) {
         List<String> convertSorting =
                 convertSorting(sortConfig.replaceAll(Regex.CAMELCASE, Constants.Sorting.FILED_DISPLAY), objectClass);
         if (convertSorting == null || convertSorting.isEmpty()) {
@@ -79,7 +80,7 @@ public class SortingUtils {
      *            the class of the object to be sorted
      * @return the list of sorting fields
      */
-    public static List<String> convertSorting(String sortConfig, Class objectClass) {
+    public static List<String> convertSorting(String sortConfig, Class<?> objectClass) {
         if (DataUtil.isNullOrEmpty(sortConfig)) {
             return null;
         }
@@ -95,7 +96,7 @@ public class SortingUtils {
             } else if (element.startsWith(Constants.Sorting.PLUS_OPERATOR)) {
                 handleElement(element, Constants.Sorting.PLUS_OPERATOR, filedNames, orderList);
             } else {
-                log.error("Filed invalid ", element);
+                log.error("Filed invalid {}", element);
             }
         }
         return orderList;
@@ -130,7 +131,7 @@ public class SortingUtils {
      *            the class of the object
      * @return the list of field names
      */
-    private static List<String> getFieldsOfClass(Class object) {
+    private static List<String> getFieldsOfClass(Class<?> object) {
         List<String> filedNames = new ArrayList<>();
         for (Field field : getAllFields(object)) {
             filedNames.add(field.getName().replaceAll(Regex.CAMELCASE, Constants.Sorting.FILED_DISPLAY));

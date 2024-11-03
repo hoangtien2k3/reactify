@@ -17,18 +17,32 @@ package com.reactify.config;
 
 import com.reactify.constants.CommonErrorCode;
 import com.reactify.exception.BusinessException;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.springframework.stereotype.Component;
+
+import javax.crypto.Cipher;
 import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.Security;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
-import javax.crypto.Cipher;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.springframework.stereotype.Component;
 
 /**
  * <p>
- * CipherManager class.
+ * The {@code CipherManager} class provides methods for encrypting messages
+ * using RSA encryption. It utilizes the Bouncy Castle provider to support
+ * enhanced cryptographic algorithms.
+ * </p>
+ *
+ * <p>
+ * This class is responsible for initializing the RSA cipher and performing
+ * encryption operations on given messages using a public key.
+ * </p>
+ *
+ * <p>
+ * The encryption method converts the message to bytes, encrypts it using the
+ * provided public key, and returns the encrypted message as a Base64 encoded
+ * string.
  * </p>
  *
  * @author hoangtien2k3
@@ -39,11 +53,11 @@ public class CipherManager {
 
     /**
      * <p>
-     * Constructor for CipherManager.
+     * Constructs a {@code CipherManager} instance and initializes the RSA cipher.
      * </p>
      *
      * @throws Exception
-     *             if any.
+     *             if there is an issue initializing the cipher.
      */
     public CipherManager() throws Exception {
         Security.addProvider(new BouncyCastleProvider());
@@ -52,14 +66,16 @@ public class CipherManager {
 
     /**
      * <p>
-     * encrypt.
+     * Encrypts the given message using the specified public key.
      * </p>
      *
      * @param message
-     *            a {@link String} object
+     *            the {@link String} message to encrypt
      * @param publicKeyString
-     *            a {@link String} object
-     * @return a {@link String} object
+     *            the {@link String} representation of the public key in
+     *            Base64 format
+     * @return a {@link String} representing the Base64 encoded encrypted
+     *         message
      */
     public String encrypt(String message, String publicKeyString) {
         try {
@@ -72,6 +88,17 @@ public class CipherManager {
         }
     }
 
+    /**
+     * <p>
+     * Converts a Base64 encoded public key string to a {@link PublicKey} instance.
+     * </p>
+     *
+     * @param publicKeyString
+     *            a {@link String} representation of the public key in Base64 format
+     * @return a {@link PublicKey} instance derived from the provided string
+     * @throws Exception
+     *             if there is an issue during key conversion
+     */
     private static PublicKey stringToPublicKey(String publicKeyString) throws Exception {
         byte[] keyBytes = Base64.getDecoder().decode(publicKeyString);
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);

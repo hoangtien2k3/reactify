@@ -15,13 +15,23 @@
  */
 package com.reactify.common;
 
-import java.security.*;
-import java.util.Base64;
 import lombok.Getter;
 
+import java.security.*;
+import java.util.Base64;
+
 /**
- * This is class to gen RSAKeyPair (publicKey and privateKey) <a href=
- * "https://www.devglan.com/java8/rsa-encryption-decryption-java">...</a>
+ * <p>
+ * The {@code RSAKeyPairGenerator} class is designed to generate a pair of RSA
+ * keys, including a public key and a private key, suitable for asymmetric
+ * encryption. For more details on RSA encryption and decryption, see <a href=
+ * "https://www.devglan.com/java8/rsa-encryption-decryption-java">here</a>.
+ * </p>
+ *
+ * <p>
+ * This class utilizes the Java Security API to generate the RSA key pair with a
+ * key size of 1024 bits.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -33,11 +43,12 @@ public class RSAKeyPairGenerator {
 
     /**
      * <p>
-     * Constructor for RSAKeyPairGenerator.
+     * Constructs an instance of {@code RSAKeyPairGenerator}. This constructor
+     * initializes the key pair generator and generates the RSA key pair.
      * </p>
      *
      * @throws NoSuchAlgorithmException
-     *             if any.
+     *             if the RSA algorithm is not available.
      */
     public RSAKeyPairGenerator() throws NoSuchAlgorithmException {
         // RSA to indicate Asymmetric Encryption (public-key cryptography)
@@ -51,13 +62,15 @@ public class RSAKeyPairGenerator {
 
     /**
      * <p>
-     * main.
+     * The main method is the entry point for the program. It generates an RSA key
+     * pair and prints the public and private keys in Base64 encoded format.
      * </p>
      *
      * @param args
-     *            an array of {@link String} objects
+     *            an array of {@link String} objects, not used in this
+     *            implementation.
      * @throws NoSuchAlgorithmException
-     *             if any.
+     *             if the RSA algorithm is not available.
      */
     public static void main(String[] args) throws NoSuchAlgorithmException {
         RSAKeyPairGenerator rsaKeyPairGenerator = new RSAKeyPairGenerator();

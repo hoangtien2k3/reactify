@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
+
+import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.apache.commons.lang3.RandomStringUtils;
 
 /**
  * Utility class for generating random passwords. Provides methods to generate
@@ -27,6 +28,11 @@ import org.apache.commons.lang3.RandomStringUtils;
  * @author hoangtien2k3
  */
 public class PasswordGenerator {
+
+    /**
+     * Constructs a new instance of {@code PasswordGenerator}.
+     */
+    public PasswordGenerator() {}
 
     /**
      * Generates a random password using Apache Commons Lang's RandomStringUtils.

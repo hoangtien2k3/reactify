@@ -17,17 +17,38 @@ package com.reactify.annotations.logging;
 
 import brave.Span;
 import com.reactify.model.logging.LoggerDTO;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.atomic.AtomicReference;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import reactor.util.context.Context;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.atomic.AtomicReference;
+
 /**
  * <p>
- * LoggerQueue class.
+ * The {@code LoggerQueue} class is a singleton that provides a thread-safe
+ * queue for logging operations using an
+ * {@link ArrayBlockingQueue} to manage instances of
+ * {@link LoggerDTO}. It tracks the number of
+ * successful and failed logging attempts.
+ * </p>
+ *
+ * <p>
+ * This class ensures that logging tasks are queued efficiently and can be
+ * processed asynchronously, making it suitable for high-throughput logging
+ * scenarios.
+ * </p>
+ *
+ * <p>
+ * The implementation follows the singleton design pattern to ensure that only
+ * one instance of the {@code LoggerQueue} exists throughout the application.
+ * </p>
+ *
+ * <p>
+ * This class is annotated with {@link Slf4j} for logging
+ * functionality.
  * </p>
  *
  * @author hoangtien2k3
@@ -58,6 +79,9 @@ public class LoggerQueue {
         return mMe;
     }
 
+    /**
+     * Constructs a new instance of {@code UnmarshallerFactory}.
+     */
     private LoggerQueue() {
         myQueue = new ArrayBlockingQueue<>(100000) {};
     }

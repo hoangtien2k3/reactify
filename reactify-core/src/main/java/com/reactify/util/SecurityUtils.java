@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
 
 import com.nimbusds.jose.util.Base64;
 import com.nimbusds.jwt.SignedJWT;
@@ -21,15 +21,16 @@ import com.reactify.constants.Constants;
 import com.reactify.factory.ObjectMapperFactory;
 import com.reactify.model.TokenUser;
 import com.reactify.model.UserDTO;
-import java.security.SignatureException;
-import java.util.Map;
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.oauth2.jwt.Jwt;
 import reactor.core.publisher.Mono;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.SignatureException;
+import java.util.Map;
 
 /**
  * Utility class for security-related operations. Provides methods to extract
@@ -38,6 +39,11 @@ import reactor.core.publisher.Mono;
  * @author hoangtien2k3
  */
 public class SecurityUtils {
+
+    /**
+     * Constructs a new instance of {@code SecurityUtils}.
+     */
+    public SecurityUtils() {}
 
     /**
      * Retrieves the current authenticated user as a TokenUser.

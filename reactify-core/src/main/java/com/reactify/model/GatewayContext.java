@@ -24,7 +24,18 @@ import org.springframework.util.MultiValueMap;
 
 /**
  * <p>
- * GatewayContext class.
+ * The GatewayContext class is designed to encapsulate the context of a gateway
+ * request. It holds information regarding the request and response data,
+ * headers, and the processing state of the gateway. This class is useful for
+ * managing the data flow in a gateway system, allowing for caching and easy
+ * access to request/response details throughout the processing lifecycle.
+ * </p>
+ *
+ * <p>
+ * It includes flags for controlling whether to read request and response data,
+ * and it provides storage for various components of the request such as the
+ * body, headers, and form data. The class also tracks the start time of the
+ * request for performance monitoring.
  * </p>
  *
  * @author hoangtien2k3
@@ -33,6 +44,12 @@ import org.springframework.util.MultiValueMap;
 @Setter
 @ToString
 public class GatewayContext {
+
+    /**
+     * Constructs a new instance of {@code GatewayContext}.
+     */
+    public GatewayContext() {}
+
     /** Constant <code>CACHE_GATEWAY_CONTEXT="cacheGatewayContext"</code> */
     public static final String CACHE_GATEWAY_CONTEXT = "cacheGatewayContext";
 

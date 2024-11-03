@@ -16,24 +16,23 @@
 package com.reactify.client.properties;
 
 import com.reactify.filter.properties.*;
-import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
+
+import java.util.List;
 
 /**
  * Configuration properties for a WebClient instance, encapsulating connection,
  * authorization, and monitoring settings.
- * <p>
+ *
  * This class is designed to hold various configuration parameters for a
  * WebClient, including endpoint details, authorization credentials, connection
  * pooling, request timeouts, retries, logging options, monitoring, and proxy
  * configurations.
+ *
+ * @author hoangtien2k3
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class WebClientProperties {
     /**
      * The name identifier for the WebClient configuration, used for reference
@@ -105,4 +104,9 @@ public class WebClientProperties {
      * WebClient will include an OAuth2 token in the request headers.
      */
     private boolean internalOauth = false;
+
+    /**
+     * Constructs a new instance of {@code WebClientProperties}.
+     */
+    public WebClientProperties() {}
 }

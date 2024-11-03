@@ -21,7 +21,19 @@ import java.util.Base64;
 
 /**
  * <p>
- * PasswordService class.
+ * The {@code PasswordService} class provides a singleton instance for
+ * encrypting plaintext strings using SHA-1 hashing algorithm and returning the
+ * encrypted string in Base64 format.
+ * </p>
+ *
+ * <p>
+ * This class follows the Singleton design pattern to ensure that only one
+ * instance of {@code PasswordService} is created throughout the application.
+ * </p>
+ *
+ * <p>
+ * Note: SHA-1 is considered weak for cryptographic purposes. It is recommended
+ * to use stronger hashing algorithms (e.g., SHA-256) for better security.
  * </p>
  *
  * @author hoangtien2k3
@@ -34,14 +46,22 @@ public class PasswordService {
 
     /**
      * <p>
-     * encrypt.
+     * Encrypts the given plaintext string.
+     * </p>
+     *
+     * <p>
+     * This method uses the SHA-1 hashing algorithm to hash the provided plaintext.
+     * The resulting byte array is then encoded using Base64 encoding.
      * </p>
      *
      * @param plaintext
-     *            a {@link String} object
-     * @return a {@link String} object
+     *            a {@link String} object representing the plaintext to be
+     *            encrypted.
+     * @return a {@link String} object representing the Base64 encoded
+     *         encrypted text.
      * @throws Exception
-     *             if any.
+     *             if there is an error during the encryption process, such as if
+     *             the SHA-1 algorithm is not available.
      */
     public synchronized String encrypt(String plaintext) throws Exception {
         MessageDigest md = null;
@@ -53,10 +73,17 @@ public class PasswordService {
 
     /**
      * <p>
-     * Getter for the field <code>instance</code>.
+     * Retrieves the singleton instance of the {@code PasswordService}.
      * </p>
      *
-     * @return a {@link PasswordService} object
+     * <p>
+     * This method provides a synchronized access to ensure that only one instance
+     * of the {@code PasswordService} is created and shared throughout the
+     * application.
+     * </p>
+     *
+     * @return a {@link PasswordService} object representing the
+     *         singleton instance.
      */
     public static synchronized PasswordService getInstance() {
         if (instance == null) {

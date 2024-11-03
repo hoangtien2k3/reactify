@@ -15,18 +15,12 @@
  */
 package com.reactify.annotations.logging;
 
-import static com.reactify.constants.Constants.MAX_BYTE;
-
-import com.reactify.DataUtil;
-import com.reactify.RequestUtils;
-import com.reactify.TruncateUtils;
 import com.reactify.factory.ObjectMapperFactory;
 import com.reactify.model.logging.LogField;
 import com.reactify.model.logging.LoggerDTO;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import lombok.RequiredArgsConstructor;
+import com.reactify.util.DataUtil;
+import com.reactify.util.RequestUtils;
+import com.reactify.util.TruncateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,22 +30,67 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static com.reactify.constants.Constants.MAX_BYTE;
+
 /**
+ * LoggerSchedule class is responsible for scheduling the logging of requests
+ * and responses. It retrieves log records from the LoggerQueue and processes
+ * them at a fixed interval defined by the @Scheduled annotation.
+ *
  * <p>
- * LoggerSchedule class.
+ * This class is marked as a Spring configuration and uses
+ * Lombok's @RequiredArgsConstructor for automatic constructor injection,
+ * ensuring that all required fields are initialized appropriately.
  * </p>
+ *
+ * <p>
+ * Additionally, it uses Lombok's annotations for automatic constructor
+ * injection and logging. The logging is performed using a dedicated performance
+ * logger.
+ * </p>
+ *
+ * <p>
+ * Usage: This class is automatically instantiated by the Spring framework, and
+ * the scheduleSaveLogClick method is invoked every 3 seconds. Ensure that
+ * LoggerQueue is populated with LoggerDTO records before the scheduled task
+ * runs.
+ * </p>
+ *
+ * <p>
+ * Example:
+ * </p>
+ *
+ * <pre>
+ * // No manual instantiation is required as Spring manages it
+ * // Just ensure LoggerQueue has records
+ * </pre>
  *
  * @author hoangtien2k3
  */
 @Configuration
-@RequiredArgsConstructor
 @Slf4j
 public class LoggerSchedule {
     private static final Logger logPerf = LoggerFactory.getLogger("perfLogger");
 
     /**
+     * Constructs a new instance of {@code LoggerSchedule}.
+     */
+    public LoggerSchedule() {}
+
+    /**
      * <p>
-     * scheduleSaveLogClick.
+     * scheduleSaveLogClick method is called at a fixed interval (3000 milliseconds)
+     * to process log records from the LoggerQueue. It counts the number of
+     * successful and failed processing attempts and logs errors when they occur.
+     * </p>
+     *
+     * <p>
+     * It retrieves records from LoggerQueue, processes each record, and resets the
+     * count after processing.
      * </p>
      */
     @Scheduled(fixedDelay = 3000)
@@ -72,6 +111,16 @@ public class LoggerSchedule {
         LoggerQueue.getInstance().resetCount();
     }
 
+    /**
+     * <p>
+     * Processes a single LoggerDTO record, extracting relevant information such as
+     * trace ID, IP address, request ID, input arguments, and response. It logs this
+     * information using logInfo.
+     * </p>
+     *
+     * @param record
+     *            The LoggerDTO record to process.
+     */
     private void process(LoggerDTO record) {
         if (record != null) {
             String traceId = !DataUtil.isNullOrEmpty(record.newSpan().context().traceIdString())
@@ -141,6 +190,14 @@ public class LoggerSchedule {
         }
     }
 
+    /**
+     * <p>
+     * Logs the information in a structured format using the perfLogger.
+     * </p>
+     *
+     * @param logField
+     *            The log data to be written.
+     */
     private void logInfo(LogField logField) {
         try {
             logPerf.info(ObjectMapperFactory.getInstance().writeValueAsString(logField));
@@ -149,6 +206,16 @@ public class LoggerSchedule {
         }
     }
 
+    /**
+     * <p>
+     * Filters out Mono and ServerWebExchange instances from the input arguments and
+     * returns a list of valid arguments.
+     * </p>
+     *
+     * @param args
+     *            The original array of arguments.
+     * @return A list of non-Mono and non-ServerWebExchange arguments.
+     */
     private List<Object> getAgrs(Object[] args) {
         List<Object> listArg = new ArrayList<>();
         for (Object arg : args) {

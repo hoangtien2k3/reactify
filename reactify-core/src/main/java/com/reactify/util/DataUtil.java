@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
-
-import static com.reactify.constants.CommonConstant.DATE_FORMAT_YM2;
+package com.reactify.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -28,6 +26,25 @@ import com.reactify.constants.CommonConstant;
 import com.reactify.constants.CommonErrorCode;
 import com.reactify.exception.BusinessException;
 import com.reactify.factory.ObjectMapperFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.ObjectUtils;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+import reactor.core.publisher.Mono;
+
+import javax.xml.bind.JAXB;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigDecimal;
@@ -45,35 +62,21 @@ import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAccessor;
 import java.util.*;
 import java.util.regex.Pattern;
-import javax.xml.bind.JAXB;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import lombok.extern.slf4j.Slf4j;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.util.ObjectUtils;
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
-import reactor.core.publisher.Mono;
+
+import static com.reactify.constants.CommonConstant.DATE_FORMAT_YM2;
 
 /**
- * <p>
- * DataUtil class.
- * </p>
- *
- * @author hoangtien2k3
+ * Utility class for data manipulation and processing. This class contains
+ * static methods for various data-related operations.
  */
 @Slf4j
 public class DataUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(DataUtil.class);
+
+    /**
+     * Constructs a new instance of {@code DataUtil}.
+     */
+    public DataUtil() {}
 
     /** Constant <code>FORMAT_YMD</code> */
     public static final SimpleDateFormat FORMAT_YMD = new SimpleDateFormat(CommonConstant.DATE_FORMAT_YMD);

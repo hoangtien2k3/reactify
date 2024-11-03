@@ -17,12 +17,29 @@ package com.reactify.filter.properties;
 
 /**
  * <p>
- * PoolProperties class.
+ * The PoolProperties class is a record that holds configuration properties for
+ * a connection pool. It specifies the maximum number of connections in the pool
+ * and the maximum number of pending requests to acquire a connection from the
+ * pool.
  * </p>
  *
+ * <p>
+ * The default constructor initializes the pool with a maximum size of 2000
+ * connections and allows 2000 pending requests to acquire a connection.
+ * </p>
+ *
+ * @param maxSize
+ *            the maximum number of connections in the pool
+ * @param maxPendingAcquire
+ *            the maximum number of pending requests to acquire a connection
  * @author hoangtien2k3
  */
 public record PoolProperties(Integer maxSize, Integer maxPendingAcquire) {
+    /**
+     * <p>
+     * Constructor for PoolProperties.
+     * </p>
+     */
     public PoolProperties() {
         this(2000, 2000);
     }

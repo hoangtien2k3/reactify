@@ -19,12 +19,6 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.Scheduler;
 import com.reactify.annotations.LocalCache;
-import java.lang.reflect.Method;
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
@@ -37,9 +31,46 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import java.lang.reflect.Method;
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * <p>
- * CacheStore class.
+ * The {@code CacheStore} class is responsible for managing and initializing
+ * caches for methods annotated with
+ * {@link LocalCache}. It uses the Caffeine caching
+ * library to provide an efficient caching mechanism, supporting features like
+ * auto-loading of cache entries based on method annotations.
+ * </p>
+ *
+ * <p>
+ * This class implements
+ * {@link ApplicationContextAware} to gain access to
+ * the Spring application context, allowing it to dynamically discover and
+ * initialize caches at startup. It automatically loads caches for methods that
+ * have the {@code @LocalCache} annotation and meet the specified criteria.
+ * </p>
+ *
+ * <p>
+ * The cache initialization process occurs during the post-construct phase,
+ * where it scans for methods with the {@code @LocalCache} annotation and
+ * configures the caches according to the parameters specified in the
+ * annotation.
+ * </p>
+ *
+ * <p>
+ * The class also listens for context refresh events to trigger the auto-loading
+ * of caches, ensuring that the caches are populated with initial data as
+ * needed.
+ * </p>
+ *
+ * <p>
+ * The caches are stored in a static {@link HashMap} for easy access
+ * based on the method name and class.
  * </p>
  *
  * @author hoangtien2k3
@@ -52,6 +83,18 @@ public class CacheStore implements ApplicationContextAware {
     private static final Set<Method> autoLoadMethods = new HashSet<>();
     private static String reflectionPath;
 
+    /**
+     * Constructs a new instance of {@code CacheStore}.
+     */
+    public CacheStore() {}
+
+    /**
+     * <p>
+     * Initializes the cache store by scanning for methods annotated with
+     * {@link LocalCache} and creating caches according to the annotation's
+     * parameters. This method is called after the bean's construction.
+     * </p>
+     */
     @PostConstruct
     private static void init() {
         log.info("Start initializing cache");
@@ -89,12 +132,14 @@ public class CacheStore implements ApplicationContextAware {
 
     /**
      * <p>
-     * getCache.
+     * Retrieves a cache by its name.
      * </p>
      *
      * @param key
-     *            a {@link String} object
+     *            a {@link String} object representing the cache name.
      * @return a {@link Cache} object
+     *         corresponding to the specified name, or {@code null} if no cache
+     *         exists for the given key.
      */
     public static Cache<Object, Object> getCache(String key) {
         return caches.get(key);
@@ -102,11 +147,14 @@ public class CacheStore implements ApplicationContextAware {
 
     /**
      * <p>
-     * autoLoad.
+     * Automatically loads cache entries for methods that are configured to
+     * auto-load. This method is triggered by the
+     * {@link ContextRefreshedEvent}.
      * </p>
      *
      * @param event
-     *            a {@link ContextRefreshedEvent} object
+     *            a {@link ContextRefreshedEvent}
+     *            object indicating the application context has been refreshed.
      */
     @Async
     @EventListener
@@ -120,6 +168,15 @@ public class CacheStore implements ApplicationContextAware {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * <p>
+     * Sets the application context for this component, allowing it to access beans
+     * and application context resources. This method is called by Spring during the
+     * bean lifecycle.
+     * </p>
+     */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         Class<?> mainApplicationClass = applicationContext

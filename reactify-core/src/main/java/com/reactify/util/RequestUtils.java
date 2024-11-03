@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
 
-import java.util.Objects;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+
+import java.util.Objects;
 
 /**
  * Utility class for handling HTTP requests. Provides methods to extract the
@@ -34,6 +35,11 @@ public class RequestUtils {
     private static final String HEADER_WL_PROXY_CLIENT_IP = "WL-Proxy-Client-IP";
     private static final String HEADER_X_REAL_IP = "X-Real-IP";
     private static final String UNKNOWN = "unknown";
+
+    /**
+     * Constructs a new instance of {@code RequestUtils}.
+     */
+    public RequestUtils() {}
 
     /**
      * Retrieves the real IP address from the request headers. Checks various

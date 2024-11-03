@@ -13,25 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.i18n.LocaleContextHolder;
 
 /**
- * <p>
- * MessageUtils class.
- * </p>
- *
- * @author hoangtien2k3
+ * Utility class for data manipulation and processing. This class contains
+ * static methods for various data-related operations.
  */
 @Slf4j
 public class MessageUtils {
 
     private static final String BASE_NAME = "messages";
+
+    /**
+     * Constructs a new instance of {@code MessageUtils}.
+     */
+    public MessageUtils() {}
 
     /**
      * <p>
@@ -45,7 +48,7 @@ public class MessageUtils {
      * @return a {@link String} object
      */
     public static String getMessage(String code, Locale locale) {
-        return getMessage(code, locale, null);
+        return getMessage(code, locale, (Object) null);
     }
 
     /**
@@ -85,7 +88,7 @@ public class MessageUtils {
      * @return a {@link String} object
      */
     public static String getMessage(String code) {
-        return getMessage(code, LocaleContextHolder.getLocale(), null);
+        return getMessage(code, LocaleContextHolder.getLocale(), (Object) null);
     }
 
     /**

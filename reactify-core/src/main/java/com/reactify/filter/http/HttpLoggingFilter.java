@@ -15,19 +15,11 @@
  */
 package com.reactify.filter.http;
 
-import static com.reactify.constants.Constants.MAX_BYTE;
-import static reactor.core.scheduler.Schedulers.single;
-
-import com.reactify.RequestUtils;
-import com.reactify.TruncateUtils;
 import com.reactify.constants.Constants;
 import com.reactify.filter.properties.HttpLogProperties;
 import com.reactify.model.GatewayContext;
-import java.net.URI;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import lombok.RequiredArgsConstructor;
+import com.reactify.util.RequestUtils;
+import com.reactify.util.TruncateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.reactivestreams.Publisher;
@@ -46,6 +38,14 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.reactify.constants.Constants.MAX_BYTE;
+import static reactor.core.scheduler.Schedulers.single;
+
 /**
  * A filter for logging HTTP requests and responses.
  *
@@ -58,9 +58,18 @@ import reactor.core.publisher.Mono;
  */
 @Component
 @Slf4j
-@RequiredArgsConstructor
 public class HttpLoggingFilter implements WebFilter, Ordered {
     private final HttpLogProperties httpLogProperties;
+
+    /**
+     * Constructs a new instance of {@code HttpLoggingFilter}.
+     *
+     * @param httpLogProperties
+     *            the properties for logging HTTP requests and responses.
+     */
+    public HttpLoggingFilter(HttpLogProperties httpLogProperties) {
+        this.httpLogProperties = httpLogProperties;
+    }
 
     /**
      * {@inheritDoc}

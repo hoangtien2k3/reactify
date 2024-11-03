@@ -16,7 +16,6 @@
 package com.reactify.config;
 
 import io.minio.MinioClient;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -24,24 +23,46 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * <p>
- * MinioConfiguration class.
+ * MinioConfiguration class is responsible for configuring the Minio client used
+ * for interacting with the Minio object storage service.
+ * </p>
+ *
+ * <p>
+ * This configuration class initializes a {@link MinioClient} bean
+ * based on the properties defined in
+ * {@link MinioProperties}. It enables the Minio client only
+ * if the "minio.enabled" property is set to true.
  * </p>
  *
  * @author hoangtien2k3
  */
 @Slf4j
 @Configuration
-@RequiredArgsConstructor
 public class MinioConfiguration {
 
     private final MinioProperties minioProperties;
 
     /**
+     * Constructs a new instance of {@code MinioConfiguration}.
+     *
+     * @param minioProperties
+     *            the properties used to configure MinIO connection settings.
+     */
+    public MinioConfiguration(MinioProperties minioProperties) {
+        this.minioProperties = minioProperties;
+    }
+
+    /**
      * <p>
-     * minioClient.
+     * Creates a {@link MinioClient} bean configured with the Minio server
+     * endpoint and access credentials. The client is only created if the
+     * "minio.enabled" property is set to true.
      * </p>
      *
-     * @return a {@link MinioClient} object
+     * @return a {@link MinioClient} object configured to connect to the
+     *         Minio server.
+     * @throws RuntimeException
+     *             if there is an error during Minio client configuration.
      */
     @Bean
     @ConditionalOnProperty(value = "minio.enabled", havingValue = "true", matchIfMissing = false)

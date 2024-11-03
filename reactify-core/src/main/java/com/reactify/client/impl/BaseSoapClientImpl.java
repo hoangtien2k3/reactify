@@ -15,19 +15,13 @@
  */
 package com.reactify.client.impl;
 
-import com.reactify.DataUtil;
-import com.reactify.DataWsUtil;
-import com.reactify.Translator;
 import com.reactify.client.BaseSoapClient;
 import com.reactify.constants.CommonErrorCode;
 import com.reactify.constants.Constants;
 import com.reactify.exception.BusinessException;
-import java.io.StringReader;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import com.reactify.util.DataUtil;
+import com.reactify.util.DataWsUtil;
+import com.reactify.util.Translator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
@@ -42,6 +36,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 import reactor.core.publisher.Mono;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.StringReader;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * BaseSoapClientImpl is an implementation of the BaseSoapClient interface that
@@ -64,26 +65,28 @@ import reactor.core.publisher.Mono;
  *
  * @param <T>
  *            The type of the result object expected from the API response.
+ * @author hoangtien2k3
  */
 @Slf4j
 @Service
 public class BaseSoapClientImpl<T> implements BaseSoapClient<T> {
 
     /**
+     * Constructs a new instance of {@code BaseSoapClientImpl}.
+     * <p>
+     * This default constructor is provided for compatibility purposes and does not
+     * perform any initialization.
+     * </p>
+     */
+    public BaseSoapClientImpl() {}
+
+    /**
+     * {@inheritDoc}
+     *
      * Executes a SOAP API call and returns an Optional result of the specified
      * type. This method performs the following steps: - Sets up headers and sends a
      * POST request. - Processes the response as a String and attempts to parse it.
      * - If the response is empty or parsing fails, returns an Optional.empty.
-     *
-     * @param webClient
-     *            The WebClient instance for making HTTP requests.
-     * @param headerList
-     *            Headers to include in the SOAP request.
-     * @param payload
-     *            The request payload to send.
-     * @param resultClass
-     *            The expected result class type for deserialization.
-     * @return A Mono containing an Optional result of type T if successful.
      */
     @Override
     public Mono<Optional<T>> call(
@@ -129,19 +132,11 @@ public class BaseSoapClientImpl<T> implements BaseSoapClient<T> {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Alternative implementation of the `call` method with a similar API call
      * structure. Provides the same functionality as `call` but can be used
      * independently as needed.
-     *
-     * @param webClient
-     *            The WebClient instance for making HTTP requests.
-     * @param headerList
-     *            Headers to include in the SOAP request.
-     * @param payload
-     *            The request payload to send.
-     * @param resultClass
-     *            The expected result class type for deserialization.
-     * @return A Mono containing an Optional result of type T if successful.
      */
     @Override
     public Mono<Optional<T>> callV2(
@@ -187,17 +182,11 @@ public class BaseSoapClientImpl<T> implements BaseSoapClient<T> {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Calls the SOAP API and returns the raw XML response as a String. - Processes
      * headers, sends a POST request, and retrieves the raw response. - If the
      * response is empty, returns an error with a specified message.
-     *
-     * @param webClient
-     *            The WebClient instance for making HTTP requests.
-     * @param headerList
-     *            Headers to include in the SOAP request.
-     * @param payload
-     *            The request payload to send.
-     * @return A Mono containing the raw XML response as a String.
      */
     @Override
     public Mono<String> callRaw(WebClient webClient, Map<String, String> headerList, String payload) {
@@ -243,9 +232,9 @@ public class BaseSoapClientImpl<T> implements BaseSoapClient<T> {
      *
      * @param response
      *            The ClientResponse to handle, which may contain error details.
-     * @return A Mono<Throwable> that emits a BusinessException with the error
-     *         message from the response body. If the response body cannot be read,
-     *         the error will be propagated.
+     * @return A Mono that emits a {@link BusinessException} with the error message
+     *         from the response body. If the response body cannot be read, the
+     *         error will be propagated.
      */
     public static Mono<Throwable> handleErrorResponse(ClientResponse response) {
         return response.bodyToMono(String.class).flatMap(errorBody -> {
@@ -255,14 +244,10 @@ public class BaseSoapClientImpl<T> implements BaseSoapClient<T> {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Parses a String response to the specified class type using XML
      * deserialization.
-     *
-     * @param realData
-     *            The XML data to parse.
-     * @param clz
-     *            The class type to parse into.
-     * @return The deserialized object of type T.
      */
     @Override
     public T parseData(String realData, Class<?> clz) {
@@ -290,20 +275,12 @@ public class BaseSoapClientImpl<T> implements BaseSoapClient<T> {
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Executes a SOAP API call specifically to fetch the KHDN profile data. -
      * Processes headers, sends a POST request, and parses the response. - Handles
      * any WebClientResponseException by attempting to parse the faultstring for
      * error messaging.
-     *
-     * @param webClient
-     *            The WebClient instance for making HTTP requests.
-     * @param headerList
-     *            Headers to include in the SOAP request.
-     * @param payload
-     *            The request payload to send.
-     * @param resultClass
-     *            The expected result class type for deserialization.
-     * @return A Mono containing an Optional result of type T if successful.
      */
     @Override
     public Mono<Optional<T>> callApiGetProfileKHDN(

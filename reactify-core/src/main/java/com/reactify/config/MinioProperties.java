@@ -21,7 +21,14 @@ import org.springframework.stereotype.Component;
 
 /**
  * <p>
- * MinioProperties class.
+ * MinioProperties class holds the configuration properties for connecting to
+ * the Minio object storage service. It is used to bind the properties prefixed
+ * with "minio" defined in the application's configuration files.
+ * </p>
+ *
+ * <p>
+ * The properties include the base URL for the Minio server, access credentials,
+ * and the bucket name used for storing objects.
  * </p>
  *
  * @author hoangtien2k3
@@ -30,9 +37,48 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "minio")
 public class MinioProperties {
+    /**
+     * <p>
+     * The base URL of the Minio server.
+     * </p>
+     *
+     */
     private String baseUrl;
+
+    /**
+     * <p>
+     * The public URL for accessing the Minio server.
+     * </p>
+     *
+     */
     private String publicUrl;
+
+    /**
+     * <p>
+     * The access key used for authenticating with the Minio server.
+     * </p>
+     *
+     */
     private String accessKey;
+
+    /**
+     * <p>
+     * The secret key used for authenticating with the Minio server.
+     * </p>
+     *
+     */
     private String secretKey;
+
+    /**
+     * <p>
+     * The name of the bucket used for storing objects in Minio.
+     * </p>
+     *
+     */
     private String bucket;
+
+    /**
+     * Constructs a new instance of {@code MinioProperties}.
+     */
+    public MinioProperties() {}
 }

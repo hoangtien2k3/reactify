@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
 
 import com.reactify.constants.CommonErrorCode;
 import com.reactify.exception.BusinessException;
 import com.reactify.model.response.DataResponse;
-import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import reactor.core.publisher.Mono;
+
+import java.util.Optional;
 
 /**
  * Utility class for handling HTTP responses. Provides methods to create
@@ -31,6 +32,11 @@ import reactor.core.publisher.Mono;
 public class ResponseUtils {
 
     /**
+     * Constructs a new instance of {@code ResponseUtils}.
+     */
+    public ResponseUtils() {}
+
+    /**
      * Creates a ResponseEntity with a DataResponse containing the given data and a
      * success message.
      *
@@ -38,7 +44,7 @@ public class ResponseUtils {
      *            the data to be included in the response
      * @return a ResponseEntity containing the DataResponse
      */
-    public static ResponseEntity<DataResponse> ok(Object data) {
+    public static ResponseEntity<DataResponse<?>> ok(Object data) {
         return ResponseEntity.ok(new DataResponse<>(Translator.toLocale("success"), data));
     }
 
@@ -52,7 +58,7 @@ public class ResponseUtils {
      *            the custom message to be included in the response
      * @return a ResponseEntity containing the DataResponse
      */
-    public static ResponseEntity<DataResponse> ok(Object data, String message) {
+    public static ResponseEntity<DataResponse<?>> ok(Object data, String message) {
         return ResponseEntity.ok(new DataResponse<>(Translator.toLocale(message), data));
     }
 

@@ -17,23 +17,47 @@ package com.reactify.filter.properties;
 
 import io.netty.channel.ConnectTimeoutException;
 import io.netty.handler.timeout.ReadTimeoutException;
-import java.util.List;
 import org.springframework.http.HttpMethod;
+
+import java.util.List;
 
 /**
  * <p>
- * RetryProperties class.
+ * The RetryProperties class is a record that holds configuration properties for
+ * retrying HTTP requests. It specifies whether retries are enabled, the number
+ * of retry attempts, the HTTP methods to which retries apply, and the types of
+ * exceptions that will trigger a retry.
  * </p>
  *
+ * <p>
+ * The default constructor initializes retries to be enabled with a count of 2,
+ * applying to GET, PUT, and DELETE methods, and set to trigger on connection
+ * and read timeout exceptions.
+ * </p>
+ *
+ * @param isEnable
+ *            a boolean indicating whether retries are enabled
+ * @param count
+ *            the number of retry attempts
+ * @param methods
+ *            a list of HTTP methods to which retries apply
+ * @param exceptions
+ *            a list of exception classes that will trigger a retry
  * @author hoangtien2k3
  */
 public record RetryProperties(
         boolean isEnable, int count, List<HttpMethod> methods, List<Class<? extends Exception>> exceptions) {
+
+    /**
+     * <p>
+     * Constructor for RetryProperties.
+     * </p>
+     */
     public RetryProperties() {
         this(
-                true,
-                2,
-                List.of(HttpMethod.GET, HttpMethod.PUT, HttpMethod.DELETE),
-                List.of(ConnectTimeoutException.class, ReadTimeoutException.class));
+                true, // Default to enabling retries
+                2, // Default number of retry attempts
+                List.of(HttpMethod.GET, HttpMethod.PUT, HttpMethod.DELETE), // Default HTTP methods for retries
+                List.of(ConnectTimeoutException.class, ReadTimeoutException.class)); // Default exceptions for retry
     }
 }

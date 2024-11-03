@@ -40,7 +40,7 @@ import java.lang.annotation.Target;
  * This annotation should be applied to methods that return a result that can
  * benefit from caching.
  *
- * <h3>Usage Example:</h3>
+ * <h2>Usage Example:</h2>
  *
  * <pre>
  * &#64;LocalCache(durationInMinute = 10, maxRecord = 500, autoCache = true)
@@ -49,7 +49,9 @@ import java.lang.annotation.Target;
  * }
  * </pre>
  *
- * <h3>Annotation Properties:</h3>
+ * <h2>Annotation Properties:</h2> <!-- Changed
+ * <h3>to
+ * <h2>-->
  * <dl>
  * <dt>durationInMinute</dt>
  * <dd>The time period in minutes for which the cached data is valid. Default is
@@ -68,13 +70,33 @@ import java.lang.annotation.Target;
  * This annotation is intended for use in performance-sensitive applications
  * where reducing latency and resource consumption is critical.
  * </p>
+ *
+ * @author hoangtien2k3
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LocalCache {
+    /**
+     * Specifies the duration (in minutes) for which the cache entry is valid.
+     * Default value is 120 minutes.
+     *
+     * @return the duration in minutes
+     */
     int durationInMinute() default 120;
 
+    /**
+     * Specifies the maximum number of records that can be stored in the cache.
+     * Default value is 1000 records.
+     *
+     * @return the maximum number of records
+     */
     int maxRecord() default 1000;
 
+    /**
+     * Indicates whether the caching should be enabled automatically. Default value
+     * is false.
+     *
+     * @return true if auto-cache is enabled, false otherwise
+     */
     boolean autoCache() default false;
 }

@@ -22,21 +22,72 @@ import java.lang.annotation.Target;
 
 /**
  * <p>
- * LogPerformance class.
+ * Indicates that performance logging should be applied to a method or a class.
+ * This annotation can be used to track the execution time and other performance
+ * metrics of the annotated method or class, which is useful for monitoring and
+ * optimizing application performance.
+ * </p>
+ *
+ * <p>
+ * This annotation supports various logging configurations such as specifying
+ * the type of log, whether to log input parameters, output results, and a title
+ * for the log entry.
+ * </p>
+ *
+ * <p>
+ * <strong>Usage Example:</strong>
+ * </p>
+ *
+ * <pre>
+ * &#64;LogPerformance(logType = "INFO", actionType = "DATABASE_OPERATION", logOutput = true)
+ * public void fetchData() {
+ * 	// Method implementation
+ * }
+ * </pre>
+ *
+ * <p>
+ * <strong>Note:</strong> The actual logging mechanism must be configured
+ * separately in the application.
  * </p>
  *
  * @author hoangtien2k3
+ * @version 1.0
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LogPerformance {
+    /**
+     * The type of log for categorizing the log entries.
+     *
+     * @return the log type as a string
+     */
     String logType() default "";
 
+    /**
+     * The type of action that the log entry is recording.
+     *
+     * @return the action type as a string
+     */
     String actionType() default "";
 
+    /**
+     * Specifies whether to log the output or not.
+     *
+     * @return true if output logging is enabled, false otherwise
+     */
     boolean logOutput() default true;
 
+    /**
+     * Specifies whether to log the input or not.
+     *
+     * @return true if input logging is enabled, false otherwise
+     */
     boolean logInput() default true;
 
+    /**
+     * The title for the performance log entry.
+     *
+     * @return the title as a string
+     */
     String title() default "";
 }

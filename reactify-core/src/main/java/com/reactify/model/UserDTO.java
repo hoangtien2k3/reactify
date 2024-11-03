@@ -16,24 +16,33 @@
 package com.reactify.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * <p>
- * UserDTO class.
+ * The UserDTO class is a Data Transfer Object (DTO) that represents the user
+ * information to be exchanged between the client and the server. This class is
+ * typically used for transferring user-related data, such as during
+ * authentication or authorization processes.
+ * </p>
+ *
+ * <p>
+ * The class utilizes Lombok annotations to minimize boilerplate code, providing
+ * a clear and concise representation of user data.
  * </p>
  *
  * @author hoangtien2k3
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserDTO {
     @JsonProperty("sub")
     private String id;
 
     @JsonProperty("preferred_username")
     private String username;
+
+    /**
+     * Constructs a new instance of {@code UserDTO}.
+     */
+    public UserDTO() {}
 }

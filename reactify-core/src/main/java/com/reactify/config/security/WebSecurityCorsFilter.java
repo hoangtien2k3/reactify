@@ -22,7 +22,20 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 /**
  * <p>
- * WebSecurityCorsFilter class.
+ * The {@code WebSecurityCorsFilter} class configures CORS (Cross-Origin
+ * Resource Sharing) settings for a Spring WebFlux application.
+ * </p>
+ *
+ * <p>
+ * This configuration allows all origins, methods, and headers for requests to
+ * the application. The maximum age for caching the preflight response is set to
+ * 3600 seconds (1 hour).
+ * </p>
+ *
+ * <p>
+ * This class implements the
+ * {@link WebFluxConfigurer} interface
+ * to customize the CORS mappings for the WebFlux framework.
  * </p>
  *
  * @author hoangtien2k3
@@ -30,6 +43,11 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
 @Configuration
 @EnableWebFlux
 public class WebSecurityCorsFilter implements WebFluxConfigurer {
+
+    /**
+     * Constructs a new instance of {@code WebSecurityCorsFilter}.
+     */
+    public WebSecurityCorsFilter() {}
 
     /** {@inheritDoc} */
     @Override

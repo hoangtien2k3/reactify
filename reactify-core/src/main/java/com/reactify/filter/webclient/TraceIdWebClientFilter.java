@@ -26,24 +26,50 @@ import reactor.core.publisher.Mono;
 
 /**
  * <p>
- * TraceIdWebClientFilter class.
+ * The TraceIdWebClientFilter class implements the ExchangeFilterFunction
+ * interface to enrich HTTP requests with trace information. Specifically, it
+ * adds the current trace ID as a header to outgoing requests, enabling better
+ * observability and traceability in distributed systems.
  * </p>
  *
+ * <p>
+ * This filter uses Spring Cloud Sleuth's Tracer to access the current span's
+ * trace ID and includes it in the request headers, allowing tracing systems to
+ * correlate requests across different services.
+ * </p>
+ *
+ * @param tracer
+ *            the {@link Tracer} instance used to retrieve the current trace ID
+ *            for adding to request headers
  * @author hoangtien2k3
  */
 @Component
 public record TraceIdWebClientFilter(Tracer tracer) implements ExchangeFilterFunction {
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>
+     * Filters the client request to add the trace ID from the current span to the
+     * request headers. If no span is present, the original request is sent without
+     * modification.
+     * </p>
+     */
     @NotNull
     @Override
     public Mono<ClientResponse> filter(@NotNull ClientRequest request, @NotNull ExchangeFunction next) {
         return Mono.defer(() -> {
             var span = tracer.currentSpan();
+            // Check if there is a current span to extract the trace ID
             if (span != null) {
+                // Create a modified request with the trace ID header
                 ClientRequest modifiedRequest = ClientRequest.from(request)
                         .header("X-B3-TRACE-ID", span.context().traceIdString())
                         .build();
+                // Exchange the modified request
                 return next.exchange(modifiedRequest);
             } else {
+                // No span, exchange the original request
                 return next.exchange(request);
             }
         });

@@ -44,6 +44,7 @@ package com.reactify.model.logging;
  *            the response returned by the service.
  * @param result
  *            the outcome of the request processing (e.g., SUCCESS, FAILURE).
+ * @author hoangtien2k3
  */
 public record LogField(
         String traceId,

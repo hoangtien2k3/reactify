@@ -17,7 +17,6 @@ package com.reactify.filter.webclient;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Timer;
-import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.reactive.function.client.ClientRequest;
@@ -26,18 +25,47 @@ import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.ExchangeFunction;
 import reactor.core.publisher.Mono;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * <p>
- * WebClientMonitoringFilter class.
+ * The WebClientMonitoringFilter class implements the ExchangeFilterFunction
+ * interface to provide monitoring capabilities for HTTP requests made through a
+ * WebClient instance. It logs the execution time of the request and records
+ * metrics using a MeterRegistry.
  * </p>
  *
+ * <p>
+ * This filter is particularly useful for tracking the performance of API calls
+ * in a Spring application. It helps developers monitor request durations,
+ * identify performance issues, and improve the overall responsiveness of their
+ * applications.
+ * </p>
+ *
+ * @param meterRegistry
+ *            the MeterRegistry used to record metrics for the monitored
+ *            WebClient requests
  * @author hoangtien2k3
  */
 @Slf4j
 public record WebClientMonitoringFilter(MeterRegistry meterRegistry) implements ExchangeFilterFunction {
+    /**
+     * Constant
+     * <code>METRICS_WEBCLIENT_START_TIME="WebClientMonitoringFilter.class.getName"{trunked}</code>
+     */
     private static final String METRICS_WEBCLIENT_START_TIME =
             WebClientMonitoringFilter.class.getName() + ".START_TIME";
 
+    /**
+     * {@inheritDoc}
+     *
+     * <p>
+     * Filters the client request to monitor the execution time and log the details
+     * of the request and response. It captures the start time, executes the
+     * request, and logs the outcome upon completion, including any errors that
+     * occur.
+     * </p>
+     */
     @NotNull
     @Override
     public Mono<ClientResponse> filter(@NotNull ClientRequest clientRequest, ExchangeFunction exchangeFunction) {

@@ -20,12 +20,30 @@ import io.micrometer.core.instrument.logging.LoggingMeterRegistry;
 
 /**
  * <p>
- * MonitoringProperties class.
+ * The MonitoringProperties class is a record that holds configuration
+ * properties for monitoring features in an application. This includes a flag to
+ * enable monitoring and a MeterRegistry instance used for collecting and
+ * reporting metrics.
  * </p>
  *
+ * <p>
+ * The default constructor initializes monitoring as enabled and uses a
+ * LoggingMeterRegistry for logging metrics to the console or log file.
+ * </p>
+ *
+ * @param isEnable
+ *            a flag indicating whether monitoring is enabled
+ * @param meterRegistry
+ *            the MeterRegistry instance used for collecting and reporting
+ *            metrics
  * @author hoangtien2k3
  */
 public record MonitoringProperties(boolean isEnable, MeterRegistry meterRegistry) {
+    /**
+     * <p>
+     * Constructor for MonitoringProperties.
+     * </p>
+     */
     public MonitoringProperties() {
         this(true, new LoggingMeterRegistry());
     }

@@ -15,36 +15,77 @@
  */
 package com.reactify.exception;
 
-import com.reactify.Translator;
-import java.util.Arrays;
+import com.reactify.util.Translator;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.Arrays;
+
 /**
  * <p>
- * BusinessException class.
+ * Custom exception class representing business-related errors within the
+ * application.
  * </p>
  *
+ * <p>
+ * This exception is thrown to indicate specific application-related conditions
+ * that are not covered by standard exceptions. It includes an error code, a
+ * message (localized to Vietnamese), and optional message parameters to provide
+ * detailed error context.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * </p>
+ *
+ * <pre>
+ * {@code
+ * throw new BusinessException("404", "Resource not found");
+ * throw new BusinessException("500", "Unexpected error occurred", "User ID", "Order ID");
+ * }
+ * </pre>
+ *
+ * <p>
+ * This class uses Lombok annotations for boilerplate code:
+ * </p>
+ * <ul>
+ * <li>{@code @EqualsAndHashCode(callSuper = true)} - Ensures hashCode and
+ * equals include fields from {@code RuntimeException}.</li>
+ * <li>{@code @Data} - Generates getters, setters, toString, and other
+ * methods.</li>
+ * <li>{@code @NoArgsConstructor} - Provides a no-arguments constructor.</li>
+ * </ul>
+ *
+ * @see RuntimeException
+ * @see Translator
+ * @see Arrays
+ * @see String
+ * @version 1.0
+ * @since 1.0
  * @author hoangtien2k3
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 public class BusinessException extends RuntimeException {
+    /** Error code associated with the exception */
     private String errorCode;
+
+    /** Localized message describing the error */
     private String message;
+
+    /** Optional parameters for dynamic message formatting */
     private Object[] paramsMsg;
 
     /**
-     * <p>
-     * Constructor for BusinessException.
-     * </p>
+     * Constructor initializing the exception with an error code and message.
      *
      * @param errorCode
-     *            a {@link String} object
+     *            a {@link String} representing the error code.
      * @param message
-     *            a {@link String} object
+     *            a {@link String} representing the error message, which
+     *            will be localized.
      */
     public BusinessException(String errorCode, String message) {
         this.errorCode = errorCode;
@@ -52,16 +93,22 @@ public class BusinessException extends RuntimeException {
     }
 
     /**
+     * Constructor initializing the exception with an error code, message, and
+     * message parameters.
+     *
      * <p>
-     * Constructor for BusinessException.
+     * Parameters will be used to format the message dynamically, enhancing the
+     * readability of error logs and user-facing messages.
      * </p>
      *
      * @param errorCode
-     *            a {@link String} object
+     *            a {@link String} representing the error code.
      * @param message
-     *            a {@link String} object
+     *            a {@link String} representing the error message, which
+     *            will be localized.
      * @param paramsMsg
-     *            a {@link String} object
+     *            a {@link String} array of message parameters for dynamic
+     *            message localization.
      */
     public BusinessException(String errorCode, String message, String... paramsMsg) {
         this.errorCode = errorCode;

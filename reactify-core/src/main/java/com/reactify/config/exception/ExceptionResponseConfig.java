@@ -15,18 +15,13 @@
  */
 package com.reactify.config.exception;
 
-import com.reactify.DataUtil;
-import com.reactify.Translator;
 import com.reactify.constants.CommonErrorCode;
 import com.reactify.exception.BusinessException;
 import com.reactify.model.response.TraceErrorResponse;
+import com.reactify.util.DataUtil;
+import com.reactify.util.Translator;
 import io.micrometer.tracing.Tracer;
 import io.r2dbc.spi.R2dbcException;
-import java.nio.file.AccessDeniedException;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.core.io.buffer.DataBufferLimitException;
@@ -39,6 +34,11 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.ServerWebInputException;
 import reactor.core.publisher.Mono;
 
+import java.nio.file.AccessDeniedException;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 /**
  * <p>
  * ExceptionResponseConfig class.
@@ -47,10 +47,19 @@ import reactor.core.publisher.Mono;
  * @author hoangtien2k3
  */
 @Slf4j
-@RequiredArgsConstructor
 @RestControllerAdvice
 public class ExceptionResponseConfig {
     private final Tracer tracer;
+
+    /**
+     * Constructs a new instance of {@code ExceptionResponseConfig}.
+     *
+     * @param tracer
+     *            the Tracer instance used for tracing exceptions.
+     */
+    public ExceptionResponseConfig(Tracer tracer) {
+        this.tracer = tracer;
+    }
 
     /**
      * <p>
@@ -121,7 +130,9 @@ public class ExceptionResponseConfig {
      * </p>
      *
      * @param ex
-     *            a {@link DataBufferLimitException} object
+     *            a
+     *            {@link DataBufferLimitException}
+     *            object
      * @return a {@link Mono} object
      */
     @ExceptionHandler(DataBufferLimitException.class)
@@ -140,7 +151,8 @@ public class ExceptionResponseConfig {
      * </p>
      *
      * @param ex
-     *            a {@link ServerWebInputException} object
+     *            a {@link ServerWebInputException}
+     *            object
      * @param serverWebExchange
      *            a {@link ServerWebExchange} object
      * @return a {@link Mono} object
@@ -161,7 +173,9 @@ public class ExceptionResponseConfig {
      * </p>
      *
      * @param ex
-     *            a {@link WebExchangeBindException} object
+     *            a
+     *            {@link WebExchangeBindException}
+     *            object
      * @param serverWebExchange
      *            a {@link ServerWebExchange} object
      * @return a {@link Mono} object

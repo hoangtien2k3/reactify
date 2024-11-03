@@ -13,18 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
 
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * <p>
- * SQLUtils class.
- * </p>
- *
- * @author hoangtien2k3
+ * Utility class for data manipulation and processing. This class contains
+ * static methods for various data-related operations.
  */
 public class SQLUtils {
+
+    /**
+     * Constructs a new instance of {@code SQLUtils}.
+     */
+    public SQLUtils() {}
+
     /**
      * <p>
      * replaceSpecialDigit.

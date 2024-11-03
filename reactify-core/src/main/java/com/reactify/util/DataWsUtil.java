@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
 
 import com.reactify.constants.Constants;
 import com.reactify.factory.UnmarshallerFactory;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -30,19 +30,22 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import lombok.extern.slf4j.Slf4j;
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * <p>
- * DataWsUtil class.
- * </p>
- *
- * @author hoangtien2k3
+ * Utility class for data manipulation and processing. This class contains
+ * static methods for various data-related operations.
  */
 @Slf4j
 public class DataWsUtil {
+
+    /**
+     * Constructs a new instance of {@code DataWsUtil}.
+     */
+    public DataWsUtil() {}
 
     /**
      * <p>

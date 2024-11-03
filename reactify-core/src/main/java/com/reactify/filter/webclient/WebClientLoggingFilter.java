@@ -15,7 +15,6 @@
  */
 package com.reactify.filter.webclient;
 
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.reactive.function.client.ClientRequest;
@@ -24,17 +23,43 @@ import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.ExchangeFunction;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 /**
  * <p>
- * WebClientLoggingFilter class.
+ * The WebClientLoggingFilter class implements the ExchangeFilterFunction
+ * interface to provide logging capabilities for HTTP requests and responses
+ * made through a WebClient instance. It logs the details of the request,
+ * including method, URL, headers, and body, while obfuscating sensitive header
+ * information as specified.
  * </p>
  *
+ * <p>
+ * This filter is particularly useful for debugging and monitoring API calls in
+ * a Spring application. It allows developers to track the flow of requests and
+ * responses while ensuring that sensitive information is protected through
+ * obfuscation.
+ * </p>
+ *
+ * @param obfuscateHeader
+ *            A list of header names that should be obfuscated in the logs.
  * @author hoangtien2k3
  */
 @Slf4j
 public record WebClientLoggingFilter(List<String> obfuscateHeader) implements ExchangeFilterFunction {
+    /** Constant <code>OBFUSCATE_HEADER="xxxxx"</code> */
     private static final String OBFUSCATE_HEADER = "xxxxx";
 
+    /**
+     * {@inheritDoc}
+     *
+     * <p>
+     * Filters the client request to log details about the request and the response.
+     * It logs the HTTP method, URL, headers, and body of the request, and also logs
+     * the headers of the response. Sensitive headers can be obfuscated based on the
+     * provided list.
+     * </p>
+     */
     @NotNull
     @Override
     public Mono<ClientResponse> filter(ClientRequest request, @NotNull ExchangeFunction next) {

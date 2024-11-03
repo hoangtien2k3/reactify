@@ -20,8 +20,14 @@ package com.reactify.model.logging;
  *
  * @param enable
  *            a flag to enable or disable HTTP logging; defaults to true.
+ * @author hoangtien2k3
  */
 public record HttpLogRequest(boolean enable) {
+    /**
+     * <p>
+     * Constructor for HttpLogRequest.
+     * </p>
+     */
     public HttpLogRequest() {
         this(true);
     }

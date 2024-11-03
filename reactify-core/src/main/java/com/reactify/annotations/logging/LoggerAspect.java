@@ -15,7 +15,6 @@
  */
 package com.reactify.annotations.logging;
 
-import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -24,29 +23,64 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * <p>
- * LoggerAspect class.
+ * The {@code LoggerAspect} class is an aspect that handles logging for
+ * performance monitoring across various components of the application. It
+ * utilizes Spring AOP (Aspect-Oriented Programming) to intercept method calls
+ * in controllers, services, repositories, and clients and logs performance
+ * metrics accordingly.
+ * </p>
+ *
+ * <p>
+ * This aspect excludes methods from the Spring Boot Actuator package to prevent
+ * unnecessary logging of internal application health checks.
+ * </p>
+ *
+ * <p>
+ * The class is annotated with {@link Aspect} to
+ * define it as an aspect, and
+ * {@link Configuration} to indicate that
+ * it provides Spring configuration.
+ * </p>
+ *
+ * <p>
+ * <strong>Usage:</strong> To enable performance logging, annotate methods or
+ * classes with {@link com.reactify.annotations.LogPerformance}.
  * </p>
  *
  * @author hoangtien2k3
  */
 @Aspect
 @Configuration
-@RequiredArgsConstructor
 public class LoggerAspect {
     private final LoggerAspectUtils loggerAspectUtils;
 
     /**
+     * Constructs a new instance of {@code LoggerAspect}.
+     *
+     * @param loggerAspectUtils
+     *            the utility class for logging aspects.
+     */
+    public LoggerAspect(LoggerAspectUtils loggerAspectUtils) {
+        this.loggerAspectUtils = loggerAspectUtils;
+    }
+
+    /**
      * <p>
-     * performancePointCut.
+     * Pointcut definition for methods in the controller, service, repository, and
+     * client packages that should be logged for performance metrics.
      * </p>
      */
-    @Pointcut("(execution(* io.hoangtien2k3.reactify.*.controller..*(..)) || "
-            + "execution(* io.hoangtien2k3.reactify.*.service..*(..))  ||  "
-            + "execution(* io.hoangtien2k3.reactify.*.repository..*(..)) || "
-            + "execution(* io.hoangtien2k3.reactify.*.client..*(..))) &&"
+    @Pointcut("(execution(* com.reactify.*.controller..*(..)) || " + "execution(* com.reactify.*.service..*(..))  ||  "
+            + "execution(* com.reactify.*.repository..*(..)) || " + "execution(* com.reactify.*.client..*(..))) &&"
             + "!execution(* org.springframework.boot.actuate..*(..))")
     public void performancePointCut() {}
 
+    /**
+     * <p>
+     * Pointcut for methods annotated with
+     * {@link com.reactify.annotations.LogPerformance}.
+     * </p>
+     */
     @Pointcut("@annotation(com.reactify.annotations.LogPerformance)")
     private void logPerfMethods() {}
 

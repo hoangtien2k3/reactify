@@ -15,16 +15,6 @@
  */
 package com.reactify.config.security.keycloak;
 
-import static java.util.Collections.emptyList;
-import static java.util.Collections.emptySet;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.GrantedAuthority;
@@ -33,14 +23,40 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.util.ObjectUtils;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.Collections.emptyList;
+import static java.util.Collections.emptySet;
+
 /**
  * <p>
- * KeycloakGrantedAuthoritiesConverter class.
+ * The {@code KeycloakGrantedAuthoritiesConverter} class implements a
+ * {@link Converter} that converts a
+ * JWT token issued by Keycloak into a collection of Spring Security
+ * {@link GrantedAuthority}.
  * </p>
+ *
+ * <p>
+ * This converter extracts both realm roles and client-specific roles from the
+ * JWT claims and combines them into a single set of granted authorities.
+ * </p>
+ *
+ * <p>
+ * The roles are extracted from the claims:
+ * </p>
+ * <ul>
+ * <li>{@code realm_access.roles} for realm roles</li>
+ * <li>{@code resource_access.clientId.roles} for client roles, where
+ * {@code clientId} is the ID of the client</li>
+ * </ul>
  *
  * @author hoangtien2k3
  */
-@RequiredArgsConstructor
 public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
     private static final String ROLES = "roles";
     private static final String CLAIM_REALM_ACCESS = "realm_access";
@@ -50,6 +66,16 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
             new JwtGrantedAuthoritiesConverter();
 
     private final String clientId;
+
+    /**
+     * Constructs a new instance of {@code KeycloakGrantedAuthoritiesConverter}.
+     *
+     * @param clientId
+     *            the client ID used to identify the Keycloak client.
+     */
+    public KeycloakGrantedAuthoritiesConverter(String clientId) {
+        this.clientId = clientId;
+    }
 
     /** {@inheritDoc} */
     @Override
@@ -71,12 +97,13 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
 
     /**
      * <p>
-     * realmRoles.
+     * Extracts realm roles from the JWT.
      * </p>
      *
      * @param jwt
      *            a {@link Jwt} object
-     * @return a {@link List} object
+     *            containing the claims
+     * @return a {@link List} of realm role names
      */
     @SuppressWarnings("unchecked")
     protected List<String> realmRoles(Jwt jwt) {
@@ -87,21 +114,23 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
 
     /**
      * <p>
-     * clientRoles.
+     * Extracts client-specific roles from the provided JWT for the given client ID.
      * </p>
      *
      * @param jwt
      *            a {@link Jwt} object
+     *            representing the token
      * @param clientId
-     *            a {@link String} object
-     * @return a {@link List} object
+     *            a {@link String} representing the client ID for which
+     *            roles are to be extracted
+     * @return a {@link List} of client roles, or an empty list if none
+     *         are found
      */
     @SuppressWarnings("unchecked")
     protected List<String> clientRoles(Jwt jwt, String clientId) {
         if (ObjectUtils.isEmpty(clientId)) {
             return emptyList();
         }
-
         return Optional.ofNullable(jwt.getClaimAsMap(RESOURCE_ACCESS))
                 .map(resourceAccess -> (Map<String, List<String>>) resourceAccess.get(clientId))
                 .map(clientAccess -> clientAccess.get(ROLES))

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
 
 import com.reactify.config.MinioProperties;
 import com.reactify.constants.CommonErrorCode;
@@ -21,17 +21,7 @@ import com.reactify.exception.BusinessException;
 import io.minio.*;
 import io.minio.errors.*;
 import io.minio.http.Method;
-import java.io.*;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
-import javax.activation.MimetypesFileTypeMap;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
@@ -40,23 +30,43 @@ import reactor.core.publisher.FluxSink;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
+import javax.activation.MimetypesFileTypeMap;
+import java.io.*;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+
 /**
- * <p>
- * MinioUtils class.
- * </p>
- *
- * @author hoangtien2k3
+ * Utility class for data manipulation and processing. This class contains
+ * static methods for various data-related operations.
  */
 @Slf4j
 @Component
 @ConditionalOnProperty(value = "minio.enabled", havingValue = "true", matchIfMissing = false)
-@RequiredArgsConstructor
 public class MinioUtils {
 
     @Getter
     private final MinioProperties minioProperties;
 
+    @Getter
     private final MinioClient minioClient;
+
+    /**
+     * Constructs a new instance of {@code MinioUtils}.
+     *
+     * @param minioProperties
+     *            the properties used to configure MinIO connection settings.
+     * @param minioClient
+     *            the MinioClient instance for interacting with the MinIO service.
+     */
+    public MinioUtils(MinioProperties minioProperties, MinioClient minioClient) {
+        this.minioProperties = minioProperties;
+        this.minioClient = minioClient;
+    }
 
     /** Constant <code>IMAGE_PNG_CONTENT_TYPE="image/png"</code> */
     public static final String IMAGE_PNG_CONTENT_TYPE = "image/png";

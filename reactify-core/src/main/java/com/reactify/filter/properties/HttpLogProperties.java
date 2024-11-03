@@ -17,15 +17,23 @@ package com.reactify.filter.properties;
 
 import com.reactify.model.logging.HttpLogRequest;
 import com.reactify.model.logging.HttpLogResponse;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
  * <p>
- * HttpLogProperties class.
+ * The HttpLogProperties class is a configuration properties class for managing
+ * HTTP logging settings in a Spring application. It is designed to hold
+ * properties related to logging HTTP requests and responses.
+ * </p>
+ *
+ * <p>
+ * This class is annotated with @ConfigurationProperties, allowing it to be
+ * populated with values from the application's configuration (e.g.,
+ * application.yml or application.properties) under the prefix
+ * "application.http-logging". Invalid fields in the configuration will be
+ * ignored.
  * </p>
  *
  * @author hoangtien2k3
@@ -33,9 +41,33 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "application.http-logging", ignoreInvalidFields = true)
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class HttpLogProperties {
+
+    /**
+     * Properties related to HTTP request logging.
+     */
     private HttpLogRequest request = new HttpLogRequest();
+
+    /**
+     * Properties related to HTTP response logging.
+     */
     private HttpLogResponse response = new HttpLogResponse();
+
+    /**
+     * Constructs a new instance of {@code HttpLogProperties}.
+     *
+     * @param request
+     *            the HTTP log request details.
+     * @param response
+     *            the HTTP log response details.
+     */
+    public HttpLogProperties(HttpLogRequest request, HttpLogResponse response) {
+        this.request = request;
+        this.response = response;
+    }
+
+    /**
+     * Constructs a new instance of {@code HttpLogProperties}.
+     */
+    public HttpLogProperties() {}
 }

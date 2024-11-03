@@ -17,23 +17,42 @@ package com.reactify.annotations.cache;
 
 import com.github.benmanes.caffeine.cache.RemovalCause;
 import com.github.benmanes.caffeine.cache.RemovalListener;
-import java.lang.reflect.Method;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
+import java.lang.reflect.Method;
+
 /**
  * <p>
- * CustomizeRemovalListener class.
+ * The {@code CustomizeRemovalListener} class implements the
+ * {@link RemovalListener} interface from
+ * Caffeine, providing custom logic for handling cache removal events. This
+ * listener is triggered when cache entries are removed, allowing for additional
+ * actions such as invoking a method to refresh or reload the cache.
+ * </p>
+ *
+ * <p>
+ * This class logs information about cache evictions, specifically indicating
+ * which method's cache entry was evicted and the reason for the eviction.
  * </p>
  *
  * @author hoangtien2k3
  */
 @Slf4j
-@AllArgsConstructor
 public class CustomizeRemovalListener implements RemovalListener<Object, Object> {
-    private Method method;
+    private final Method method;
+
+    /**
+     * Constructs a new instance of {@code CustomizeRemovalListener}.
+     *
+     * @param method
+     *            the Method instance that this listener will use for removal
+     *            operations.
+     */
+    public CustomizeRemovalListener(Method method) {
+        this.method = method;
+    }
 
     /** {@inheritDoc} */
     @Override

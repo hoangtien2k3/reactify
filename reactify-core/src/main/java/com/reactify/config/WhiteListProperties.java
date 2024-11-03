@@ -16,21 +16,52 @@
 package com.reactify.config;
 
 import com.reactify.model.WhiteList;
-import java.util.List;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
+ * Represents the properties for the whitelist configuration.
+ *
  * <p>
- * WhiteListProperties class.
+ * This class holds a list of {@link WhiteList} objects that define the entries
+ * allowed in the application's whitelist.
  * </p>
  *
- * @author hoangtien2k3
+ * <p>
+ * This class is used by Spring to bind properties from the application's
+ * configuration. It utilizes a default constructor, which is provided by the
+ * Java compiler, for creating instances.
+ * </p>
  */
 @Data
 @Component
 @ConfigurationProperties(prefix = "application")
 public class WhiteListProperties {
+
+    /**
+     * A list of whitelisted entities. This property holds a collection of
+     * {@link WhiteList} objects that define the entries allowed in the
+     * application's whitelist.
+     *
+     * @return a {@link List} of {@link WhiteList} objects.
+     */
     private List<WhiteList> whiteList;
+
+    /**
+     * Constructs a new instance of {@code WhiteListProperties}.
+     *
+     * @param whiteList
+     *            a list of {@link WhiteList} objects that are whitelisted.
+     */
+    public WhiteListProperties(List<WhiteList> whiteList) {
+        this.whiteList = whiteList;
+    }
+
+    /**
+     * Constructs a new instance of {@code WhiteListProperties}.
+     */
+    public WhiteListProperties() {}
 }

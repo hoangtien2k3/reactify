@@ -19,7 +19,16 @@ import reactor.core.publisher.Mono;
 
 /**
  * <p>
- * SagaStep interface.
+ * The SagaStep interface defines the contract for a step within a saga process.
+ * Each implementation of this interface represents an individual operation that
+ * can be executed as part of a larger saga. The interface provides methods for
+ * executing, reverting, and checking the completion status of the step.
+ * </p>
+ *
+ * <p>
+ * Implementing classes should define the specific logic for each step,
+ * including what it means for the step to be completed and how to revert its
+ * actions in case of a failure during the saga execution.
  * </p>
  *
  * @author hoangtien2k3
@@ -31,7 +40,13 @@ public interface SagaStep {
      * complete.
      * </p>
      *
-     * @return a boolean
+     * <p>
+     * This method checks if the step has been completed successfully. It should
+     * return true if the step's operations were successful, allowing for rollback
+     * procedures to skip completed steps.
+     * </p>
+     *
+     * @return a boolean indicating whether the step is complete
      */
     boolean complete();
 
@@ -40,7 +55,15 @@ public interface SagaStep {
      * execute.
      * </p>
      *
-     * @return a {@link Mono} object
+     * <p>
+     * This method performs the primary operation of the step. It should return a
+     * {@link Mono} containing a
+     * {@link StepResult} object that indicates the success or
+     * failure of the operation and any relevant messages.
+     * </p>
+     *
+     * @return a {@link Mono} object representing the
+     *         execution result of the step
      */
     Mono<StepResult> execute();
 
@@ -49,7 +72,15 @@ public interface SagaStep {
      * revert.
      * </p>
      *
-     * @return a {@link Mono} object
+     * <p>
+     * This method reverses the actions taken by the step. It should return a
+     * {@link Mono} containing a boolean indicating whether
+     * the rollback was successful. This method is called during the rollback
+     * process of the saga when a step fails.
+     * </p>
+     *
+     * @return a {@link Mono} object indicating the success
+     *         of the revert operation
      */
     Mono<Boolean> revert();
 }

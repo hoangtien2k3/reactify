@@ -15,9 +15,6 @@
  */
 package com.reactify.filter.properties;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
@@ -25,8 +22,29 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
- * Gateway Plugin Properties
+ * <p>
+ * The GatewayPluginProperties class is a configuration properties class for
+ * managing gateway plugin settings in a Spring application. It holds various
+ * properties related to request and response logging as well as request data
+ * handling configurations.
+ * </p>
+ *
+ * <p>
+ * This class is annotated with @ConfigurationProperties, allowing it to be
+ * populated with values from the application's configuration (e.g.,
+ * application.yml or application.properties) under the prefix
+ * "spring.plugin.config".
+ * </p>
+ *
+ * <p>
+ * It implements the InitializingBean interface, allowing for custom
+ * initialization logic to be executed after the properties are set.
+ * </p>
  *
  * @author hoangtien2k3
  */
@@ -35,23 +53,48 @@ import org.springframework.util.CollectionUtils;
 @Component
 @ConfigurationProperties(value = "spring.plugin.config")
 public class GatewayPluginProperties implements InitializingBean {
+
+    /**
+     * Constructs a new instance of {@code GatewayPluginProperties}.
+     */
+    public GatewayPluginProperties() {}
+
     /**
      * Constant <code>GATEWAY_PLUGIN_PROPERTIES_PREFIX="spring.plugin.config"</code>
+     * The prefix for the properties related to the gateway plugin configuration.
      */
     public static final String GATEWAY_PLUGIN_PROPERTIES_PREFIX = "spring.plugin.config";
 
+    /**
+     * Indicates whether to read request data. Default is false.
+     */
     private Boolean readRequestData = false;
+
+    /**
+     * Indicates whether to read response data. Default is false.
+     */
     private Boolean readResponseData = false;
+
+    /**
+     * Indicates whether to log request data. Default is false.
+     */
     private boolean logRequest = false;
+
+    /**
+     * Indicates whether to log response data. Default is true.
+     */
     private boolean logResponse = true;
 
-    /** Hide header on log */
+    /**
+     * A list of headers to hide in the logs. Default is an empty list.
+     */
     private List<String> hideHeaderList = Collections.emptyList();
 
     /** {@inheritDoc} */
     @Override
     public void afterPropertiesSet() throws Exception {
         if (!CollectionUtils.isEmpty(hideHeaderList)) {
+            // Convert all headers in hideHeaderList to lowercase
             hideHeaderList = hideHeaderList.stream().map(String::toLowerCase).collect(Collectors.toList());
         }
     }

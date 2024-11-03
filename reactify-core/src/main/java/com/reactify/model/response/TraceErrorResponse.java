@@ -28,6 +28,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TraceErrorResponse<T> extends DataResponse<T> {
+
+    /**
+     * Unique identifier for tracing the specific request.
+     */
     private String requestId;
 
     /**

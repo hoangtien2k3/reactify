@@ -13,27 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
 
 import com.github.benmanes.caffeine.cache.AsyncCache;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.LoadingCache;
 import jakarta.validation.constraints.NotNull;
-import java.time.Duration;
-import java.util.function.Function;
-import java.util.function.Supplier;
 import lombok.NonNull;
 import lombok.extern.log4j.Log4j2;
 import org.checkerframework.checker.index.qual.NonNegative;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
 /**
- * <p>
- * CacheUtils class.
- * </p>
- *
- * @author hoangtien2k3
+ * Utility class for data manipulation and processing. This class contains
+ * static methods for various data-related operations.
  */
 @Log4j2
 public class CacheUtils {

@@ -18,14 +18,15 @@ package com.reactify.model.response;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.reactify.Translator;
 import com.reactify.constants.MessageConstant;
-import java.io.Serializable;
+import com.reactify.util.Translator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
+
+import java.io.Serializable;
 
 /**
  * Represents a standardized response structure for API responses.
@@ -41,8 +42,19 @@ import org.springframework.http.HttpStatus;
 @NoArgsConstructor
 @Builder
 public class DataResponse<T> implements Serializable {
+    /**
+     * Error code representing the status of the response.
+     */
     private String errorCode;
+
+    /**
+     * Message providing additional information about the response.
+     */
     private String message;
+
+    /**
+     * The actual data to be included in the response.
+     */
     private T data;
 
     /**

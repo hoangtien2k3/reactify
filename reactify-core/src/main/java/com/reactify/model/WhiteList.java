@@ -22,6 +22,10 @@ import java.util.List;
  * WhiteList class.
  * </p>
  *
+ * @param uri
+ *            the URI to be whitelisted
+ * @param methods
+ *            the list of HTTP methods allowed for the URI
  * @author hoangtien2k3
  */
 public record WhiteList(String uri, List<String> methods) {}

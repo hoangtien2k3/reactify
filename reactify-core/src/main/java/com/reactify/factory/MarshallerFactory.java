@@ -15,20 +15,42 @@
  */
 package com.reactify.factory;
 
-import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import lombok.extern.slf4j.Slf4j;
+import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
- * MarshallerFactory class.
+ * A factory class for managing and caching JAXB
+ * {@link Marshaller} instances, providing functionality to
+ * convert Java objects to XML format.
  * </p>
  *
+ * <p>
+ * This class maintains a cache of marshaller instances for different classes to
+ * avoid the cost of repeatedly creating new instances. It enables pretty-print
+ * formatting of XML output by default.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * </p>
+ *
+ * <pre>
+ * {@code
+ * String xmlOutput = MarshallerFactory.convertObjectToXML(myObject, MyClass.class);
+ * System.out.println(xmlOutput);
+ * }
+ * </pre>
+ *
  * @author hoangtien2k3
+ * @since 1.0
+ * @version 1.0
  */
 @Slf4j
 public class MarshallerFactory {
@@ -36,22 +58,41 @@ public class MarshallerFactory {
     private static final Map<Class<?>, Marshaller> instance = new HashMap<>();
 
     /**
+     * Constructs a new instance of {@code MarshallerFactory}.
+     */
+    public MarshallerFactory() {}
+
+    /**
+     * Converts a given Java object to its XML representation.
+     *
      * <p>
-     * convertObjectToXML.
+     * This method checks if a cached {@link Marshaller} instance is
+     * available for the provided class. If not, it creates a new marshaller, caches
+     * it, and then converts the object to XML format. The XML output is formatted
+     * for readability.
+     * </p>
+     *
+     * <p>
+     * If the conversion fails due to a {@link JAXBException}, an
+     * error message is logged, and an empty string is returned.
      * </p>
      *
      * @param obj
-     *            a {@link Object} object
+     *            the object to be converted to XML
      * @param cls
-     *            a {@link Class} object
-     * @return a {@link String} object
+     *            the {@link Class} of the object being converted, used
+     *            for creating and retrieving the appropriate
+     *            {@link Marshaller} instance
+     * @return a {@link String} representing the XML format of the object,
+     *         or an empty string if an error occurs during conversion
+     * @throws IllegalArgumentException
+     *             if {@code obj} or {@code cls} is null
      */
     public static String convertObjectToXML(Object obj, Class<?> cls) {
         Marshaller marshaller = instance.get(cls);
         String xmlTxt = "";
         try {
             // create an instance of `JAXBContext`
-            // create an instance of `Marshaller`
             if (marshaller == null) {
                 marshaller = JAXBContext.newInstance(cls).createMarshaller();
                 // enable pretty-print XML output
@@ -64,7 +105,6 @@ public class MarshallerFactory {
 
             // convert book object to XML
             marshaller.marshal(obj, sw);
-
             xmlTxt = sw.toString();
 
         } catch (JAXBException ex) {

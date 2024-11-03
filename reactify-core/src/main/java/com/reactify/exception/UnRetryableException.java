@@ -21,9 +21,30 @@ import lombok.NoArgsConstructor;
 
 /**
  * <p>
- * UnRetryableException class.
+ * Exception indicating that a specific operation is non-retryable.
  * </p>
  *
+ * <p>
+ * This exception extends {@link BusinessException} and
+ * is used when an error occurs that should not be retried by the calling method
+ * or process.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * </p>
+ *
+ * <pre>
+ * {@code
+ * if (someConditionFails()) {
+ * 	throw new UnRetryableException("ERROR_CODE_001", "Operation cannot be retried due to ...");
+ * }
+ * }
+ * </pre>
+ *
+ * @see BusinessException
+ * @version 1.0
+ * @since 1.0
  * @author hoangtien2k3
  */
 @EqualsAndHashCode(callSuper = true)
@@ -32,14 +53,13 @@ import lombok.NoArgsConstructor;
 public class UnRetryableException extends BusinessException {
 
     /**
-     * <p>
-     * Constructor for UnRetryableException.
-     * </p>
+     * Constructs a new {@code UnRetryableException} with the specified error code
+     * and message.
      *
      * @param errorCode
-     *            a {@link String} object
+     *            a {@link String} representing the unique error code.
      * @param message
-     *            a {@link String} object
+     *            a {@link String} describing the error in detail.
      */
     public UnRetryableException(String errorCode, String message) {
         super(errorCode, message);

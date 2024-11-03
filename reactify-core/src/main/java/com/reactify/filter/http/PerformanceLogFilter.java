@@ -18,18 +18,11 @@ package com.reactify.filter.http;
 import brave.Span;
 import brave.Tracer;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.reactify.DataUtil;
-import com.reactify.RequestUtils;
-import com.reactify.TruncateUtils;
 import com.reactify.constants.CommonConstant;
 import com.reactify.model.GatewayContext;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicReference;
-import lombok.RequiredArgsConstructor;
+import com.reactify.util.DataUtil;
+import com.reactify.util.RequestUtils;
+import com.reactify.util.TruncateUtils;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,15 +41,46 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 import reactor.util.context.Context;
 
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
+
 /**
  * <p>
- * PerformanceLogFilter class.
+ * The <code>PerformanceLogFilter</code> class implements a WebFilter for
+ * logging performance metrics of HTTP requests and responses in a Spring
+ * WebFlux application. It utilizes the Sleuth Tracer for distributed tracing
+ * and provides detailed logs for request processing times, statuses, and
+ * headers while ensuring sensitive data is truncated for security.
+ *
+ * This filter is designed to log performance metrics selectively based on the
+ * application profile (e.g., excluding certain details in production) and to
+ * handle logging for both requests and responses, including any errors that
+ * occur during request processing.
+ * </p>
+ *
+ * <p>
+ * The main responsibilities of this filter include:
+ * <ul>
+ * <li>Measuring and logging the time taken to process requests.</li>
+ * <li>Logging request and response details, including headers and bodies, with
+ * truncation for safety.</li>
+ * <li>Integrating with Sleuth for distributed tracing.</li>
+ * </ul>
+ *
+ * <p>
+ * This class is annotated with {@link Component}
+ * to allow Spring to manage it as a bean, and it implements the
+ * {@link WebFilter} and
+ * {@link Ordered} interfaces.
  * </p>
  *
  * @author hoangtien2k3
  */
 @Component
-@RequiredArgsConstructor
 public class PerformanceLogFilter implements WebFilter, Ordered {
     private final Tracer tracer;
     private static final Logger logPerf = LoggerFactory.getLogger("perfLogger");
@@ -64,6 +88,24 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
     private static final int MAX_BYTE = 800; // Max byte allow to print
     private final Environment environment;
 
+    /**
+     * Constructs a new instance of {@code PerformanceLogFilter}.
+     *
+     * @param tracer
+     *            the tracer used for tracing operations.
+     * @param environment
+     *            the environment information for the application.
+     */
+    public PerformanceLogFilter(Tracer tracer, Environment environment) {
+        this.tracer = tracer;
+        this.environment = environment;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * Filters the incoming HTTP request and logs performance metrics.
+     */
     @NotNull
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, @NotNull WebFilterChain chain) {
@@ -91,6 +133,22 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
                 }));
     }
 
+    /**
+     * Logs the performance metrics of the request.
+     *
+     * @param exchange
+     *            the current ServerWebExchange
+     * @param newSpan
+     *            the Span associated with the request
+     * @param name
+     *            the name of the request
+     * @param start
+     *            the start time in milliseconds
+     * @param result
+     *            the result status (Success or Failed)
+     * @param o
+     *            the Throwable if an error occurred
+     */
     private void logPerf(
             ServerWebExchange exchange, Span newSpan, String name, Long start, String result, Throwable o) {
         newSpan.finish();
@@ -106,6 +164,22 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
         logPerf.info("{} {} {} A2 {}", name, duration, result, o == null ? "-" : o.getMessage());
     }
 
+    /**
+     * Logs the performance metrics of the request.
+     *
+     * @param contextRef
+     *            the current ServerWebExchange
+     * @param newSpan
+     *            the Span associated with the request
+     * @param name
+     *            the name of the request
+     * @param start
+     *            the start time in milliseconds
+     * @param result
+     *            the result status (Success or Failed)
+     * @param o
+     *            the Throwable if an error occurred
+     */
     private void logPerf(
             AtomicReference<Context> contextRef, Span newSpan, String name, Long start, String result, Throwable o) {
         newSpan.finish();
@@ -123,6 +197,12 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
         logPerf.info("{} {} {} A2 {}", name, duration, result, o == null ? "-" : o.getMessage());
     }
 
+    /**
+     * Logs the request and response details.
+     *
+     * @param exchange
+     *            the current ServerWebExchange
+     */
     private void logReqResponse(ServerWebExchange exchange) {
         List<String> logs = new ArrayList<>();
         logRequest(exchange, logs);
@@ -130,6 +210,14 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
         reqResLog.info(String.join(" | ", logs));
     }
 
+    /**
+     * Logs the details of the HTTP request.
+     *
+     * @param exchange
+     *            the current ServerWebExchange
+     * @param logs
+     *            the list to collect log messages
+     */
     private void logRequest(ServerWebExchange exchange, List<String> logs) {
         ServerHttpRequest request = exchange.getRequest();
         URI requestURI = request.getURI();
@@ -181,6 +269,13 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
         }
     }
 
+    /**
+     * Truncates the body of a form data for logging.
+     *
+     * @param formData
+     *            the MultiValueMap of form data
+     * @return a truncated string representation of the form data
+     */
     private String truncateBody(MultiValueMap<String, String> formData) {
         StringBuilder messageResponse = new StringBuilder();
         Set<String> keys = formData.keySet();
@@ -190,6 +285,13 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
         return messageResponse.toString();
     }
 
+    /**
+     * Truncates the body of a list of messages for logging.
+     *
+     * @param messageList
+     *            the list of messages
+     * @return a truncated string representation of the messages
+     */
     private String truncateBody(List<String> messageList) {
         StringBuilder response = new StringBuilder();
         messageList.forEach(item -> {
@@ -198,16 +300,37 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
         return response.toString();
     }
 
+    /**
+     * Truncates a string to a specified maximum byte length.
+     *
+     * @param s
+     *            the string to truncate
+     * @param maxByte
+     *            the maximum byte length
+     * @return the truncated string
+     */
     private String truncateBody(String s, int maxByte) {
         return TruncateUtils.truncateBody(s, maxByte);
     }
 
+    /**
+     * Truncates a string to a default maximum byte length.
+     *
+     * @param s
+     *            the string to truncate
+     * @return the truncated string
+     */
     private String truncateBody(String s) {
         return TruncateUtils.truncateBody(s, MAX_BYTE);
     }
 
     /**
-     * log response exclude response body
+     * Logs the response details excluding the response body.
+     *
+     * @param exchange
+     *            the current ServerWebExchange
+     * @param logs
+     *            the list to collect log messages
      */
     private void logResponse(ServerWebExchange exchange, List<String> logs) {
         ServerHttpResponse response = exchange.getResponse();
@@ -219,6 +342,11 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
         }
     }
 
+    /**
+     * Returns the order value of this filter.
+     *
+     * @return the order value
+     */
     private String truncateBody(Object responseBody) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -229,16 +357,33 @@ public class PerformanceLogFilter implements WebFilter, Ordered {
         }
     }
 
+    /**
+     * Sets the trace ID in the MDC for logging.
+     *
+     * @param traceId
+     *            the trace ID to set
+     */
     private void setTraceIdInMDC(String traceId) {
         if (!DataUtil.isNullOrEmpty(traceId)) {
             MDC.put("X-B3-TraceId", traceId);
         }
     }
 
+    /**
+     * Sets the trace ID from the context.
+     *
+     * @param traceId
+     *            the trace ID to set
+     */
     private void setTraceIdFromContext(String traceId) {
         setTraceIdInMDC(traceId);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Returns the order value of this filter.
+     */
     @Override
     public int getOrder() {
         return 7;

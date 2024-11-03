@@ -16,13 +16,77 @@
 package com.reactify.constants;
 
 /**
+ * The {@code CommonErrorCode} class holds a collection of constant error codes
+ * that are used throughout the application to standardize error handling.
+ *
  * <p>
- * CommonErrorCode class.
+ * This class defines the following error codes:
+ * </p>
+ *
+ * <ul>
+ * <li>{@link #BAD_REQUEST} - Indicates that the request was invalid or
+ * malformed.</li>
+ * <li>{@link #NOT_FOUND} - Indicates that the requested resource was not
+ * found.</li>
+ * <li>{@link #INVALID_PARAMS} - Indicates that the parameters provided in the
+ * request are invalid.</li>
+ * <li>{@link #EXIST_DATA} - Indicates that the data already exists in the
+ * system.</li>
+ * <li>{@link #NOT_EXIST_DATA} - Indicates that the data does not exist in the
+ * system.</li>
+ * <li>{@link #INTERNAL_SERVER_ERROR} - Indicates that an unexpected internal
+ * server error has occurred.</li>
+ * <li>{@link #UN_AUTHORIZATION} - Indicates that the user is not authorized to
+ * perform the requested action.</li>
+ * <li>{@link #NO_PERMISSION} - Indicates that the user does not have permission
+ * to access the requested resource.</li>
+ * <li>{@link #ACCESS_DENIED} - Indicates that access to the requested resource
+ * is denied.</li>
+ * <li>{@link #PARSE_TOKEN_ERROR} - Indicates an error occurred while parsing
+ * the authentication token.</li>
+ * <li>{@link #SQL_ERROR} - Indicates that an SQL error occurred while
+ * processing a database operation.</li>
+ * <li>{@link #TRUST_MST_01} - Specific error code related to trust management
+ * (MST 01).</li>
+ * <li>{@link #TRUST_MST_02} - Specific error code related to trust management
+ * (MST 02).</li>
+ * <li>{@link #COMPANY_NOT_FOUND_TRUST_INDENTITY} - Indicates that the company
+ * could not be found in the trust identity records.</li>
+ * <li>{@link #GROUP_INFO_NOT_FOUND} - Indicates that the group information
+ * could not be found.</li>
+ * <li>{@link #GROUP_INFO_NOT_FOUND_2} - Indicates that a second instance of
+ * group information could not be found.</li>
+ * <li>{@link #SUCCESS} - Indicates a successful operation.</li>
+ * <li>{@link #UN_DESERIALIZE} - Indicates an error occurred during
+ * deserialization.</li>
+ * <li>{@link #HASHING_PASSWORD_FAULT} - Indicates an error occurred while
+ * hashing a password.</li>
+ * <li>{@link #CALL_SOAP_ERROR} - Indicates an error occurred when calling a
+ * SOAP service.</li>
+ * </ul>
+ *
+ * <p>
+ * Usage example:
+ * </p>
+ *
+ * <pre>
+ * throw new CustomException(CommonErrorCode.BAD_REQUEST);
+ * </pre>
+ *
+ * <p>
+ * Note: This class is intended to be used as a holder for error codes and
+ * should not be instantiated.
  * </p>
  *
  * @author hoangtien2k3
  */
 public class CommonErrorCode {
+
+    /**
+     * Constructs a new instance of {@code CommonErrorCode}.
+     */
+    public CommonErrorCode() {}
+
     /** Constant <code>BAD_REQUEST="bad_request"</code> */
     public static final String BAD_REQUEST = "bad_request";
     /** Constant <code>NOT_FOUND="not_found"</code> */

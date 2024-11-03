@@ -15,36 +15,45 @@
  */
 package com.reactify.client;
 
-import java.util.Optional;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
+
 /**
  * <p>
- * BaseRestClient interface.
+ * BaseRestClient interface provides basic REST client operations.
  * </p>
  *
+ * @param <T>
+ *            the type of the response body
  * @author hoangtien2k3
  */
 public interface BaseRestClient<T> {
 
     /**
      * <p>
-     * get.
+     * Sends a GET request to the specified URL with optional headers and payload.
      * </p>
      *
      * @param webClient
-     *            a {@link WebClient} object
+     *            the
+     *            {@link WebClient}
+     *            instance to use for the request
      * @param url
-     *            a {@link String} object
+     *            the target URL for the GET request
      * @param headerList
-     *            a {@link MultiValueMap} object
+     *            a {@link MultiValueMap} of headers to
+     *            include in the request
      * @param payload
-     *            a {@link MultiValueMap} object
+     *            a {@link MultiValueMap} of query
+     *            parameters to send with the request
      * @param resultClass
-     *            a {@link Class} object
-     * @return a {@link Mono} object
+     *            the {@link Class} of the expected response body type
+     * @return a {@link Mono} containing the response body
+     *         wrapped in an {@link Optional}, or an empty Optional if not
+     *         found
      */
     Mono<Optional<T>> get(
             WebClient webClient,
@@ -59,7 +68,9 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a {@link WebClient} object
+     *            a
+     *            {@link WebClient}
+     *            object
      * @param url
      *            a {@link String} object
      * @param headerMap
@@ -80,7 +91,9 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a {@link WebClient} object
+     *            a
+     *            {@link WebClient}
+     *            object
      * @param url
      *            a {@link String} object
      * @param headerList
@@ -104,7 +117,9 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a {@link WebClient} object
+     *            a
+     *            {@link WebClient}
+     *            object
      * @param url
      *            a {@link String} object
      * @param headerList
@@ -128,7 +143,9 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a {@link WebClient} object
+     *            a
+     *            {@link WebClient}
+     *            object
      * @param url
      *            a {@link String} object
      * @param headerList
@@ -165,7 +182,9 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a {@link WebClient} object
+     *            a
+     *            {@link WebClient}
+     *            object
      * @param url
      *            a {@link String} object
      * @param headerList
@@ -189,7 +208,9 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a {@link WebClient} object
+     *            a
+     *            {@link WebClient}
+     *            object
      * @param url
      *            a {@link String} object
      * @param headerList
@@ -218,7 +239,8 @@ public interface BaseRestClient<T> {
      *            a {@link Integer} object
      * @param proxyEnable
      *            a {@link Boolean} object
-     * @return a {@link WebClient} object
+     * @return a {@link WebClient}
+     *         object
      */
     WebClient proxyClient(String proxyHost, Integer proxyPort, Boolean proxyEnable);
 
@@ -231,7 +253,8 @@ public interface BaseRestClient<T> {
      *            a {@link String} object
      * @param proxyPort
      *            a {@link Integer} object
-     * @return a {@link WebClient} object
+     * @return a {@link WebClient}
+     *         object
      */
     WebClient proxyHttpClient(String proxyHost, Integer proxyPort);
 
@@ -241,7 +264,9 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a {@link WebClient} object
+     *            a
+     *            {@link WebClient}
+     *            object
      * @param url
      *            a {@link String} object
      * @param headerList
@@ -265,7 +290,9 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a {@link WebClient} object
+     *            a
+     *            {@link WebClient}
+     *            object
      * @param url
      *            a {@link String} object
      * @param headerList
@@ -283,7 +310,9 @@ public interface BaseRestClient<T> {
      * </p>
      *
      * @param webClient
-     *            a {@link WebClient} object
+     *            a
+     *            {@link WebClient}
+     *            object
      * @param uri
      *            a {@link String} object
      * @param headerMap

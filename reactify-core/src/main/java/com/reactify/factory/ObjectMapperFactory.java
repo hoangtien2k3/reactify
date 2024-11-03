@@ -23,26 +23,79 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import java.io.IOException;
 
 /**
  * <p>
- * ObjectMapperFactory class.
+ * Factory class for providing different configurations of
+ * {@link ObjectMapper} instances.
  * </p>
  *
+ * <p>
+ * This class centralizes the creation of
+ * {@link ObjectMapper} instances with various
+ * settings that are often reused across the application. Each method provides
+ * an {@link ObjectMapper} with specific
+ * configurations for handling JSON data deserialization and serialization.
+ * </p>
+ *
+ * <p>
+ * Usage example:
+ * </p>
+ *
+ * <pre>
+ * {@code
+ * ObjectMapper mapper = ObjectMapperFactory.getInstance();
+ * MyObject obj = mapper.readValue(jsonString, MyObject.class);
+ * }
+ * </pre>
+ *
+ * @see ObjectMapper
+ * @see DeserializationFeature
+ * @see SimpleModule
+ * @see JavaTimeModule
+ * @since 1.0
+ * @version 1.0
  * @author hoangtien2k3
  */
 public class ObjectMapperFactory {
+
+    /**
+     * Constructs a new instance of {@code ObjectMapperFactory}.
+     */
+    public ObjectMapperFactory() {}
+
+    /**
+     * Singleton instance for a custom-configured {@link ObjectMapper}.
+     */
     private static ObjectMapper objectMapper;
+
+    /**
+     * Singleton instance for a secondary {@link ObjectMapper} with alternative
+     * settings.
+     */
     private static final ObjectMapper objectMapperV2 = new ObjectMapper();
+
+    /**
+     * Singleton instance for a default configuration of {@link ObjectMapper}.
+     */
     private static final ObjectMapper defaultGetInstance = new ObjectMapper();
 
     /**
      * <p>
-     * getInstance.
+     * Provides a custom-configured
+     * {@link ObjectMapper} instance.
      * </p>
      *
-     * @return a {@link ObjectMapper} object
+     * <p>
+     * Configurations include disabling failure on unknown properties, accepting
+     * single values as arrays, and registering a custom deserializer for boolean
+     * values represented as numeric strings.
+     * </p>
+     *
+     * @return a {@link ObjectMapper} instance with
+     *         custom configurations
      */
     public static ObjectMapper getInstance() {
         if (objectMapper == null) {
@@ -50,9 +103,13 @@ public class ObjectMapperFactory {
             objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             objectMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             objectMapper.configure(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS, true);
+
+            // Register custom deserializer for boolean values represented as numbers
             SimpleModule module = new SimpleModule();
             module.addDeserializer(boolean.class, new NumericBooleanDeserializer());
             module.addDeserializer(Boolean.class, new NumericBooleanDeserializer());
+
+            // Register modules for Java time handling
             objectMapper.registerModule(new JavaTimeModule());
             objectMapper.registerModule(module);
         }
@@ -61,10 +118,17 @@ public class ObjectMapperFactory {
 
     /**
      * <p>
-     * getInstance2.
+     * Provides an alternative {@link ObjectMapper}
+     * instance with a simplified configuration.
      * </p>
      *
-     * @return a {@link ObjectMapper} object
+     * <p>
+     * This instance is configured to ignore unknown properties and accept single
+     * values as arrays, but without additional modules or custom deserializers.
+     * </p>
+     *
+     * @return a {@link ObjectMapper} instance with
+     *         simplified configurations
      */
     public static ObjectMapper getInstance2() {
         objectMapperV2.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -74,10 +138,19 @@ public class ObjectMapperFactory {
 
     /**
      * <p>
-     * defaultGetInstance.
+     * Provides a default {@link ObjectMapper}
+     * instance with standard configuration settings.
      * </p>
      *
-     * @return a {@link ObjectMapper} object
+     * <p>
+     * Configurations include ignoring unknown properties, accepting single values
+     * as arrays, and excluding null values from serialization. This instance also
+     * attempts to find and register any additional modules available on the
+     * classpath.
+     * </p>
+     *
+     * @return a {@link ObjectMapper} instance with
+     *         default settings
      */
     public static ObjectMapper defaultGetInstance() {
         defaultGetInstance.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -87,13 +160,21 @@ public class ObjectMapperFactory {
         return defaultGetInstance;
     }
 
+    /**
+     * Custom deserializer for boolean values represented as numeric strings.
+     * <p>
+     * This deserializer interprets "1" as {@code true}, "0" as {@code false}, and
+     * also handles standard "true" and "false" strings.
+     * </p>
+     */
     private static class NumericBooleanDeserializer extends JsonDeserializer<Boolean> {
         @Override
         public Boolean deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
-            if ("1".equals(p.getText()) || "true".equals(p.getText())) {
+            String text = p.getText();
+            if ("1".equals(text) || "true".equalsIgnoreCase(text)) {
                 return Boolean.TRUE;
             }
-            if ("0".equals(p.getText()) || "false".equals(p.getText())) {
+            if ("0".equals(text) || "false".equalsIgnoreCase(text)) {
                 return Boolean.FALSE;
             }
             return null;

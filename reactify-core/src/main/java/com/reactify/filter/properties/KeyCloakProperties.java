@@ -17,9 +17,21 @@ package com.reactify.filter.properties;
 
 /**
  * <p>
- * KeyCloakProperties class.
+ * The KeyCloakProperties class is a record that holds configuration properties
+ * for connecting to a Keycloak server. This includes the client ID and client
+ * secret required for authentication.
  * </p>
  *
+ * <p>
+ * This class provides a concise way to encapsulate the properties necessary for
+ * Keycloak integration, facilitating the management of authentication
+ * credentials in a Spring application.
+ * </p>
+ *
+ * @param clientId
+ *            the client ID used for authenticating with the Keycloak server
+ * @param clientSecret
+ *            the client secret used for authenticating with the Keycloak server
  * @author hoangtien2k3
  */
 public record KeyCloakProperties(String clientId, String clientSecret) {}

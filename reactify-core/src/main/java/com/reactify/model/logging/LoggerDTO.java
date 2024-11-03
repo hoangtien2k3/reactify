@@ -16,8 +16,9 @@
 package com.reactify.model.logging;
 
 import brave.Span;
-import java.util.concurrent.atomic.AtomicReference;
 import reactor.util.context.Context;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Record representing log information within the system.
@@ -44,6 +45,7 @@ import reactor.util.context.Context;
  *            The arguments passed into the action.
  * @param title
  *            A brief title or description of the log.
+ * @author hoangtien2k3
  */
 public record LoggerDTO(
         AtomicReference<Context> contextRef,

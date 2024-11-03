@@ -23,7 +23,22 @@ import org.springframework.stereotype.Component;
 
 /**
  * <p>
- * ApplicationContextProvider class.
+ * The {@code ApplicationContextProvider} class provides a static method to
+ * access the Spring {@link ApplicationContext}. It
+ * implements the {@link ApplicationContextAware}
+ * interface to receive the application context during initialization.
+ * </p>
+ *
+ * <p>
+ * This class can be used to retrieve beans from the application context
+ * statically without needing to inject them directly. This is particularly
+ * useful in scenarios where dependency injection is not available.
+ * </p>
+ *
+ * <p>
+ * The application context is set during the initialization phase when the
+ * Spring container creates the beans, allowing it to be accessed throughout the
+ * application.
  * </p>
  *
  * @author hoangtien2k3
@@ -32,6 +47,15 @@ import org.springframework.stereotype.Component;
 public class ApplicationContextProvider implements ApplicationContextAware {
 
     private static ApplicationContext context;
+
+    /**
+     * Constructs a new instance of {@code ApplicationContextProvider}.
+     * <p>
+     * This default constructor is provided for compatibility purposes and does not
+     * perform any initialization.
+     * </p>
+     */
+    public ApplicationContextProvider() {}
 
     /**
      * <p>

@@ -17,13 +17,45 @@ package com.reactify.constants;
 
 /**
  * <p>
- * Role class.
+ * Enumeration representing different user roles within the application.
  * </p>
+ *
+ * <p>
+ * Each role is associated with specific permissions and access levels within
+ * the application.
+ * </p>
+ *
+ * <ul>
+ * <li>{@link #ROLE_ADMIN} - Administrator role, typically with the highest
+ * access level, responsible for managing users and system settings.</li>
+ * <li>{@link #ROLE_USER} - Standard user role, with limited access to
+ * application features based on user-specific permissions.</li>
+ * <li>{@link #ROLE_SYSTEM} - System role, usually used for system processes or
+ * internal tasks.</li>
+ * </ul>
+ *
+ * <p>
+ * Example usage:
+ * </p>
+ *
+ * <pre>
+ * {@code
+ * Role userRole = Role.ROLE_USER;
+ * if (userRole == Role.ROLE_ADMIN) {
+ * 	// Perform admin-specific tasks
+ * }
+ * }
+ * </pre>
  *
  * @author hoangtien2k3
  */
 public enum Role {
-    ROLE_admin,
-    ROLE_user,
-    ROLE_system
+    /** Administrator role with high-level access permissions */
+    ROLE_ADMIN,
+
+    /** Standard user role with limited permissions */
+    ROLE_USER,
+
+    /** System role intended for internal or system-level tasks */
+    ROLE_SYSTEM
 }

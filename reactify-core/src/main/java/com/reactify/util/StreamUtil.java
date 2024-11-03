@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
+
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
@@ -28,6 +29,12 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class StreamUtil {
+
+    /**
+     * Constructs a new instance of {@code StreamUtil}.
+     */
+    public StreamUtil() {}
+
     /**
      * <p>
      * streamToByteArray.

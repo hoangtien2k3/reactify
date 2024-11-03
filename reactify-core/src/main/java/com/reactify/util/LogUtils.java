@@ -13,18 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
 
 import io.netty.buffer.UnpooledByteBufAllocator;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.util.Arrays;
-import java.util.List;
 import org.apache.logging.log4j.Logger;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.core.io.buffer.NettyDataBufferFactory;
 import org.springframework.http.MediaType;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Utility class for logging request and response data buffers. Provides methods
@@ -35,6 +36,11 @@ import org.springframework.http.MediaType;
  * @author hoangtien2k3
  */
 public class LogUtils {
+
+    /**
+     * Constructs a new instance of {@code LogUtils}.
+     */
+    public LogUtils() {}
 
     /**
      * List of media types that are considered legal for logging.

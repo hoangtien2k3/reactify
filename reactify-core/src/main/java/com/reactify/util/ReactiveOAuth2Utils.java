@@ -13,29 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
 
 import org.springframework.security.oauth2.client.*;
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
 
 /**
- * <p>
- * ReactiveOAuth2Utils class.
- * </p>
- *
- * @author hoangtien2k3
+ * Utility class for data manipulation and processing. This class contains
+ * static methods for various data-related operations.
  */
 public class ReactiveOAuth2Utils {
+
+    /**
+     * Constructs a new instance of {@code ReactiveOAuth2Utils}.
+     */
+    public ReactiveOAuth2Utils() {}
+
     /**
      * <p>
      * createAuthorizedClientManager.
      * </p>
      *
      * @param clientRegistrationRepository
-     *            a {@link ReactiveClientRegistrationRepository} object
+     *            a
+     *            {@link ReactiveClientRegistrationRepository}
+     *            object
      * @param authorizedClientService
-     *            a {@link ReactiveOAuth2AuthorizedClientService} object
-     * @return a {@link ReactiveOAuth2AuthorizedClientManager} object
+     *            a
+     *            {@link ReactiveOAuth2AuthorizedClientService}
+     *            object
+     * @return a
+     *         {@link ReactiveOAuth2AuthorizedClientManager}
+     *         object
      */
     public static ReactiveOAuth2AuthorizedClientManager createAuthorizedClientManager(
             ReactiveClientRegistrationRepository clientRegistrationRepository,

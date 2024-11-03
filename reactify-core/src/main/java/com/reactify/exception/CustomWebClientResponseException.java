@@ -23,27 +23,53 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 
 /**
  * <p>
- * CustomWebClientResponseException class.
+ * Custom exception class for handling HTTP responses with {@code WebClient}.
  * </p>
  *
+ * <p>
+ * This exception extends
+ * {@link WebClientResponseException}
+ * to include the response body and HTTP status code, allowing for detailed
+ * logging and improved debugging of HTTP errors.
+ * </p>
+ *
+ * <p>
+ * Example usage:
+ * </p>
+ *
+ * <pre>
+ * {@code
+ * if (response.statusCode().isError()) {
+ * 	throw new CustomWebClientResponseException(response.body(), response.statusCode());
+ * }
+ * }
+ * </pre>
+ *
+ * @see WebClientResponseException
+ * @see HttpStatus
+ * @version 1.0
+ * @since 1.0
  * @author hoangtien2k3
  */
 @Getter
 @Setter
 public class CustomWebClientResponseException extends WebClientResponseException {
 
+    /** The body of the error response as a string. */
     private final String errorBody;
+
+    /** The HTTP status code of the error response. */
     private final HttpStatus statusCode;
 
     /**
-     * <p>
-     * Constructor for CustomWebClientResponseException.
-     * </p>
+     * Constructs a new {@code CustomWebClientResponseException} with the specified
+     * error body and HTTP status code.
      *
      * @param errorBody
-     *            a {@link String} object
+     *            a {@link String} representing the response body.
      * @param statusCode
-     *            a {@link HttpStatus} object
+     *            a {@link HttpStatus} object representing
+     *            the HTTP status.
      */
     public CustomWebClientResponseException(String errorBody, HttpStatus statusCode) {
         super(statusCode.value(), statusCode.getReasonPhrase(), null, errorBody.getBytes(), null);
@@ -51,7 +77,12 @@ public class CustomWebClientResponseException extends WebClientResponseException
         this.statusCode = statusCode;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     *
+     * Returns a formatted message containing the HTTP status code, reason phrase,
+     * and error body.
+     */
     @NotNull
     @Override
     public String getMessage() {

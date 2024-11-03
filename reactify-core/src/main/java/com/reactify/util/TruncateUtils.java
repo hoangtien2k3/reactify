@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.reactify;
+package com.reactify.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.nio.charset.StandardCharsets;
-import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.MultiValueMap;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Set;
 
 /**
  * <p>
@@ -30,6 +31,12 @@ import org.springframework.util.MultiValueMap;
  */
 @Slf4j
 public class TruncateUtils {
+
+    /**
+     * Constructs a new instance of {@code TruncateUtils}.
+     */
+    public TruncateUtils() {}
+
     /**
      * <p>
      * truncate.

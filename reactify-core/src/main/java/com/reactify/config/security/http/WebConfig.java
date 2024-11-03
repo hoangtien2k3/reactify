@@ -15,12 +15,11 @@
  */
 package com.reactify.config.security.http;
 
-import com.reactify.DataUtil;
 import com.reactify.config.WhiteListProperties;
 import com.reactify.model.WhiteList;
-import java.util.List;
-import lombok.RequiredArgsConstructor;
+import com.reactify.util.DataUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -37,32 +36,65 @@ import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 /**
  * <p>
- * WebConfig class.
+ * The {@code WebConfig} class is a configuration class for setting up security
+ * settings in a Spring WebFlux application. It configures the security filter
+ * chain, including authentication and authorization rules, CORS settings, and
+ * other web security features.
+ * </p>
+ *
+ * <p>
+ * This class utilizes annotations from Spring Security to enable WebFlux
+ * security and method security for reactive applications.
+ * </p>
+ *
+ * <p>
+ * The class uses the {@link WhiteListProperties} to
+ * configure a whitelist of endpoints that can be accessed without
+ * authentication.
  * </p>
  *
  * @author hoangtien2k3
  */
 @Slf4j
-@RequiredArgsConstructor
 @Configuration
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
+@EnableConfigurationProperties(WhiteListProperties.class)
 public class WebConfig {
 
     private final WhiteListProperties whiteListProperties;
 
     /**
+     * Constructs a new instance of {@code WebConfig}.
+     *
+     * @param whiteListProperties
+     *            the properties containing whitelisted entities.
+     */
+    public WebConfig(WhiteListProperties whiteListProperties) {
+        this.whiteListProperties = whiteListProperties;
+    }
+
+    /**
      * <p>
-     * springSecurityFilterChain.
+     * Configures the security filter chain for the application. This method sets up
+     * the CSRF protection, CORS configuration, authorization rules, and JWT
+     * authentication.
      * </p>
      *
      * @param http
-     *            a {@link ServerHttpSecurity} object
+     *            a
+     *            {@link ServerHttpSecurity}
+     *            object to configure security settings
      * @param jwtAuthenticationConverter
-     *            a {@link Converter} object
-     * @return a {@link SecurityWebFilterChain} object
+     *            a {@link Converter}
+     *            object for JWT to authentication conversion
+     * @return a
+     *         {@link SecurityWebFilterChain}
+     *         object representing the security filter chain
      */
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(
@@ -99,6 +131,16 @@ public class WebConfig {
         return http.build();
     }
 
+    /**
+     * <p>
+     * Configures the CORS settings for the application. This method allows
+     * cross-origin requests and specifies the allowed origins, methods, and
+     * headers.
+     * </p>
+     *
+     * @return a {@link CorsConfigurationSource} object that provides the CORS
+     *         configuration
+     */
     private CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(List.of("*"));

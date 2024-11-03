@@ -15,15 +15,10 @@
  */
 package com.reactify.filter.http;
 
-import static reactor.core.scheduler.Schedulers.single;
-
-import com.reactify.DataUtil;
-import com.reactify.LogUtils;
 import com.reactify.model.GatewayContext;
+import com.reactify.util.DataUtil;
+import com.reactify.util.LogUtils;
 import io.netty.buffer.UnpooledByteBufAllocator;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.jetbrains.annotations.NotNull;
 import org.reactivestreams.Publisher;
@@ -46,21 +41,51 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+
+import static reactor.core.scheduler.Schedulers.single;
+
 /**
  * <p>
- * ResponseLogFilter class.
+ * The ResponseLogFilter class is a WebFilter implementation that logs the
+ * response body of HTTP requests in a Spring WebFlux application. It decorates
+ * the server response to intercept the response body and log it before sending
+ * it to the client.
+ * </p>
+ *
+ * <p>
+ * This class utilizes Project Reactor's Mono and Flux to handle the response
+ * body in a non-blocking way. It also provides functionality to adapt the
+ * response for further processing.
+ * </p>
+ *
+ * <p>
+ * The maximum memory size for response data is set to 50 MB, ensuring efficient
+ * handling of large responses.
  * </p>
  *
  * @author hoangtien2k3
  */
 @Log4j2
-@AllArgsConstructor
 @Component
 public class ResponseLogFilter implements WebFilter, Ordered {
     private final ExchangeStrategies exchangeStrategies = ExchangeStrategies.builder()
             .codecs(cl -> cl.defaultCodecs().maxInMemorySize(50 * 1024 * 1024))
             .build();
 
+    /**
+     * Constructs a new instance of {@code ResponseLogFilter}.
+     */
+    public ResponseLogFilter() {}
+
+    /**
+     * Converts an InputStream to a byte array.
+     *
+     * @param inStream
+     *            the InputStream to be converted
+     * @return byte array containing the data from the InputStream
+     */
     private static byte[] toByteArray(InputStream inStream) {
         ByteArrayOutputStream swapStream = new ByteArrayOutputStream();
         byte[] buff = new byte[100];
@@ -77,6 +102,12 @@ public class ResponseLogFilter implements WebFilter, Ordered {
         return in_b;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Filters the server exchange, logging the response body if it is of a legal
+     * media type.
+     */
     @NotNull
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, @NotNull WebFilterChain chain) {
@@ -113,6 +144,16 @@ public class ResponseLogFilter implements WebFilter, Ordered {
         return chain.filter(exchange.mutate().response(responseDecorator).build());
     }
 
+    /**
+     * Logs the response body by converting it to a byte array and setting it in the
+     * GatewayContext.
+     *
+     * @param buffer
+     *            the DataBuffer containing the response body
+     * @param exchange
+     *            the current server exchange
+     * @return a wrapped DataBuffer containing the logged response body
+     */
     private DataBuffer logRequestBody(DataBuffer buffer, ServerWebExchange exchange) {
         InputStream dataBuffer = buffer.asInputStream();
         byte[] bytes = toByteArray(dataBuffer);
@@ -125,17 +166,39 @@ public class ResponseLogFilter implements WebFilter, Ordered {
         return nettyDataBufferFactory.wrap(bytes);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Returns the order value of this filter.
+     */
     @Override
     public int getOrder() {
         return 6;
     }
 
+    /**
+     * ResponseAdapter class is a wrapper around the response to provide a reactive
+     * stream representation of the response body along with the headers, status
+     * code, and cookies.
+     */
     public static class ResponseAdapter implements ClientHttpResponse {
         private final Flux<DataBuffer> flux;
         private final HttpHeaders headers;
         private final HttpStatus statusCode;
         private final MultiValueMap<String, ResponseCookie> cookies;
 
+        /**
+         * Constructs a ResponseAdapter with the specified parameters.
+         *
+         * @param body
+         *            the response body as a Publisher
+         * @param headers
+         *            the response headers
+         * @param statusCode
+         *            the HTTP status code
+         * @param cookies
+         *            the response cookies
+         */
         public ResponseAdapter(
                 Publisher<? extends DataBuffer> body,
                 HttpHeaders headers,
@@ -151,24 +214,44 @@ public class ResponseLogFilter implements WebFilter, Ordered {
             }
         }
 
+        /**
+         * Returns the response body as a Flux of DataBuffer.
+         *
+         * @return the response body
+         */
         @NotNull
         @Override
         public Flux<DataBuffer> getBody() {
             return flux;
         }
 
+        /**
+         * Returns the response headers.
+         *
+         * @return the response headers
+         */
         @NotNull
         @Override
         public HttpHeaders getHeaders() {
             return headers;
         }
 
+        /**
+         * Returns the HTTP status code of the response.
+         *
+         * @return the HTTP status code
+         */
         @NotNull
         @Override
         public HttpStatus getStatusCode() {
             return statusCode;
         }
 
+        /**
+         * Returns the response cookies.
+         *
+         * @return the response cookies
+         */
         @NotNull
         @Override
         public MultiValueMap<String, ResponseCookie> getCookies() {

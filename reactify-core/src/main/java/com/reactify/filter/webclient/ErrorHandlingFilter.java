@@ -26,27 +26,55 @@ import reactor.core.publisher.Mono;
 
 /**
  * <p>
- * ErrorHandlingFilter class.
+ * The ErrorHandlingFilter class implements the ExchangeFilterFunction interface
+ * to handle errors during HTTP requests made with a reactive WebClient. This
+ * filter checks for client and server errors in the responses and converts them
+ * into a custom exception.
+ * </p>
+ *
+ * <p>
+ * When an error response (4xx or 5xx) is detected, it reads the response body
+ * and wraps it in a
+ * {@link CustomWebClientResponseException}, allowing the
+ * error information to be easily propagated to the caller.
  * </p>
  *
  * @author hoangtien2k3
  */
 public class ErrorHandlingFilter implements ExchangeFilterFunction {
+
+    /**
+     * Constructs a new instance of {@code ErrorHandlingFilter}.
+     */
+    public ErrorHandlingFilter() {}
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>
+     * Filters the client request and handles the response, transforming error
+     * responses into a custom exception.
+     * </p>
+     */
     @NotNull
     @Override
     public Mono<ClientResponse> filter(@NotNull ClientRequest request, ExchangeFunction next) {
         return next.exchange(request).flatMap(clientResponse -> {
+            // Check if the response status code indicates an error (4xx or 5xx)
             if (clientResponse.statusCode().is5xxServerError()
                     || clientResponse.statusCode().is4xxClientError()) {
                 return clientResponse.bodyToMono(String.class).flatMap(errorBody -> {
                     HttpStatus status =
                             HttpStatus.resolve(clientResponse.statusCode().value());
+                    // Default to INTERNAL_SERVER_ERROR if status is null
                     if (status == null) {
                         status = HttpStatus.INTERNAL_SERVER_ERROR;
                     }
+                    // Create and return a custom exception
                     return Mono.error(new CustomWebClientResponseException(errorBody, status));
                 });
             } else {
+                // Return the successful client response
                 return Mono.just(clientResponse);
             }
         });

@@ -18,11 +18,6 @@ package com.reactify.filter.http;
 import com.reactify.constants.Constants;
 import com.reactify.filter.properties.HttpLogProperties;
 import com.reactify.model.GatewayContext;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Profile;
@@ -47,26 +42,83 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+
 /**
  * <p>
- * GatewayContextFilter class.
+ * The {@code GatewayContextFilter} class implements a filter for processing
+ * HTTP requests in a reactive web environment. It intercepts incoming requests
+ * and extracts relevant context information, such as headers and request
+ * bodies, for logging or further processing. This filter is intended for
+ * non-production environments (as indicated by the @Profile annotation).
+ * </p>
+ *
+ * <p>
+ * The filter can conditionally enable or disable logging of request and
+ * response data based on configuration properties specified in the
+ * {@link HttpLogProperties} class. It also
+ * supports handling of both JSON and form data content types.
+ * </p>
+ *
+ * <p>
+ * This filter is registered as a Spring component, allowing it to be
+ * automatically discovered and applied to incoming requests.
  * </p>
  *
  * @author hoangtien2k3
  */
 @Component
 @Log4j2
-@AllArgsConstructor
 @Profile("!prod")
 public class GatewayContextFilter implements WebFilter, Ordered {
-    private HttpLogProperties httpLogProperties;
-    private CodecConfigurer codecConfigurer;
+    private final HttpLogProperties httpLogProperties;
+    private final CodecConfigurer codecConfigurer;
 
+    /**
+     * Constructs a new instance of {@code GatewayContextFilter}.
+     *
+     * @param httpLogProperties
+     *            the properties for logging HTTP requests and responses.
+     * @param codecConfigurer
+     *            the codec configurer for configuring message codecs.
+     */
+    public GatewayContextFilter(HttpLogProperties httpLogProperties, CodecConfigurer codecConfigurer) {
+        this.httpLogProperties = httpLogProperties;
+        this.codecConfigurer = codecConfigurer;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * Retrieves the order value for this filter. The order determines the sequence
+     * in which filters are applied. This filter is set to the highest precedence.
+     */
     @Override
     public int getOrder() {
         return Ordered.HIGHEST_PRECEDENCE;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * Applies the filter logic to the incoming HTTP request.
+     *
+     * <p>
+     * The filter checks if the current request's endpoint should be logged based on
+     * the configuration properties. If logging is enabled, it collects relevant
+     * request data and stores it in a {@link GatewayContext} instance.
+     * </p>
+     *
+     * <p>
+     * If the content type of the request is JSON, it will invoke the
+     * {@link #readBody(ServerWebExchange, WebFilterChain, GatewayContext)} method
+     * to read and process the JSON body. For form data, it calls
+     * {@link #readFormData(ServerWebExchange, WebFilterChain, GatewayContext)}.
+     * </p>
+     */
     @NotNull
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, @NotNull WebFilterChain chain) {
@@ -107,8 +159,22 @@ public class GatewayContextFilter implements WebFilter, Ordered {
     }
 
     /**
-     * ReadFormData
+     * Reads and processes form data from the incoming request.
      *
+     * <p>
+     * This method retrieves the form data and adds it to the
+     * {@link GatewayContext}. It then rewrites the request body with the encoded
+     * form data, allowing further processing down the filter chain.
+     * </p>
+     *
+     * @param exchange
+     *            the current server exchange, containing the request and response.
+     * @param chain
+     *            the filter chain to continue processing the request.
+     * @param gatewayContext
+     *            the context object to store request data.
+     * @return a {@link Mono<Void>} representing the completion of the form data
+     *         processing.
      */
     private Mono<Void> readFormData(ServerWebExchange exchange, WebFilterChain chain, GatewayContext gatewayContext) {
         HttpHeaders headers = exchange.getRequest().getHeaders();
@@ -191,8 +257,22 @@ public class GatewayContextFilter implements WebFilter, Ordered {
     }
 
     /**
-     * ReadJsonBody
+     * Reads and processes the JSON body from the incoming request.
      *
+     * <p>
+     * This method captures the request body as a String, allowing it to be
+     * processed and logged within the context of the gateway. The request is then
+     * mutated to replace its body with the cached version.
+     * </p>
+     *
+     * @param exchange
+     *            the current server exchange, containing the request and response.
+     * @param chain
+     *            the filter chain to continue processing the request.
+     * @param gatewayContext
+     *            the context object to store request data.
+     * @return a {@link Mono<Void>} representing the completion of the JSON body
+     *         processing.
      */
     private Mono<Void> readBody(ServerWebExchange exchange, WebFilterChain chain, GatewayContext gatewayContext) {
         return DataBufferUtils.join(exchange.getRequest().getBody()).flatMap(dataBuffer -> {

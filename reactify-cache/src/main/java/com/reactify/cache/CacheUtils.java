@@ -24,7 +24,16 @@ import reactor.core.publisher.Mono;
 
 /**
  * <p>
- * CacheUtils class.
+ * The CacheUtils class provides utility methods for working with caching
+ * functionality in the application. It contains methods to invoke
+ * cached methods dynamically at runtime, allowing for efficient cache
+ * management and retrieval.
+ * </p>
+ *
+ * <p>
+ * This class is particularly useful for autoloading cache entries based
+ * on the methods annotated with {@link LocalCache} and managing their
+ * execution in a reactive manner using Project Reactor.
  * </p>
  *
  * @author hoangtien2k3
@@ -36,11 +45,14 @@ public class CacheUtils {
 
     /**
      * <p>
-     * invokeMethod.
+     * Invokes the specified method and subscribes to its result, enabling
+     * the execution of the method in a reactive context. This method
+     * retrieves the bean instance of the declaring class from the Spring
+     * application context and calls the specified method.
      * </p>
      *
-     * @param method
-     *            a {@link Method} object
+     * @param method a {@link Method} object representing the method to be
+     *               invoked
      */
     public static void invokeMethod(Method method) {
         try {

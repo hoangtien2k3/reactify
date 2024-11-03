@@ -22,10 +22,34 @@ import java.lang.annotation.Target;
 
 /**
  * <p>
- * Loggable class.
+ * Indicates that a method should be logged when it is executed. This annotation
+ * can be used to track method calls, parameters, and return values, which is
+ * useful for debugging and monitoring application behavior.
+ * </p>
+ *
+ * <p>
+ * This annotation is typically processed by an aspect-oriented programming
+ * (AOP) framework that intercepts method calls and performs the logging.
+ * </p>
+ *
+ * <p>
+ * <strong>Usage Example:</strong>
+ * </p>
+ *
+ * <pre>
+ * &#64;Loggable
+ * public void performAction(String parameter) {
+ * 	// Method implementation
+ * }
+ * </pre>
+ *
+ * <p>
+ * <strong>Note:</strong> The actual logging behavior must be configured
+ * separately in the application, depending on the logging framework in use.
  * </p>
  *
  * @author hoangtien2k3
+ * @version 1.0
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

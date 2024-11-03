@@ -15,25 +15,19 @@
  */
 package com.reactify.client;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
-
-import com.reactify.DataUtil;
 import com.reactify.client.properties.WebClientProperties;
 import com.reactify.constants.Constants;
 import com.reactify.filter.properties.ProxyProperties;
 import com.reactify.filter.webclient.WebClientLoggingFilter;
 import com.reactify.filter.webclient.WebClientMonitoringFilter;
 import com.reactify.filter.webclient.WebClientRetryHandler;
+import com.reactify.util.DataUtil;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.epoll.EpollChannelOption;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
-import java.time.Duration;
-import java.util.Base64;
-import java.util.List;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -50,15 +44,41 @@ import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
 import reactor.netty.transport.ProxyProvider;
 
+import java.time.Duration;
+import java.util.Base64;
+import java.util.List;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 /**
  * <p>
- * WebClientFactory class.
+ * The {@code WebClientFactory} class is responsible for creating and managing
+ * instances of
+ * {@link WebClient} configured
+ * with various properties. It integrates with Spring's application context to
+ * register the created clients as beans for dependency injection. This class
+ * supports OAuth2 authentication, connection pooling, and various customization
+ * options such as logging, retry handling, and proxy configuration.
+ * </p>
+ *
+ * <p>
+ * The class implements the
+ * {@link InitializingBean} interface, which
+ * triggers the initialization of web clients after the bean properties have
+ * been set. Each web client is created based on the specified
+ * {@link WebClientProperties}.
+ * </p>
+ *
+ * <p>
+ * The factory allows dynamic creation of multiple
+ * {@link WebClient} instances
+ * based on provided configurations, enabling flexible and efficient HTTP
+ * communication in reactive applications.
  * </p>
  *
  * @author hoangtien2k3
  */
 @Slf4j
-@RequiredArgsConstructor
 @Data
 public class WebClientFactory implements InitializingBean {
     private final ApplicationContext applicationContext;
@@ -66,7 +86,26 @@ public class WebClientFactory implements InitializingBean {
     private List<WebClientProperties> webClients;
 
     /**
+     * Creates an instance of {@code WebClientFactory} with the specified
+     * application context and authorized client manager.
+     *
+     * @param applicationContext
+     *            the application context used to access beans and configuration
+     * @param authorizedClientManager
+     *            the manager handling OAuth2 client authorizations
+     */
+    public WebClientFactory(
+            ApplicationContext applicationContext, ReactiveOAuth2AuthorizedClientManager authorizedClientManager) {
+        this.applicationContext = applicationContext;
+        this.authorizedClientManager = authorizedClientManager;
+    }
+
+    /**
      * {@inheritDoc}
+     * <p>
+     * This method initializes the web clients by calling
+     * {@link #initWebClients(List)} with the configured web client properties.
+     * </p>
      */
     @Override
     public void afterPropertiesSet() {
@@ -75,11 +114,15 @@ public class WebClientFactory implements InitializingBean {
 
     /**
      * <p>
-     * initWebClients.
+     * Initializes web clients based on the provided list of
+     * {@link WebClientProperties}. Each client is
+     * created and registered as a singleton bean in the application context.
      * </p>
      *
      * @param webClients
-     *            a {@link List} object
+     *            a {@link List} of
+     *            {@link WebClientProperties} objects
+     *            containing configuration for each web client
      */
     public void initWebClients(List<WebClientProperties> webClients) {
         final ConfigurableListableBeanFactory beanFactory =
@@ -94,12 +137,19 @@ public class WebClientFactory implements InitializingBean {
 
     /**
      * <p>
-     * createNewClient.
+     * Creates a new instance of
+     * {@link WebClient} using the
+     * provided {@link WebClientProperties}. The
+     * client is configured with connection pooling, timeout settings, and
+     * additional filters based on the properties specified.
      * </p>
      *
      * @param webClientProperties
-     *            a {@link WebClientProperties} object
-     * @return a {@link WebClient} object
+     *            a {@link WebClientProperties}
+     *            object containing configuration for the web client
+     * @return a {@link WebClient}
+     *         object configured based on the given properties, or {@code null} if
+     *         the properties are invalid
      */
     public WebClient createNewClient(WebClientProperties webClientProperties) {
         if (!isValidProperties(webClientProperties)) {
@@ -173,6 +223,19 @@ public class WebClientFactory implements InitializingBean {
         return exchangeStrategies.clientConnector(clientConnector).build();
     }
 
+    /**
+     * <p>
+     * Configures the HTTP client to use a proxy if specified in the
+     * {@link ProxyProperties}. This method sets up the HTTP and HTTPS proxies with
+     * the given host and port.
+     * </p>
+     *
+     * @param httpClient
+     *            the original {@link HttpClient} to configure
+     * @param proxyConfig
+     *            the {@link ProxyProperties} containing proxy configuration
+     * @return a {@link HttpClient} object configured with proxy settings
+     */
     private HttpClient configProxy(HttpClient httpClient, ProxyProperties proxyConfig) {
         var httpHost = proxyConfig.httpHost();
         var httpPort = proxyConfig.httpPort();
@@ -199,6 +262,16 @@ public class WebClientFactory implements InitializingBean {
         return httpClient;
     }
 
+    /**
+     * <p>
+     * Validates the provided {@link WebClientProperties}. This method checks
+     * whether the required fields, such as the name and address, are properly set.
+     * </p>
+     *
+     * @param webClientProperties
+     *            the {@link WebClientProperties} to validate
+     * @return {@code true} if the properties are valid; {@code false} otherwise
+     */
     private boolean isValidProperties(WebClientProperties webClientProperties) {
         return !DataUtil.isNullOrEmpty(webClientProperties.getName())
                 && !DataUtil.isNullOrEmpty(webClientProperties.getAddress());

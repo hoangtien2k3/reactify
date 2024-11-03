@@ -20,17 +20,26 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.reactify.DataUtil;
-import java.util.Map;
+import com.reactify.util.DataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.r2dbc.core.DatabaseClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Map;
+
 /**
  * <p>
- * BaseTemplateRepository class.
+ * The BaseTemplateRepository class serves as a base class for repository
+ * implementations that interact with the database using R2DBC. It provides
+ * utility methods for executing SQL queries and converting results into
+ * specified types using Jackson's ObjectMapper.
+ * </p>
+ *
+ * <p>
+ * This class is designed to facilitate the execution of custom SQL queries
+ * while abstracting the common functionalities needed for database operations.
  * </p>
  *
  * @author hoangtien2k3
@@ -44,7 +53,8 @@ public class BaseTemplateRepository {
 
     /**
      * <p>
-     * Constructor for BaseTemplateRepository.
+     * Constructor for BaseTemplateRepository that initializes the ObjectMapper with
+     * specific configurations.
      * </p>
      */
     public BaseTemplateRepository() {
@@ -57,18 +67,21 @@ public class BaseTemplateRepository {
 
     /**
      * <p>
-     * listQuery.
+     * Executes a list query with the specified SQL and parameters, mapping the
+     * result to the specified type.
      * </p>
      *
      * @param sql
-     *            a {@link String} object
+     *            a {@link String} object representing the SQL query
      * @param params
-     *            a {@link Map} object
+     *            a {@link Map} object containing the query parameters
      * @param type
-     *            a {@link Class} object
+     *            a {@link Class} object representing the type to map the
+     *            results to
      * @param <T>
-     *            a T class
-     * @return a {@link Flux} object
+     *            a generic type parameter
+     * @return a {@link Flux} object containing the results
+     *         mapped to the specified type
      */
     protected <T> Flux<T> listQuery(String sql, Map<String, Object> params, Class<T> type) {
         DatabaseClient.GenericExecuteSpec spec =
@@ -83,14 +96,16 @@ public class BaseTemplateRepository {
 
     /**
      * <p>
-     * countQuery.
+     * Executes a count query with the specified SQL and parameters, returning the
+     * total count.
      * </p>
      *
      * @param sql
-     *            a {@link String} object
+     *            a {@link String} object representing the SQL query
      * @param params
-     *            a {@link Map} object
-     * @return a {@link Mono} object
+     *            a {@link Map} object containing the query parameters
+     * @return a {@link Mono} object containing the total
+     *         count
      */
     protected Mono<Long> countQuery(String sql, Map<String, Object> params) {
         String query = "select count(*) as common_count_col from (" + sql + ") as common_count_alias";
@@ -109,16 +124,17 @@ public class BaseTemplateRepository {
 
     /**
      * <p>
-     * convert.
+     * Converts a raw result map to the specified type using ObjectMapper.
      * </p>
      *
      * @param raw
-     *            a {@link Map} object
+     *            a {@link Map} object containing the raw result
      * @param type
-     *            a {@link Class} object
+     *            a {@link Class} object representing the type to convert
+     *            to
      * @param <T>
-     *            a T class
-     * @return a T object
+     *            a generic type parameter
+     * @return a T object of the specified type
      */
     protected <T> T convert(Map<String, Object> raw, Class<T> type) {
         return objectMapper.convertValue(raw, type);

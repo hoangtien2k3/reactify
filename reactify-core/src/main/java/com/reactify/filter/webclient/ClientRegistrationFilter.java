@@ -15,7 +15,7 @@
  */
 package com.reactify.filter.webclient;
 
-import com.reactify.ReactiveOAuth2Utils;
+import com.reactify.util.ReactiveOAuth2Utils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientManager;
@@ -24,23 +24,53 @@ import org.springframework.security.oauth2.client.registration.ReactiveClientReg
 
 /**
  * <p>
- * ClientRegistrationFilter class.
+ * The ClientRegistrationFilter class is a configuration class that defines a
+ * Spring bean for managing authorized OAuth2 clients in a reactive application
+ * context. It leverages the Spring Security framework to facilitate OAuth2
+ * client registration and authorization.
+ * </p>
+ *
+ * <p>
+ * This class contains a method to create an instance of
+ * {@link ReactiveOAuth2AuthorizedClientManager},
+ * which is used to manage authorized clients for OAuth2 operations in a
+ * reactive environment.
+ * </p>
+ *
+ * <p>
+ * It is annotated with
+ * {@link Configuration}, indicating that
+ * it provides Spring configuration.
  * </p>
  *
  * @author hoangtien2k3
  */
 @Configuration
 public class ClientRegistrationFilter {
+
+    /**
+     * Constructs a new instance of {@code ClientRegistrationFilter}.
+     */
+    public ClientRegistrationFilter() {}
+
     /**
      * <p>
-     * authorizedClientManager.
+     * Creates a
+     * {@link ReactiveOAuth2AuthorizedClientManager}
+     * bean.
      * </p>
      *
      * @param clientRegistrationRepository
-     *            a {@link ReactiveClientRegistrationRepository} object
+     *            a
+     *            {@link ReactiveClientRegistrationRepository}
+     *            object that manages the client registrations.
      * @param authorizedClientService
-     *            a {@link ReactiveOAuth2AuthorizedClientService} object
-     * @return a {@link ReactiveOAuth2AuthorizedClientManager} object
+     *            a
+     *            {@link ReactiveOAuth2AuthorizedClientService}
+     *            object that manages the authorized clients.
+     * @return a
+     *         {@link ReactiveOAuth2AuthorizedClientManager}
+     *         object configured with the provided repositories.
      */
     @Bean
     public ReactiveOAuth2AuthorizedClientManager authorizedClientManager(

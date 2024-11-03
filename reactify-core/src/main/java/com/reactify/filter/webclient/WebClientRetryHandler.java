@@ -28,14 +28,36 @@ import reactor.util.retry.Retry;
 
 /**
  * <p>
- * WebClientRetryHandler class.
+ * The WebClientRetryHandler class implements the ExchangeFilterFunction
+ * interface to provide retry logic for HTTP requests made through a WebClient
+ * instance. It uses properties defined in the RetryProperties class to
+ * determine the retry behavior, such as the number of retries and which HTTP
+ * methods and exceptions to retry.
  * </p>
  *
+ * <p>
+ * This handler is particularly useful for enhancing the reliability of API
+ * calls, allowing the application to automatically attempt requests again in
+ * the case of transient failures.
+ * </p>
+ *
+ * @param properties
+ *            the {@link RetryProperties} defining retry behavior, including
+ *            retry count, applicable HTTP methods, and exceptions to retry
  * @author hoangtien2k3
  */
 @Slf4j
 public record WebClientRetryHandler(RetryProperties properties) implements ExchangeFilterFunction {
 
+    /**
+     * {@inheritDoc}
+     *
+     * <p>
+     * Filters the client request to apply retry logic based on the specified
+     * RetryProperties. If a request fails due to specific exceptions or methods, it
+     * will be retried according to the configured properties.
+     * </p>
+     */
     @NotNull
     @Override
     public Mono<ClientResponse> filter(@NotNull ClientRequest request, ExchangeFunction next) {

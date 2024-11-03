@@ -17,12 +17,32 @@ package com.reactify.constants;
 
 /**
  * <p>
- * CommonConstant class.
+ * This class defines common constants used throughout the application.
+ * </p>
+ *
+ * <p>
+ * Each constant serves a specific purpose and is categorized according to its
+ * usage context, such as date formats, parameter names, and timezone settings.
+ * </p>
+ *
+ * <p>
+ * Constants are declared as public static final, ensuring they are accessible
+ * globally and remain constant throughout the application lifecycle.
+ * </p>
+ *
+ * <p>
+ * Author: hoangtien2k3
  * </p>
  *
  * @author hoangtien2k3
  */
 public class CommonConstant {
+
+    /**
+     * Constructs a new instance of {@code CommonConstant}.
+     */
+    public CommonConstant() {}
+
     /** Constant <code>MSISDN_TOKEN="msisdn"</code> */
     public static final String MSISDN_TOKEN = "msisdn";
     /** Constant <code>NAME_PARAM="name"</code> */
@@ -287,9 +307,67 @@ public class CommonConstant {
     /** Constant <code>AMP="amp;"</code> */
     public static final String AMP = "amp;";
 
+    /**
+     * The {@code COMMON_PREFIX} interface defines a set of constant regular
+     * expression patterns that can be used for validating and processing numeric
+     * values.
+     *
+     * <p>
+     * This interface includes the following regex patterns:
+     * </p>
+     *
+     * <ul>
+     * <li>{@link #NUMBER_PREFIX} - A regex pattern to match strings that start with
+     * a hyphen, an asterisk, or numeric digits.</li>
+     * <li>{@link #REGEX_ONLY_NUMBER} - A regex pattern that matches any character
+     * that is not a digit or a decimal point.</li>
+     * <li>{@link #REGEX_NOT_NUMBER} - A regex pattern that matches one or more
+     * characters that are not digits (0-9).</li>
+     * </ul>
+     *
+     * <p>
+     * Usage example:
+     * </p>
+     *
+     * <pre>
+     * String input = "-12345";
+     * boolean isValid = input.matches(COMMON_PREFIX.NUMBER_PREFIX);
+     * </pre>
+     *
+     * <p>
+     * Note: This interface is intended for use as a constant holder and should not
+     * be instantiated.
+     * </p>
+     */
     public interface COMMON_PREFIX {
+        /**
+         * A regex pattern to match strings that start with a hyphen, an asterisk, or
+         * numeric digits.
+         * <p>
+         * Example: Valid inputs include "-123", "*45", "678", but not "abc" or
+         * "1.23.45".
+         * </p>
+         */
         public static final String NUMBER_PREFIX = "^[-*0-9]+$";
+
+        /**
+         * A regex pattern that matches any character that is not a digit (0-9) or a
+         * decimal point (.).
+         * <p>
+         * Example: This will match characters like 'a', '#', or any other non-numeric
+         * character.
+         * </p>
+         */
         public static final String REGEX_ONLY_NUMBER = "[^\\d.]";
+
+        /**
+         * A regex pattern that matches one or more characters that are not digits
+         * (0-9).
+         * <p>
+         * Example: This will match strings like "abc", "12a34", or "#$%" but will not
+         * match "123".
+         * </p>
+         */
         public static final String REGEX_NOT_NUMBER = "[^0-9]+";
     }
 }
