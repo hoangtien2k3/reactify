@@ -23,30 +23,31 @@ This README provides quickstart instructions on running [`reactify`]() on bare m
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9383/badge)](https://www.bestpractices.dev/projects/9383)
 [![Build status](https://github.com/ponfee/commons-core/workflows/build-with-maven/badge.svg)](https://github.com/hoangtien2k3/reactify/actions)
 
-## Download
+## Getting Started
+
 Gradle is the only supported build configuration, so just add the dependency to your project build.gradle file:
 
 ⬇️ Download Gradle and Maven
 
 ```kotlin
 dependencies {
-  implementation 'io.github.hoangtien2k3:reactify:$latest'
+    implementation("io.github.hoangtien2k3:reactify-core:1.1.7")
 }
 ```
 
 ```maven
 <dependency>
    <groupId>io.github.hoangtien2k3</groupId>
-   <artifactId>reactify</artifactId>
-   <version>${latest}</version>
+   <artifactId>reactify-core</artifactId>
+   <version>1.1.7</version>
 </dependency>
 ```
 
-The latest `reactify` version is: [![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/reactify?label=latest)](https://mvnrepository.com/artifact/io.github.hoangtien2k3/reactify)
+The latest `reactify` version
+is: [![GitHub Release](https://img.shields.io/github/v/release/hoangtien2k3/reactify?label=latest)](https://mvnrepository.com/artifact/io.github.hoangtien2k3/reactify)
 
-The latest stable lib `reactify` version is: latestVersion Click [here](https://central.sonatype.com/namespace/io.github.hoangtien2k3) for more information on reactify.
-
-## Getting Started
+The latest stable lib `reactify` version is: latestVersion
+Click [here](https://central.sonatype.com/namespace/io.github.hoangtien2k3) for more information on reactify.
 
 1. Correct and complete setup to start the program `application.yml` or `application.properties`
    with [CONFIG](src/main/resources/application.yml)
@@ -56,10 +57,13 @@ The latest stable lib `reactify` version is: latestVersion Click [here](https://
 
 Here is a quick teaser of a complete Spring Boot application in Java:
 
+### Start Using `reactify-core`
+
 ```java
+
 @SpringBootApplication
 @ComponentScan(basePackages = {
-        "io.hoangtien2k3.reactify.*",
+        "com.reactify.*",
         "com.example.myproject"
 })
 public class Example {
@@ -75,12 +79,93 @@ public class Example {
 }
 ```
 
+## Using Lib Reactify-Core Demo:
+
+1. `LocalCache`
+
+```java
+
+@LocalCache(durationInMinute = 30, maxRecord = 10000, autoCache = true)
+public Mono<List<OptionSetValue>> findByOptionSetCode(String optionSetCode) {
+    return optionSetValueRepository.findByOptionSetCode(optionSetCode).collectList();
+}
+```
+
+2. `Keycloak`
+
+application.yml
+
+```yml
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          oidc:
+            token-uri: ${keycloak.serverUrl}/realms/${keycloak.realm}/protocol/openid-connect/token
+        registration:
+          oidc:
+            client-id: ${keycloak.clientId}
+            client-secret: ${keycloak.clientSecret}
+            authorization-grant-type: ${keycloak.grantType} #password || #client_credentials
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${keycloak.serverUrl}/realms/${keycloak.realm}/protocol/openid-connect/certs
+      keycloak:
+        client-id: ${keycloak.clientId}
+
+```
+
+```java
+
+@Override
+public Mono<Optional<AccessToken>> getToken(LoginRequest loginRequest) {
+    MultiValueMap<String, String> formParameters = new LinkedMultiValueMap<>();
+    formParameters.add(OAuth2ParameterNames.GRANT_TYPE, OAuth2ParameterNames.PASSWORD);
+    formParameters.add(OAuth2ParameterNames.USERNAME, loginRequest.getUsername());
+    formParameters.add(OAuth2ParameterNames.PASSWORD, loginRequest.getPassword());
+    String clientId = loginRequest.getClientId();
+    if (!DataUtil.isNullOrEmpty(clientId)) {
+        return keycloakProvider
+                .getClientWithSecret(clientId)
+                .flatMap(clientRepresentation -> {
+                    formParameters.add(OAuth2ParameterNames.CLIENT_ID, clientId);
+                    formParameters.add(OAuth2ParameterNames.CLIENT_SECRET, clientRepresentation.getSecret());
+                    return requestToken(formParameters);
+                })
+                .switchIfEmpty(Mono.error(new BusinessException(CommonErrorCode.INVALID_PARAMS, "client.id.not.valid")));
+    } else {
+        formParameters.add(OAuth2ParameterNames.CLIENT_ID, keyCloakConfig.getAuth().clientId());
+        formParameters.add(OAuth2ParameterNames.CLIENT_SECRET, keyCloakConfig.getAuth().clientSecret());
+    }
+    return requestToken(formParameters);
+}
+```
+
+3. Call Api Using BaseRest and BaseSoap Client
+
+```java
+public Mono<String> getEmailsByUsername(String username) {
+    var payload = new LinkedMultiValueMap<>();
+    payload.set("username", username);
+    return SecurityUtils.getTokenUser().flatMap(token -> {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + token);
+        return baseRestClient
+                .get(authClient, "/user/keycloak", headers, payload, String.class)
+                .map(response -> {
+                    Optional<?> optionalEmail = (Optional<?>) response;
+                    return DataUtil.safeToString(optionalEmail.orElse(null));
+                });
+    });
+}
+```
+
 ## Contributing
 
 If you would like to contribute to the development of this project, please follow our contribution guidelines.
 
 ![Alt](https://repobeats.axiom.co/api/embed/31a861bf21d352264c5c122808407abafb97b0ef.svg "Repobeats analytics image")
-
 
 ## Star History
 
