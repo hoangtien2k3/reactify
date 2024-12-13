@@ -23,6 +23,12 @@ import com.reactify.model.GatewayContext;
 import com.reactify.util.DataUtil;
 import com.reactify.util.RequestUtils;
 import com.reactify.util.TruncateUtils;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,13 +46,6 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 import reactor.util.context.Context;
-
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * <p>
@@ -72,10 +71,10 @@ import java.util.concurrent.atomic.AtomicReference;
  * </ul>
  *
  * <p>
- * This class is annotated with {@link Component}
+ * This class is annotated with {@link org.springframework.stereotype.Component}
  * to allow Spring to manage it as a bean, and it implements the
- * {@link WebFilter} and
- * {@link Ordered} interfaces.
+ * {@link org.springframework.web.server.WebFilter} and
+ * {@link org.springframework.core.Ordered} interfaces.
  * </p>
  *
  * @author hoangtien2k3

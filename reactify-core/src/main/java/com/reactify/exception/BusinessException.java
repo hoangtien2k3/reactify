@@ -16,11 +16,10 @@
 package com.reactify.exception;
 
 import com.reactify.util.Translator;
+import java.util.Arrays;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import java.util.Arrays;
 
 /**
  * <p>
@@ -82,9 +81,9 @@ public class BusinessException extends RuntimeException {
      * Constructor initializing the exception with an error code and message.
      *
      * @param errorCode
-     *            a {@link String} representing the error code.
+     *            a {@link java.lang.String} representing the error code.
      * @param message
-     *            a {@link String} representing the error message, which
+     *            a {@link java.lang.String} representing the error message, which
      *            will be localized.
      */
     public BusinessException(String errorCode, String message) {
@@ -102,12 +101,12 @@ public class BusinessException extends RuntimeException {
      * </p>
      *
      * @param errorCode
-     *            a {@link String} representing the error code.
+     *            a {@link java.lang.String} representing the error code.
      * @param message
-     *            a {@link String} representing the error message, which
+     *            a {@link java.lang.String} representing the error message, which
      *            will be localized.
      * @param paramsMsg
-     *            a {@link String} array of message parameters for dynamic
+     *            a {@link java.lang.String} array of message parameters for dynamic
      *            message localization.
      */
     public BusinessException(String errorCode, String message, String... paramsMsg) {

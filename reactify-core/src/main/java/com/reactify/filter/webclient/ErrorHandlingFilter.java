@@ -35,7 +35,7 @@ import reactor.core.publisher.Mono;
  * <p>
  * When an error response (4xx or 5xx) is detected, it reads the response body
  * and wraps it in a
- * {@link CustomWebClientResponseException}, allowing the
+ * {@link com.reactify.exception.CustomWebClientResponseException}, allowing the
  * error information to be easily propagated to the caller.
  * </p>
  *

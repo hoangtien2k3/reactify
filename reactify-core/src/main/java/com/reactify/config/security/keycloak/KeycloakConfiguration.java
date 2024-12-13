@@ -15,6 +15,7 @@
  */
 package com.reactify.config.security.keycloak;
 
+import java.util.Collection;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,15 +25,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import reactor.core.publisher.Mono;
 
-import java.util.Collection;
-
 /**
  * The {@code KeycloakConfiguration} class is a configuration class that
  * provides beans for integrating Keycloak with Spring Security in a reactive
  * application. This class defines converters that transform JWT tokens issued
  * by Keycloak into Spring Security's
- * {@link GrantedAuthority} and
- * {@link AbstractAuthenticationToken}.
+ * {@link org.springframework.security.core.GrantedAuthority} and
+ * {@link org.springframework.security.authentication.AbstractAuthenticationToken}.
  *
  * @author hoangtien2k3
  */

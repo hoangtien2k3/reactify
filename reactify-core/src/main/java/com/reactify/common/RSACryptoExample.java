@@ -15,18 +15,18 @@
  */
 package com.reactify.common;
 
-import javax.crypto.Cipher;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
+import javax.crypto.Cipher;
 
 /**
  * <p>
  * The {@code RSACryptoExample} class provides methods for RSA encryption and
  * decryption using public and private keys. It includes functionalities for
  * converting string representations of keys to their respective
- * {@link PublicKey} and {@link PrivateKey} objects,
+ * {@link java.security.PublicKey} and {@link java.security.PrivateKey} objects,
  * as well as methods for encrypting and decrypting messages.
  * </p>
  *

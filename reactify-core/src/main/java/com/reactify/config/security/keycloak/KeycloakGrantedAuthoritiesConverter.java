@@ -15,6 +15,15 @@
  */
 package com.reactify.config.security.keycloak;
 
+import static java.util.Collections.emptyList;
+import static java.util.Collections.emptySet;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,22 +32,12 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.util.ObjectUtils;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static java.util.Collections.emptyList;
-import static java.util.Collections.emptySet;
-
 /**
  * <p>
  * The {@code KeycloakGrantedAuthoritiesConverter} class implements a
- * {@link Converter} that converts a
+ * {@link org.springframework.core.convert.converter.Converter} that converts a
  * JWT token issued by Keycloak into a collection of Spring Security
- * {@link GrantedAuthority}.
+ * {@link org.springframework.security.core.GrantedAuthority}.
  * </p>
  *
  * <p>
@@ -101,9 +100,9 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
      * </p>
      *
      * @param jwt
-     *            a {@link Jwt} object
+     *            a {@link org.springframework.security.oauth2.jwt.Jwt} object
      *            containing the claims
-     * @return a {@link List} of realm role names
+     * @return a {@link java.util.List} of realm role names
      */
     @SuppressWarnings("unchecked")
     protected List<String> realmRoles(Jwt jwt) {
@@ -118,12 +117,12 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
      * </p>
      *
      * @param jwt
-     *            a {@link Jwt} object
+     *            a {@link org.springframework.security.oauth2.jwt.Jwt} object
      *            representing the token
      * @param clientId
-     *            a {@link String} representing the client ID for which
+     *            a {@link java.lang.String} representing the client ID for which
      *            roles are to be extracted
-     * @return a {@link List} of client roles, or an empty list if none
+     * @return a {@link java.util.List} of client roles, or an empty list if none
      *         are found
      */
     @SuppressWarnings("unchecked")

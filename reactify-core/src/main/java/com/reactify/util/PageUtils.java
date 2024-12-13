@@ -32,9 +32,9 @@ public class PageUtils {
      * </p>
      *
      * @param page
-     *            a {@link Integer} object
+     *            a {@link java.lang.Integer} object
      * @param size
-     *            a {@link Integer} object
+     *            a {@link java.lang.Integer} object
      * @return a int
      */
     public static int getOffset(Integer page, Integer size) {

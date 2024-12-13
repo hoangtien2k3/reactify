@@ -28,7 +28,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
  *
  * <p>
  * This exception extends
- * {@link WebClientResponseException}
+ * {@link org.springframework.web.reactive.function.client.WebClientResponseException}
  * to include the response body and HTTP status code, allowing for detailed
  * logging and improved debugging of HTTP errors.
  * </p>
@@ -66,9 +66,9 @@ public class CustomWebClientResponseException extends WebClientResponseException
      * error body and HTTP status code.
      *
      * @param errorBody
-     *            a {@link String} representing the response body.
+     *            a {@link java.lang.String} representing the response body.
      * @param statusCode
-     *            a {@link HttpStatus} object representing
+     *            a {@link org.springframework.http.HttpStatus} object representing
      *            the HTTP status.
      */
     public CustomWebClientResponseException(String errorBody, HttpStatus statusCode) {

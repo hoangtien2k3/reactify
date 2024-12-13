@@ -15,19 +15,18 @@
  */
 package com.reactify.factory;
 
-import lombok.extern.slf4j.Slf4j;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
  * A factory class for managing and caching JAXB
- * {@link Marshaller} instances, providing functionality to
+ * {@link javax.xml.bind.Marshaller} instances, providing functionality to
  * convert Java objects to XML format.
  * </p>
  *
@@ -66,26 +65,26 @@ public class MarshallerFactory {
      * Converts a given Java object to its XML representation.
      *
      * <p>
-     * This method checks if a cached {@link Marshaller} instance is
+     * This method checks if a cached {@link javax.xml.bind.Marshaller} instance is
      * available for the provided class. If not, it creates a new marshaller, caches
      * it, and then converts the object to XML format. The XML output is formatted
      * for readability.
      * </p>
      *
      * <p>
-     * If the conversion fails due to a {@link JAXBException}, an
+     * If the conversion fails due to a {@link javax.xml.bind.JAXBException}, an
      * error message is logged, and an empty string is returned.
      * </p>
      *
      * @param obj
      *            the object to be converted to XML
      * @param cls
-     *            the {@link Class} of the object being converted, used
+     *            the {@link java.lang.Class} of the object being converted, used
      *            for creating and retrieving the appropriate
-     *            {@link Marshaller} instance
-     * @return a {@link String} representing the XML format of the object,
+     *            {@link javax.xml.bind.Marshaller} instance
+     * @return a {@link java.lang.String} representing the XML format of the object,
      *         or an empty string if an error occurs during conversion
-     * @throws IllegalArgumentException
+     * @throws java.lang.IllegalArgumentException
      *             if {@code obj} or {@code cls} is null
      */
     public static String convertObjectToXML(Object obj, Class<?> cls) {

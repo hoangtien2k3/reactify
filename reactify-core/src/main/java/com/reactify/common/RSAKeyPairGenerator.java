@@ -15,10 +15,9 @@
  */
 package com.reactify.common;
 
-import lombok.Getter;
-
 import java.security.*;
 import java.util.Base64;
+import lombok.Getter;
 
 /**
  * <p>
@@ -47,7 +46,7 @@ public class RSAKeyPairGenerator {
      * initializes the key pair generator and generates the RSA key pair.
      * </p>
      *
-     * @throws NoSuchAlgorithmException
+     * @throws java.security.NoSuchAlgorithmException
      *             if the RSA algorithm is not available.
      */
     public RSAKeyPairGenerator() throws NoSuchAlgorithmException {
@@ -67,9 +66,9 @@ public class RSAKeyPairGenerator {
      * </p>
      *
      * @param args
-     *            an array of {@link String} objects, not used in this
+     *            an array of {@link java.lang.String} objects, not used in this
      *            implementation.
-     * @throws NoSuchAlgorithmException
+     * @throws java.security.NoSuchAlgorithmException
      *             if the RSA algorithm is not available.
      */
     public static void main(String[] args) throws NoSuchAlgorithmException {

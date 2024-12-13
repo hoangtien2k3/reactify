@@ -16,11 +16,10 @@
 package com.reactify.config;
 
 import com.reactify.model.WhiteList;
+import java.util.List;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 /**
  * Represents the properties for the whitelist configuration.

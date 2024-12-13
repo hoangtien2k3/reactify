@@ -55,11 +55,11 @@ public class PasswordService {
      * </p>
      *
      * @param plaintext
-     *            a {@link String} object representing the plaintext to be
+     *            a {@link java.lang.String} object representing the plaintext to be
      *            encrypted.
-     * @return a {@link String} object representing the Base64 encoded
+     * @return a {@link java.lang.String} object representing the Base64 encoded
      *         encrypted text.
-     * @throws Exception
+     * @throws java.lang.Exception
      *             if there is an error during the encryption process, such as if
      *             the SHA-1 algorithm is not available.
      */
@@ -82,7 +82,7 @@ public class PasswordService {
      * application.
      * </p>
      *
-     * @return a {@link PasswordService} object representing the
+     * @return a {@link com.reactify.common.PasswordService} object representing the
      *         singleton instance.
      */
     public static synchronized PasswordService getInstance() {

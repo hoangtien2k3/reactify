@@ -34,8 +34,8 @@ public class SQLUtils {
      * </p>
      *
      * @param value
-     *            a {@link String} object
-     * @return a {@link String} object
+     *            a {@link java.lang.String} object
+     * @return a {@link java.lang.String} object
      */
     public static String replaceSpecialDigit(String value) {
         if (!StringUtils.isEmpty(value)) {

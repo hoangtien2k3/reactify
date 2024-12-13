@@ -15,6 +15,7 @@
  */
 package com.reactify.filter.http;
 
+import java.util.function.Supplier;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.reactivestreams.Publisher;
@@ -25,8 +26,6 @@ import org.springframework.http.ReactiveHttpOutputMessage;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.function.Supplier;
 
 /**
  * <p>
@@ -39,7 +38,7 @@ import java.util.function.Supplier;
  * This class allows the body of a response to be stored in memory, enabling it
  * to be accessed multiple times if necessary. It works with reactive
  * programming constructs, specifically with the Project Reactor's
- * {@link Flux} and {@link Mono}.
+ * {@link reactor.core.publisher.Flux} and {@link reactor.core.publisher.Mono}.
  * </p>
  *
  * <p>
@@ -79,15 +78,15 @@ public class CachedBodyOutputMessage implements ReactiveHttpOutputMessage {
      *
      * <p>
      * Initializes the message with the provided
-     * {@link ServerWebExchange} and
-     * {@link HttpHeaders}.
+     * {@link org.springframework.web.server.ServerWebExchange} and
+     * {@link org.springframework.http.HttpHeaders}.
      * </p>
      *
      * @param exchange
-     *            a {@link ServerWebExchange} object
+     *            a {@link org.springframework.web.server.ServerWebExchange} object
      *            to retrieve the response's buffer factory
      * @param httpHeaders
-     *            a {@link HttpHeaders} object containing
+     *            a {@link org.springframework.http.HttpHeaders} object containing
      *            the headers for the HTTP response
      */
     public CachedBodyOutputMessage(ServerWebExchange exchange, HttpHeaders httpHeaders) {

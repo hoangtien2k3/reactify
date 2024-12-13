@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
  * </p>
  *
  * <p>
- * This exception extends {@link BusinessException} and
+ * This exception extends {@link com.reactify.exception.BusinessException} and
  * is used when an error occurs that should not be retried by the calling method
  * or process.
  * </p>
@@ -57,9 +57,9 @@ public class UnRetryableException extends BusinessException {
      * and message.
      *
      * @param errorCode
-     *            a {@link String} representing the unique error code.
+     *            a {@link java.lang.String} representing the unique error code.
      * @param message
-     *            a {@link String} describing the error in detail.
+     *            a {@link java.lang.String} describing the error in detail.
      */
     public UnRetryableException(String errorCode, String message) {
         super(errorCode, message);

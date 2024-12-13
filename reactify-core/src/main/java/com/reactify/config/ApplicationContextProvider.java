@@ -24,8 +24,8 @@ import org.springframework.stereotype.Component;
 /**
  * <p>
  * The {@code ApplicationContextProvider} class provides a static method to
- * access the Spring {@link ApplicationContext}. It
- * implements the {@link ApplicationContextAware}
+ * access the Spring {@link org.springframework.context.ApplicationContext}. It
+ * implements the {@link org.springframework.context.ApplicationContextAware}
  * interface to receive the application context during initialization.
  * </p>
  *
@@ -62,7 +62,7 @@ public class ApplicationContextProvider implements ApplicationContextAware {
      * getApplicationContext.
      * </p>
      *
-     * @return a {@link ApplicationContext} object
+     * @return a {@link org.springframework.context.ApplicationContext} object
      */
     public static ApplicationContext getApplicationContext() {
         return context;

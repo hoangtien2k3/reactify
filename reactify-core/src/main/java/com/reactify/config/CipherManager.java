@@ -17,15 +17,14 @@ package com.reactify.config;
 
 import com.reactify.constants.CommonErrorCode;
 import com.reactify.exception.BusinessException;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.springframework.stereotype.Component;
-
-import javax.crypto.Cipher;
 import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.Security;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
+import javax.crypto.Cipher;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.springframework.stereotype.Component;
 
 /**
  * <p>
@@ -56,7 +55,7 @@ public class CipherManager {
      * Constructs a {@code CipherManager} instance and initializes the RSA cipher.
      * </p>
      *
-     * @throws Exception
+     * @throws java.lang.Exception
      *             if there is an issue initializing the cipher.
      */
     public CipherManager() throws Exception {
@@ -70,11 +69,11 @@ public class CipherManager {
      * </p>
      *
      * @param message
-     *            the {@link String} message to encrypt
+     *            the {@link java.lang.String} message to encrypt
      * @param publicKeyString
-     *            the {@link String} representation of the public key in
+     *            the {@link java.lang.String} representation of the public key in
      *            Base64 format
-     * @return a {@link String} representing the Base64 encoded encrypted
+     * @return a {@link java.lang.String} representing the Base64 encoded encrypted
      *         message
      */
     public String encrypt(String message, String publicKeyString) {

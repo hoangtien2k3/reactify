@@ -20,14 +20,14 @@ import org.modelmapper.ModelMapper;
 /**
  * <p>
  * Factory class for providing a singleton instance of
- * {@link ModelMapper}.
+ * {@link org.modelmapper.ModelMapper}.
  * </p>
  *
  * <p>
  * This class is designed to provide a single, globally accessible
- * {@link ModelMapper} instance, which can be reused across the
+ * {@link org.modelmapper.ModelMapper} instance, which can be reused across the
  * application for object mapping tasks. This approach optimizes performance by
- * avoiding the creation of multiple {@link ModelMapper}
+ * avoiding the creation of multiple {@link org.modelmapper.ModelMapper}
  * instances.
  * </p>
  *
@@ -44,7 +44,7 @@ import org.modelmapper.ModelMapper;
  *
  * <p>
  * This singleton instance is thread-safe as the
- * {@link ModelMapper} class itself is designed for concurrent
+ * {@link org.modelmapper.ModelMapper} class itself is designed for concurrent
  * use.
  * </p>
  *
@@ -63,16 +63,16 @@ public class ModelMapperFactory {
     private static final ModelMapper modelMapper = new ModelMapper();
 
     /**
-     * Provides access to the singleton {@link ModelMapper}
+     * Provides access to the singleton {@link org.modelmapper.ModelMapper}
      * instance.
      *
      * <p>
      * This method allows any part of the application to retrieve the singleton
-     * {@link ModelMapper} instance, promoting consistency and
+     * {@link org.modelmapper.ModelMapper} instance, promoting consistency and
      * efficiency in object mapping.
      * </p>
      *
-     * @return a {@link ModelMapper} instance, used for mapping
+     * @return a {@link org.modelmapper.ModelMapper} instance, used for mapping
      *         between object types
      */
     public static ModelMapper getInstance() {

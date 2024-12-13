@@ -17,16 +17,15 @@ package com.reactify.annotations.cache;
 
 import com.github.benmanes.caffeine.cache.RemovalCause;
 import com.github.benmanes.caffeine.cache.RemovalListener;
+import java.lang.reflect.Method;
 import lombok.extern.slf4j.Slf4j;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-import java.lang.reflect.Method;
-
 /**
  * <p>
  * The {@code CustomizeRemovalListener} class implements the
- * {@link RemovalListener} interface from
+ * {@link com.github.benmanes.caffeine.cache.RemovalListener} interface from
  * Caffeine, providing custom logic for handling cache removal events. This
  * listener is triggered when cache entries are removed, allowing for additional
  * actions such as invoking a method to refresh or reload the cache.

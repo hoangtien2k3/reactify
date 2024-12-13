@@ -16,11 +16,10 @@
 package com.reactify.annotations.cache;
 
 import com.reactify.config.ApplicationContextProvider;
+import java.lang.reflect.Method;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
-
-import java.lang.reflect.Method;
 
 /**
  * <p>
@@ -32,7 +31,7 @@ import java.lang.reflect.Method;
  * </p>
  *
  * <p>
- * This class is annotated with {@link Component}
+ * This class is annotated with {@link org.springframework.stereotype.Component}
  * to indicate that it is a Spring-managed bean, and it uses constructor
  * injection to obtain any required dependencies.
  * </p>
@@ -51,14 +50,14 @@ public class CacheUtils {
     /**
      * <p>
      * Invokes a specified method and subscribes to the returned
-     * {@link Mono} object to trigger any asynchronous cache
+     * {@link reactor.core.publisher.Mono} object to trigger any asynchronous cache
      * loading operations. This method retrieves the bean of the declaring class
      * from the application context and executes the method, logging any exceptions
      * that occur during invocation.
      * </p>
      *
      * @param method
-     *            a {@link Method} object representing the method
+     *            a {@link java.lang.reflect.Method} object representing the method
      *            to be invoked for cache loading.
      */
     public static void invokeMethod(Method method) {

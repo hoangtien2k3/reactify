@@ -20,6 +20,9 @@ import brave.Tracer;
 import com.reactify.annotations.LogPerformance;
 import com.reactify.exception.BusinessException;
 import com.reactify.util.DataUtil;
+import java.lang.reflect.Method;
+import java.util.concurrent.atomic.AtomicReference;
+import javax.annotation.PostConstruct;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
@@ -30,10 +33,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.util.context.Context;
 
-import javax.annotation.PostConstruct;
-import java.lang.reflect.Method;
-import java.util.concurrent.atomic.AtomicReference;
-
 /**
  * <p>
  * The {@code LoggerAspectUtils} class is a utility component that provides
@@ -43,9 +42,9 @@ import java.util.concurrent.atomic.AtomicReference;
  * </p>
  *
  * <p>
- * This class is annotated with {@link Component}
+ * This class is annotated with {@link org.springframework.stereotype.Component}
  * to allow Spring to manage it as a bean, and it is initialized with a
- * {@link Tracer} for distributed tracing support. The logging is
+ * {@link brave.Tracer} for distributed tracing support. The logging is
  * performed using different loggers for performance metrics and general
  * logging.
  * </p>
@@ -89,11 +88,11 @@ public class LoggerAspectUtils {
      * </p>
      *
      * @param joinPoint
-     *            a {@link ProceedingJoinPoint} object representing
+     *            a {@link org.aspectj.lang.ProceedingJoinPoint} object representing
      *            the intercepted method call
-     * @return a {@link Object} representing the result of the method
+     * @return a {@link java.lang.Object} representing the result of the method
      *         execution
-     * @throws Throwable
+     * @throws java.lang.Throwable
      *             if any error occurs during the execution of the method
      */
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {

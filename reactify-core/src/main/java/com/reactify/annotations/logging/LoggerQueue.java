@@ -17,21 +17,20 @@ package com.reactify.annotations.logging;
 
 import brave.Span;
 import com.reactify.model.logging.LoggerDTO;
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
-import reactor.util.context.Context;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.atomic.AtomicReference;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+import reactor.util.context.Context;
 
 /**
  * <p>
  * The {@code LoggerQueue} class is a singleton that provides a thread-safe
  * queue for logging operations using an
- * {@link ArrayBlockingQueue} to manage instances of
- * {@link LoggerDTO}. It tracks the number of
+ * {@link java.util.concurrent.ArrayBlockingQueue} to manage instances of
+ * {@link com.reactify.model.logging.LoggerDTO}. It tracks the number of
  * successful and failed logging attempts.
  * </p>
  *
@@ -47,7 +46,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * </p>
  *
  * <p>
- * This class is annotated with {@link Slf4j} for logging
+ * This class is annotated with {@link lombok.extern.slf4j.Slf4j} for logging
  * functionality.
  * </p>
  *
@@ -70,7 +69,7 @@ public class LoggerQueue {
      * getInstance.
      * </p>
      *
-     * @return a {@link LoggerQueue} object
+     * @return a {@link com.reactify.annotations.logging.LoggerQueue} object
      */
     public static LoggerQueue getInstance() {
         if (mMe == null) {
@@ -100,7 +99,7 @@ public class LoggerQueue {
      * getQueue.
      * </p>
      *
-     * @return a {@link LoggerDTO} object
+     * @return a {@link com.reactify.model.logging.LoggerDTO} object
      */
     public LoggerDTO getQueue() {
         return myQueue.poll();
@@ -112,7 +111,7 @@ public class LoggerQueue {
      * </p>
      *
      * @param task
-     *            a {@link LoggerDTO} object
+     *            a {@link com.reactify.model.logging.LoggerDTO} object
      * @return a boolean
      */
     public boolean addQueue(LoggerDTO task) {
@@ -130,27 +129,27 @@ public class LoggerQueue {
      * </p>
      *
      * @param contextRef
-     *            a {@link AtomicReference} object
+     *            a {@link java.util.concurrent.atomic.AtomicReference} object
      * @param newSpan
-     *            a {@link Span} object
+     *            a {@link brave.Span} object
      * @param service
-     *            a {@link String} object
+     *            a {@link java.lang.String} object
      * @param startTime
-     *            a {@link Long} object
+     *            a {@link java.lang.Long} object
      * @param endTime
-     *            a {@link Long} object
+     *            a {@link java.lang.Long} object
      * @param result
-     *            a {@link String} object
+     *            a {@link java.lang.String} object
      * @param obj
-     *            a {@link Object} object
+     *            a {@link java.lang.Object} object
      * @param logType
-     *            a {@link String} object
+     *            a {@link java.lang.String} object
      * @param actionType
-     *            a {@link String} object
+     *            a {@link java.lang.String} object
      * @param args
-     *            an array of {@link Object} objects
+     *            an array of {@link java.lang.Object} objects
      * @param title
-     *            a {@link String} object
+     *            a {@link java.lang.String} object
      */
     public void addQueue(
             AtomicReference<Context> contextRef,
@@ -180,7 +179,7 @@ public class LoggerQueue {
      * getRecords.
      * </p>
      *
-     * @return a {@link List} object
+     * @return a {@link java.util.List} object
      */
     public List<LoggerDTO> getRecords() {
         List<LoggerDTO> records = new ArrayList<>();

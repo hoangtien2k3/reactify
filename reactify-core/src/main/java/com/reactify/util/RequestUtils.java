@@ -15,10 +15,9 @@
  */
 package com.reactify.util;
 
+import java.util.Objects;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-
-import java.util.Objects;
 
 /**
  * Utility class for handling HTTP requests. Provides methods to extract the

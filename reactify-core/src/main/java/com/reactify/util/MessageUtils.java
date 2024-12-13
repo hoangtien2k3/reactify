@@ -15,12 +15,11 @@
  */
 package com.reactify.util;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.i18n.LocaleContextHolder;
-
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 /**
  * Utility class for data manipulation and processing. This class contains
@@ -42,10 +41,10 @@ public class MessageUtils {
      * </p>
      *
      * @param code
-     *            a {@link String} object
+     *            a {@link java.lang.String} object
      * @param locale
-     *            a {@link Locale} object
-     * @return a {@link String} object
+     *            a {@link java.util.Locale} object
+     * @return a {@link java.lang.String} object
      */
     public static String getMessage(String code, Locale locale) {
         return getMessage(code, locale, (Object) null);
@@ -57,12 +56,12 @@ public class MessageUtils {
      * </p>
      *
      * @param code
-     *            a {@link String} object
+     *            a {@link java.lang.String} object
      * @param locale
-     *            a {@link Locale} object
+     *            a {@link java.util.Locale} object
      * @param args
-     *            a {@link Object} object
-     * @return a {@link String} object
+     *            a {@link java.lang.Object} object
+     * @return a {@link java.lang.String} object
      */
     public static String getMessage(String code, Locale locale, Object... args) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle(BASE_NAME, locale);
@@ -84,8 +83,8 @@ public class MessageUtils {
      * </p>
      *
      * @param code
-     *            a {@link String} object
-     * @return a {@link String} object
+     *            a {@link java.lang.String} object
+     * @return a {@link java.lang.String} object
      */
     public static String getMessage(String code) {
         return getMessage(code, LocaleContextHolder.getLocale(), (Object) null);
@@ -97,10 +96,10 @@ public class MessageUtils {
      * </p>
      *
      * @param code
-     *            a {@link String} object
+     *            a {@link java.lang.String} object
      * @param args
-     *            a {@link Object} object
-     * @return a {@link String} object
+     *            a {@link java.lang.Object} object
+     * @return a {@link java.lang.String} object
      */
     public static String getMessage(String code, Object... args) {
         return getMessage(code, LocaleContextHolder.getLocale(), args);

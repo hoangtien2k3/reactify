@@ -17,14 +17,13 @@ package com.reactify.model;
 
 import com.reactify.constants.CommonErrorCode;
 import com.reactify.exception.BusinessException;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
-
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * <p>
@@ -58,12 +57,12 @@ public abstract class SagaProcess {
      *
      * <p>
      * This method must be implemented by subclasses to return a list of
-     * {@link SagaStep} objects representing the steps to be
+     * {@link com.reactify.model.SagaStep} objects representing the steps to be
      * executed in the saga. Each step should implement the logic for its respective
      * operation.
      * </p>
      *
-     * @return a {@link List} of {@link SagaStep}
+     * @return a {@link java.util.List} of {@link com.reactify.model.SagaStep}
      *         objects
      */
     public abstract List<SagaStep> getSteps();
@@ -82,7 +81,7 @@ public abstract class SagaProcess {
      * step fails, it triggers the rollback process and propagates the error.
      * </p>
      *
-     * @return a {@link Flux} object that represents the
+     * @return a {@link reactor.core.publisher.Flux} object that represents the
      *         execution flow
      */
     public Flux<?> execute() {
@@ -113,7 +112,7 @@ public abstract class SagaProcess {
      * to undo any changes made during the saga.
      * </p>
      *
-     * @return a {@link Flux} object that represents the
+     * @return a {@link reactor.core.publisher.Flux} object that represents the
      *         rollback flow
      */
     public Flux<?> revert() {

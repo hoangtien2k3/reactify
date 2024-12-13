@@ -15,6 +15,8 @@
  */
 package com.reactify.util;
 
+import static com.reactify.constants.CommonConstant.DATE_FORMAT_YM2;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.MapperFeature;
@@ -26,25 +28,6 @@ import com.reactify.constants.CommonConstant;
 import com.reactify.constants.CommonErrorCode;
 import com.reactify.exception.BusinessException;
 import com.reactify.factory.ObjectMapperFactory;
-import lombok.extern.slf4j.Slf4j;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.util.ObjectUtils;
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
-import reactor.core.publisher.Mono;
-
-import javax.xml.bind.JAXB;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.math.BigDecimal;
@@ -62,8 +45,24 @@ import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAccessor;
 import java.util.*;
 import java.util.regex.Pattern;
-
-import static com.reactify.constants.CommonConstant.DATE_FORMAT_YM2;
+import javax.xml.bind.JAXB;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import lombok.extern.slf4j.Slf4j;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.ObjectUtils;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+import reactor.core.publisher.Mono;
 
 /**
  * Utility class for data manipulation and processing. This class contains
@@ -1004,14 +1003,12 @@ public class DataUtil {
             return null;
         }
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(format);
-
         DateTimeFormatter convertDateFormatter = new DateTimeFormatterBuilder()
                 .append(dateFormatter)
                 .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
                 .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
                 .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
                 .toFormatter();
-
         try {
             return LocalDateTime.parse(input, convertDateFormatter);
         } catch (Exception ex) {

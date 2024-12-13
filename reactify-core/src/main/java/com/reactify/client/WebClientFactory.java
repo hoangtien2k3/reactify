@@ -15,6 +15,8 @@
  */
 package com.reactify.client;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.reactify.client.properties.WebClientProperties;
 import com.reactify.constants.Constants;
 import com.reactify.filter.properties.ProxyProperties;
@@ -27,6 +29,9 @@ import io.netty.channel.epoll.EpollChannelOption;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
+import java.time.Duration;
+import java.util.Base64;
+import java.util.List;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
@@ -44,17 +49,11 @@ import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
 import reactor.netty.transport.ProxyProvider;
 
-import java.time.Duration;
-import java.util.Base64;
-import java.util.List;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
-
 /**
  * <p>
  * The {@code WebClientFactory} class is responsible for creating and managing
  * instances of
- * {@link WebClient} configured
+ * {@link org.springframework.web.reactive.function.client.WebClient} configured
  * with various properties. It integrates with Spring's application context to
  * register the created clients as beans for dependency injection. This class
  * supports OAuth2 authentication, connection pooling, and various customization
@@ -63,15 +62,15 @@ import static java.nio.charset.StandardCharsets.UTF_8;
  *
  * <p>
  * The class implements the
- * {@link InitializingBean} interface, which
+ * {@link org.springframework.beans.factory.InitializingBean} interface, which
  * triggers the initialization of web clients after the bean properties have
  * been set. Each web client is created based on the specified
- * {@link WebClientProperties}.
+ * {@link com.reactify.client.properties.WebClientProperties}.
  * </p>
  *
  * <p>
  * The factory allows dynamic creation of multiple
- * {@link WebClient} instances
+ * {@link org.springframework.web.reactive.function.client.WebClient} instances
  * based on provided configurations, enabling flexible and efficient HTTP
  * communication in reactive applications.
  * </p>
@@ -115,13 +114,13 @@ public class WebClientFactory implements InitializingBean {
     /**
      * <p>
      * Initializes web clients based on the provided list of
-     * {@link WebClientProperties}. Each client is
+     * {@link com.reactify.client.properties.WebClientProperties}. Each client is
      * created and registered as a singleton bean in the application context.
      * </p>
      *
      * @param webClients
-     *            a {@link List} of
-     *            {@link WebClientProperties} objects
+     *            a {@link java.util.List} of
+     *            {@link com.reactify.client.properties.WebClientProperties} objects
      *            containing configuration for each web client
      */
     public void initWebClients(List<WebClientProperties> webClients) {
@@ -138,16 +137,16 @@ public class WebClientFactory implements InitializingBean {
     /**
      * <p>
      * Creates a new instance of
-     * {@link WebClient} using the
-     * provided {@link WebClientProperties}. The
+     * {@link org.springframework.web.reactive.function.client.WebClient} using the
+     * provided {@link com.reactify.client.properties.WebClientProperties}. The
      * client is configured with connection pooling, timeout settings, and
      * additional filters based on the properties specified.
      * </p>
      *
      * @param webClientProperties
-     *            a {@link WebClientProperties}
+     *            a {@link com.reactify.client.properties.WebClientProperties}
      *            object containing configuration for the web client
-     * @return a {@link WebClient}
+     * @return a {@link org.springframework.web.reactive.function.client.WebClient}
      *         object configured based on the given properties, or {@code null} if
      *         the properties are invalid
      */

@@ -15,12 +15,11 @@
  */
 package com.reactify.constants;
 
-import org.slf4j.MDC;
-import org.springframework.http.MediaType;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import org.slf4j.MDC;
+import org.springframework.http.MediaType;
 
 /**
  * <p>
@@ -89,7 +88,7 @@ public final class Constants {
     /**
      * Retrieves a list of sensitive headers.
      *
-     * @return a {@link List} of sensitive header names.
+     * @return a {@link java.util.List} of sensitive header names.
      */
     public static List<String> getSensitiveHeaders() {
         return SENSITIVE_HEADERS;
@@ -453,4 +452,19 @@ public final class Constants {
         /** Name of the REST client pool for HTTPS proxy. */
         String REST_CLIENT_POLL = "Rest-client-Pool";
     }
+
+    public interface MINIO_BUCKET_MARKET_INFO {
+        String URL_IMAGE = "market-info";
+    }
+
+    public interface MINIO_BUCKET_MARKET_SECTION {
+        String MARKET_SECTION = "market-section";
+    }
+
+    public static final String NULL_IMAGE_SRC = null;
+
+    public static final class ArrayLimit {
+        public static final Integer COMMON = 100;
+    }
+
 }

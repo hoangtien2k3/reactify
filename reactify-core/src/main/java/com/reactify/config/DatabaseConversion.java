@@ -16,6 +16,10 @@
 package com.reactify.config;
 
 import io.r2dbc.spi.Blob;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.time.*;
+import java.util.*;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.convert.converter.Converter;
@@ -30,11 +34,6 @@ import org.springframework.data.relational.core.mapping.NamingStrategy;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
-import java.time.*;
-import java.util.*;
-
 /**
  * <p>
  * The {@code DatabaseConversion} class provides utilities for converting
@@ -45,15 +44,15 @@ import java.util.*;
  *
  * <p>
  * This class utilizes Spring Data R2DBC's conversion framework to define and
- * manage converters for types such as {@link Instant},
- * {@link UUID}, {@link Duration}, and others, ensuring that
+ * manage converters for types such as {@link java.time.Instant},
+ * {@link java.util.UUID}, {@link java.time.Duration}, and others, ensuring that
  * the application can correctly handle these types when interacting with the
  * database.
  * </p>
  *
  * <p>
  * Additionally, it provides a method to retrieve a
- * {@link MappingR2dbcConverter}, which
+ * {@link org.springframework.data.r2dbc.convert.MappingR2dbcConverter}, which
  * is used for converting between database rows and domain objects.
  * </p>
  *
@@ -71,13 +70,13 @@ public class DatabaseConversion {
     /**
      * <p>
      * Retrieves a
-     * {@link MappingR2dbcConverter}
+     * {@link org.springframework.data.r2dbc.convert.MappingR2dbcConverter}
      * configured with the necessary mapping context and custom conversions for the
      * application.
      * </p>
      *
      * @return a
-     *         {@link MappingR2dbcConverter}
+     *         {@link org.springframework.data.r2dbc.convert.MappingR2dbcConverter}
      *         object configured for the application
      */
     public MappingR2dbcConverter getR2dbcConverter() {
@@ -114,7 +113,7 @@ public class DatabaseConversion {
     /**
      * Provides a list of custom converters for R2DBC operations.
      *
-     * @return a {@link List} of custom converter instances.
+     * @return a {@link java.util.List} of custom converter instances.
      */
     public List<Object> getListConverters() {
         List<Object> converters = new ArrayList<>();

@@ -21,16 +21,15 @@ import com.reactify.constants.Constants;
 import com.reactify.factory.ObjectMapperFactory;
 import com.reactify.model.TokenUser;
 import com.reactify.model.UserDTO;
+import java.security.SignatureException;
+import java.util.Map;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.oauth2.jwt.Jwt;
 import reactor.core.publisher.Mono;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import java.security.SignatureException;
-import java.util.Map;
 
 /**
  * Utility class for security-related operations. Provides methods to extract
@@ -114,7 +113,7 @@ public class SecurityUtils {
      * @param algorithm
      *            the algorithm to be used for signing
      * @return the generated HMAC as a String
-     * @throws SignatureException
+     * @throws java.security.SignatureException
      *             if an error occurs during HMAC generation
      */
     public static String hmac(String data, String key, String algorithm) throws SignatureException {

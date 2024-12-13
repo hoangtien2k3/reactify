@@ -28,9 +28,9 @@ import org.springframework.context.annotation.Configuration;
  * </p>
  *
  * <p>
- * This configuration class initializes a {@link MinioClient} bean
+ * This configuration class initializes a {@link io.minio.MinioClient} bean
  * based on the properties defined in
- * {@link MinioProperties}. It enables the Minio client only
+ * {@link com.reactify.config.MinioProperties}. It enables the Minio client only
  * if the "minio.enabled" property is set to true.
  * </p>
  *
@@ -54,14 +54,14 @@ public class MinioConfiguration {
 
     /**
      * <p>
-     * Creates a {@link MinioClient} bean configured with the Minio server
+     * Creates a {@link io.minio.MinioClient} bean configured with the Minio server
      * endpoint and access credentials. The client is only created if the
      * "minio.enabled" property is set to true.
      * </p>
      *
-     * @return a {@link MinioClient} object configured to connect to the
+     * @return a {@link io.minio.MinioClient} object configured to connect to the
      *         Minio server.
-     * @throws RuntimeException
+     * @throws java.lang.RuntimeException
      *             if there is an error during Minio client configuration.
      */
     @Bean

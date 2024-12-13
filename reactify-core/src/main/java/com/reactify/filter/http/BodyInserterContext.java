@@ -15,28 +15,27 @@
  */
 package com.reactify.filter.http;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.codec.HttpMessageWriter;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.reactive.function.BodyInserter;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
 /**
  * <p>
  * Implementation of the
- * {@link BodyInserter.Context}
+ * {@link org.springframework.web.reactive.function.BodyInserter.Context}
  * interface, providing a context for inserting a body into a WebFlux HTTP
  * request.
  * </p>
  *
  * <p>
  * This class is responsible for managing the
- * {@link ExchangeStrategies}
+ * {@link org.springframework.web.reactive.function.client.ExchangeStrategies}
  * used for writing HTTP messages, as well as providing default values for the
  * message writers, server request, and hints.
  * </p>
@@ -70,7 +69,7 @@ public class BodyInserterContext implements BodyInserter.Context {
      * <p>
      * Default constructor for {@code BodyInserterContext} that initializes the
      * context with default
-     * {@link ExchangeStrategies}.
+     * {@link org.springframework.web.reactive.function.client.ExchangeStrategies}.
      * </p>
      */
     public BodyInserterContext() {
@@ -80,12 +79,12 @@ public class BodyInserterContext implements BodyInserter.Context {
     /**
      * <p>
      * Constructor for {@code BodyInserterContext} that allows specifying custom
-     * {@link ExchangeStrategies}.
+     * {@link org.springframework.web.reactive.function.client.ExchangeStrategies}.
      * </p>
      *
      * @param exchangeStrategies
      *            an
-     *            {@link ExchangeStrategies}
+     *            {@link org.springframework.web.reactive.function.client.ExchangeStrategies}
      *            object defining the strategies for HTTP message handling
      */
     public BodyInserterContext(ExchangeStrategies exchangeStrategies) {

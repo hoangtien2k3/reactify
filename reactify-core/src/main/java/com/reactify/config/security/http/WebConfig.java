@@ -18,6 +18,7 @@ package com.reactify.config.security.http;
 import com.reactify.config.WhiteListProperties;
 import com.reactify.model.WhiteList;
 import com.reactify.util.DataUtil;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -36,8 +37,6 @@ import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 /**
  * <p>
  * The {@code WebConfig} class is a configuration class for setting up security
@@ -52,7 +51,7 @@ import java.util.List;
  * </p>
  *
  * <p>
- * The class uses the {@link WhiteListProperties} to
+ * The class uses the {@link com.reactify.config.WhiteListProperties} to
  * configure a whitelist of endpoints that can be accessed without
  * authentication.
  * </p>
@@ -87,13 +86,13 @@ public class WebConfig {
      *
      * @param http
      *            a
-     *            {@link ServerHttpSecurity}
+     *            {@link org.springframework.security.config.web.server.ServerHttpSecurity}
      *            object to configure security settings
      * @param jwtAuthenticationConverter
-     *            a {@link Converter}
+     *            a {@link org.springframework.core.convert.converter.Converter}
      *            object for JWT to authentication conversion
      * @return a
-     *         {@link SecurityWebFilterChain}
+     *         {@link org.springframework.security.web.server.SecurityWebFilterChain}
      *         object representing the security filter chain
      */
     @Bean

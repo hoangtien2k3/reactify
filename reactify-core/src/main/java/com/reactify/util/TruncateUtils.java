@@ -16,11 +16,10 @@
 package com.reactify.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.MultiValueMap;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Set;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.MultiValueMap;
 
 /**
  * <p>
@@ -43,10 +42,10 @@ public class TruncateUtils {
      * </p>
      *
      * @param s
-     *            a {@link String} object
+     *            a {@link java.lang.String} object
      * @param maxByte
      *            a int
-     * @return a {@link String} object
+     * @return a {@link java.lang.String} object
      */
     public static String truncate(String s, int maxByte) {
         try {
@@ -70,10 +69,10 @@ public class TruncateUtils {
      * </p>
      *
      * @param s
-     *            a {@link String} object
+     *            a {@link java.lang.String} object
      * @param maxByte
      *            a int
-     * @return a {@link String} object
+     * @return a {@link java.lang.String} object
      */
     public static String truncateBody(String s, int maxByte) {
         int b = 0;
@@ -112,8 +111,8 @@ public class TruncateUtils {
      * </p>
      *
      * @param responseBody
-     *            a {@link Object} object
-     * @return a {@link String} object
+     *            a {@link java.lang.Object} object
+     * @return a {@link java.lang.String} object
      */
     public static String truncateBody(Object responseBody) {
         ObjectMapper objectMapper = new ObjectMapper();

@@ -32,14 +32,14 @@ import org.springframework.security.oauth2.client.registration.ReactiveClientReg
  *
  * <p>
  * This class contains a method to create an instance of
- * {@link ReactiveOAuth2AuthorizedClientManager},
+ * {@link org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientManager},
  * which is used to manage authorized clients for OAuth2 operations in a
  * reactive environment.
  * </p>
  *
  * <p>
  * It is annotated with
- * {@link Configuration}, indicating that
+ * {@link org.springframework.context.annotation.Configuration}, indicating that
  * it provides Spring configuration.
  * </p>
  *
@@ -56,20 +56,20 @@ public class ClientRegistrationFilter {
     /**
      * <p>
      * Creates a
-     * {@link ReactiveOAuth2AuthorizedClientManager}
+     * {@link org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientManager}
      * bean.
      * </p>
      *
      * @param clientRegistrationRepository
      *            a
-     *            {@link ReactiveClientRegistrationRepository}
+     *            {@link org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository}
      *            object that manages the client registrations.
      * @param authorizedClientService
      *            a
-     *            {@link ReactiveOAuth2AuthorizedClientService}
+     *            {@link org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientService}
      *            object that manages the authorized clients.
      * @return a
-     *         {@link ReactiveOAuth2AuthorizedClientManager}
+     *         {@link org.springframework.security.oauth2.client.ReactiveOAuth2AuthorizedClientManager}
      *         object configured with the provided repositories.
      */
     @Bean

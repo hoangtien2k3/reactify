@@ -21,13 +21,12 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.reactify.util.DataUtil;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.r2dbc.core.DatabaseClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.Map;
 
 /**
  * <p>
@@ -72,15 +71,15 @@ public class BaseTemplateRepository {
      * </p>
      *
      * @param sql
-     *            a {@link String} object representing the SQL query
+     *            a {@link java.lang.String} object representing the SQL query
      * @param params
-     *            a {@link Map} object containing the query parameters
+     *            a {@link java.util.Map} object containing the query parameters
      * @param type
-     *            a {@link Class} object representing the type to map the
+     *            a {@link java.lang.Class} object representing the type to map the
      *            results to
      * @param <T>
      *            a generic type parameter
-     * @return a {@link Flux} object containing the results
+     * @return a {@link reactor.core.publisher.Flux} object containing the results
      *         mapped to the specified type
      */
     protected <T> Flux<T> listQuery(String sql, Map<String, Object> params, Class<T> type) {
@@ -101,10 +100,10 @@ public class BaseTemplateRepository {
      * </p>
      *
      * @param sql
-     *            a {@link String} object representing the SQL query
+     *            a {@link java.lang.String} object representing the SQL query
      * @param params
-     *            a {@link Map} object containing the query parameters
-     * @return a {@link Mono} object containing the total
+     *            a {@link java.util.Map} object containing the query parameters
+     * @return a {@link reactor.core.publisher.Mono} object containing the total
      *         count
      */
     protected Mono<Long> countQuery(String sql, Map<String, Object> params) {
@@ -128,9 +127,9 @@ public class BaseTemplateRepository {
      * </p>
      *
      * @param raw
-     *            a {@link Map} object containing the raw result
+     *            a {@link java.util.Map} object containing the raw result
      * @param type
-     *            a {@link Class} object representing the type to convert
+     *            a {@link java.lang.Class} object representing the type to convert
      *            to
      * @param <T>
      *            a generic type parameter

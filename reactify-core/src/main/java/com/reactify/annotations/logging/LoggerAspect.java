@@ -36,9 +36,9 @@ import org.springframework.context.annotation.Configuration;
  * </p>
  *
  * <p>
- * The class is annotated with {@link Aspect} to
+ * The class is annotated with {@link org.aspectj.lang.annotation.Aspect} to
  * define it as an aspect, and
- * {@link Configuration} to indicate that
+ * {@link org.springframework.context.annotation.Configuration} to indicate that
  * it provides Spring configuration.
  * </p>
  *
@@ -90,9 +90,9 @@ public class LoggerAspect {
      * </p>
      *
      * @param joinPoint
-     *            a {@link ProceedingJoinPoint} object
-     * @return a {@link Object} object
-     * @throws Throwable
+     *            a {@link org.aspectj.lang.ProceedingJoinPoint} object
+     * @return a {@link java.lang.Object} object
+     * @throws java.lang.Throwable
      *             if any.
      */
     @Around("performancePointCut() || logPerfMethods()")

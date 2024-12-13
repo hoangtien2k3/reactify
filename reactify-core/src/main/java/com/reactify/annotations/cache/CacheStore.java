@@ -19,6 +19,12 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.Scheduler;
 import com.reactify.annotations.LocalCache;
+import java.lang.reflect.Method;
+import java.time.Duration;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
@@ -31,25 +37,18 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import java.lang.reflect.Method;
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * <p>
  * The {@code CacheStore} class is responsible for managing and initializing
  * caches for methods annotated with
- * {@link LocalCache}. It uses the Caffeine caching
+ * {@link com.reactify.annotations.LocalCache}. It uses the Caffeine caching
  * library to provide an efficient caching mechanism, supporting features like
  * auto-loading of cache entries based on method annotations.
  * </p>
  *
  * <p>
  * This class implements
- * {@link ApplicationContextAware} to gain access to
+ * {@link org.springframework.context.ApplicationContextAware} to gain access to
  * the Spring application context, allowing it to dynamically discover and
  * initialize caches at startup. It automatically loads caches for methods that
  * have the {@code @LocalCache} annotation and meet the specified criteria.
@@ -69,7 +68,7 @@ import java.util.Set;
  * </p>
  *
  * <p>
- * The caches are stored in a static {@link HashMap} for easy access
+ * The caches are stored in a static {@link java.util.HashMap} for easy access
  * based on the method name and class.
  * </p>
  *
@@ -136,8 +135,8 @@ public class CacheStore implements ApplicationContextAware {
      * </p>
      *
      * @param key
-     *            a {@link String} object representing the cache name.
-     * @return a {@link Cache} object
+     *            a {@link java.lang.String} object representing the cache name.
+     * @return a {@link com.github.benmanes.caffeine.cache.Cache} object
      *         corresponding to the specified name, or {@code null} if no cache
      *         exists for the given key.
      */
@@ -149,11 +148,11 @@ public class CacheStore implements ApplicationContextAware {
      * <p>
      * Automatically loads cache entries for methods that are configured to
      * auto-load. This method is triggered by the
-     * {@link ContextRefreshedEvent}.
+     * {@link org.springframework.context.event.ContextRefreshedEvent}.
      * </p>
      *
      * @param event
-     *            a {@link ContextRefreshedEvent}
+     *            a {@link org.springframework.context.event.ContextRefreshedEvent}
      *            object indicating the application context has been refreshed.
      */
     @Async

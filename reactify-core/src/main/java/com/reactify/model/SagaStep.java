@@ -57,12 +57,12 @@ public interface SagaStep {
      *
      * <p>
      * This method performs the primary operation of the step. It should return a
-     * {@link Mono} containing a
-     * {@link StepResult} object that indicates the success or
+     * {@link reactor.core.publisher.Mono} containing a
+     * {@link com.reactify.model.StepResult} object that indicates the success or
      * failure of the operation and any relevant messages.
      * </p>
      *
-     * @return a {@link Mono} object representing the
+     * @return a {@link reactor.core.publisher.Mono} object representing the
      *         execution result of the step
      */
     Mono<StepResult> execute();
@@ -74,12 +74,12 @@ public interface SagaStep {
      *
      * <p>
      * This method reverses the actions taken by the step. It should return a
-     * {@link Mono} containing a boolean indicating whether
+     * {@link reactor.core.publisher.Mono} containing a boolean indicating whether
      * the rollback was successful. This method is called during the rollback
      * process of the saga when a step fails.
      * </p>
      *
-     * @return a {@link Mono} object indicating the success
+     * @return a {@link reactor.core.publisher.Mono} object indicating the success
      *         of the revert operation
      */
     Mono<Boolean> revert();

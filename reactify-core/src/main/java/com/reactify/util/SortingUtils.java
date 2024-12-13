@@ -18,12 +18,11 @@ package com.reactify.util;
 import com.reactify.constants.Constants;
 import com.reactify.constants.Regex;
 import com.reactify.model.TokenUser;
-import lombok.extern.slf4j.Slf4j;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Utility class for data manipulation and processing. This class contains
@@ -43,7 +42,7 @@ public class SortingUtils {
      * </p>
      *
      * @param args
-     *            an array of {@link String} objects
+     *            an array of {@link java.lang.String} objects
      */
     public static void main(String[] args) {
         String sort = "-username,+id,++object";

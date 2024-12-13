@@ -16,6 +16,8 @@
 package com.reactify.annotations.cache;
 
 import com.github.benmanes.caffeine.cache.Cache;
+import java.util.Objects;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -27,9 +29,6 @@ import org.springframework.util.ClassUtils;
 import reactor.cache.CacheMono;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Signal;
-
-import java.util.Objects;
-import java.util.Optional;
 
 /**
  * <p>
@@ -47,10 +46,10 @@ import java.util.Optional;
  * </p>
  *
  * <p>
- * The class is annotated with {@link Aspect} and
- * {@link Configuration}, making it a
+ * The class is annotated with {@link org.aspectj.lang.annotation.Aspect} and
+ * {@link org.springframework.context.annotation.Configuration}, making it a
  * Spring managed bean that can intercept method calls. The logging is managed
- * using the Lombok {@link Slf4j} annotation.
+ * using the Lombok {@link lombok.extern.slf4j.Slf4j} annotation.
  * </p>
  *
  * @author hoangtien2k3
@@ -84,11 +83,11 @@ public class CacheAspect {
      * </p>
      *
      * @param joinPoint
-     *            a {@link ProceedingJoinPoint} object representing
+     *            a {@link org.aspectj.lang.ProceedingJoinPoint} object representing
      *            the method execution context.
-     * @return an {@link Object} that is the result of the method
+     * @return an {@link java.lang.Object} that is the result of the method
      *         execution or the cached result.
-     * @throws Throwable
+     * @throws java.lang.Throwable
      *             if any exception occurs during method execution or while
      *             accessing the cache.
      */

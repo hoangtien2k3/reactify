@@ -25,7 +25,7 @@ import org.springframework.context.annotation.Configuration;
  * <p>
  * TracingConfiguration class provides configuration for tracing in the
  * application using the Brave library. This class defines beans for the
- * {@link Tracer} and {@link Tracing} objects, which
+ * {@link io.micrometer.tracing.Tracer} and {@link brave.Tracing} objects, which
  * are essential for distributed tracing and monitoring of requests across
  * microservices.
  * </p>
@@ -53,8 +53,8 @@ public class TracingConfiguration {
      * </p>
      *
      * @param tracing
-     *            a {@link Tracing} object that provides tracing capabilities.
-     * @return a {@link Tracer} object configured for tracing
+     *            a {@link brave.Tracing} object that provides tracing capabilities.
+     * @return a {@link io.micrometer.tracing.Tracer} object configured for tracing
      *         operations.
      */
     @Bean
@@ -69,7 +69,7 @@ public class TracingConfiguration {
      * application's requirements.
      * </p>
      *
-     * @return a {@link Tracing} object used for creating trace spans.
+     * @return a {@link brave.Tracing} object used for creating trace spans.
      */
     @Bean
     public Tracing tracing() {

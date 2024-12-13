@@ -15,6 +15,8 @@
  */
 package com.reactify.client.impl;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.reactify.client.BaseRestClient;
 import com.reactify.constants.CommonErrorCode;
 import com.reactify.constants.Constants;
@@ -26,6 +28,10 @@ import io.netty.channel.epoll.EpollChannelOption;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.util.Objects;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
@@ -44,20 +50,13 @@ import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
 import reactor.netty.transport.ProxyProvider;
 
-import java.nio.charset.StandardCharsets;
-import java.time.Duration;
-import java.util.Objects;
-import java.util.Optional;
-
-import static java.nio.charset.StandardCharsets.UTF_8;
-
 /**
  * BaseRestClientImpl provides a base implementation of the
- * {@link BaseRestClient} interface. This class uses
- * Spring's {@link WebClient}
+ * {@link com.reactify.client.BaseRestClient} interface. This class uses
+ * Spring's {@link org.springframework.web.reactive.function.client.WebClient}
  * for making REST API calls and handling various HTTP operations (GET, POST,
  * DELETE ...). Each method utilizes reactive types like
- * {@link Mono}, {@link reactor.core.publisher.Flux} for
+ * {@link reactor.core.publisher.Mono}, {@link reactor.core.publisher.Flux} for
  * asynchronous and non-blocking execution, which is useful in a WebFlux
  * environment. The class includes handling for error scenarios, logging, and
  * response parsing.

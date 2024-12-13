@@ -22,6 +22,10 @@ import com.reactify.util.DataUtil;
 import com.reactify.util.Translator;
 import io.micrometer.tracing.Tracer;
 import io.r2dbc.spi.R2dbcException;
+import java.nio.file.AccessDeniedException;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.core.io.buffer.DataBufferLimitException;
@@ -33,11 +37,6 @@ import org.springframework.web.bind.support.WebExchangeBindException;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.ServerWebInputException;
 import reactor.core.publisher.Mono;
-
-import java.nio.file.AccessDeniedException;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -67,10 +66,10 @@ public class ExceptionResponseConfig {
      * </p>
      *
      * @param ex
-     *            a {@link RuntimeException} object
+     *            a {@link java.lang.RuntimeException} object
      * @param serverWebExchange
-     *            a {@link ServerWebExchange} object
-     * @return a {@link Mono} object
+     *            a {@link org.springframework.web.server.ServerWebExchange} object
+     * @return a {@link reactor.core.publisher.Mono} object
      */
     @ExceptionHandler(RuntimeException.class)
     public Mono<ResponseEntity<TraceErrorResponse<Object>>> runtimeException(
@@ -88,10 +87,10 @@ public class ExceptionResponseConfig {
      * </p>
      *
      * @param ex
-     *            a {@link R2dbcException} object
+     *            a {@link io.r2dbc.spi.R2dbcException} object
      * @param serverWebExchange
-     *            a {@link ServerWebExchange} object
-     * @return a {@link Mono} object
+     *            a {@link org.springframework.web.server.ServerWebExchange} object
+     * @return a {@link reactor.core.publisher.Mono} object
      */
     @ExceptionHandler(R2dbcException.class)
     public Mono<ResponseEntity<TraceErrorResponse<Object>>> r2dbcException(
@@ -109,10 +108,10 @@ public class ExceptionResponseConfig {
      * </p>
      *
      * @param ex
-     *            a {@link AccessDeniedException} object
+     *            a {@link java.nio.file.AccessDeniedException} object
      * @param serverWebExchange
-     *            a {@link ServerWebExchange} object
-     * @return a {@link Mono} object
+     *            a {@link org.springframework.web.server.ServerWebExchange} object
+     * @return a {@link reactor.core.publisher.Mono} object
      */
     @ExceptionHandler(AccessDeniedException.class)
     public Mono<ResponseEntity<TraceErrorResponse<Object>>> accessDeniedException(
@@ -131,9 +130,9 @@ public class ExceptionResponseConfig {
      *
      * @param ex
      *            a
-     *            {@link DataBufferLimitException}
+     *            {@link org.springframework.core.io.buffer.DataBufferLimitException}
      *            object
-     * @return a {@link Mono} object
+     * @return a {@link reactor.core.publisher.Mono} object
      */
     @ExceptionHandler(DataBufferLimitException.class)
     public Mono<ResponseEntity<TraceErrorResponse<Object>>> dataBufferLimitException(DataBufferLimitException ex) {
@@ -151,11 +150,11 @@ public class ExceptionResponseConfig {
      * </p>
      *
      * @param ex
-     *            a {@link ServerWebInputException}
+     *            a {@link org.springframework.web.server.ServerWebInputException}
      *            object
      * @param serverWebExchange
-     *            a {@link ServerWebExchange} object
-     * @return a {@link Mono} object
+     *            a {@link org.springframework.web.server.ServerWebExchange} object
+     * @return a {@link reactor.core.publisher.Mono} object
      */
     @ExceptionHandler(ServerWebInputException.class)
     public Mono<ResponseEntity<TraceErrorResponse<Object>>> serverInputException(
@@ -174,11 +173,11 @@ public class ExceptionResponseConfig {
      *
      * @param ex
      *            a
-     *            {@link WebExchangeBindException}
+     *            {@link org.springframework.web.bind.support.WebExchangeBindException}
      *            object
      * @param serverWebExchange
-     *            a {@link ServerWebExchange} object
-     * @return a {@link Mono} object
+     *            a {@link org.springframework.web.server.ServerWebExchange} object
+     * @return a {@link reactor.core.publisher.Mono} object
      */
     @ExceptionHandler(WebExchangeBindException.class)
     public Mono<ResponseEntity<TraceErrorResponse<Object>>> serverInputException(
@@ -210,10 +209,10 @@ public class ExceptionResponseConfig {
      * </p>
      *
      * @param ex
-     *            a {@link BusinessException} object
+     *            a {@link com.reactify.exception.BusinessException} object
      * @param serverWebExchange
-     *            a {@link ServerWebExchange} object
-     * @return a {@link Mono} object
+     *            a {@link org.springframework.web.server.ServerWebExchange} object
+     * @return a {@link reactor.core.publisher.Mono} object
      */
     @ExceptionHandler(BusinessException.class)
     public Mono<ResponseEntity<TraceErrorResponse<Object>>> businessException(

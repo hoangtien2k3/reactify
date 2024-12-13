@@ -15,12 +15,17 @@
  */
 package com.reactify.annotations.logging;
 
+import static com.reactify.constants.Constants.MAX_BYTE;
+
 import com.reactify.factory.ObjectMapperFactory;
 import com.reactify.model.logging.LogField;
 import com.reactify.model.logging.LoggerDTO;
 import com.reactify.util.DataUtil;
 import com.reactify.util.RequestUtils;
 import com.reactify.util.TruncateUtils;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,12 +34,6 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import static com.reactify.constants.Constants.MAX_BYTE;
 
 /**
  * LoggerSchedule class is responsible for scheduling the logging of requests

@@ -15,10 +15,9 @@
  */
 package com.reactify.util;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
@@ -41,7 +40,7 @@ public class StreamUtil {
      * </p>
      *
      * @param inStream
-     *            a {@link InputStream} object
+     *            a {@link java.io.InputStream} object
      * @return an array of {@link byte} objects
      */
     public static byte[] streamToByteArray(InputStream inStream) {

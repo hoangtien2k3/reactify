@@ -23,20 +23,19 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-
 import java.io.IOException;
 
 /**
  * <p>
  * Factory class for providing different configurations of
- * {@link ObjectMapper} instances.
+ * {@link com.fasterxml.jackson.databind.ObjectMapper} instances.
  * </p>
  *
  * <p>
  * This class centralizes the creation of
- * {@link ObjectMapper} instances with various
+ * {@link com.fasterxml.jackson.databind.ObjectMapper} instances with various
  * settings that are often reused across the application. Each method provides
- * an {@link ObjectMapper} with specific
+ * an {@link com.fasterxml.jackson.databind.ObjectMapper} with specific
  * configurations for handling JSON data deserialization and serialization.
  * </p>
  *
@@ -85,7 +84,7 @@ public class ObjectMapperFactory {
     /**
      * <p>
      * Provides a custom-configured
-     * {@link ObjectMapper} instance.
+     * {@link com.fasterxml.jackson.databind.ObjectMapper} instance.
      * </p>
      *
      * <p>
@@ -94,7 +93,7 @@ public class ObjectMapperFactory {
      * values represented as numeric strings.
      * </p>
      *
-     * @return a {@link ObjectMapper} instance with
+     * @return a {@link com.fasterxml.jackson.databind.ObjectMapper} instance with
      *         custom configurations
      */
     public static ObjectMapper getInstance() {
@@ -118,7 +117,7 @@ public class ObjectMapperFactory {
 
     /**
      * <p>
-     * Provides an alternative {@link ObjectMapper}
+     * Provides an alternative {@link com.fasterxml.jackson.databind.ObjectMapper}
      * instance with a simplified configuration.
      * </p>
      *
@@ -127,7 +126,7 @@ public class ObjectMapperFactory {
      * values as arrays, but without additional modules or custom deserializers.
      * </p>
      *
-     * @return a {@link ObjectMapper} instance with
+     * @return a {@link com.fasterxml.jackson.databind.ObjectMapper} instance with
      *         simplified configurations
      */
     public static ObjectMapper getInstance2() {
@@ -138,7 +137,7 @@ public class ObjectMapperFactory {
 
     /**
      * <p>
-     * Provides a default {@link ObjectMapper}
+     * Provides a default {@link com.fasterxml.jackson.databind.ObjectMapper}
      * instance with standard configuration settings.
      * </p>
      *
@@ -149,7 +148,7 @@ public class ObjectMapperFactory {
      * classpath.
      * </p>
      *
-     * @return a {@link ObjectMapper} instance with
+     * @return a {@link com.fasterxml.jackson.databind.ObjectMapper} instance with
      *         default settings
      */
     public static ObjectMapper defaultGetInstance() {

@@ -34,7 +34,7 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
  *
  * <p>
  * This class implements the
- * {@link WebFluxConfigurer} interface
+ * {@link org.springframework.web.reactive.config.WebFluxConfigurer} interface
  * to customize the CORS mappings for the WebFlux framework.
  * </p>
  *

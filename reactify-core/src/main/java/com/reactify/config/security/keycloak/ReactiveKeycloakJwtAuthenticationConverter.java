@@ -15,6 +15,9 @@
  */
 package com.reactify.config.security.keycloak;
 
+import java.util.Collection;
+import java.util.Map;
+import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -25,10 +28,6 @@ import org.springframework.security.oauth2.server.resource.authentication.Reacti
 import org.springframework.util.Assert;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.Collection;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * <p>
@@ -50,7 +49,7 @@ public final class ReactiveKeycloakJwtAuthenticationConverter
      * </p>
      *
      * @param jwtGrantedAuthoritiesConverter
-     *            a {@link Converter}
+     *            a {@link org.springframework.core.convert.converter.Converter}
      *            object
      */
     public ReactiveKeycloakJwtAuthenticationConverter(
