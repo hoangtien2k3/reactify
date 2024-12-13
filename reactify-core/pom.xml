@@ -11,7 +11,7 @@
     <groupId>io.github.hoangtien2k3</groupId>
     <artifactId>reactify-core</artifactId>
     <version>1.1.7</version>
-    <name>reactify-cache</name>
+    <name>reactify-core</name>
     <packaging>jar</packaging>
     <description>Java lib using caffeine cache</description>
     <url>https://github.com/hoangtien2k3/reactify</url>
