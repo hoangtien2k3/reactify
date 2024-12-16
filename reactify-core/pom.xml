@@ -54,7 +54,7 @@
         <micrometer.core.version>1.13.1</micrometer.core.version>
         <spring-cloud.version>2023.0.2</spring-cloud.version>
         <spotless.version>2.43.0</spotless.version>
-        <log4j.version>2.23.1</log4j.version>
+        <log4j.version>2.24.3</log4j.version>
         <minio.version>8.5.11</minio.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <mapstruct.processor.version>1.5.5.Final</mapstruct.processor.version>
